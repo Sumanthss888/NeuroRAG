@@ -116,147 +116,143 @@ def create_app():
     return app
 
 
-if __name__ == '__main__':
-    # Create app
-    app = create_app()
+app = create_app()
+init_users_file()
     
-    # Initialize users file
-    init_users_file()
+@app.before_request
+def require_login():
+    """Redirect to login if not authenticated"""
+    # Allow access to login, signup, and static files without authentication
+    allowed_routes = ['login', 'signup', 'static']
+    
+    if request.endpoint and request.endpoint not in allowed_routes:
+        if 'username' not in session:
+            return redirect('/login')
 
-    
-    @app.before_request
-    def require_login():
-        """Redirect to login if not authenticated"""
-        # Allow access to login, signup, and static files without authentication
-        allowed_routes = ['login', 'signup', 'static']
-        
-        if request.endpoint and request.endpoint not in allowed_routes:
-            if 'username' not in session:
-                return redirect('/login')
-    
-    @app.route('/login', methods=['GET', 'POST'])
-    def login():
-        """Login page and authentication"""
-        if request.method == 'GET':
-            if 'username' in session:
-                return redirect('/')
-            return render_template('login.html')
-        
-        # POST - handle login
-        data = request.get_json()
-        username = data.get('username', '').strip()
-        password = data.get('password', '')
-        
-        if not username or not password:
-            return jsonify({'success': False, 'message': 'Username and password required'}), 400
-        
-        users_data = load_users()
-        
-        if username not in users_data["users"]:
-            return jsonify({'success': False, 'message': 'Invalid username or password'}), 401
-        
-        user = users_data["users"][username]
-        
-        if user["password"] != hash_password(password):
-            return jsonify({'success': False, 'message': 'Invalid username or password'}), 401
-        
-        session['username'] = username
-        session.permanent = True
-        logger.info(f"✓ User logged in: {username}")
-        
-        return jsonify({'success': True, 'message': 'Login successful'})
-    
-    @app.route('/signup', methods=['GET', 'POST'])
-    def signup():
-        """Signup page and registration"""
-        if request.method == 'GET':
-            if 'username' in session:
-                return redirect('/')
-            return render_template('signup.html')
-        
-        # POST - handle signup
-        data = request.get_json()
-        username = data.get('username', '').strip()
-        password = data.get('password', '')
-        email = data.get('email', '').strip()
-        
-        if not username or not password:
-            return jsonify({'success': False, 'message': 'Username and password required'}), 400
-        
-        if len(username) < 3:
-            return jsonify({'success': False, 'message': 'Username must be at least 3 characters'}), 400
-        
-        if len(password) < 6:
-            return jsonify({'success': False, 'message': 'Password must be at least 6 characters'}), 400
-        
-        users_data = load_users()
-        
-        if username in users_data["users"]:
-            return jsonify({'success': False, 'message': 'Username already exists'}), 400
-        
-        # Create new user
-        users_data["users"][username] = {
-            "password": hash_password(password),
-            "email": email,
-            "created_at": datetime.now().isoformat(),
-            "chat_history": []
-        }
-        
-        save_users(users_data)
-        logger.info(f"✓ New user registered: {username}")
-        
-        return jsonify({'success': True, 'message': 'Account created successfully'})
-    
-    @app.route('/logout')
-    def logout():
-        """Logout user"""
-        username = session.get('username', 'Unknown')
-        session.pop('username', None)
-        logger.info(f"✓ User logged out: {username}")
-        return redirect('/login')
-    
-    @app.route('/chat_history')
-    @login_required
-    def chat_history():
-        """View chat history"""
-        username = session.get('username')
-        users_data = load_users()
-        
-        history = []
-        if username in users_data["users"]:
-            history = list(reversed(users_data["users"][username]["chat_history"]))
-        
-        return render_template('chat_history.html', username=username, history=history)
-    
-    @app.route('/api/clear_history', methods=['POST'])
-    @login_required
-    def clear_history():
-        """Clear user's chat history"""
-        username = session.get('username')
-        users_data = load_users()
-        
-        if username in users_data["users"]:
-            users_data["users"][username]["chat_history"] = []
-            save_users(users_data)
-            logger.info(f"✓ Chat history cleared for: {username}")
-        
-        return jsonify({'success': True, 'message': 'Chat history cleared'})
-    
-    @app.route('/api/save_chat', methods=['POST'])
-    def api_save_chat():
-        """Save chat from existing chat route"""
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login page and authentication"""
+    if request.method == 'GET':
         if 'username' in session:
-            data = request.get_json()
-            question = data.get('question', '')
-            answer = data.get('answer', '')
-            
-            if question and answer:
-                save_chat_history(session['username'], question, answer)
-                return jsonify({'success': True})
+            return redirect('/')
+        return render_template('login.html')
+    
+    # POST - handle login
+    data = request.get_json()
+    username = data.get('username', '').strip()
+    password = data.get('password', '')
+    
+    if not username or not password:
+        return jsonify({'success': False, 'message': 'Username and password required'}), 400
+    
+    users_data = load_users()
+    
+    if username not in users_data["users"]:
+        return jsonify({'success': False, 'message': 'Invalid username or password'}), 401
+    
+    user = users_data["users"][username]
+    
+    if user["password"] != hash_password(password):
+        return jsonify({'success': False, 'message': 'Invalid username or password'}), 401
+    
+    session['username'] = username
+    session.permanent = True
+    logger.info(f"✓ User logged in: {username}")
+    
+    return jsonify({'success': True, 'message': 'Login successful'})
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    """Signup page and registration"""
+    if request.method == 'GET':
+        if 'username' in session:
+            return redirect('/')
+        return render_template('signup.html')
+    
+    # POST - handle signup
+    data = request.get_json()
+    username = data.get('username', '').strip()
+    password = data.get('password', '')
+    email = data.get('email', '').strip()
+    
+    if not username or not password:
+        return jsonify({'success': False, 'message': 'Username and password required'}), 400
+    
+    if len(username) < 3:
+        return jsonify({'success': False, 'message': 'Username must be at least 3 characters'}), 400
+    
+    if len(password) < 6:
+        return jsonify({'success': False, 'message': 'Password must be at least 6 characters'}), 400
+    
+    users_data = load_users()
+    
+    if username in users_data["users"]:
+        return jsonify({'success': False, 'message': 'Username already exists'}), 400
+    
+    # Create new user
+    users_data["users"][username] = {
+        "password": hash_password(password),
+        "email": email,
+        "created_at": datetime.now().isoformat(),
+        "chat_history": []
+    }
+    
+    save_users(users_data)
+    logger.info(f"✓ New user registered: {username}")
+    
+    return jsonify({'success': True, 'message': 'Account created successfully'})
+
+@app.route('/logout')
+def logout():
+    """Logout user"""
+    username = session.get('username', 'Unknown')
+    session.pop('username', None)
+    logger.info(f"✓ User logged out: {username}")
+    return redirect('/login')
+
+@app.route('/chat_history')
+@login_required
+def chat_history():
+    """View chat history"""
+    username = session.get('username')
+    users_data = load_users()
+    
+    history = []
+    if username in users_data["users"]:
+        history = list(reversed(users_data["users"][username]["chat_history"]))
+    
+    return render_template('chat_history.html', username=username, history=history)
+
+@app.route('/api/clear_history', methods=['POST'])
+@login_required
+def clear_history():
+    """Clear user's chat history"""
+    username = session.get('username')
+    users_data = load_users()
+    
+    if username in users_data["users"]:
+        users_data["users"][username]["chat_history"] = []
+        save_users(users_data)
+        logger.info(f"✓ Chat history cleared for: {username}")
+    
+    return jsonify({'success': True, 'message': 'Chat history cleared'})
+
+@app.route('/api/save_chat', methods=['POST'])
+def api_save_chat():
+    """Save chat from existing chat route"""
+    if 'username' in session:
+        data = request.get_json()
+        question = data.get('question', '')
+        answer = data.get('answer', '')
         
-        return jsonify({'success': False})
+        if question and answer:
+            save_chat_history(session['username'], question, answer)
+            return jsonify({'success': True})
     
-    
+    return jsonify({'success': False})
+
+
+if __name__ == '__main__':
     logger.info(f"Starting NeuroRAG server on {Config.FLASK_HOST}:{Config.FLASK_PORT}")
     
     app.run(
