@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroRAG - Secure Clinical Login</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              glass: 'rgba(15, 23, 42, 0.6)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="relative flex min-h-screen items-center justify-center bg-[#020617] text-slate-200 overflow-hidden">
+    
+    <!-- Ambient Background Effects -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Main Glass Card -->
+    <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] animate-slide-up relative z-10 border border-white/10 mx-4">
+        
+        <!-- Header -->
+        <div class="text-center mb-10">
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+                <i class="ph-fill ph-brain text-4xl text-cyan-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]"></i>
+            </div>
+            <h1 class="font-display text-3xl font-bold tracking-tight text-white mb-2">NeuroRAG</h1>
+            <p class="text-slate-400 font-medium">Clinical AI Intelligence</p>
+        </div>
+
+        <div id="message" class="hidden mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md"></div>
+
+        <form id="loginForm" class="space-y-6">
+            <!-- Username Input -->
+            <div class="floating-input relative">
+                <input 
+                    type="text" 
+                    id="username" 
+                    required 
+                    placeholder=" " 
+                    autocomplete="off"
+                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                >
+                <label for="username" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-cyan-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
+                    <div class="flex items-center gap-2"><i class="ph ph-user"></i> Username</div>
+                </label>
+            </div>
+
+            <!-- Password Input -->
+            <div class="floating-input relative">
+                <input 
+                    type="password" 
+                    id="password" 
+                    required 
+                    placeholder=" " 
+                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                >
+                <label for="password" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-cyan-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
+                    <div class="flex items-center gap-2"><i class="ph ph-lock-key"></i> Password</div>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button 
+                type="submit" 
+                id="loginBtn" 
+                class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 px-4 py-4 font-display text-base font-bold text-white shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-95 disabled:opacity-70 disabled:hover:scale-100"
+            >
+                <div class="absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                
+                <span id="btnText" class="flex items-center justify-center gap-2">
+                    Access Terminal <i class="ph-bold ph-arrow-right transition-transform group-hover:translate-x-1"></i>
+                </span>
+                
+                <div id="spinner" class="hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <i class="ph-bold ph-spinner animate-spin text-xl"></i>
+                </div>
+            </button>
+        </form>
+
+        <div class="mt-8 text-center text-sm text-slate-400 border-t border-white/10 pt-6">
+            New personnel? 
+            <a href="/signup" class="font-semibold text-cyan-400 transition-colors hover:text-cyan-300 hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+                Initialize credentials
+            </a>
+        </div>
+    </div>
+
+    <!-- Keep exact JS logic untouched -->
+    <script>
+        const form = document.getElementById('loginForm');
+        const messageDiv = document.getElementById('message');
+        const loginBtn = document.getElementById('loginBtn');
+        const btnText = document.getElementById('btnText');
+        const spinner = document.getElementById('spinner');
+
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            
+            // Apply Tailwind classes dynamically based on type
+            if (type === 'success') {
+                messageDiv.className = 'mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md bg-emerald-500/10 border-emerald-500/30 text-emerald-400';
+            } else {
+                messageDiv.className = 'mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md bg-red-500/10 border-red-500/30 text-red-400';
+            }
+            
+            messageDiv.classList.remove('hidden');
+        }
+
+        function setLoading(isLoading) {
+            loginBtn.disabled = isLoading;
+            if (isLoading) {
+                btnText.classList.add('invisible');
+                spinner.classList.remove('hidden');
+            } else {
+                btnText.classList.remove('invisible');
+                spinner.classList.add('hidden');
+            }
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showMessage('Please fill in all fields', 'error');
+                return;
+            }
+
+            setLoading(true);
+            messageDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showMessage('Access granted. Initializing dashboard...', 'success');
+                    setTimeout(() => window.location.href = '/', 1000);
+                } else {
+                    showMessage(data.message || 'Access denied', 'error');
+                    setLoading(false);
+                }
+            } catch (error) {
+                showMessage('Connection error. Core offline.', 'error');
+                setLoading(false);
+            }
+        });
+    </script>
+</body>
+</html>

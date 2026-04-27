@@ -1,0 +1,184 @@
+"""
+Generate answers using Gemini with RAG context
+"""
+from typing import List, Dict, Optional
+from google import genai
+from google.genai import types
+from ..utils.config import Config
+from ..utils.logger import setup_logger
+
+logger = setup_logger(__name__)
+
+class RAGGenerator:
+    """Generate answers using Gemini with retrieved context"""
+    
+    def __init__(self, api_key: str = None):
+        self.api_key = api_key or Config.GEMINI_API_KEY
+        
+        if not self.api_key:
+            raise ValueError("Gemini API key is required")
+        
+        # Initialize Gemini client
+        self.client = genai.Client(api_key=self.api_key)
+        self.model = Config.GEMINI_GENERATION_MODEL
+        
+        logger.info(f"Initialized RAG Generator with model: {self.model}")
+    
+    def generate_answer(self, query: str, context: str, 
+                       mode: str = "patient",
+                       citations: List[Dict] = None) -> Dict:
+        """
+        Generate answer using RAG
+        
+        Args:
+            query: User query
+            context: Retrieved context from chunks
+            mode: Response mode (clinician/patient)
+            citations: List of citation dictionaries
+        
+        Returns:
+            Dictionary with answer and metadata
+        """
+        logger.info(f"Generating answer in {mode} mode")
+        
+        # Build prompt based on mode
+        prompt = self._build_prompt(query, context, mode)
+        
+        try:
+            # Generate response
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt
+            )
+            
+            if response and response.text:
+                answer = response.text
+                
+                # Add citations to answer
+                if citations:
+                    answer = self._add_citations(answer, citations)
+                
+                result = {
+                    "success": True,
+                    "answer": answer,
+                    "mode": mode,
+                    "citations": citations or [],
+                    "model": self.model
+                }
+                
+                logger.info("Answer generated successfully")
+                return result
+            else:
+                logger.error("No response from Gemini")
+                return {
+                    "success": False,
+                    "error": "No response generated"
+                }
+        
+        except Exception as e:
+            logger.error(f"Error generating answer: {e}")
+            return {
+                "success": False,
+                "error": str(e)
+            }
+    
+    def _build_prompt(self, query: str, context: str, mode: str) -> str:
+        """
+        Build RAG prompt
+        
+        Args:
+            query: User query
+            context: Retrieved context
+            mode: Response mode
+        
+        Returns:
+            Formatted prompt
+        """
+        mode_config = Config.MODES.get(mode, Config.MODES["patient"])
+        mode_instruction = mode_config["prompt_suffix"]
+        
+        prompt = f"""You are a medical AI assistant specializing in neurological disorders.
+
+CONTEXT (from "Neurological Disorders – A Handbook for Family Physicians"):
+{context}
+
+USER QUESTION:
+{query}
+
+INSTRUCTIONS:
+1. Answer the question based ONLY on the provided context
+2. If the context doesn't contain enough information, say so clearly
+3. {mode_instruction}
+4. Be accurate and cite specific information from the text
+5. Use clear, well-structured responses
+
+ANSWER:"""
+        
+        return prompt
+    
+    def _add_citations(self, answer: str, citations: List[Dict]) -> str:
+        """
+        Add citations to answer
+        
+        Args:
+            answer: Generated answer
+            citations: List of citations
+        
+        Returns:
+            Answer with citations appended
+        """
+        if not citations:
+            return answer
+        
+        citation_text = "\n\n---\n**Sources:**\n"
+        
+        for i, citation in enumerate(citations, 1):
+            chapter_title = citation.get("chapter_title", "Unknown")
+            chapter_id = citation.get("chapter_id", "")
+            
+            citation_text += f"{i}. Chapter {chapter_id}: {chapter_title}\n"
+        
+        return answer + citation_text
+    
+    def generate_followup_questions(self, query: str, answer: str) -> List[str]:
+        """
+        Generate follow-up questions based on query and answer
+        
+        Args:
+            query: Original query
+            answer: Generated answer
+        
+        Returns:
+            List of follow-up questions
+        """
+        prompt = f"""Based on this medical Q&A, suggest 3 relevant follow-up questions:
+
+ORIGINAL QUESTION:
+{query}
+
+ANSWER PROVIDED:
+{answer}
+
+Generate 3 specific, medically relevant follow-up questions that a patient or clinician might ask. Return only the questions, numbered 1-3."""
+        
+        try:
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=prompt
+            )
+            
+            if response and response.text:
+                # Parse questions
+                lines = response.text.strip().split('\n')
+                questions = [line.strip() for line in lines if line.strip() and any(c.isalpha() for c in line)]
+                
+                # Clean up numbering
+                questions = [q.lstrip('0123456789. ') for q in questions]
+                
+                return questions[:3]
+            
+            return []
+            
+        except Exception as e:
+            logger.warning(f"Error generating follow-up questions: {e}")
+            return []

@@ -1,0 +1,816 @@
+/* ==========================================================================
+   NEURORAG - APPLE-LEVEL PREMIUM INTERFACE
+   Calm, intelligent, precise.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Core Colors - Subdued & Premium */
+  --bg-deep: #050b14; /* Deep, dark navy almost black */
+  --card-glass: rgba(15, 23, 42, 0.3); /* Ultra soft glass */
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glass-hover: rgba(255, 255, 255, 0.12);
+  
+  /* Soft Theme Accents */
+  --cyan-core: #14b8a6; /* teal-500, softer than raw cyan */
+  --cyan-glow: rgba(20, 184, 166, 0.15); /* Very faint glow */
+  --emerald-core: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.15);
+  --blue-accent: rgba(59, 130, 246, 0.2);
+
+  /* Standard Ease */
+  --apple-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  color: #f8fafc;
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+/* ==========================================================================
+   CUSTOM SCROLLBARS (SUBTLE)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  transition: background 0.3s var(--apple-ease);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   ELITE GLASSMORPHISM UTILITIES
+   ========================================================================== */
+.glass-panel {
+  background: var(--card-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s var(--apple-ease);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-glass-hover);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Floating Input Container */
+.glass-input-container {
+  background: rgba(10, 15, 30, 0.7);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+  transition: all 0.4s var(--apple-ease);
+}
+
+.glass-input-container:focus-within {
+  border-color: rgba(20, 184, 166, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(20, 184, 166, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+/* Form Glass Input */
+.glass-input {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  caret-color: var(--cyan-core);
+  transition: all 0.3s var(--apple-ease);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: rgba(20, 184, 166, 0.4);
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Micro-interactions (Apple-style) */
+.btn-micro {
+  transition: all 0.25s var(--apple-ease);
+}
+.btn-micro:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.btn-micro:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND
+   ========================================================================== */
+.ambient-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle at 50% 0%, #0c182c 0%, var(--bg-deep) 70%);
+}
+
+.ambient-shift {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(120deg, rgba(20, 184, 166, 0.03) 0%, transparent 40%, rgba(59, 130, 246, 0.03) 100%);
+  animation: ambientShift 30s ease-in-out infinite alternate;
+}
+
+@keyframes ambientShift {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  100% { transform: scale(1.1) translate(-2%, 2%); opacity: 1; }
+}
+
+/* Elegant Noise Overlay (Ultra Light) */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ==========================================================================
+   ANIMATIONS & PAGE LOAD
+   ========================================================================== */
+@keyframes messageEnter {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.animate-message-enter {
+  animation: messageEnter 0.4s var(--apple-ease) forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggered page load classes */
+.page-enter-1 { animation: fadeSlideUp 0.6s var(--apple-ease) 0s forwards; opacity: 0; }
+.page-enter-2 { animation: fadeSlideUp 0.6s var(--apple-ease) 0.1s forwards; opacity: 0; }
+.page-enter-3 { animation: fadeSlideUp 0.6s var(--apple-ease) 0.2s forwards; opacity: 0; }
+.page-enter-4 { animation: fadeSlideUp 0.6s var(--apple-ease) 0.3s forwards; opacity: 0; }
+
+/* Status Dot Pulse */
+.status-dot-pulse {
+  position: relative;
+}
+.status-dot-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.4;
+  animation: statusPulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes statusPulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ==========================================================================
+   STREAMING TEXT EFFECT (Subtle staggered fade)
+   ========================================================================== */
+@keyframes text-reveal {
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: text-reveal 0.3s var(--apple-ease) forwards;
+}
+
+/* ==========================================================================
+   MARKDOWN CONTENT STYLES
+   ========================================================================== */
+.markdown-body {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.markdown-body h3 {
+  color: #f8fafc;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.markdown-body p { margin-bottom: 1rem; }
+.markdown-body ul { list-style-type: none; padding-left: 0; margin-bottom: 1.25rem; }
+.markdown-body li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.markdown-body li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.mode-patient .markdown-body li::before { color: var(--cyan-core); }
+.mode-clinician .markdown-body li::before { color: var(--emerald-core); }
+
+/* ==========================================================================
+   AI THINKING VISUALIZATION (CALM NEURAL PULSE)
+   ========================================================================== */
+.neural-pulse-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.neural-wave {
+  width: 4px;
+  height: 16px;
+  background: currentColor;
+  border-radius: 2px;
+  opacity: 0.4;
+  animation: wavePulse 1.2s var(--apple-ease) infinite;
+}
+
+.neural-wave:nth-child(1) { animation-delay: 0s; }
+.neural-wave:nth-child(2) { animation-delay: 0.15s; }
+.neural-wave:nth-child(3) { animation-delay: 0.3s; }
+.neural-wave:nth-child(4) { animation-delay: 0.45s; }
+
+@keyframes wavePulse {
+  0%, 100% { transform: scaleY(1); opacity: 0.3; }
+  50% { transform: scaleY(1.8); opacity: 1; box-shadow: 0 0 8px currentColor; }
+}
+
+/* ==========================================================================
+   CASE HISTORY TIMELINE
+   ========================================================================== */
+.timeline-container {
+  position: relative;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 4px;
+  width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.25rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -1rem;
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--bg-deep);
+  border: 1.5px solid currentColor;
+  transition: all 0.3s var(--apple-ease);
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: scale(1.2);
+  background: currentColor;
+}
+
+.timeline-card {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s var(--apple-ease);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.timeline-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   CLINICAL REPORT EXPORT (MACOS SHEET MODAL & PRINT)
+   ========================================================================== */
+.report-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--apple-ease);
+}
+
+.report-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Isolate Report Styles - Pure Light Theme */
+.report-container {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+  width: 90%;
+  max-width: 760px;
+  max-height: 85vh;
+  border-radius: 16px;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.1);
+  transform: scale(0.96) translateY(10px);
+  opacity: 0;
+  transition: all 0.4s var(--apple-ease);
+  /* Remove dark mode inheritances */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.report-container * {
+  color: inherit;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.report-modal.active .report-container {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+/* Specific Element Overrides for the Report */
+.report-container h1, 
+.report-container h2, 
+.report-container h3, 
+.report-container h4 {
+  color: #111827 !important;
+  font-weight: 600 !important;
+  margin-bottom: 12px;
+  background: none !important;
+}
+
+.report-container p,
+.report-container .markdown-body p {
+  color: #374151 !important;
+  line-height: 1.7 !important;
+  margin-bottom: 10px !important;
+  background: none !important;
+}
+
+/* Highlighted Text inside the report */
+.report-container strong {
+  color: #111827 !important;
+  font-weight: 600 !important;
+  background: none !important;
+}
+
+.report-container mark {
+  background: #e0f2fe !important;
+  color: #075985 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-weight: 500 !important;
+}
+
+/* Lists & Bullets */
+.report-container ul,
+.report-container .markdown-body ul {
+  padding-left: 20px !important;
+  margin-bottom: 12px !important;
+  list-style-type: disc !important;
+}
+
+.report-container li,
+.report-container .markdown-body li {
+  margin-bottom: 8px !important;
+  color: #374151 !important;
+  line-height: 1.6 !important;
+  background: none !important;
+}
+
+/* Hide ::before custom bullets inside the report so standard bullets work, or style them cleanly */
+.report-container .markdown-body li::before {
+  display: none !important;
+}
+
+/* Section Labels */
+.section-label {
+  font-size: 12px !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  color: #6b7280 !important;
+  margin-bottom: 6px !important;
+  font-weight: 600 !important;
+  background: none !important;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+  }
+
+  body > *:not(#report-modal-backdrop) { 
+    display: none !important; 
+  }
+  
+  #report-modal-backdrop {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .report-container {
+    box-shadow: none !important; 
+    border: none !important; 
+    border-radius: 0 !important; 
+    max-height: none !important; 
+    overflow: visible !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .report-container * {
+    color: black !important;
+  }
+  
+  .report-container mark {
+    background-color: #e0f2fe !important;
+    color: #075985 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .report-actions { 
+    display: none !important; 
+  }
+}
+
+/* ==========================================================================
+   FEATURE: CLINICAL RISK SCORE
+   ========================================================================== */
+.risk-container {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  animation: fadeSlideUp 0.6s var(--apple-ease) 0.5s forwards;
+  opacity: 0;
+}
+
+.risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.risk-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.risk-value {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.risk-value.low { color: #10b981; }
+.risk-value.medium { color: #f59e0b; }
+.risk-value.high { color: #ef4444; }
+
+.risk-bar-bg {
+  height: 6px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: 0%;
+}
+
+.risk-bar-fill.low { background: linear-gradient(90deg, #059669, #10b981); }
+.risk-bar-fill.medium { background: linear-gradient(90deg, #d97706, #f59e0b); }
+.risk-bar-fill.high { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+/* ==========================================================================
+   FEATURE: FOLLOW-UP SUGGESTIONS
+   ========================================================================== */
+.suggestions-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  animation: fadeSlideUp 0.6s var(--apple-ease) 0.7s forwards;
+  opacity: 0;
+}
+
+.suggestion-chip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  padding: 0.4rem 0.8rem;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s var(--apple-ease);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.suggestion-chip i {
+  color: var(--cyan-core);
+  opacity: 0.7;
+}
+
+.suggestion-chip:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.suggestion-chip:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   FEATURE: SYMPTOM HIGHLIGHTING & TOOLTIPS
+   ========================================================================== */
+.symptom-highlight {
+  position: relative;
+  color: #f8fafc;
+  cursor: help;
+  border-bottom: 1px dashed rgba(20, 184, 166, 0.5);
+  transition: color 0.2s var(--apple-ease);
+  font-weight: 600;
+}
+
+.symptom-highlight:hover {
+  color: #14b8a6;
+  border-bottom-color: #14b8a6;
+}
+
+.symptom-highlight::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 250px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.5;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s var(--apple-ease);
+  z-index: 50;
+  pointer-events: none;
+  white-space: normal;
+}
+
+.symptom-highlight:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Print override for tooltips */
+@media print {
+  .symptom-highlight {
+    border-bottom: none !important;
+    color: inherit !important;
+  }
+  .symptom-highlight::after {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   FEATURE: CHAT SCROLLING & BOTTOM SPACER
+   ========================================================================== */
+#chat-container::after {
+  content: '';
+  display: block;
+  height: 140px; /* Guarantees content clears the floating input bar */
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   FEATURE: RED FLAG ALERT SYSTEM
+   ========================================================================== */
+.red-flag-alert {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: fadeSlideDown 0.5s var(--apple-ease) forwards;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+@keyframes fadeSlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.red-flag-icon {
+  color: #ef4444;
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.red-flag-content {
+  flex: 1;
+}
+
+.red-flag-title {
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.red-flag-text {
+  color: #fca5a5;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   FEATURE: AI REASONING SNAPSHOT
+   ========================================================================== */
+.reasoning-container {
+  margin-top: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeSlideUp 0.6s var(--apple-ease) 0.6s forwards;
+  opacity: 0;
+}
+
+.reasoning-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.02);
+  transition: background 0.2s ease;
+}
+
+.reasoning-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.reasoning-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reasoning-icon {
+  transition: transform 0.3s var(--apple-ease);
+  color: #64748b;
+}
+
+.reasoning-container.expanded .reasoning-icon {
+  transform: rotate(180deg);
+}
+
+.reasoning-content-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s var(--apple-ease);
+}
+
+.reasoning-container.expanded .reasoning-content-wrapper {
+  grid-template-rows: 1fr;
+}
+
+.reasoning-content {
+  overflow: hidden;
+}
+
+.reasoning-inner {
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  margin-top: 12px;
+  padding-top: 12px;
+}
+
+.reasoning-section {
+  margin-bottom: 12px;
+}
+
+.reasoning-section:last-child {
+  margin-bottom: 0;
+}
+
+.reasoning-label {
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.reasoning-data {
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.reasoning-tag {
+  display: inline-block;
+  background: rgba(20, 184, 166, 0.1);
+  color: #2dd4bf;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  border: 1px solid rgba(20, 184, 166, 0.2);
+}

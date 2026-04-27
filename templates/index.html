@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroRAG - Clinical Intelligence</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'sans-serif'],
+            },
+            colors: {
+              glass: 'rgba(15, 23, 42, 0.3)',
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="flex h-screen text-slate-200 overflow-hidden font-sans mode-patient">
+    
+    <!-- Calm Ambient Background -->
+    <div class="ambient-bg"></div>
+    <div class="ambient-shift"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Sidebar Control Panel -->
+    <aside class="w-[300px] h-full border-r border-white/5 bg-slate-900/20 backdrop-blur-3xl flex flex-col z-20 relative transition-transform duration-500 ease-out page-enter-1">
+        
+        <!-- App Header -->
+        <div class="p-6 border-b border-white/5 flex items-center gap-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/10 border border-teal-500/20 shadow-sm">
+                <i class="ph-fill ph-brain text-xl text-teal-400"></i>
+            </div>
+            <div>
+                <h1 class="font-display text-lg font-bold tracking-tight text-white leading-tight">NeuroRAG</h1>
+                <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Intelligence Core</p>
+            </div>
+        </div>
+
+        <!-- Mode Toggle (Premium Pill Style) -->
+        <div class="p-6 border-b border-white/5">
+            <div class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <i class="ph-bold ph-sliders text-sm"></i> Operational Mode
+            </div>
+            
+            <div class="relative flex bg-black/20 p-1 rounded-xl border border-white/5 w-full overflow-hidden shadow-inner backdrop-blur-md">
+                <!-- Sliding Highlight Indicator -->
+                <div id="toggle-indicator" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-lg bg-white/10 border border-white/10 transition-transform duration-400 ease-out z-0 shadow-sm"></div>
+                
+                <!-- Patient Button -->
+                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300" data-mode="patient">
+                    <i id="icon-patient" class="ph-fill ph-user text-teal-400 transition-all duration-300 text-sm"></i>
+                    <span class="text-[11px] uppercase tracking-wider">Patient</span>
+                </button>
+                
+                <!-- Clinician Button -->
+                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-2 text-slate-400 font-medium transition-all duration-300" data-mode="clinician">
+                    <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-sm"></i>
+                    <span class="text-[11px] uppercase tracking-wider">Clinician</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Main Area (Timeline & Examples) -->
+        <div class="p-6 flex-1 overflow-y-auto">
+            <div id="sidebar-title" class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2 transition-all">
+                <i class="ph-bold ph-lightning text-sm"></i> Diagnostics Access
+            </div>
+            
+            <!-- Timeline Container (Hidden initially) -->
+            <div id="timeline-container" class="timeline-container hidden mb-6"></div>
+
+            <div id="example-queries-container" class="space-y-2 relative">
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="What are the symptoms of stroke?">
+                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                    <span class="font-medium group-hover:text-white transition-colors leading-snug">What are the symptoms of stroke?</span>
+                </button>
+                
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="How is migraine different from headache?">
+                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                    <span class="font-medium group-hover:text-white transition-colors leading-snug">How is migraine different from headache?</span>
+                </button>
+                
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="What tests diagnose Alzheimer's?">
+                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                    <span class="font-medium group-hover:text-white transition-colors leading-snug">What tests diagnose Alzheimer's?</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="p-5 border-t border-white/5 bg-slate-900/20">
+            <div class="glass-panel p-3 rounded-lg flex items-start gap-3 bg-white/5 border-transparent">
+                <i class="ph-fill ph-info text-slate-400 text-base shrink-0 mt-0.5"></i>
+                <p class="text-[10px] text-slate-400 leading-relaxed font-medium">
+                    Simulated clinical environment. Verify all medical data independently.
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full relative z-10">
+        
+        <!-- Top Navigation Bar -->
+        <header class="h-14 border-b border-white/5 bg-slate-900/10 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-30 page-enter-2">
+            <div class="text-[11px] font-semibold tracking-widest uppercase text-slate-300 flex items-center gap-3">
+                <div class="status-dot-pulse w-2 h-2 rounded-full bg-emerald-500"></div>
+                System Online
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <button id="btn-generate-report" class="btn-micro hidden flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
+                    <i class="ph-bold ph-file-pdf text-sm"></i> Generate Report
+                </button>
+                <a href="/chat_history" class="btn-micro flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
+                    <i class="ph-bold ph-clock-counter-clockwise text-sm"></i> History
+                </a>
+                <a href="/logout" class="btn-micro flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/10 text-red-400 text-[11px] font-semibold uppercase tracking-wider hover:bg-red-500/20 transition-colors">
+                    <i class="ph-bold ph-power text-sm"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div id="chat-container" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 min-h-0 pb-48 page-enter-3" style="will-change: transform;">
+            <!-- Welcome Message (Will be removed by JS) -->
+            <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full max-w-2xl mx-auto text-center mt-8">
+                <div class="w-24 h-24 rounded-3xl bg-slate-800/50 border border-white/5 flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
+                    <i class="ph-light ph-cpu text-5xl text-slate-300"></i>
+                </div>
+                <h1 class="font-display text-4xl font-bold text-white mb-4 tracking-tight">Intelligence Core</h1>
+                <p class="text-slate-400 text-base mb-8 leading-relaxed max-w-lg font-medium">
+                    Advanced retrieval-augmented generation engine active. Awaiting clinical inquiries regarding neurological pathology, pharmacology, and diagnostics.
+                </p>
+                <div class="flex gap-3 text-[10px] text-slate-400 font-semibold tracking-widest uppercase">
+                    <div class="glass-panel flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5"><i class="ph-fill ph-database text-teal-500 text-sm"></i> Vector DB</div>
+                    <div class="glass-panel flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5"><i class="ph-fill ph-lightning text-teal-500 text-sm"></i> Flash 2.5</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Input Area (Floating at bottom) -->
+        <div class="absolute bottom-0 left-0 w-full p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--bg-deep) 40%, transparent 100%);">
+            <div class="max-w-3xl mx-auto relative pointer-events-auto">
+                <div class="glass-input-container relative flex items-end gap-3 rounded-2xl p-1.5 pl-4">
+                    <textarea 
+                        id="query-input" 
+                        placeholder="Inquire..."
+                        rows="1"
+                        class="w-full bg-transparent text-white placeholder-slate-500 outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
+                    ></textarea>
+                    
+                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-teal-600 flex items-center justify-center text-white mb-1 mr-1 hover:bg-teal-500 shadow-md">
+                        <i class="ph-bold ph-arrow-up text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Report Modal Container -->
+    <div id="report-modal-backdrop" class="report-modal">
+        <div class="report-document report-container p-10 md:p-14 relative flex flex-col">
+            <div class="report-actions absolute top-6 right-6 flex gap-3">
+                <button id="btn-print-report" class="btn-micro flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors">
+                    <i class="ph-bold ph-printer"></i> Print
+                </button>
+                <button id="btn-close-report" class="btn-micro flex items-center justify-center h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+            
+            <div id="report-content" class="w-full">
+                <!-- Report content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
