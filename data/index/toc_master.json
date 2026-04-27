@@ -1,0 +1,775 @@
+{
+  "book_title": "Neurological Disorders Handbook",
+  "total_chapters": 51,
+  "pdf_offset": 2,
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Headache",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 25,
+      "pdf_page_start": 27,
+      "pdf_page_end": 39,
+      "faiss_path": "vector_store/chapter_01_headache/faiss.index",
+      "keywords": [
+        "headache",
+        "migraine",
+        "tension",
+        "pain"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Giddiness",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 38,
+      "pdf_page_start": 40,
+      "pdf_page_end": 50,
+      "faiss_path": "vector_store/chapter_02_giddiness/faiss.index",
+      "keywords": [
+        "giddiness",
+        "dizziness",
+        "vertigo",
+        "balance"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Memory Problems",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 49,
+      "pdf_page_start": 51,
+      "pdf_page_end": 60,
+      "faiss_path": "vector_store/chapter_03_memory_problems/faiss.index",
+      "keywords": [
+        "memory",
+        "amnesia",
+        "forgetfulness",
+        "recall"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Convulsions",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 59,
+      "pdf_page_start": 61,
+      "pdf_page_end": 67,
+      "faiss_path": "vector_store/chapter_04_convulsions/faiss.index",
+      "keywords": [
+        "convulsions",
+        "seizures",
+        "epilepsy",
+        "fits"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Paralysis",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 66,
+      "pdf_page_start": 68,
+      "pdf_page_end": 77,
+      "faiss_path": "vector_store/chapter_05_paralysis/faiss.index",
+      "keywords": [
+        "paralysis",
+        "weakness",
+        "hemiplegia",
+        "paraplegia"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Neuropathic Pain",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 76,
+      "pdf_page_start": 78,
+      "pdf_page_end": 80,
+      "faiss_path": "vector_store/chapter_06_neuropathic_pain/faiss.index",
+      "keywords": [
+        "neuropathic",
+        "pain",
+        "neuralgia",
+        "nerve pain"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Physical Disabilities In Children",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 79,
+      "pdf_page_start": 81,
+      "pdf_page_end": 87,
+      "faiss_path": "vector_store/chapter_07_physical_disabilities_in_children/faiss.index",
+      "keywords": [
+        "physical",
+        "disabilities",
+        "children",
+        "pediatric"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Cognitive Disabilities In Children",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 86,
+      "pdf_page_start": 88,
+      "pdf_page_end": 94,
+      "faiss_path": "vector_store/chapter_08_cognitive_disabilities_in_children/faiss.index",
+      "keywords": [
+        "cognitive",
+        "disabilities",
+        "children",
+        "developmental"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Behavioural Issues In Children",
+      "section": "A. Neurological Symptoms",
+      "toc_page": 93,
+      "pdf_page_start": 95,
+      "pdf_page_end": 106,
+      "faiss_path": "vector_store/chapter_09_behavioural_issues_in_children/faiss.index",
+      "keywords": [
+        "behavioural",
+        "behavior",
+        "children",
+        "pediatric"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Computed Tomography",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 105,
+      "pdf_page_start": 107,
+      "pdf_page_end": 112,
+      "faiss_path": "vector_store/chapter_10_computed_tomography/faiss.index",
+      "keywords": [
+        "CT",
+        "computed tomography",
+        "scan",
+        "imaging"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Magnetic Resonance Imaging",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 111,
+      "pdf_page_start": 113,
+      "pdf_page_end": 118,
+      "faiss_path": "vector_store/chapter_11_magnetic_resonance_imaging/faiss.index",
+      "keywords": [
+        "MRI",
+        "magnetic resonance",
+        "imaging",
+        "scan"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Angiography",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 117,
+      "pdf_page_start": 119,
+      "pdf_page_end": 123,
+      "faiss_path": "vector_store/chapter_12_angiography/faiss.index",
+      "keywords": [
+        "angiography",
+        "vessels",
+        "blood vessels",
+        "imaging"
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Plain X Ray",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 122,
+      "pdf_page_start": 124,
+      "pdf_page_end": 126,
+      "faiss_path": "vector_store/chapter_13_plain_x_ray/faiss.index",
+      "keywords": [
+        "x-ray",
+        "xray",
+        "radiography",
+        "imaging"
+      ]
+    },
+    {
+      "id": 14,
+      "title": "PET-CT",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 125,
+      "pdf_page_start": 127,
+      "pdf_page_end": 130,
+      "faiss_path": "vector_store/chapter_14_petct/faiss.index",
+      "keywords": [
+        "PET",
+        "positron emission",
+        "scan",
+        "imaging"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Functional MRI",
+      "section": "B. Neurological Investigations - Neuroradiology",
+      "toc_page": 129,
+      "pdf_page_start": 131,
+      "pdf_page_end": 134,
+      "faiss_path": "vector_store/chapter_15_functional_mri/faiss.index",
+      "keywords": [
+        "fMRI",
+        "functional",
+        "MRI",
+        "brain activity"
+      ]
+    },
+    {
+      "id": 16,
+      "title": "Electroencephalography",
+      "section": "B. Neurological Investigations - Electrophysiological",
+      "toc_page": 133,
+      "pdf_page_start": 135,
+      "pdf_page_end": 139,
+      "faiss_path": "vector_store/chapter_16_electroencephalography/faiss.index",
+      "keywords": [
+        "EEG",
+        "electroencephalography",
+        "brain waves",
+        "electrical"
+      ]
+    },
+    {
+      "id": 17,
+      "title": "EMG and Nerve Conduction Studies",
+      "section": "B. Neurological Investigations - Electrophysiological",
+      "toc_page": 138,
+      "pdf_page_start": 140,
+      "pdf_page_end": 145,
+      "faiss_path": "vector_store/chapter_17_emg_and_nerve_conduction_studies/faiss.index",
+      "keywords": [
+        "EMG",
+        "electromyography",
+        "nerve conduction",
+        "NCS"
+      ]
+    },
+    {
+      "id": 18,
+      "title": "Evoked Potentials",
+      "section": "B. Neurological Investigations - Electrophysiological",
+      "toc_page": 144,
+      "pdf_page_start": 146,
+      "pdf_page_end": 150,
+      "faiss_path": "vector_store/chapter_18_evoked_potentials/faiss.index",
+      "keywords": [
+        "evoked potentials",
+        "EP",
+        "VEP",
+        "BAEP"
+      ]
+    },
+    {
+      "id": 19,
+      "title": "Blood Tests",
+      "section": "B. Neurological Investigations - Biochemical",
+      "toc_page": 149,
+      "pdf_page_start": 151,
+      "pdf_page_end": 160,
+      "faiss_path": "vector_store/chapter_19_blood_tests/faiss.index",
+      "keywords": [
+        "blood tests",
+        "laboratory",
+        "serum",
+        "biochemical"
+      ]
+    },
+    {
+      "id": 20,
+      "title": "Cerebrospinal Fluid",
+      "section": "B. Neurological Investigations - Biochemical",
+      "toc_page": 159,
+      "pdf_page_start": 161,
+      "pdf_page_end": 168,
+      "faiss_path": "vector_store/chapter_20_cerebrospinal_fluid/faiss.index",
+      "keywords": [
+        "CSF",
+        "cerebrospinal fluid",
+        "lumbar puncture",
+        "spinal tap"
+      ]
+    },
+    {
+      "id": 21,
+      "title": "Brain Stroke",
+      "section": "C. Neurological Diseases",
+      "toc_page": 167,
+      "pdf_page_start": 169,
+      "pdf_page_end": 179,
+      "faiss_path": "vector_store/chapter_21_brain_stroke/faiss.index",
+      "keywords": [
+        "stroke",
+        "CVA",
+        "cerebrovascular",
+        "ischemic",
+        "hemorrhagic"
+      ]
+    },
+    {
+      "id": 22,
+      "title": "Migraine",
+      "section": "C. Neurological Diseases",
+      "toc_page": 178,
+      "pdf_page_start": 180,
+      "pdf_page_end": 184,
+      "faiss_path": "vector_store/chapter_22_migraine/faiss.index",
+      "keywords": [
+        "migraine",
+        "headache",
+        "aura",
+        "pain"
+      ]
+    },
+    {
+      "id": 23,
+      "title": "Spondylosis",
+      "section": "C. Neurological Diseases",
+      "toc_page": 183,
+      "pdf_page_start": 185,
+      "pdf_page_end": 190,
+      "faiss_path": "vector_store/chapter_23_spondylosis/faiss.index",
+      "keywords": [
+        "spondylosis",
+        "spine",
+        "cervical",
+        "lumbar"
+      ]
+    },
+    {
+      "id": 24,
+      "title": "Brain Tumors",
+      "section": "C. Neurological Diseases",
+      "toc_page": 189,
+      "pdf_page_start": 191,
+      "pdf_page_end": 194,
+      "faiss_path": "vector_store/chapter_24_brain_tumors/faiss.index",
+      "keywords": [
+        "tumor",
+        "tumour",
+        "neoplasm",
+        "cancer",
+        "glioma"
+      ]
+    },
+    {
+      "id": 25,
+      "title": "Head Injury",
+      "section": "C. Neurological Diseases",
+      "toc_page": 193,
+      "pdf_page_start": 195,
+      "pdf_page_end": 200,
+      "faiss_path": "vector_store/chapter_25_head_injury/faiss.index",
+      "keywords": [
+        "head injury",
+        "trauma",
+        "TBI",
+        "concussion"
+      ]
+    },
+    {
+      "id": 26,
+      "title": "Spine Injury",
+      "section": "C. Neurological Diseases",
+      "toc_page": 199,
+      "pdf_page_start": 201,
+      "pdf_page_end": 207,
+      "faiss_path": "vector_store/chapter_26_spine_injury/faiss.index",
+      "keywords": [
+        "spine injury",
+        "spinal cord",
+        "trauma",
+        "SCI"
+      ]
+    },
+    {
+      "id": 27,
+      "title": "Dementia & Alzheimer's Disease",
+      "section": "C. Neurological Diseases",
+      "toc_page": 206,
+      "pdf_page_start": 208,
+      "pdf_page_end": 216,
+      "faiss_path": "vector_store/chapter_27_dementia__alzheimers_disease/faiss.index",
+      "keywords": [
+        "dementia",
+        "alzheimer",
+        "memory loss",
+        "cognitive decline"
+      ]
+    },
+    {
+      "id": 28,
+      "title": "Movement Disorders",
+      "section": "C. Neurological Diseases",
+      "toc_page": 215,
+      "pdf_page_start": 217,
+      "pdf_page_end": 225,
+      "faiss_path": "vector_store/chapter_28_movement_disorders/faiss.index",
+      "keywords": [
+        "movement disorders",
+        "parkinson",
+        "tremor",
+        "dystonia"
+      ]
+    },
+    {
+      "id": 29,
+      "title": "Demyelinating Disorders",
+      "section": "C. Neurological Diseases",
+      "toc_page": 224,
+      "pdf_page_start": 226,
+      "pdf_page_end": 234,
+      "faiss_path": "vector_store/chapter_29_demyelinating_disorders/faiss.index",
+      "keywords": [
+        "demyelinating",
+        "MS",
+        "multiple sclerosis",
+        "myelin"
+      ]
+    },
+    {
+      "id": 30,
+      "title": "Infections of the CNS",
+      "section": "C. Neurological Diseases",
+      "toc_page": 233,
+      "pdf_page_start": 235,
+      "pdf_page_end": 246,
+      "faiss_path": "vector_store/chapter_30_infections_of_the_cns/faiss.index",
+      "keywords": [
+        "infection",
+        "meningitis",
+        "encephalitis",
+        "CNS"
+      ]
+    },
+    {
+      "id": 31,
+      "title": "Neuromuscular Disorders",
+      "section": "C. Neurological Diseases",
+      "toc_page": 245,
+      "pdf_page_start": 247,
+      "pdf_page_end": 263,
+      "faiss_path": "vector_store/chapter_31_neuromuscular_disorders/faiss.index",
+      "keywords": [
+        "neuromuscular",
+        "myasthenia",
+        "muscular dystrophy",
+        "neuropathy"
+      ]
+    },
+    {
+      "id": 32,
+      "title": "Neurodevelopmental Disorders",
+      "section": "C. Neurological Diseases",
+      "toc_page": 262,
+      "pdf_page_start": 264,
+      "pdf_page_end": 274,
+      "faiss_path": "vector_store/chapter_32_neurodevelopmental_disorders/faiss.index",
+      "keywords": [
+        "neurodevelopmental",
+        "autism",
+        "ADHD",
+        "cerebral palsy"
+      ]
+    },
+    {
+      "id": 33,
+      "title": "Acute Stroke",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 273,
+      "pdf_page_start": 275,
+      "pdf_page_end": 276,
+      "faiss_path": "vector_store/chapter_33_acute_stroke/faiss.index",
+      "keywords": [
+        "acute stroke",
+        "emergency",
+        "CVA",
+        "thrombolysis"
+      ]
+    },
+    {
+      "id": 34,
+      "title": "Delirium",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 275,
+      "pdf_page_start": 277,
+      "pdf_page_end": 278,
+      "faiss_path": "vector_store/chapter_34_delirium/faiss.index",
+      "keywords": [
+        "delirium",
+        "confusion",
+        "altered mental status",
+        "emergency"
+      ]
+    },
+    {
+      "id": 35,
+      "title": "Status Epilepticus",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 277,
+      "pdf_page_start": 279,
+      "pdf_page_end": 281,
+      "faiss_path": "vector_store/chapter_35_status_epilepticus/faiss.index",
+      "keywords": [
+        "status epilepticus",
+        "seizure",
+        "emergency",
+        "continuous"
+      ]
+    },
+    {
+      "id": 36,
+      "title": "Unconsciousness",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 280,
+      "pdf_page_start": 282,
+      "pdf_page_end": 284,
+      "faiss_path": "vector_store/chapter_36_unconsciousness/faiss.index",
+      "keywords": [
+        "unconsciousness",
+        "coma",
+        "altered consciousness",
+        "emergency"
+      ]
+    },
+    {
+      "id": 37,
+      "title": "Head Trauma",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 283,
+      "pdf_page_start": 285,
+      "pdf_page_end": 289,
+      "faiss_path": "vector_store/chapter_37_head_trauma/faiss.index",
+      "keywords": [
+        "head trauma",
+        "TBI",
+        "injury",
+        "emergency"
+      ]
+    },
+    {
+      "id": 38,
+      "title": "Spine Trauma",
+      "section": "D. Neurological Emergencies",
+      "toc_page": 288,
+      "pdf_page_start": 290,
+      "pdf_page_end": 294,
+      "faiss_path": "vector_store/chapter_38_spine_trauma/faiss.index",
+      "keywords": [
+        "spine trauma",
+        "spinal cord injury",
+        "emergency",
+        "SCI"
+      ]
+    },
+    {
+      "id": 39,
+      "title": "Drugs for Seizure Disorders",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 293,
+      "pdf_page_start": 295,
+      "pdf_page_end": 319,
+      "faiss_path": "vector_store/chapter_39_drugs_for_seizure_disorders/faiss.index",
+      "keywords": [
+        "antiepileptic",
+        "seizure drugs",
+        "AED",
+        "anticonvulsant"
+      ]
+    },
+    {
+      "id": 40,
+      "title": "Analgesics",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 318,
+      "pdf_page_start": 320,
+      "pdf_page_end": 327,
+      "faiss_path": "vector_store/chapter_40_analgesics/faiss.index",
+      "keywords": [
+        "analgesics",
+        "pain medication",
+        "opioids",
+        "NSAIDs"
+      ]
+    },
+    {
+      "id": 41,
+      "title": "Drugs for Migraine",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 326,
+      "pdf_page_start": 328,
+      "pdf_page_end": 332,
+      "faiss_path": "vector_store/chapter_41_drugs_for_migraine/faiss.index",
+      "keywords": [
+        "migraine drugs",
+        "triptans",
+        "prophylaxis",
+        "treatment"
+      ]
+    },
+    {
+      "id": 42,
+      "title": "Drugs for Stroke",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 331,
+      "pdf_page_start": 333,
+      "pdf_page_end": 338,
+      "faiss_path": "vector_store/chapter_42_drugs_for_stroke/faiss.index",
+      "keywords": [
+        "stroke drugs",
+        "antiplatelet",
+        "anticoagulant",
+        "thrombolytic"
+      ]
+    },
+    {
+      "id": 43,
+      "title": "Muscle Relaxants",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 337,
+      "pdf_page_start": 339,
+      "pdf_page_end": 345,
+      "faiss_path": "vector_store/chapter_43_muscle_relaxants/faiss.index",
+      "keywords": [
+        "muscle relaxants",
+        "antispastic",
+        "baclofen",
+        "spasticity"
+      ]
+    },
+    {
+      "id": 44,
+      "title": "Antiparkinson Drugs",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 344,
+      "pdf_page_start": 346,
+      "pdf_page_end": 349,
+      "faiss_path": "vector_store/chapter_44_antiparkinson_drugs/faiss.index",
+      "keywords": [
+        "antiparkinson",
+        "levodopa",
+        "dopamine",
+        "parkinsons"
+      ]
+    },
+    {
+      "id": 45,
+      "title": "Neuroprotective Agents",
+      "section": "E. Neuro Pharmacology",
+      "toc_page": 348,
+      "pdf_page_start": 350,
+      "pdf_page_end": 356,
+      "faiss_path": "vector_store/chapter_45_neuroprotective_agents/faiss.index",
+      "keywords": [
+        "neuroprotective",
+        "brain protection",
+        "agents",
+        "therapy"
+      ]
+    },
+    {
+      "id": 46,
+      "title": "tPA in Acute Stroke",
+      "section": "F. Modern Developments",
+      "toc_page": 355,
+      "pdf_page_start": 357,
+      "pdf_page_end": 361,
+      "faiss_path": "vector_store/chapter_46_tpa_in_acute_stroke/faiss.index",
+      "keywords": [
+        "tPA",
+        "thrombolysis",
+        "acute stroke",
+        "treatment"
+      ]
+    },
+    {
+      "id": 47,
+      "title": "HBOT in Neurological Disorders",
+      "section": "F. Modern Developments",
+      "toc_page": 360,
+      "pdf_page_start": 362,
+      "pdf_page_end": 365,
+      "faiss_path": "vector_store/chapter_47_hbot_in_neurological_disorders/faiss.index",
+      "keywords": [
+        "HBOT",
+        "hyperbaric oxygen",
+        "therapy",
+        "treatment"
+      ]
+    },
+    {
+      "id": 48,
+      "title": "Comprehensive Neurorehabilitation",
+      "section": "F. Modern Developments",
+      "toc_page": 364,
+      "pdf_page_start": 366,
+      "pdf_page_end": 374,
+      "faiss_path": "vector_store/chapter_48_comprehensive_neurorehabilitation/faiss.index",
+      "keywords": [
+        "neurorehabilitation",
+        "rehabilitation",
+        "therapy",
+        "recovery"
+      ]
+    },
+    {
+      "id": 49,
+      "title": "Recent Advances in Neurosurgery",
+      "section": "F. Modern Developments",
+      "toc_page": 373,
+      "pdf_page_start": 375,
+      "pdf_page_end": 390,
+      "faiss_path": "vector_store/chapter_49_recent_advances_in_neurosurgery/faiss.index",
+      "keywords": [
+        "neurosurgery",
+        "surgery",
+        "advances",
+        "treatment"
+      ]
+    },
+    {
+      "id": 50,
+      "title": "Stem Cell Therapy",
+      "section": "F. Modern Developments",
+      "toc_page": 389,
+      "pdf_page_start": 391,
+      "pdf_page_end": 406,
+      "faiss_path": "vector_store/chapter_50_stem_cell_therapy/faiss.index",
+      "keywords": [
+        "stem cell",
+        "regenerative",
+        "therapy",
+        "treatment"
+      ]
+    },
+    {
+      "id": 51,
+      "title": "Interventional Neurology",
+      "section": "F. Modern Developments",
+      "toc_page": 405,
+      "pdf_page_start": 407,
+      "pdf_page_end": 422,
+      "faiss_path": "vector_store/chapter_51_interventional_neurology/faiss.index",
+      "keywords": [
+        "interventional",
+        "endovascular",
+        "neurology",
+        "treatment"
+      ]
+    }
+  ],
+  "total_pdf_pages": 422
+}

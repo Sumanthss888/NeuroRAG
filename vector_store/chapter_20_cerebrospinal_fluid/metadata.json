@@ -1,0 +1,113 @@
+{
+  "chapter_id": 20,
+  "chapter_title": "Cerebrospinal Fluid",
+  "total_vectors": 15,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "20_001",
+      "text": "158 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 159\n• Spinal muscular atrophy\nHomozygous SMN1 gene deletion is highly specic and sensitive for the\ndiagnosis of SMA. In patients with suspected disease and no gene deletion,\nSMN1copy testing with sequencing of coding regions of SMN1 copy is sug-\ngested. • Epileptic seizures\nMutations in one of several genes can cause or increase susceptibility to juvenile\nmyoclonic epilepsy. The genes commonly studied are the GABRA1 gene and\nthe EFHC1 gene. Potassium channel subunit gene mutation (KCNQ2, KCNQ3) is found in benign\nfamilial neonatal seizures; while, mutations of LGI1 gene is found in autosomal\ndominant epilepsy with auditory features. Patients with the syndrome of epilepsy with myoclonic-atonic seizures show\nGLUT1 deciency. The gene tested for the cause of deciency is SLC2A1. • Huntington's disease\nHuntington disease (HD) is an adult-onset, autosomal dominant inherited\ndisorder. Genetic testing may not be necessary in a patient with a typical clinical\npicture and a family history of HD. However, in the absence of a family history\nof HD, patients should undergo genetic testing to exclude or conrm HD. In\nnormal individuals, CAG - tri-nucleotide repeat occurs between 11 and 29 times. In people with Huntington's disease, the repeat occurs over and over again,\nfrom 40 times to more than 80. Genetic testing, thus detects CAG repeat number\nfor each allele.",
+      "token_count": 368,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_002",
+      "text": "• Hereditary ataxias\nVarious genes responsible for ataxia have been identied in spinocerebellar\nataxia types 1, 2, 3, 5, 6, 7, 8, 10, 12, 13, 14, 17, 28; dentatorubropallidoluysian\natrophy (DRPLA); ataxia-telangiectasia (A-T); Friedreich's ataxia (FRDA);\nataxia with oculomotor apraxia types 1 and 2; Marinesco-Sjogren Syndrome;\nataxia with Vitamin E deciency; fragile X associated tremor/ataxia syndrome;\nmitochondrial recessive ataxia syndrome; autosomal recessive spastic ataxia of\nCharlevoix-Saguenay (ARSACS); and episodic ataxia types 1 and 2. • Amyotrophic lateral sclerosis\nVarious specic gene mutations have been described in familial ALS. Mutation\nin the copper/zinc superoxide dismutase 1 (SOD1) gene, also known as ALS1 is\nthe most common nding in genetic testing. Other genes most commonly\ninvolved in familial ALS are C9orf72, FUS (ALS6) and TARDBP (ALS10).Cerebrospinal Fluid\nCerebrospinal uid (CSF) is a vital uid found in the brain and spinal cord. CSF\nis examined to diagnose a variety of neurological disorders. CSF is collected by a\nmethod called lumbar puncture. Procedure\nLumbar puncture is carried out under sterile conditions by inserting a needle\ninto the subarachnoid space, usually between the third and fourth lumbar\nvertebrae.",
+      "token_count": 398,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_003",
+      "text": "CSF is extracted through the needle, and tested for cell count, and\nphysical, chemical and microbiological characteristics. Risks\nRisks associated with lumbar puncture include:\n• bleeding from the puncture site into the spinal uid (traumatic tap)\n• discomfort during and after the procedure\n• allergic reaction to the anaesthetic\n• infection at the puncture site\n• headache after the test\n• adhesive arachnoiditis\n• trauma to the spinal cord or spinal nerve roots resulting in weakness or\nloss of sensation, or even paraplegia\nIndications\nCSF testing is done in the presence of following signs and symptoms:20",
+      "token_count": 139,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_004",
+      "text": "160 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 161\n• severe, unremitting headache\n• stiff neck\n• hallucinations, confusion, or dementia\n• seizures\n• fever that persist or intensies\n• fatigue, lethargy, muscle weakness\n• changes in consciousness\n• severe nausea\n• light sensitivity\n• numbness or tremor\n• dizziness\n• speaking difculties\n• trouble walking or poor coordination\n• severe mood swings\n• intractable clinical depression\n• In infants - when they are irritable, cry when they are held, have body\nstiffness, refuse food, and have bulging fontanelles\nContraindications\nLumbar puncture should not be performed in the following situations:\n• Idiopathic increased intracranial pressure (ICP), because it can lead to\nbrain herniation. • Age >65, reduced GCS, recent history of seizure- A CT or MRI scan is\nindicated instead\n• Bleeding disorders\n• Skin infection at puncture site\n• Sepsis\n• Hypertension with bradycardia and deteriorating consciousness\n• Cardiorespiratory compromise• Skeletal deformities of the spine (scoliosis or kyphosis)\nCommon ndings\nPhysical Characteristics\nvPressure of the CSF can be measured when starting CSF collection. §Normal: 90-180 mm H2O\n§Increased CSF pressure may indicate tumour, infection, hydrocephalus,\nor bleeding\n§Decreased pressure may be due to dehydration, shock, or leakage of CSF\nthrough an abnormal opening. v Colour of the uid - normally it is clear and colourless.",
+      "token_count": 374,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_005",
+      "text": "• Yellow, orange, or pink CSF may indicate the breakdown of blood\ncells due to bleeding into the CSF or the presence of bilirubin. • Green CSF may indicate presence of bilirubin or infection. v Turbidity - Cloudy or turbid CSF may indicate the presence of white or red\nblood cells, microorganisms, or an increase in protein levels. v Viscosity - Normal CSF will have the same consistency as water. Thicker\nconsistency of CSF may indicate certain types of cancers or meningitis. Chemical Tests\n• CSF glucose -Normal: 50-80 mg/dL (or greater than two-thirds of\nblood glucose). Glucose levels may decrease in the presence of\nbacteria or inammatory cells (WBCs) or tumour cells. • CSF protein - only a small amount is normally present in CSF. Nor-\nmal: 15-60 mg/dL. Decreases in CSF protein are not generally con-\nsidered signicant. Increases in protein are most commonly seen\nwith:\n–Meningitis and brain abscess\n–Brain or spinal cord tumors\n–Multiple Sclerosis\n–Guillain-Barré Syndrome\n–Syphilis",
+      "token_count": 267,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_006",
+      "text": "160 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 161\n• severe, unremitting headache\n• stiff neck\n• hallucinations, confusion, or dementia\n• seizures\n• fever that persist or intensies\n• fatigue, lethargy, muscle weakness\n• changes in consciousness\n• severe nausea\n• light sensitivity\n• numbness or tremor\n• dizziness\n• speaking difculties\n• trouble walking or poor coordination\n• severe mood swings\n• intractable clinical depression\n• In infants - when they are irritable, cry when they are held, have body\nstiffness, refuse food, and have bulging fontanelles\nContraindications\nLumbar puncture should not be performed in the following situations:\n• Idiopathic increased intracranial pressure (ICP), because it can lead to\nbrain herniation. • Age >65, reduced GCS, recent history of seizure- A CT or MRI scan is\nindicated instead\n• Bleeding disorders\n• Skin infection at puncture site\n• Sepsis\n• Hypertension with bradycardia and deteriorating consciousness\n• Cardiorespiratory compromise• Skeletal deformities of the spine (scoliosis or kyphosis)\nCommon ndings\nPhysical Characteristics\nvPressure of the CSF can be measured when starting CSF collection. §Normal: 90-180 mm H2O\n§Increased CSF pressure may indicate tumour, infection, hydrocephalus,\nor bleeding\n§Decreased pressure may be due to dehydration, shock, or leakage of CSF\nthrough an abnormal opening. v Colour of the uid - normally it is clear and colourless.",
+      "token_count": 374,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_007",
+      "text": "• Yellow, orange, or pink CSF may indicate the breakdown of blood\ncells due to bleeding into the CSF or the presence of bilirubin. • Green CSF may indicate presence of bilirubin or infection. v Turbidity - Cloudy or turbid CSF may indicate the presence of white or red\nblood cells, microorganisms, or an increase in protein levels. v Viscosity - Normal CSF will have the same consistency as water. Thicker\nconsistency of CSF may indicate certain types of cancers or meningitis. Chemical Tests\n• CSF glucose -Normal: 50-80 mg/dL (or greater than two-thirds of\nblood glucose). Glucose levels may decrease in the presence of\nbacteria or inammatory cells (WBCs) or tumour cells. • CSF protein - only a small amount is normally present in CSF. Nor-\nmal: 15-60 mg/dL. Decreases in CSF protein are not generally con-\nsidered signicant. Increases in protein are most commonly seen\nwith:\n–Meningitis and brain abscess\n–Brain or spinal cord tumors\n–Multiple Sclerosis\n–Guillain-Barré Syndrome\n–Syphilis",
+      "token_count": 267,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_008",
+      "text": "162 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 163\nAdditional CSF testing includes:\nv CSF protein electrophoresis - specic types of proteins are detected. For e.g. Oligoclonal bands may be seen with multiple sclerosis and Lyme disease. Normal: 0 or 1 band present normally\n• CSF IgG - increased in some conditions, such as multiple sclerosis,\nherpes encephalitis, connective tissue diseases. • Myelin basic protein - seen in myelin breakdown, such as with\nmultiple sclerosis. §• CSF lactic acid - often used to distinguish between viral and bacterial\nmeningitis. The level will usually be increased with bacterial and\nfungal meningitis while it will remain normal or only slightly elevated\nwith viral meningitis. Normal: 10-25 mg/dL\n§• CSF lactate dehydrogenase (LDH) - used to differentiate between\nbacterial and viral meningitis; the level is usually increased with\nbacterial meningitis and not with viral meningitis; may also be elevated\nwith leukemia or stroke. Normal: <2.0-7.2 U/mL\n• CSF glutamine - may be increased with liver disease, hepatic\nencephalopathy or Reye syndrome. Normal: 6-15 mg/dL\n• CSF C-reactive protein (CRP) - elevated with inammation. It is\nmarkedly increased with bacterial meningitis. • Tumor markers - Carcinoembryonic antigen (CEA), alpha-\nfetoprotein (AFP), and hCG may be increased in metastatic cancers. Infectious Disease Tests\nThese tests may be performed to look for microorganisms if meningitis or\nencephalitis is suspected.",
+      "token_count": 385,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_009",
+      "text": "• CSF gram stain for direct observation of bacteria and fungi present in CSF\nunder a microscope\n• CSF culture and sensitivity is used to detect any microorganisms which\nwill grow in the culture and to select antimicrobial therapy for the affected\nperson and prophylaxis. Some amoebae, single cell parasites, may also be\ndetected with a culture. Additional CSF testing includes:\n• Detection of viruses - detection of viral genetic material (DNA, RNA) by\npolymerase chain reaction (PCR) testing; for example, herpes virus and enteroviruses. The presence of viral antibodies and their increase over time\nindicates a recent infection by that virus. • CSF Cryptococcal antigen - to detect a fungal infection caused by the yeast\nCryptococcus neoformans. • Other CSF antigen and antibody tests - may be done depending on which\norganism(s) are suspected. Other CSF tests for infectious diseases that are less commonly done include:\n• CSF AFB smear and culture may be positive with tuberculosis and with\nother mycobacteria\n• CSF syphilis testing (VDRL) positive with neurosyphilis. Microscopic tests\n• CSF total cell counts\n–Red blood cell (RBC) count -Normally no red blood cells are present in the\nCSF. The presence of red blood cells may indicate bleeding into the CSF or\nmay indicate a \"traumatic tap\" - blood that leaked into the CSF sample\nduring collection. –White blood cell (WBC) count- Normally less than 5 cells are present in\nthe adult. A signicant increase in white blood cells in the CSF is seen with\ninfection or inammation of the central nervous system. • CSF WBC differential\nSmall numbers of lymphocytes, monocytes are normal in a sample of CSF.",
+      "token_count": 394,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_010",
+      "text": "There\nmay be:\n–an increase in neutrophils with a bacterial infection\n–an increase in lymphocytes with a viral or fungal infection, immune\ndisorders (multiple sclerosis)\n–sometimes an increase in eosinophils with a parasitic infection\n• CSF cytology\nA cytocentrifuged sample is treated with a special stain and examined under a\nmicroscope for tumour cells. –abnormal cells may be present with cancerous tumors",
+      "token_count": 96,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_011",
+      "text": "162 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 163\nAdditional CSF testing includes:\nv CSF protein electrophoresis - specic types of proteins are detected. For e.g. Oligoclonal bands may be seen with multiple sclerosis and Lyme disease. Normal: 0 or 1 band present normally\n• CSF IgG - increased in some conditions, such as multiple sclerosis,\nherpes encephalitis, connective tissue diseases. • Myelin basic protein - seen in myelin breakdown, such as with\nmultiple sclerosis. §• CSF lactic acid - often used to distinguish between viral and bacterial\nmeningitis. The level will usually be increased with bacterial and\nfungal meningitis while it will remain normal or only slightly elevated\nwith viral meningitis. Normal: 10-25 mg/dL\n§• CSF lactate dehydrogenase (LDH) - used to differentiate between\nbacterial and viral meningitis; the level is usually increased with\nbacterial meningitis and not with viral meningitis; may also be elevated\nwith leukemia or stroke. Normal: <2.0-7.2 U/mL\n• CSF glutamine - may be increased with liver disease, hepatic\nencephalopathy or Reye syndrome. Normal: 6-15 mg/dL\n• CSF C-reactive protein (CRP) - elevated with inammation. It is\nmarkedly increased with bacterial meningitis. • Tumor markers - Carcinoembryonic antigen (CEA), alpha-\nfetoprotein (AFP), and hCG may be increased in metastatic cancers. Infectious Disease Tests\nThese tests may be performed to look for microorganisms if meningitis or\nencephalitis is suspected.",
+      "token_count": 385,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_012",
+      "text": "• CSF gram stain for direct observation of bacteria and fungi present in CSF\nunder a microscope\n• CSF culture and sensitivity is used to detect any microorganisms which\nwill grow in the culture and to select antimicrobial therapy for the affected\nperson and prophylaxis. Some amoebae, single cell parasites, may also be\ndetected with a culture. Additional CSF testing includes:\n• Detection of viruses - detection of viral genetic material (DNA, RNA) by\npolymerase chain reaction (PCR) testing; for example, herpes virus and enteroviruses. The presence of viral antibodies and their increase over time\nindicates a recent infection by that virus. • CSF Cryptococcal antigen - to detect a fungal infection caused by the yeast\nCryptococcus neoformans. • Other CSF antigen and antibody tests - may be done depending on which\norganism(s) are suspected. Other CSF tests for infectious diseases that are less commonly done include:\n• CSF AFB smear and culture may be positive with tuberculosis and with\nother mycobacteria\n• CSF syphilis testing (VDRL) positive with neurosyphilis. Microscopic tests\n• CSF total cell counts\n–Red blood cell (RBC) count -Normally no red blood cells are present in the\nCSF. The presence of red blood cells may indicate bleeding into the CSF or\nmay indicate a \"traumatic tap\" - blood that leaked into the CSF sample\nduring collection. –White blood cell (WBC) count- Normally less than 5 cells are present in\nthe adult. A signicant increase in white blood cells in the CSF is seen with\ninfection or inammation of the central nervous system. • CSF WBC differential\nSmall numbers of lymphocytes, monocytes are normal in a sample of CSF.",
+      "token_count": 394,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_013",
+      "text": "There\nmay be:\n–an increase in neutrophils with a bacterial infection\n–an increase in lymphocytes with a viral or fungal infection, immune\ndisorders (multiple sclerosis)\n–sometimes an increase in eosinophils with a parasitic infection\n• CSF cytology\nA cytocentrifuged sample is treated with a special stain and examined under a\nmicroscope for tumour cells. –abnormal cells may be present with cancerous tumors",
+      "token_count": 96,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_014",
+      "text": "164 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 165\nCSF analysis\nSection C\nNeurological Diseases and their\nComprehensive Management\n\n164 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 165\nCSF analysis\nSection C\nNeurological Diseases and their\nComprehensive Management\n\n166 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 167\nBrain Stroke\nStroke is a focal neurological decit which occurs due to disruption of blood\nsupply. The blood vessels are either blocked by a clot (ischemia) or they are\nruptured leading to a hemorrhage. This further affects the oxygen supply to the\nbrain causing brain damage.\nRisk Factors:\nA– Age and Anxiety and Atrial brillation\nB – Body built (obesity)\nC – Cigarette Smoking and Cardiac disease\nD – Diabetes/ Diet\nE – Exercise lack\nF – Family History\nG – Gout\nH – Hypertension and hypercholesterolemia and homocystinemia\nantiphospholipid antibodies, metabolic syndrome (obesity, hypertension and\nhyperlipidemia) are also risk factors for stroke.\nTypes\nThere are three main types of strokes namely ischemic stroke, hemorrhagic\nstroke and TIA (transient ischemic attack).\nTIA (transient ischemic attack)\nThe sudden onset of a focal and transient (<24 hours) neurological decit due to\nbrain ischemia. This type of stroke is called a mini stroke. It is usually caused due 21",
+      "token_count": 349,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    },
+    {
+      "chunk_id": "20_015",
+      "text": "166 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 167\nBrain Stroke\nStroke is a focal neurological decit which occurs due to disruption of blood\nsupply. The blood vessels are either blocked by a clot (ischemia) or they are\nruptured leading to a hemorrhage. This further affects the oxygen supply to the\nbrain causing brain damage.\nRisk Factors:\nA– Age and Anxiety and Atrial brillation\nB – Body built (obesity)\nC – Cigarette Smoking and Cardiac disease\nD – Diabetes/ Diet\nE – Exercise lack\nF – Family History\nG – Gout\nH – Hypertension and hypercholesterolemia and homocystinemia\nantiphospholipid antibodies, metabolic syndrome (obesity, hypertension and\nhyperlipidemia) are also risk factors for stroke.\nTypes\nThere are three main types of strokes namely ischemic stroke, hemorrhagic\nstroke and TIA (transient ischemic attack).\nTIA (transient ischemic attack)\nThe sudden onset of a focal and transient (<24 hours) neurological decit due to\nbrain ischemia. This type of stroke is called a mini stroke. It is usually caused due 21",
+      "token_count": 269,
+      "chapter_id": 20,
+      "chapter_title": "Cerebrospinal Fluid"
+    }
+  ]
+}

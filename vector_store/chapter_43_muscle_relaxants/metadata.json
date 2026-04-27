@@ -1,0 +1,148 @@
+{
+  "chapter_id": 43,
+  "chapter_title": "Muscle Relaxants",
+  "total_vectors": 20,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "43_001",
+      "text": "336 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 337\nMechanism of action\nIt acts by enhancing the inhibition rate of activated clotting factors including\nthrombin and factor Xa through its action on antithrombin III. Onset: 3-5 hr. Duration: Approx 12 hr. Absorption: Peak plasma concentrations: 1-5 hr. Distribution: Volume of distribution: 4.3 L. Plasma protein binding: Does not\nbind to heparin binding proteins. Metabolism: Hepatically metabolised. Excretion: Via urine (40% as unchanged drug; 10% as active metabolites). Elimination. half-life: Approx 4-5 hr. Dosage\nAcute stroke\n1 mg/kg subcutaneously bid\nContraindications: Patients with active major bleeding, acute bacterial\nendocarditis, recent haemorrhagic stroke, active gastric or duodenal ulceration,\nthrombocytopenia. Side effects : Haemorrhage (including at the inj site), peripheral or unspecied\noedema, anaemia, haematuria, ecchymosis, fever, confusion. Potentially Fatal: Major haemorrhagic complications (e.g. retroperitoneal and\nintracranial bleeding). Muscle Relaxants and\nAntispastic Drugs\nMuscle Relaxants\nMuscle relaxants are drugs which affect skeletal muscle function and decrease\nthe muscle tone. They are used to alleviate symptoms such as muscle spasms,\npain, and hyperreexia. Some commonly used muscle relaxants are:\nChlorzoxazone\nMechanism of action\nChlorzoxazone inhibits multisynaptic areas at the level of the spinal cord and\nsubcortical areas of the brain.",
+      "token_count": 390,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_002",
+      "text": "These areas are involved in producing and\nmaintaining skeletal muscle spasm of varied etiology. Thus it helps in relieving\npainful muscle spasms. Onset: 1 hr. Duration: 3-4 hr. Absorption: peak plasma concentrations after 1-2 hr. Metabolism: Hepatic; yielding 6-hydroxychlorzoxazone. Excretion: Via urine (mainly as glucuronide); 1 hr (elimination half-life). Dosage\nOral43",
+      "token_count": 107,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_003",
+      "text": "338 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 339\nPainful muscle spasm associated with musculoskeletal conditions\nAdult: Initially, 500 mg 3-4 times daily, may subsequently reduce to 250 mg 3-4\ntimes daily. Max: 750 mg 3-4 times daily. Indications: painful muscle spasms associated with musculoskeletal or\nneuromuscular problems. Contraindications: Liver disease. Porphyria. Lactation. Special Precautions: Pregnancy. Tasks requiring mental alertness may be\nimpaired. Monitor liver function while administering the drug. Side effects: Drowsiness, dizziness, lightheadedness, headache, excitement,\nrestlessness, irritability, Jaundice, liver damage. Serious side effects: Anaphylactoid reactions, angioedema, fatal hepatocellular\ntoxicity. Methocarbamol\nMethocarbamol is a centrally acting skeletal muscle relaxant. Mechanism of action\nMethocarbamol is involved in the inhibition of carbonic anhydrase and it is\nknown to cause general depression of the central nervous system. It is also\nknown to prolong muscle refractory period. Absorption: Peak plasma\nconcentration in 1-2 hr (oral). Metabolism: Metabolised by dealkylation and hydroxylation. Excretion: Via urine as metabolites and unchanged drug. 1-2 hr (elimination\nhalf-life). Dosage\nPainful muscle spasm associated with musculoskeletal conditions. Adult: Initially: 1.5 g 4 times daily, reduced according to response after 2-3 days. Maintenance: 2.25-4 g daily in divided doses. Max dose 8 g daily.",
+      "token_count": 387,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_004",
+      "text": "Elderly: Dose may need to be reduced by half. IntravenousPainful muscle spasm associated with musculoskeletal conditions\nAdult: 1 g administered by slow inj or infusion at a rate not faster than 300\nmg/min. In cases where patients are not able to continue with oral therapy,\nadditional doses of 1 g every 8 hr may be used for up to 3 consecutive days. Max\n3 g daily. Elderly: Dose may need to be reduced by half. Intramuscular\nPainful muscle spasm associated with musculoskeletal conditions\nAdult : Up to 500 mg into each gluteal region at intervals of 8 hr. In cases where\npatients are not able to continue with oral therapy, additional doses of 1 g every\n8 hr may be used for up to consecutive 3 days. Max 3 g daily. Elderly: Dose may need to be reduced by half. Intravenous\nTetanus\nAdult: Initial total dose: 3 g with 1-2 g via direct inj at a rate of 300 mg/minute\nand the remainder 1-2 g may be administered via infusion. Repeat infusion of 1-\n2 g every 6 hr until a nasogastric tube can be inserted. Tablets may be crushed\nand suspended in water or saline solutions and administered through the\nnasogastric tube. Total oral dosage of up to 24 g daily may be needed. Child: 15 mg/kg or 500 mg/m2 given by IV inj (suggested rate 180\nmg/m2/min). Dose may be repeated every 6 hr if necessary by IV inj or infu-\nsion. Max dose 1.8 g/ m2 daily for 3 consecutive days. Indications: painful muscle spasms associated with musculoskeletal or\nneuromuscular problems.",
+      "token_count": 393,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_005",
+      "text": "Contraindications: Coma or pre-coma states, brain damage, myasthenia gravis. Do not admin parenteral solutions in patients with renal impairment, epilepsy\nor history of epilepsy. Special Precautions: Renal or hepatic impairment; acidosis. Pregnancy and\nlactation. May impair ability to drive or operate machinery. Children ?12 yr. Side effects: anorexia, lassitude, drowsiness, dizziness, restlesness, anxiety,\nconfusion, fever, headache, blurred vision, convulsions; Parenteral: Flushing\nand a metallic taste; incoordination, diplopia, nystagmus, vertigo; sloughing\nand thrombophloebitis at the site of inj.",
+      "token_count": 160,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_006",
+      "text": "338 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 339\nPainful muscle spasm associated with musculoskeletal conditions\nAdult: Initially, 500 mg 3-4 times daily, may subsequently reduce to 250 mg 3-4\ntimes daily. Max: 750 mg 3-4 times daily. Indications: painful muscle spasms associated with musculoskeletal or\nneuromuscular problems. Contraindications: Liver disease. Porphyria. Lactation. Special Precautions: Pregnancy. Tasks requiring mental alertness may be\nimpaired. Monitor liver function while administering the drug. Side effects: Drowsiness, dizziness, lightheadedness, headache, excitement,\nrestlessness, irritability, Jaundice, liver damage. Serious side effects: Anaphylactoid reactions, angioedema, fatal hepatocellular\ntoxicity. Methocarbamol\nMethocarbamol is a centrally acting skeletal muscle relaxant. Mechanism of action\nMethocarbamol is involved in the inhibition of carbonic anhydrase and it is\nknown to cause general depression of the central nervous system. It is also\nknown to prolong muscle refractory period. Absorption: Peak plasma\nconcentration in 1-2 hr (oral). Metabolism: Metabolised by dealkylation and hydroxylation. Excretion: Via urine as metabolites and unchanged drug. 1-2 hr (elimination\nhalf-life). Dosage\nPainful muscle spasm associated with musculoskeletal conditions. Adult: Initially: 1.5 g 4 times daily, reduced according to response after 2-3 days. Maintenance: 2.25-4 g daily in divided doses. Max dose 8 g daily.",
+      "token_count": 387,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_007",
+      "text": "Elderly: Dose may need to be reduced by half. IntravenousPainful muscle spasm associated with musculoskeletal conditions\nAdult: 1 g administered by slow inj or infusion at a rate not faster than 300\nmg/min. In cases where patients are not able to continue with oral therapy,\nadditional doses of 1 g every 8 hr may be used for up to 3 consecutive days. Max\n3 g daily. Elderly: Dose may need to be reduced by half. Intramuscular\nPainful muscle spasm associated with musculoskeletal conditions\nAdult : Up to 500 mg into each gluteal region at intervals of 8 hr. In cases where\npatients are not able to continue with oral therapy, additional doses of 1 g every\n8 hr may be used for up to consecutive 3 days. Max 3 g daily. Elderly: Dose may need to be reduced by half. Intravenous\nTetanus\nAdult: Initial total dose: 3 g with 1-2 g via direct inj at a rate of 300 mg/minute\nand the remainder 1-2 g may be administered via infusion. Repeat infusion of 1-\n2 g every 6 hr until a nasogastric tube can be inserted. Tablets may be crushed\nand suspended in water or saline solutions and administered through the\nnasogastric tube. Total oral dosage of up to 24 g daily may be needed. Child: 15 mg/kg or 500 mg/m2 given by IV inj (suggested rate 180\nmg/m2/min). Dose may be repeated every 6 hr if necessary by IV inj or infu-\nsion. Max dose 1.8 g/ m2 daily for 3 consecutive days. Indications: painful muscle spasms associated with musculoskeletal or\nneuromuscular problems.",
+      "token_count": 393,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_008",
+      "text": "Contraindications: Coma or pre-coma states, brain damage, myasthenia gravis. Do not admin parenteral solutions in patients with renal impairment, epilepsy\nor history of epilepsy. Special Precautions: Renal or hepatic impairment; acidosis. Pregnancy and\nlactation. May impair ability to drive or operate machinery. Children ?12 yr. Side effects: anorexia, lassitude, drowsiness, dizziness, restlesness, anxiety,\nconfusion, fever, headache, blurred vision, convulsions; Parenteral: Flushing\nand a metallic taste; incoordination, diplopia, nystagmus, vertigo; sloughing\nand thrombophloebitis at the site of inj.",
+      "token_count": 160,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_009",
+      "text": "340 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 341\nSerious side effects: Parenteral: Syncope, hypotension, bradycardia,\nanaphylaxis. Antispastic drugs\nAntispastic drugs aid in improving muscle hypertonicity and involuntary jerks. Following are commonly used antispastic drugs:\nBaclofen\nBaclofen is a gama -aminobutyric acid (GABA-B) agonist. Mechanism of action\nIt inhibits both monosynaptic and polysynaptic reexes at spinal level. Absorption: peak plasma conc after 1-3 hr. Distribution: Blood-brain barrier, CSF (equivalent to 12% conc found in\nplasma). Protein- binding: 30%. Metabolism: Hepatic (15% of the dose). Excretion: Via urine (70-80% as unchanged drug); elimination half-life (Via\nurine (70-80% as unchanged drug); elimination half-life (t1/2): 3-4 hr (plasma), 5\nhr (CSF). 3-4 hr (plasma), 5 hr (CSF). Dosage\nSevere chronic spasticity\nAdult: Initially, 5 mg tid for 3 days increased to 10 mg tid for 3 days, then in\nsimilar increments and intervals until either 20 mg tid is reached or until desired\neffect is obtained. Max: 100 mg daily. Child: 0.75-2 mg/kg daily. May initiate with 2.5 mg 4 times daily, increased\ngradually every 3 days until desired effect is obtained.",
+      "token_count": 363,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_010",
+      "text": "Maintenance: 6-10 yr: 30-\n60 mg daily; 2- 6 yr: 20-30 mg daily; 12 mth-2 yr: 10-20 mg daily. Max: >10 yr: 2.5\nmg/kg daily. Elderly: Initiate with lower doses. Intrathecal administration may be done by a neurosurgeon or pain management\nspecialist in severe chronic spasticity. Contraindications: Active peptic ulcer disease.Special Precautions: Cerebrovascular disorders, epilepsy, severe psychotic\ndisorders, confusional states, history of peptic ulcer, respiratory depression,\ndiabetes (DM), hepatic or renal impairment, elderly, pregnancy. Avoid sudden\nwithdrawal. Side effects: Sedation, drowsiness, ataxia, dizziness, headache, confusion,\nhallucinations, enuresis. Serious side effects: Respiratory or CV depression, seizures. Tolperisone\nTolperisone is a centrally acting muscle relaxant. Mechanism of action\nIt acts at the reticular formation in the brain stem by blocking voltage-gated\nsodium and calcium channels. Dosage\nSpasticity, Muscle spasms\nAdult : 50-150 mg tid. Child : <6 yr: 5 mg/kg daily in 3 divided doses; 6-14 yr: 2-4 mg/kg daily in 3\ndivided doses. Contraindications : Myasthenia gravis. Side effects : Muscular weakness, headache, hypotension. Tizanidine\nTizanidine is a centrally acting 2-agonist. Mechanism of action\nIt exerts its antispastic effect by causing presynaptic inhibition of motor neuron\nhyperactivity. Absorption: peak plasma concentrations in 1-2 hr. Distribution: Protein-binding: 30%.",
+      "token_count": 394,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_011",
+      "text": "Elimination half-life: 2-4 hr. Metabolism: Extensive hepatic rst-pass metabolism mainly via the\ncytochrome P450 isoenzyme CYP1A2. Excretion: Via urine (mainly as inactive metabolites).",
+      "token_count": 57,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_012",
+      "text": "340 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 341\nSerious side effects: Parenteral: Syncope, hypotension, bradycardia,\nanaphylaxis. Antispastic drugs\nAntispastic drugs aid in improving muscle hypertonicity and involuntary jerks. Following are commonly used antispastic drugs:\nBaclofen\nBaclofen is a gama -aminobutyric acid (GABA-B) agonist. Mechanism of action\nIt inhibits both monosynaptic and polysynaptic reexes at spinal level. Absorption: peak plasma conc after 1-3 hr. Distribution: Blood-brain barrier, CSF (equivalent to 12% conc found in\nplasma). Protein- binding: 30%. Metabolism: Hepatic (15% of the dose). Excretion: Via urine (70-80% as unchanged drug); elimination half-life (Via\nurine (70-80% as unchanged drug); elimination half-life (t1/2): 3-4 hr (plasma), 5\nhr (CSF). 3-4 hr (plasma), 5 hr (CSF). Dosage\nSevere chronic spasticity\nAdult: Initially, 5 mg tid for 3 days increased to 10 mg tid for 3 days, then in\nsimilar increments and intervals until either 20 mg tid is reached or until desired\neffect is obtained. Max: 100 mg daily. Child: 0.75-2 mg/kg daily. May initiate with 2.5 mg 4 times daily, increased\ngradually every 3 days until desired effect is obtained.",
+      "token_count": 363,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_013",
+      "text": "Maintenance: 6-10 yr: 30-\n60 mg daily; 2- 6 yr: 20-30 mg daily; 12 mth-2 yr: 10-20 mg daily. Max: >10 yr: 2.5\nmg/kg daily. Elderly: Initiate with lower doses. Intrathecal administration may be done by a neurosurgeon or pain management\nspecialist in severe chronic spasticity. Contraindications: Active peptic ulcer disease.Special Precautions: Cerebrovascular disorders, epilepsy, severe psychotic\ndisorders, confusional states, history of peptic ulcer, respiratory depression,\ndiabetes (DM), hepatic or renal impairment, elderly, pregnancy. Avoid sudden\nwithdrawal. Side effects: Sedation, drowsiness, ataxia, dizziness, headache, confusion,\nhallucinations, enuresis. Serious side effects: Respiratory or CV depression, seizures. Tolperisone\nTolperisone is a centrally acting muscle relaxant. Mechanism of action\nIt acts at the reticular formation in the brain stem by blocking voltage-gated\nsodium and calcium channels. Dosage\nSpasticity, Muscle spasms\nAdult : 50-150 mg tid. Child : <6 yr: 5 mg/kg daily in 3 divided doses; 6-14 yr: 2-4 mg/kg daily in 3\ndivided doses. Contraindications : Myasthenia gravis. Side effects : Muscular weakness, headache, hypotension. Tizanidine\nTizanidine is a centrally acting 2-agonist. Mechanism of action\nIt exerts its antispastic effect by causing presynaptic inhibition of motor neuron\nhyperactivity. Absorption: peak plasma concentrations in 1-2 hr. Distribution: Protein-binding: 30%.",
+      "token_count": 394,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_014",
+      "text": "Elimination half-life: 2-4 hr. Metabolism: Extensive hepatic rst-pass metabolism mainly via the\ncytochrome P450 isoenzyme CYP1A2. Excretion: Via urine (mainly as inactive metabolites).",
+      "token_count": 57,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_015",
+      "text": "342 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 343\nDosage\nSpasticity\nAdult: >18 yr: Initially, 2 mg once daily increased according to response by 2-mg\nincrements at intervals of at least 3-4 days up to 24 mg daily in 3-4 divided doses. Max: 8 mg/dose. Max: 24 mg/day. Elderly: Not recommended. Renal impairment: Depending on creatine clearance- CrCl: <25 (ml/min)-\nInitially, 2 mg once daily, gradually increasing the dose before increasing the\nfrequency of admin. Hepatic impairment: Avoid or use with extreme caution. Contraindications: Severe hepatic dysfunction. Special Precautions: Hepatic or renal insufciency. Children, elderly, preg-\nnancy and lactation. Monitor LFT regularly. Stop treatment if liver enzymes are\nraised persistently >3 times upper limit of normal range. Avoid abrupt with-\ndrawal of therapy. Side effects: Drowsiness, fatigue, dizziness, insomnia, headache, anxiety,\nhypotension, bradycardia, muscle pain and weakness, transient increase in\nserum transaminases, hallucinations. Serious side effects : Hepatitis. Botox\nBotulinum toxin is a protein and neurotoxin produced by the bacterium\nClostridium botulinum. Botulinum toxin Type A (BTX-A) is a common treatment for muscles affected by\nthe upper motor neuron syndrome which causes spasticity in a group of mus-\ncles. Botox injections inhibit muscle spasticity by weakening or paralyzing\ncertain muscles or by blocking the nerves involved in hypertonicity.",
+      "token_count": 372,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_016",
+      "text": "Mechanism of action\nBTX-A inhibits the release of acetylcholine (the neurotransmitter that activates\nmuscles). Botox paralyzes muscle by stopping acetylcholine release. BTX-A\nreduces both voluntary and involuntary motor activity of the muscles. Indications:\n• Severe spascticity in a muscle or muscle groups due to UMN lesions. • Spasticity not improved by antispastic drugs and other measures. • Cervical dystonia (spasmodic torticollis)\n• Local intradermal injection of BTX-A in chronic focal neuropathies. • Idiopathic and neurogenic detrusor overactivity\n• Pediatric incontinence, incontinence due to overactive bladder, and\nincontinence due to neurogenic bladder\n• Movement disorders associated with stroke, multiple sclerosis, Parkin-\nson's disease, or cerebral palsy\n• Focal dystonias affecting the limbs, face, jaw, or vocal cords\nContraindications: pregnancy, lactation\nSide effects : paralysis of the wrong muscle group and allergic reaction, pain,\nswelling, or bruising at the injection site, u-like symptoms, headache. Advantages : The advantage of Botox is its ease of administration. The effects of\nBotox last for about three to twelve months. Botox injection can be given to a\nsingle muscle or muscle group; where focal a action is required. Local injections\nact locally, and thus, a widespread action is prevented. Disadvantages : Injections have to be repeated every six months. Botox para-\nlyzes both voluntary and involuntary muscle activity. The weakness due to\nbotox may contribute to further dysfunction in patients who anticipate to use\nthe muscles. The side-effects and the development of immune responses to the\ntoxin are signicant drawbacks of repeated injections.",
+      "token_count": 398,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_017",
+      "text": "It is not suitable for\ntreatment of widespread spasticity, spasms, and other abnormal activity affect-\ning many muscle groups. Alternatives to Botox injections are available and used when injections of Botox\nare contraindicated or may cause serious adverse effects. These are surgical\nmethods, such as lengthening of tendons of spastic and shortened muscles,\ndenervation of the spastic muscles, etc.",
+      "token_count": 88,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_018",
+      "text": "342 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 343\nDosage\nSpasticity\nAdult: >18 yr: Initially, 2 mg once daily increased according to response by 2-mg\nincrements at intervals of at least 3-4 days up to 24 mg daily in 3-4 divided doses. Max: 8 mg/dose. Max: 24 mg/day. Elderly: Not recommended. Renal impairment: Depending on creatine clearance- CrCl: <25 (ml/min)-\nInitially, 2 mg once daily, gradually increasing the dose before increasing the\nfrequency of admin. Hepatic impairment: Avoid or use with extreme caution. Contraindications: Severe hepatic dysfunction. Special Precautions: Hepatic or renal insufciency. Children, elderly, preg-\nnancy and lactation. Monitor LFT regularly. Stop treatment if liver enzymes are\nraised persistently >3 times upper limit of normal range. Avoid abrupt with-\ndrawal of therapy. Side effects: Drowsiness, fatigue, dizziness, insomnia, headache, anxiety,\nhypotension, bradycardia, muscle pain and weakness, transient increase in\nserum transaminases, hallucinations. Serious side effects : Hepatitis. Botox\nBotulinum toxin is a protein and neurotoxin produced by the bacterium\nClostridium botulinum. Botulinum toxin Type A (BTX-A) is a common treatment for muscles affected by\nthe upper motor neuron syndrome which causes spasticity in a group of mus-\ncles. Botox injections inhibit muscle spasticity by weakening or paralyzing\ncertain muscles or by blocking the nerves involved in hypertonicity.",
+      "token_count": 372,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_019",
+      "text": "Mechanism of action\nBTX-A inhibits the release of acetylcholine (the neurotransmitter that activates\nmuscles). Botox paralyzes muscle by stopping acetylcholine release. BTX-A\nreduces both voluntary and involuntary motor activity of the muscles. Indications:\n• Severe spascticity in a muscle or muscle groups due to UMN lesions. • Spasticity not improved by antispastic drugs and other measures. • Cervical dystonia (spasmodic torticollis)\n• Local intradermal injection of BTX-A in chronic focal neuropathies. • Idiopathic and neurogenic detrusor overactivity\n• Pediatric incontinence, incontinence due to overactive bladder, and\nincontinence due to neurogenic bladder\n• Movement disorders associated with stroke, multiple sclerosis, Parkin-\nson's disease, or cerebral palsy\n• Focal dystonias affecting the limbs, face, jaw, or vocal cords\nContraindications: pregnancy, lactation\nSide effects : paralysis of the wrong muscle group and allergic reaction, pain,\nswelling, or bruising at the injection site, u-like symptoms, headache. Advantages : The advantage of Botox is its ease of administration. The effects of\nBotox last for about three to twelve months. Botox injection can be given to a\nsingle muscle or muscle group; where focal a action is required. Local injections\nact locally, and thus, a widespread action is prevented. Disadvantages : Injections have to be repeated every six months. Botox para-\nlyzes both voluntary and involuntary muscle activity. The weakness due to\nbotox may contribute to further dysfunction in patients who anticipate to use\nthe muscles. The side-effects and the development of immune responses to the\ntoxin are signicant drawbacks of repeated injections.",
+      "token_count": 398,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    },
+    {
+      "chunk_id": "43_020",
+      "text": "It is not suitable for\ntreatment of widespread spasticity, spasms, and other abnormal activity affect-\ning many muscle groups. Alternatives to Botox injections are available and used when injections of Botox\nare contraindicated or may cause serious adverse effects. These are surgical\nmethods, such as lengthening of tendons of spastic and shortened muscles,\ndenervation of the spastic muscles, etc.",
+      "token_count": 88,
+      "chapter_id": 43,
+      "chapter_title": "Muscle Relaxants"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "chapter_id": 12,
+  "chapter_title": "Angiography",
+  "total_chunks": 12,
+  "chunks": [
+    {
+      "chunk_id": "12_001",
+      "text": "116 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 117\nFig. 11.1 MRI Axial T1 with and without contrast showing\npresence of right Meningioma with brain invasion\nFig. 11.2 MRI-T2 Sagittal sequences showing enhanced lesion in the spine\nFig 11.3: T1-W MSK-MRI shows characteristic patterns of muscular fatty\ninltration in DMD patients. Affected muscles demonstrate high\nT1-weighted signal as compared to normal muscles MRI MSK Angiography\nAngiography is a very specialized test which is ordered by a neurologist or a\nneurosurgeon. Angiography is a minimally invasive medical test that uses X-\nrays or MRI technology and an iodine or gadolinium containing contrast\nmaterial to produce pictures of the blood vessels. Imaging of the vascular\narchitecture of the brain is termed as Neuro-angiogaphy. Angiography can be performed using:\n• Digital X-ray technology (DSA)\n• Computed Tomography (CT)\n• Magnetic Resonance Imaging (MRI)\nDigital subtraction angiography (DSA) is a type of uoroscopy technique used\nto clearly visualize blood vessels in a bony or dense soft tissue environment. Procedure: A pre-contrast image which includes all the structures within the\nhead like skull, brain, CSF, meninges, blood vessels, etc. is acquired rst by a\ndigital X-ray using technology. In catheter angiography a catheter is introduced\ninto the supercial femoral artery of the patient after giving local anaesthesia (general anaesthesia in children) and navigated under X-ray guidance up to the\ncarotid artery where an iodine containing contrast material is injected and\nmultiple X-ray images are taken.",
+      "token_count": 390,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_002",
+      "text": "In IV-DSA, radiopaque iodine based dye is\ninjected intravenously into the body. The contrast material ows along with the\nblood to the cerebral arteries and highlights the blood vessels on the X-ray. These images are simultaneously stored in the computer which then subtracts\nthe 'pre-contrast image' from the 'post-contrast image'. Tissues and blood\nvessels on the rst image are digitally subtracted from the second image, leaving\na clear picture of the artery or vein for assessing the integrity of these blood 12",
+      "token_count": 119,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_003",
+      "text": "118 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 119\nvessels and abnormalities in them. CT angiography uses a CT scanner to produce detailed images of both blood\nvessels of the brain. An iodine containing contrast is through intravenous route. A CT scan is then performed while the contrast ows through the blood vessels\nto the blood vessels of the brain. After scanning, the images are processed on a\ncomputer and reviewed in different planes and projections. In Digital\nSubtraction Angiography (DSA), images are electronically manipulated to\nremove (subtract) bones and other structures obscuring the images taken to\nmake the blood vessels stand out. Magnetic resonance angiography (MRA) uses magnetic resonance imaging\n(MRI) technology to image blood vessels.",
+      "token_count": 169,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_004",
+      "text": "Various MRI techniques include:\n• Flow-dependent angiography\n–Time-of-ight (TOF) or inow angiography\n–Phase-contrast (PC-MRA)\n• Flow-independent angiography\n–Contrast-enhanced Magnetic Resonance Angiography\n–Subtraction less Contrast-enhanced Magnetic Resonance Angiography\n–Non-enhanced magnetic resonance angiography\nIndications of cerebral angiography\nTo diagnose and evaluate diseases of blood vessels and related conditions such\n• Cerebral aneurysm\n• Brain arteriovenous Malformation (AVM)\n• Dural arteriovenous stula\n• Intracerebral Hemorrhage\n• Dissections of arteries\n• High-grade intracranial stenosis\n• Acute stroke\n• Multiple sub cortical strokes in cerebral vasculitis• Intracranial tumor and its blood supply\n• Cerebral venous thrombosis\n• Congenital abnormalities in blood vessels\nIndications of spinal angiography\nEvaluating and diagnosing diseases of blood vessels and related conditions of\nthe spine including:\n• Bleeding into the blood vessels of the spinal cord. • AVM\n• Aneurysm\n• Stenosis, thrombosis of spinal blood vessels\n• Spinal stroke due to blockage of blood vessel\n• Stroke due to blood vessel inammation\n• Suspected rupture of blood vessels of the spine\n• Spinal tumour and its blood supply\n• Suspected spinal dural stula\n• Unexplained spinal disease\nContraindications of angiography\nDSA and CT angiography:\n• Patients with bleeding disorders\n• Patients who have an allergy to the IV contrast media\n• Patients suffering from renal impairment, hyperthyroidism,\nphaeochromocytoma, myasthenia gravis, etc.",
+      "token_count": 398,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_005",
+      "text": "• Presence of renal failure (as in alcohol abuse, angina, heart failure, kidney\nproblems, liver disease, severe infection). • Patients taking diabetes medication Metformin. Medicine may need to be\nstopped temporarily for 48 hours\n• Pregnant females should have the scan done only in critical situations after\ndiscussion of benets and risks. • Complications such as an allergic reaction to the anesthetic or the contrast",
+      "token_count": 89,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_006",
+      "text": "118 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 119\nvessels and abnormalities in them. CT angiography uses a CT scanner to produce detailed images of both blood\nvessels of the brain. An iodine containing contrast is through intravenous route. A CT scan is then performed while the contrast ows through the blood vessels\nto the blood vessels of the brain. After scanning, the images are processed on a\ncomputer and reviewed in different planes and projections. In Digital\nSubtraction Angiography (DSA), images are electronically manipulated to\nremove (subtract) bones and other structures obscuring the images taken to\nmake the blood vessels stand out. Magnetic resonance angiography (MRA) uses magnetic resonance imaging\n(MRI) technology to image blood vessels.",
+      "token_count": 169,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_007",
+      "text": "Various MRI techniques include:\n• Flow-dependent angiography\n–Time-of-ight (TOF) or inow angiography\n–Phase-contrast (PC-MRA)\n• Flow-independent angiography\n–Contrast-enhanced Magnetic Resonance Angiography\n–Subtraction less Contrast-enhanced Magnetic Resonance Angiography\n–Non-enhanced magnetic resonance angiography\nIndications of cerebral angiography\nTo diagnose and evaluate diseases of blood vessels and related conditions such\n• Cerebral aneurysm\n• Brain arteriovenous Malformation (AVM)\n• Dural arteriovenous stula\n• Intracerebral Hemorrhage\n• Dissections of arteries\n• High-grade intracranial stenosis\n• Acute stroke\n• Multiple sub cortical strokes in cerebral vasculitis• Intracranial tumor and its blood supply\n• Cerebral venous thrombosis\n• Congenital abnormalities in blood vessels\nIndications of spinal angiography\nEvaluating and diagnosing diseases of blood vessels and related conditions of\nthe spine including:\n• Bleeding into the blood vessels of the spinal cord. • AVM\n• Aneurysm\n• Stenosis, thrombosis of spinal blood vessels\n• Spinal stroke due to blockage of blood vessel\n• Stroke due to blood vessel inammation\n• Suspected rupture of blood vessels of the spine\n• Spinal tumour and its blood supply\n• Suspected spinal dural stula\n• Unexplained spinal disease\nContraindications of angiography\nDSA and CT angiography:\n• Patients with bleeding disorders\n• Patients who have an allergy to the IV contrast media\n• Patients suffering from renal impairment, hyperthyroidism,\nphaeochromocytoma, myasthenia gravis, etc.",
+      "token_count": 398,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_008",
+      "text": "• Presence of renal failure (as in alcohol abuse, angina, heart failure, kidney\nproblems, liver disease, severe infection). • Patients taking diabetes medication Metformin. Medicine may need to be\nstopped temporarily for 48 hours\n• Pregnant females should have the scan done only in critical situations after\ndiscussion of benets and risks. • Complications such as an allergic reaction to the anesthetic or the contrast",
+      "token_count": 89,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_009",
+      "text": "120 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 121\nmedium, blockage or damage to the vessel punctured, thrombosis and\ne m b o l i s m f o r m a t i o n , b l e e d i n g o r b r u i s i n g a t t h e s i t e o f\npuncture/injection, and anywhere along the vessel during passage of the\ncatheter, increased risk of ionizing radiation can also occur. MR Angiography:\n• Patients with metal implants and implanted electronic device (cardiac\ndebrillator, pacemaker)\n• Pregnancy (especially in the rst trimester)\nAdvantages of DSA• Results from cerebral angiography are more accurate than those produced\nby carotid Doppler ultrasound or other noninvasive imaging of the blood\nvessels. • Use of a catheter makes it possible to combine diagnosis and treatment in a\nsingle procedure. Disadvantages of DSA\n• Risk of ionizing radiations and allergic reaction to iodine containing\ncontrast is present. • Risk to the foetus in pregnant females. • Risk of catheter introduction causing damage to the vessels is present.• Risk of stroke occurring due to dislodged thrombus from artery into the\nvessels supplying brain by the catheter is present. Advantages of MR angiography\n• It is a non-invasive technique not involving introduction of catheter into\nany blood vessel. • It does not use ionizing radiations. • Contrast medium used in MRA does not contain iodine and is less toxic\nand can be used in patients with renal impairment. Disadvantages of MR angiography:\n• It is unsafe and cannot be used for patients having metal and electronic\nimplants.",
+      "token_count": 384,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_010",
+      "text": "• High cost of MRA makes it a less frequently used diagnostic test.Common DSA ndings\nCommon CT angiography ndings:Fig 12.1 DSA showing right posterior\ncommunicating artery aneurysm (arrow)Fig 12.2 DSA showing occlusion of right middle carotid artery by a clot\nFig 12.3 Cerebral CT angiogram showing\nocclusion of left middle carotid artery\nFig 12.4 Cerebral MR angiogram\nshowing multiple aneurysmsFig 12.5 Cerebral MR angiogram\nshowing bilateral transverse\ncerebral venous stenosis",
+      "token_count": 143,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_011",
+      "text": "120 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 121\nmedium, blockage or damage to the vessel punctured, thrombosis and\ne m b o l i s m f o r m a t i o n , b l e e d i n g o r b r u i s i n g a t t h e s i t e o f\npuncture/injection, and anywhere along the vessel during passage of the\ncatheter, increased risk of ionizing radiation can also occur. MR Angiography:\n• Patients with metal implants and implanted electronic device (cardiac\ndebrillator, pacemaker)\n• Pregnancy (especially in the rst trimester)\nAdvantages of DSA• Results from cerebral angiography are more accurate than those produced\nby carotid Doppler ultrasound or other noninvasive imaging of the blood\nvessels. • Use of a catheter makes it possible to combine diagnosis and treatment in a\nsingle procedure. Disadvantages of DSA\n• Risk of ionizing radiations and allergic reaction to iodine containing\ncontrast is present. • Risk to the foetus in pregnant females. • Risk of catheter introduction causing damage to the vessels is present.• Risk of stroke occurring due to dislodged thrombus from artery into the\nvessels supplying brain by the catheter is present. Advantages of MR angiography\n• It is a non-invasive technique not involving introduction of catheter into\nany blood vessel. • It does not use ionizing radiations. • Contrast medium used in MRA does not contain iodine and is less toxic\nand can be used in patients with renal impairment. Disadvantages of MR angiography:\n• It is unsafe and cannot be used for patients having metal and electronic\nimplants.",
+      "token_count": 384,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    },
+    {
+      "chunk_id": "12_012",
+      "text": "• High cost of MRA makes it a less frequently used diagnostic test.Common DSA ndings\nCommon CT angiography ndings:\nFig 12.1 DSA showing right posterior\ncommunicating artery aneurysm (arrow)Fig 12.2 DSA showing occlusion of right middle carotid artery by a clot\nFig 12.3 Cerebral CT angiogram showing\nocclusion of left middle carotid artery\nFig 12.4 Cerebral MR angiogram\nshowing multiple aneurysmsFig 12.5 Cerebral MR angiogram\nshowing bilateral transverse\ncerebral venous stenosis",
+      "token_count": 143,
+      "chapter_id": 12,
+      "chapter_title": "Angiography"
+    }
+  ]
+}

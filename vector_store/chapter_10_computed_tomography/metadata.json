@@ -1,0 +1,106 @@
+{
+  "chapter_id": 10,
+  "chapter_title": "Computed Tomography",
+  "total_vectors": 14,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "10_001",
+      "text": "104 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 105\nComputed Tomography (CT)\nNeurological CT scans are used to view the brain and spine. They can detect\nbone and vascular irregularities, certain brain tumors and cysts, herniated discs,\nepilepsy, encephalitis, spinal stenosis, a blood clot or intracranial bleeding in\npatients with stroke, brain damage from head injury, and other disorders. It can\nalso be used to guide biopsies.\nComputed tomography, also known as a CT scan, is a noninvasive, painless, X-\nray imaging procedure used to produce rapid, clear two-dimensional images of\norgans, bones, and tissues. The cross-sectional images generated during a CT\nscan can be reformatted in multiple planes, and can even generate three-\ndimensional images. Depending on the clinical indication, the scan can be\nperformed with or without intravenous contrast injection.\nWhen to order CT v/s MRI?\n• CT scan is used in emergency neurological conditions, as it is quick, takes\nlesser time and easily available.\n• CT is very good for imaging bony structures. Therefore, in all head trauma\ncases and accidents with multiple injuries, CT scan should be ordered as a\nscreening test.\n• CT scan can easily and quickly distinguish between ischaemic and\nhaemorrhagic stroke. Thus, in all suspected stroke cases CT brain scan\nshould be ordered immediately.\n• In cases of severe headache or atypical headache or headache with\nwarning signs, CT brain scan should be ordered.\n• In any cases of altered mental status or coma, CT brain should be ordered.10",
+      "token_count": 354,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_002",
+      "text": "104 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 105\nComputed Tomography (CT)\nNeurological CT scans are used to view the brain and spine. They can detect\nbone and vascular irregularities, certain brain tumors and cysts, herniated discs,\nepilepsy, encephalitis, spinal stenosis, a blood clot or intracranial bleeding in\npatients with stroke, brain damage from head injury, and other disorders. It can\nalso be used to guide biopsies.\nComputed tomography, also known as a CT scan, is a noninvasive, painless, X-\nray imaging procedure used to produce rapid, clear two-dimensional images of\norgans, bones, and tissues. The cross-sectional images generated during a CT\nscan can be reformatted in multiple planes, and can even generate three-\ndimensional images. Depending on the clinical indication, the scan can be\nperformed with or without intravenous contrast injection.\nWhen to order CT v/s MRI?\n• CT scan is used in emergency neurological conditions, as it is quick, takes\nlesser time and easily available.\n• CT is very good for imaging bony structures. Therefore, in all head trauma\ncases and accidents with multiple injuries, CT scan should be ordered as a\nscreening test.\n• CT scan can easily and quickly distinguish between ischaemic and\nhaemorrhagic stroke. Thus, in all suspected stroke cases CT brain scan\nshould be ordered immediately.\n• In cases of severe headache or atypical headache or headache with\nwarning signs, CT brain scan should be ordered.\n• In any cases of altered mental status or coma, CT brain should be ordered.10",
+      "token_count": 354,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_003",
+      "text": "106 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 107\n• CT scan is used as a screening tool for migraine, tumours, transient\nischaemic attacks (TIA), dizziness, seizures, congenital deformities of the\nskull or brain, etc. • Patients having metallic implants, pacemakers cannot receive an MRI but\ncan have a CT scan. • CT scan may be done as a pre-requisite for surgical procedures of the brain\nand spinal cord (for e.g. CT guided biopsy). Four basic steps of CT scanning:\n1. X-Ray Production\n2. Data Acquisition\n3. Data Processing\n4. Image Display\nCT scan works much like other X-ray examinations in which different parts of\nthe part being scanned absorb X-rays in varying degrees. It is this crucial\ndifference in absorption that allows the body parts to be distinguished from one\nanother on an X-ray lm or CT electronic image. The CT scanner takes X-ray images at various angles around the body with the\nhelp of rotating X-ray beams and X-ray detectors. These images are processed by\na computer to produce cross-sectional pictures of the body. These pictures are\nseen as an X-ray ‘slice’ of the body, which is recorded on a lm and called as a\ntomogram. Three-dimensional models of the body area also can be created by\nstacking the slices together. Certain exams require a special dye, called contrast, to be delivered into the\nperson’s body through intravenous injection, orally or per rectum. Contrast CT\nscan helps to highlight structures such as blood vessels and obtain functional\ninformation about specic tissues. CT scanning is used in medicine as a diagnostic tool and as a guide for\ninterventional procedures.",
+      "token_count": 377,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_004",
+      "text": "Indications for head CT examination include the following:\nŸHead trauma\nŸStroke\nŸHeadaches\nŸInitial evaluation for space-occupying lesions, tumors\nŸUnexplained change in mental statusŸSeizures\nŸSuspected hydrocephalus\nŸSuspected intracranial hematoma, infections\nŸPsychiatric disorders\nŸDizziness\nŸVascular occlusive disease and aneurysm evaluation\nŸDiseases or malformations of the skull\nŸGuide the biopsy of the brain\nIndications for spine CT examination include the following:\n• Guide diagnostic procedures such as the biopsy of a suspicious area to\ndetect cancer, or the removal of uid from a localized infection (abscess)\n• Congenital anomalies of the spine\n• Tumors of the spinal cord, spinal pain\n• Spinal injury\n• Detection of spinal canal stenosis, vertebral fracture, and infection of the\nspine and spinal cord. • When MRI is not available/possible. Special precautions to be taken for CT examination include the following:\n• CT should be performed for pregnant patients only in critical situations\nand only after discussion of the potential risks and benets. • Repeated X-ray exposure may increase the patient’s risk for cancer. However, the risk from any one scan is small, with the benet of an\naccurate diagnosis outweighing the risks. • In certain clinical situations, intravenous contrast administration is\nindicated. Contrast media is safe in most patients. However, adverse\nreactions may occur in patients who have an allergy to the IV contrast\nmedia, or patients suffering from renal impairment, hyperthyroidism,\nphaeochromocytoma, myasthenia gravis, etc. • Checklist to be considered before ordering a CT scan with contrast:\na.",
+      "token_count": 395,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_005",
+      "text": "Presence of renal failure (as in alcohol abuse, angina, heart failure,\nkidney problems, liver disease, severe infection). b. If taking diabetes medication Metformin, medicine may need to be\nstopped temporarily for 48 hours (Since contrast medium affects the",
+      "token_count": 54,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_006",
+      "text": "106 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 107\n• CT scan is used as a screening tool for migraine, tumours, transient\nischaemic attacks (TIA), dizziness, seizures, congenital deformities of the\nskull or brain, etc. • Patients having metallic implants, pacemakers cannot receive an MRI but\ncan have a CT scan. • CT scan may be done as a pre-requisite for surgical procedures of the brain\nand spinal cord (for e.g. CT guided biopsy). Four basic steps of CT scanning:\n1. X-Ray Production\n2. Data Acquisition\n3. Data Processing\n4. Image Display\nCT scan works much like other X-ray examinations in which different parts of\nthe part being scanned absorb X-rays in varying degrees. It is this crucial\ndifference in absorption that allows the body parts to be distinguished from one\nanother on an X-ray lm or CT electronic image. The CT scanner takes X-ray images at various angles around the body with the\nhelp of rotating X-ray beams and X-ray detectors. These images are processed by\na computer to produce cross-sectional pictures of the body. These pictures are\nseen as an X-ray ‘slice’ of the body, which is recorded on a lm and called as a\ntomogram. Three-dimensional models of the body area also can be created by\nstacking the slices together. Certain exams require a special dye, called contrast, to be delivered into the\nperson’s body through intravenous injection, orally or per rectum. Contrast CT\nscan helps to highlight structures such as blood vessels and obtain functional\ninformation about specic tissues. CT scanning is used in medicine as a diagnostic tool and as a guide for\ninterventional procedures.",
+      "token_count": 377,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_007",
+      "text": "Indications for head CT examination include the following:\nŸHead trauma\nŸStroke\nŸHeadaches\nŸInitial evaluation for space-occupying lesions, tumors\nŸUnexplained change in mental statusŸSeizures\nŸSuspected hydrocephalus\nŸSuspected intracranial hematoma, infections\nŸPsychiatric disorders\nŸDizziness\nŸVascular occlusive disease and aneurysm evaluation\nŸDiseases or malformations of the skull\nŸGuide the biopsy of the brain\nIndications for spine CT examination include the following:\n• Guide diagnostic procedures such as the biopsy of a suspicious area to\ndetect cancer, or the removal of uid from a localized infection (abscess)\n• Congenital anomalies of the spine\n• Tumors of the spinal cord, spinal pain\n• Spinal injury\n• Detection of spinal canal stenosis, vertebral fracture, and infection of the\nspine and spinal cord. • When MRI is not available/possible. Special precautions to be taken for CT examination include the following:\n• CT should be performed for pregnant patients only in critical situations\nand only after discussion of the potential risks and benets. • Repeated X-ray exposure may increase the patient’s risk for cancer. However, the risk from any one scan is small, with the benet of an\naccurate diagnosis outweighing the risks. • In certain clinical situations, intravenous contrast administration is\nindicated. Contrast media is safe in most patients. However, adverse\nreactions may occur in patients who have an allergy to the IV contrast\nmedia, or patients suffering from renal impairment, hyperthyroidism,\nphaeochromocytoma, myasthenia gravis, etc. • Checklist to be considered before ordering a CT scan with contrast:\na.",
+      "token_count": 395,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_008",
+      "text": "Presence of renal failure (as in alcohol abuse, angina, heart failure,\nkidney problems, liver disease, severe infection). b. If taking diabetes medication Metformin, medicine may need to be\nstopped temporarily for 48 hours (Since contrast medium affects the",
+      "token_count": 54,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_009",
+      "text": "108 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 109\nkidneys temporarily and kidneys are involved in removal of\nmetformin, contrast medium can greatly increase the levels of\nmetformin in the blood which increases the risk of lactic acidosis.)\nc. Any previous reaction to contrast. d. It is recommended that nursing mothers should wait 24 hours after\ncontrast administration to resume breastfeeding. Advantages of CT scan:\n• The time taken for total testing is shorter in CT than for MRI. Thus, CT is\nused in emergency settings as well as a screening method for detecting\nsuspected brain and spine disorders, wherein use of MRI is not possible\ndue o unavailability and/or time constraints. • MRI cannot be done on patients who are claustrophobic as the patient has\nto remain inside the noisy machine for about 20-45 minutes. CT is more\ncomfortable. • CT scan is cheaper than an MRI. • CT is less sensitive to patient motion than MRI. Disadvantages of CT scan:\n• Risk of ionizing radiations is always there in CT scan. • CT does not differentiate well between bone, soft tissue and blood vessels. It also does not give inter soft tissue differentiation. • Contrast medium used in CT contains iodine, while MRI uses non iodine\ncontrast medium. • CT scan does not visualize the spinal cord adequately.",
+      "token_count": 290,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_010",
+      "text": "Common CT brain ndings:\nFig 10.1: CT ndings reveal the presence of Bilateral subdural haemorrhageFig 10.2: CT Axial, and sagittal sections showing Chance fracture\nFig 10.3: CT ndings reveal the presence of Extradural, subdural and\nsubarchanoid haemorrhage\nFig 10.4: CT ndings reveal the presence of Intracranial haemorrhage\nFig 10.5: CT shows the presence of right Meningioma with shift in midline",
+      "token_count": 132,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_011",
+      "text": "108 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 109\nkidneys temporarily and kidneys are involved in removal of\nmetformin, contrast medium can greatly increase the levels of\nmetformin in the blood which increases the risk of lactic acidosis.)\nc. Any previous reaction to contrast. d. It is recommended that nursing mothers should wait 24 hours after\ncontrast administration to resume breastfeeding. Advantages of CT scan:\n• The time taken for total testing is shorter in CT than for MRI. Thus, CT is\nused in emergency settings as well as a screening method for detecting\nsuspected brain and spine disorders, wherein use of MRI is not possible\ndue o unavailability and/or time constraints. • MRI cannot be done on patients who are claustrophobic as the patient has\nto remain inside the noisy machine for about 20-45 minutes. CT is more\ncomfortable. • CT scan is cheaper than an MRI. • CT is less sensitive to patient motion than MRI. Disadvantages of CT scan:\n• Risk of ionizing radiations is always there in CT scan. • CT does not differentiate well between bone, soft tissue and blood vessels. It also does not give inter soft tissue differentiation. • Contrast medium used in CT contains iodine, while MRI uses non iodine\ncontrast medium. • CT scan does not visualize the spinal cord adequately.",
+      "token_count": 290,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_012",
+      "text": "Common CT brain ndings:\nFig 10.1: CT ndings reveal the presence of Bilateral subdural haemorrhage\nFig 10.2: CT Axial, and sagittal sections showing Chance fracture\nFig 10.3: CT ndings reveal the presence of Extradural, subdural and\nsubarchanoid haemorrhage\nFig 10.4: CT ndings reveal the presence of Intracranial haemorrhage\nFig 10.5: CT shows the presence of right Meningioma with shift in midline",
+      "token_count": 133,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_013",
+      "text": "110 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 111\nFig 10.6: CT ndings reveal, right MCA Acute stroke\nFig 10.7: CT ndings reveal, right MCA Chronic stroke\nFig 10.8: CT Brain ndings reveal the presence of right\nfrontal subdural haematomaMagnetic Resonance Imaging\n(MRI)\nMagnetic Resonance Imaging (MRI) is a medical imaging technique that uses a\npowerful magnetic eld and radio waves to produce detailed images of body\nstructures including tissues, organs, bones, and nerves to study the anatomy\nand physiology of the body in both health and disease. An MRI differs from a CT\nscan, in that it does not use radiation. Brain and spine MRI is an excellent\ndiagnostic and prognostic tool for various neurological and neuromuscular\ndisorders like cerebrovascular diseases, tumours, demyelinating and infectious\ndiseases of the brain and spinal cord. When to order an MRI scan instead of CT scan? • MRI is done once CT scan has already detected a brain tumour. MRI\nvisualizes the brain and soft tissues very well, so, the extent, spread, type\nand staging of the tumour can be done in detail. • MRI is done as a follow up scan in cases of stroke to know the area of\ndamage and prognosis. • In cases of spinal cord injury, degenerative disc disease, spinal cord\ntumour, meningioma, meningomyelocoele, transverse myelitis, infections\nof the spine, MRI is done. Spinal cord is visualized better with MRI than with CT scan.",
+      "token_count": 373,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    },
+    {
+      "chunk_id": "10_014",
+      "text": "• MRI is an imaging modality of choice in cases where a denitive diagnosis\nis suspected clinically or through previous imaging like CT scan. It is used\nto conrm the diagnosis and to better visualize the soft tissues and their\nabnormalities.11",
+      "token_count": 59,
+      "chapter_id": 10,
+      "chapter_title": "Computed Tomography"
+    }
+  ]
+}

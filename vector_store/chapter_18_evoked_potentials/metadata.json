@@ -1,0 +1,92 @@
+{
+  "chapter_id": 18,
+  "chapter_title": "Evoked Potentials",
+  "total_vectors": 12,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "18_001",
+      "text": "144 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 145\nEvoked Potentials\nEvoked potential (EP) tests measure the electrical activity in the brain in\nresponse to stimulation of specic sensory nerve pathways such as sight, sound,\nor touch. Minute electrical signals are evoked in the brain in response to these\nsensory stimuli. These signals travel along the sensory nerves and through\nafferent pathways of the spinal cord to respective regions of the brain and are\npicked up by electrodes, amplied, and displayed on a computer. EPs, thus, are\nable to detect the slowing or blockage of electrical conduction (eg. demyelination) along these pathways. Uses of SSEP test:\n• Primary use is to determine compromised central nervous system (CNS)\nconduction. • To diagnose nerve entrapment syndromes such as carpal tunnel\nsyndrome/ulnar nerve entrapment syndrome. • To diagnose spondylytic myeloradiculopathy\n• To diagnose thoracic outlet syndrome\n• To diagnose and manage acquired metabolic disorders (e.g., lead toxicity,\nB12 deciency)\n• To help reveal asymptomatic lesions, for example in case of suspected\nmultiple sclerosis.18• To conrm presence of demyelinating diseases such as multiple sclerosis;\ndiagnosis of which requires evidence of demyelination in two distinct\nareas of the central nervous system. • Abnormalities of trigeminal SSEPs may guide towards diagnosis of MS,\nWallenberg syndrome, cerebellopontine angle tumors, trigeminal\nneuromas, or meningeal sarcoidosis with facial paralysis.",
+      "token_count": 366,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_002",
+      "text": "• To help conrm symptoms when few physical ndings are noted\n• To establish an anatomic region where the conduction disturbance or\nblock occurs. • To detect tumors or other problems affecting the brain and spinal cord. • To check prognosis in comatosed patients in anoxic brain injury\n• To study fundamental aspects of sensory physiology for research\npurposes. Indications\n• To assess patients with acute spinal cord injury\n• To evaluate acute anoxic encephalopathy\n• To evaluate patients with suspected stroke\n• To conrm or reject the presence of a suspected conduction block. • To identify clinically silent brain lesions such as multiple sclerosis\nsuspects, in whom neurological signs and other objective ndings (brain\nplaques on MRI and/or positive oligoclonal bands in CSF) are present. • To assess and follow up for prognosis in patients with spinocerebellar\ndegeneration (e.g. Friedreich's ataxia, olivopontocerebellar degeneration)\n• In unexplained myelopathy\n• To evaluate radiculopathy, neuropathy\nDifferent types of evoked potentials studies\n• Somatosensory evoked potential (SSEP) test: This test helps detect problems\nwith cutaneous sensations which may be due to segmental innervation\ndisturbances, disturbances in the spinal cord, demyelination, etc.",
+      "token_count": 299,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_003",
+      "text": "144 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 145\nEvoked Potentials\nEvoked potential (EP) tests measure the electrical activity in the brain in\nresponse to stimulation of specic sensory nerve pathways such as sight, sound,\nor touch. Minute electrical signals are evoked in the brain in response to these\nsensory stimuli. These signals travel along the sensory nerves and through\nafferent pathways of the spinal cord to respective regions of the brain and are\npicked up by electrodes, amplied, and displayed on a computer. EPs, thus, are\nable to detect the slowing or blockage of electrical conduction (eg. demyelination) along these pathways. Uses of SSEP test:\n• Primary use is to determine compromised central nervous system (CNS)\nconduction. • To diagnose nerve entrapment syndromes such as carpal tunnel\nsyndrome/ulnar nerve entrapment syndrome. • To diagnose spondylytic myeloradiculopathy\n• To diagnose thoracic outlet syndrome\n• To diagnose and manage acquired metabolic disorders (e.g., lead toxicity,\nB12 deciency)\n• To help reveal asymptomatic lesions, for example in case of suspected\nmultiple sclerosis.18• To conrm presence of demyelinating diseases such as multiple sclerosis;\ndiagnosis of which requires evidence of demyelination in two distinct\nareas of the central nervous system. • Abnormalities of trigeminal SSEPs may guide towards diagnosis of MS,\nWallenberg syndrome, cerebellopontine angle tumors, trigeminal\nneuromas, or meningeal sarcoidosis with facial paralysis.",
+      "token_count": 366,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_004",
+      "text": "• To help conrm symptoms when few physical ndings are noted\n• To establish an anatomic region where the conduction disturbance or\nblock occurs. • To detect tumors or other problems affecting the brain and spinal cord. • To check prognosis in comatosed patients in anoxic brain injury\n• To study fundamental aspects of sensory physiology for research\npurposes. Indications\n• To assess patients with acute spinal cord injury\n• To evaluate acute anoxic encephalopathy\n• To evaluate patients with suspected stroke\n• To conrm or reject the presence of a suspected conduction block. • To identify clinically silent brain lesions such as multiple sclerosis\nsuspects, in whom neurological signs and other objective ndings (brain\nplaques on MRI and/or positive oligoclonal bands in CSF) are present. • To assess and follow up for prognosis in patients with spinocerebellar\ndegeneration (e.g. Friedreich's ataxia, olivopontocerebellar degeneration)\n• In unexplained myelopathy\n• To evaluate radiculopathy, neuropathy\nDifferent types of evoked potentials studies\n• Somatosensory evoked potential (SSEP) test: This test helps detect problems\nwith cutaneous sensations which may be due to segmental innervation\ndisturbances, disturbances in the spinal cord, demyelination, etc.",
+      "token_count": 299,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_005",
+      "text": "146 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 147\n• Visual evoked potential (VEP) test: This test helps detect problems with\nthe optic nerves that affect sight. • Brainstem auditory evoked potential (BAEP) test: This test helps detect\nproblems with hearing due to nerve damage or brain stem tumors and\nmultiple sclerosis. Somatosensory evoked potential (SSEP) testing is commonly used in clinical\nsettings. During the procedure, electrodes are attached to the wrist, the back of\nthe knee, or other locations depending on the dermatome to be studied. A mild\nelectrical stimulus is applied through the electrodes. Electrodes placed on the\nscalp then pick up the response from corresponding brain area and the time\ntaken for the current to travel along the nerve to the brain is recorded. Abnormalities may include prolonged latencies or lack of development of the\nSSEP. The stimulation sites commonly used for clinical diagnostic SSEP studies\nare the median nerve at the wrist, the common peroneal nerve at the knee, and\nthe posterior tibial nerve at the ankle. The dorsal columns in the spinal cord are mainly responsible for conduction of\nthe electrical activity that generates the SSEP. While in the brain, the lemniscal\nand thalamocortical pathways are involved. Because the diagnosis of multiple\nsclerosis requires evidence of demyelination in two distinct areas of the central\nnervous system, EP testing can help conrm multiple sclerosis. Visual evoked potential (VEP) testing\nVisual stimuli used in VEP testing are strobe ash, ashing light-emitting\ndiodes (LEDs), transient and steady state pattern reversal and pattern\nonset/offset. The most common stimulus used is a checkerboard pattern, which\nreverses every half-second.",
+      "token_count": 396,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_006",
+      "text": "The VEP is used to identify impaired transmission\nalong the optic nerve pathways, which is a common early nding in MS, even in\nsome patients who have never experienced any visual symptoms. It is used to\ndetect problems with the conducting nerves and areas of the brain involved in\nvision in cases of optic neuritis, occipital trauma, or neurobromatosis, etc. Brainstem auditory evoked potential (BAEP) testing\nIn BAEP testing, broad-band clicks as stimuli are used for the neurologic\napplications of auditory evoked potentials. BAEPs reect neuronal activity in\nthe auditory nerve, cochlear nucleus, superior olive, and inferior colliculus of\nthe brainstem. Abnormal test results may be a sign of hearing loss, multiple\nsclerosis, acoustic neuroma, brainstem stroke, or brainstem degenerative\ndisorders, etc. BAEP testing may also be used for outcome prediction in cases of\ncoma.Contraindications\nThere are no specic contraindications for this test. But, precautions need to be\ntaken in the following cases:\n• In patients with pacemakers, deep brain stimulators or spinal cord\nstimulators, stimulating electrodes placed in close proximity to these\ndevices could induce a voltage of sufcient amplitude to inhibit the\nfunctioning of these devices. Thus, special precautions must be taken\nwhile performing SSEP testing on them. • Patients with impaired consciousness or cognition, who cannot\nunderstand commands given during the procedure and who cannot bear\nthe electrical stimulations. Advantages\n• SSEP testing may help diagnose a problem even when the neurologic\nchange is too subtle to be noticed by the patient or to show up on\nneurological examination.",
+      "token_count": 375,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_007",
+      "text": "Limitations\n• Abnormalities demonstrated by these tests are etiologically nonspecic\nand do not guide towards a specic diagnosis. Therefore, the test results\nshould be integrated carefully into the clinical situation by the concerned\nphysician. • Though evoked potential studies are considered safe procedures, the test\nmay cause discomfort in hyperalgesic patients and children.",
+      "token_count": 84,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_008",
+      "text": "146 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 147\n• Visual evoked potential (VEP) test: This test helps detect problems with\nthe optic nerves that affect sight. • Brainstem auditory evoked potential (BAEP) test: This test helps detect\nproblems with hearing due to nerve damage or brain stem tumors and\nmultiple sclerosis. Somatosensory evoked potential (SSEP) testing is commonly used in clinical\nsettings. During the procedure, electrodes are attached to the wrist, the back of\nthe knee, or other locations depending on the dermatome to be studied. A mild\nelectrical stimulus is applied through the electrodes. Electrodes placed on the\nscalp then pick up the response from corresponding brain area and the time\ntaken for the current to travel along the nerve to the brain is recorded. Abnormalities may include prolonged latencies or lack of development of the\nSSEP. The stimulation sites commonly used for clinical diagnostic SSEP studies\nare the median nerve at the wrist, the common peroneal nerve at the knee, and\nthe posterior tibial nerve at the ankle. The dorsal columns in the spinal cord are mainly responsible for conduction of\nthe electrical activity that generates the SSEP. While in the brain, the lemniscal\nand thalamocortical pathways are involved. Because the diagnosis of multiple\nsclerosis requires evidence of demyelination in two distinct areas of the central\nnervous system, EP testing can help conrm multiple sclerosis. Visual evoked potential (VEP) testing\nVisual stimuli used in VEP testing are strobe ash, ashing light-emitting\ndiodes (LEDs), transient and steady state pattern reversal and pattern\nonset/offset. The most common stimulus used is a checkerboard pattern, which\nreverses every half-second.",
+      "token_count": 396,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_009",
+      "text": "The VEP is used to identify impaired transmission\nalong the optic nerve pathways, which is a common early nding in MS, even in\nsome patients who have never experienced any visual symptoms. It is used to\ndetect problems with the conducting nerves and areas of the brain involved in\nvision in cases of optic neuritis, occipital trauma, or neurobromatosis, etc. Brainstem auditory evoked potential (BAEP) testing\nIn BAEP testing, broad-band clicks as stimuli are used for the neurologic\napplications of auditory evoked potentials. BAEPs reect neuronal activity in\nthe auditory nerve, cochlear nucleus, superior olive, and inferior colliculus of\nthe brainstem. Abnormal test results may be a sign of hearing loss, multiple\nsclerosis, acoustic neuroma, brainstem stroke, or brainstem degenerative\ndisorders, etc. BAEP testing may also be used for outcome prediction in cases of\ncoma.Contraindications\nThere are no specic contraindications for this test. But, precautions need to be\ntaken in the following cases:\n• In patients with pacemakers, deep brain stimulators or spinal cord\nstimulators, stimulating electrodes placed in close proximity to these\ndevices could induce a voltage of sufcient amplitude to inhibit the\nfunctioning of these devices. Thus, special precautions must be taken\nwhile performing SSEP testing on them. • Patients with impaired consciousness or cognition, who cannot\nunderstand commands given during the procedure and who cannot bear\nthe electrical stimulations. Advantages\n• SSEP testing may help diagnose a problem even when the neurologic\nchange is too subtle to be noticed by the patient or to show up on\nneurological examination.",
+      "token_count": 375,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_010",
+      "text": "Limitations\n• Abnormalities demonstrated by these tests are etiologically nonspecic\nand do not guide towards a specic diagnosis. Therefore, the test results\nshould be integrated carefully into the clinical situation by the concerned\nphysician. • Though evoked potential studies are considered safe procedures, the test\nmay cause discomfort in hyperalgesic patients and children.",
+      "token_count": 84,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_011",
+      "text": "148 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 149\n(III) BiochemicalBlood Tests\nIn neurological disorders, clinical history and examination is the key to identify\nthe diagnosis. Radiological investigations, for e.g. CT, MRI, are required to\nconrm the diagnosis and differentiate between various causes. Blood tests are\nadjunctive and offer added information about systemic causes or effects of\nneurological disorders. Blood tests are especially important in CNS infections,\nseizures, nutritional deciencies and metabolic disorders. Here we have\ndescribed the commonly used blood tests in patients presenting with\nneurological complaints.\nI. Routine blood tests\nComplete blood count\nWhite blood cells (WBC)\nNormal ranges\n• WBC - 4-10 x 109/L\n• Neutrophils - 2.0-7.0×109/L\n• Lymphocytes - 1.0-3.0×109/L\n• Monocytes - 0.2-1.0×109/L\n• Eosinophils - 0.02-0.5×109/L\n• Basophils - 0.02-0.1×109/L\n• Peripheral WBC count increases signicantly after a generalized seizure\nand is probably transient in nature.19",
+      "token_count": 290,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    },
+    {
+      "chunk_id": "18_012",
+      "text": "148 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 149\n(III) BiochemicalBlood Tests\nIn neurological disorders, clinical history and examination is the key to identify\nthe diagnosis. Radiological investigations, for e.g. CT, MRI, are required to\nconrm the diagnosis and differentiate between various causes. Blood tests are\nadjunctive and offer added information about systemic causes or effects of\nneurological disorders. Blood tests are especially important in CNS infections,\nseizures, nutritional deciencies and metabolic disorders. Here we have\ndescribed the commonly used blood tests in patients presenting with\nneurological complaints.\nI. Routine blood tests\nComplete blood count\nWhite blood cells (WBC)\nNormal ranges\n• WBC - 4-10 x 109/L\n• Neutrophils - 2.0-7.0×109/L\n• Lymphocytes - 1.0-3.0×109/L\n• Monocytes - 0.2-1.0×109/L\n• Eosinophils - 0.02-0.5×109/L\n• Basophils - 0.02-0.1×109/L\n• Peripheral WBC count increases signicantly after a generalized seizure\nand is probably transient in nature.19",
+      "token_count": 290,
+      "chapter_id": 18,
+      "chapter_title": "Evoked Potentials"
+    }
+  ]
+}

@@ -60,9 +60,3 @@ data/raw/*
 !data/raw/.gitkeep
 data/extracted/*
 !data/extracted/.gitkeep
-data/chunks/*
-!data/chunks/.gitkeep
-data/index/*
-!data/index/.gitkeep
-vector_store/*
-!vector_store/.gitkeep

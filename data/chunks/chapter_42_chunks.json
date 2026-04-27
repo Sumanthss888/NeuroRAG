@@ -1,0 +1,119 @@
+{
+  "chapter_id": 42,
+  "chapter_title": "Drugs for Stroke",
+  "total_chunks": 16,
+  "chunks": [
+    {
+      "chunk_id": "42_001",
+      "text": "330 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 331\nProphylaxis of migraine\nAdult: Initially, 250 mg bid. Max: 1 g/day; extended release: 500 mg once daily\nfor 7 days then increase to 1 g once daily. Usual range: 500-1000 mg/day. Elderly: Initiate at lower dose and increase slowly. Hepatic impairment: Contraindicated\nTopiramate\nProphylaxis of migraine\nAdult: >16 yr: Initially 25 mg daily at night for 1 wk, increased in steps of 25-mg\nat wkly intervals. Usual dose: 50-100 mg daily in 2 divided doses. Daily doses\n>25 mg should be taken in 2 divided doses. Hepatic impairment: Dosage adjustment may be needed. Drugs for Stroke\nAspirin\nIt is acetylsalicylic acid\nMechanism of action\nIt inhibits cyclooxygenase, which is responsible for the synthesis of\nprostaglandin and thromboxane. It also inhibits platelet aggregation. Duration: 4-6 hr. Absorption: Peak plasma concentrations after 1-2 hr. Distribution: Widely distributed; crosses the placenta; enters breast milk. Protein-\nbinding: 80-90%. Metabolism: Hepatic; converted to metabolites. Excretion: Via urine by glomerular ltration, active renal tubular secretion and\npassive tubular reabsorption (as unchanged drug); via haemodialysis; 15-20\nminutes (elimination half-life, parent drug). Dosage - post stoke patients-50- 350mg daily depending upon the age.",
+      "token_count": 372,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_002",
+      "text": "Contraindications - peptic ulcer, liver disease, bleeding tendencies, pregnancy\n(3rd trimester), children <12 yr, patients with haemophilia or haemorrhagic\ndisorders, gout, severe renal or hepatic impairment, lactation. Side effects - tinnitus,vertigo, impairment of hearing & vision, excitement &\nmental confusion, electrolyte imbalance. Reye's syndrome (children <12 yr). Hepatotoxicity; CNS depression which may lead to coma; CV collapse and 42",
+      "token_count": 107,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_003",
+      "text": "332 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 333\nrespiratory failure; paroxysmal bronchospasm and dyspnoea. Clopidogrel\nMechanism of action\nClopidogrel inhibits adenosine diphosphate (ADP) from binding to its receptor\nsites on the platelets and subsequent activation of glycoprotein GP IIb/IIIa\ncomplex thus preventing brinogen binding, platelet adhesion and\naggregation. Distribution: Protein-binding: Extensive. Metabolism: Hepatic: Extensive; converted to inactive carboxylic acid deriva-\ntive and thiol derivative (active). Excretion: Via urine and faeces (as metabolites and unchanged drug). Dosage - prophylaxis of thromboembolic events 75 mg once daily. Contraindications - Active pathological bleeding. Administration within 7\ndays after MI and ischaemic stroke, coagulation disorders, lactation. Precautions - patients at risk of increased bleeding from trauma, surgery, or\nother pathological conditions; ulcer; renal and hepatic impairment; history of\nbleeding or haemostatic disorders. Side effects - paraesthesia, vertigo, headache, dizziness. Potentially Fatal: Bleeding disorders including GI and intracranial haemor-\nrhage. Blood dyscrasias. Dipyridamole :\nIt is a relatively weak antiplatelet agent on its own, but an extended-release\nformulation of dipyridamolle combined with low dose aspirin ( Aggrenox) is\navailable and is used for prevention of stroke in patients with TIAs. It acts by inhibition of phosphodiesterase. Dose : Aggrenox is given twice daily . it contains 200 mg dipyridamole and 25\nmg aspirin.",
+      "token_count": 396,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_004",
+      "text": "Side effects: used with caution in patients with coronary artery disease as it may\ncause coronary steal phenomenon due to its vasodilatory property. Prasugrel:Its a Thienopyridines like clopidogrel and acts by selectively inhibiting ADP\ninduced platelet aggregation. It is 10 fold more potent than clopidogrel. Dose : Loading dose of 60 mg owed by 10 mg /day ( if weight <60 kg reduce\ndose to 5mg/day)\nTicagrelor :\nIt is an orally active inhibitor of P2Y12. It produce reversible inhibition of ADP\nreceptor. It does not require metabolic activation. Dose : Ticagrelor is initiated with loading dose of 180 mg followed by 90 mg\ntwice daily. While using with aspirin, daily aspirin dose should not exceed 100\nSide effects :\nDyspepsia occurs in 15 % cases. Statins\nThese are dyslipidemic drugs which are administered for controlling of\ncholestrol, rosuvasatin and atorvastatin are commonly being used. Atorvastatin\nMechanism of action\nAtorvastatin inhibits HMG - CoA reductase, the enzyme that catalyses the\nconversion of HMG-CoA to mevalonate. This results in the induction of the LDL\nreceptors and stimulation of LDL catabolism, leading to lowered LDL-\ncholesterol levels. Distribution : Volume of distribution: Approx 381 L. Plasma protein binding:\nMetabolism: Metabolised by CYP3A4 isoenzyme to active ortho- and\nparahydroxylated derivates and an inactive ?-oxidation product. Excretion: Via faeces (as metabolites); urine (<2% as unchanged drug).",
+      "token_count": 390,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_005",
+      "text": "Elimina-\nhalf-life: Approx 14 hr. Dosage - 20 mg- 80 mg daily\nContraindications: Active liver disease or unexplained persistent elevations of\nserum transaminases. Concomitant use w/ciclosporin, gembrozil, telaprevir,\ntipranavir. Pregnancy and lactation.",
+      "token_count": 80,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_006",
+      "text": "332 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 333\nrespiratory failure; paroxysmal bronchospasm and dyspnoea. Clopidogrel\nMechanism of action\nClopidogrel inhibits adenosine diphosphate (ADP) from binding to its receptor\nsites on the platelets and subsequent activation of glycoprotein GP IIb/IIIa\ncomplex thus preventing brinogen binding, platelet adhesion and\naggregation. Distribution: Protein-binding: Extensive. Metabolism: Hepatic: Extensive; converted to inactive carboxylic acid deriva-\ntive and thiol derivative (active). Excretion: Via urine and faeces (as metabolites and unchanged drug). Dosage - prophylaxis of thromboembolic events 75 mg once daily. Contraindications - Active pathological bleeding. Administration within 7\ndays after MI and ischaemic stroke, coagulation disorders, lactation. Precautions - patients at risk of increased bleeding from trauma, surgery, or\nother pathological conditions; ulcer; renal and hepatic impairment; history of\nbleeding or haemostatic disorders. Side effects - paraesthesia, vertigo, headache, dizziness. Potentially Fatal: Bleeding disorders including GI and intracranial haemor-\nrhage. Blood dyscrasias. Dipyridamole :\nIt is a relatively weak antiplatelet agent on its own, but an extended-release\nformulation of dipyridamolle combined with low dose aspirin ( Aggrenox) is\navailable and is used for prevention of stroke in patients with TIAs. It acts by inhibition of phosphodiesterase. Dose : Aggrenox is given twice daily . it contains 200 mg dipyridamole and 25\nmg aspirin.",
+      "token_count": 396,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_007",
+      "text": "Side effects: used with caution in patients with coronary artery disease as it may\ncause coronary steal phenomenon due to its vasodilatory property. Prasugrel:Its a Thienopyridines like clopidogrel and acts by selectively inhibiting ADP\ninduced platelet aggregation. It is 10 fold more potent than clopidogrel. Dose : Loading dose of 60 mg owed by 10 mg /day ( if weight <60 kg reduce\ndose to 5mg/day)\nTicagrelor :\nIt is an orally active inhibitor of P2Y12. It produce reversible inhibition of ADP\nreceptor. It does not require metabolic activation. Dose : Ticagrelor is initiated with loading dose of 180 mg followed by 90 mg\ntwice daily. While using with aspirin, daily aspirin dose should not exceed 100\nSide effects :\nDyspepsia occurs in 15 % cases. Statins\nThese are dyslipidemic drugs which are administered for controlling of\ncholestrol, rosuvasatin and atorvastatin are commonly being used. Atorvastatin\nMechanism of action\nAtorvastatin inhibits HMG - CoA reductase, the enzyme that catalyses the\nconversion of HMG-CoA to mevalonate. This results in the induction of the LDL\nreceptors and stimulation of LDL catabolism, leading to lowered LDL-\ncholesterol levels. Distribution : Volume of distribution: Approx 381 L. Plasma protein binding:\nMetabolism: Metabolised by CYP3A4 isoenzyme to active ortho- and\nparahydroxylated derivates and an inactive ?-oxidation product. Excretion: Via faeces (as metabolites); urine (<2% as unchanged drug).",
+      "token_count": 390,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_008",
+      "text": "Elimina-\nhalf-life: Approx 14 hr. Dosage - 20 mg- 80 mg daily\nContraindications: Active liver disease or unexplained persistent elevations of\nserum transaminases. Concomitant use w/ciclosporin, gembrozil, telaprevir,\ntipranavir. Pregnancy and lactation.",
+      "token_count": 80,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_009",
+      "text": "334 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 335\nSide effects - Headache, anorexia. Pain in extremity, musculoskeletal and\npharyngolaryngeal; myopathy, muscle spasms, myalgia, arthralgia,\nnasopharyngitis, insomnia, UTI. Increased serum aminotransferase,\nglycosylated haemoglobin and fasting serum glucose levels. Potentially Fatal: Severe rhabdomyolysis w/ acute renal failure. Hepatitis,\npancreatitis. Rarely, Stevens-Johnson syndrome, anaphylaxis, toxic epidermal\nnecrolysis. Rosuvastatin\nMechanism of action\nRosuvastatin is a selective and competitive inhibitor of HMG-CoA reductase,\nthe rate-limiting enzyme in cholesterol synthesis. It increases the number of\nhepatic LDL receptors on the cell surface, enhancing uptake and catabolism of\nLDL. It also decreases apolipoprotein B, triglycerides and increases HDL. Absorption: Time to peak plasma concentration: Approx 5 hr. Distribution: Volume of distribution: 134 L. Plasma protein binding: Approx\nMetabolism: Limited metabolism via CYP2C9 isoenzyme. Excretion: Via faeces (approx 90%); urine (approx 5% as unchanged drug). Elimination\nhalf-life: Approx 19 hr. Dosage - 20 mg- 80 mg daily\nContraindications: Active liver disease or unexplained persistent elevated\nserum transaminases. Severe renal impairment. Concomitant use w/\nciclosporin and gembrozil. Pregnancy and lactation.",
+      "token_count": 376,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_010",
+      "text": "Side effects - Headache, dizziness, myalgia, chest pain, peripheral oedema,\ndepression, insomnia, rash, paraesthesia, asthenia, abnormal LFT, elevated\nserum transaminase levels. Potentially Fatal: Severe rhabdomyolysis w/ acute renal failure. Hepatitis,\npancreatitis. Rare: Stevens-Johnson syndrome, anaphylaxis, toxic epidermal necrolysis. Anticoagulants\nCoumarins (Warfarin)These are anticoagulants, antiplatelets & brinolytics (thrombolytics)\nMechanism of action – Warfarin inhibits synthesis of vit K-dependent coagula-\ntion factors VII, IX, X and II and anticoagulant protein C and its cofactor protein\nS. Extension of the clot can be prevented. Secondary embolic phenomena are\navoided. Onset: 24 hr\nDuration: 2-5 days. Absorption: Peak plasma concentration: within rst 4 hr. Distribution: Protein binding: Extensive (99%) to albumin. Crosses placenta. Metabolism: Hepatic;\nExcretion: Via urine (as metabolites after reabsorption from the bile); 37 hr\n(elimination half-life). Dosage\nTreatment and prophylaxis of venous thromboembolism\nAdult: Initially, 5 mg daily. Rapid anti-coagulation: Initially, 10 mg daily for 2\ndays. Adjust subsequent doses based on PT/INR. Usual maintenance dose: 2-10 mg\ndaily. Elderly: Lower initial dose. Hepatic impairment: Severe: Avoid.",
+      "token_count": 362,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_011",
+      "text": "Containdications - haemorrhagic tendencies; recent surgery; peptic ulcer;\nsevere hypertension; senility; aneurysms; alcoholism; severe renal and hepatic\nimpairment; pregnancy. Side effects - drop in haematocrit, purple toes syndrome, skin necrosis, hepatic\ndysfunction, pancreatitis. Potentially Fatal : Haemorrhage (narrow therapeutic index). Low molecular weight heparin\nEnoxaparin\nEnoxaparin is a low molecular weight heparin w/ anticoagulant properties.",
+      "token_count": 118,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_012",
+      "text": "334 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 335\nSide effects - Headache, anorexia. Pain in extremity, musculoskeletal and\npharyngolaryngeal; myopathy, muscle spasms, myalgia, arthralgia,\nnasopharyngitis, insomnia, UTI. Increased serum aminotransferase,\nglycosylated haemoglobin and fasting serum glucose levels. Potentially Fatal: Severe rhabdomyolysis w/ acute renal failure. Hepatitis,\npancreatitis. Rarely, Stevens-Johnson syndrome, anaphylaxis, toxic epidermal\nnecrolysis. Rosuvastatin\nMechanism of action\nRosuvastatin is a selective and competitive inhibitor of HMG-CoA reductase,\nthe rate-limiting enzyme in cholesterol synthesis. It increases the number of\nhepatic LDL receptors on the cell surface, enhancing uptake and catabolism of\nLDL. It also decreases apolipoprotein B, triglycerides and increases HDL. Absorption: Time to peak plasma concentration: Approx 5 hr. Distribution: Volume of distribution: 134 L. Plasma protein binding: Approx\nMetabolism: Limited metabolism via CYP2C9 isoenzyme. Excretion: Via faeces (approx 90%); urine (approx 5% as unchanged drug). Elimination\nhalf-life: Approx 19 hr. Dosage - 20 mg- 80 mg daily\nContraindications: Active liver disease or unexplained persistent elevated\nserum transaminases. Severe renal impairment. Concomitant use w/\nciclosporin and gembrozil. Pregnancy and lactation.",
+      "token_count": 376,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_013",
+      "text": "Side effects - Headache, dizziness, myalgia, chest pain, peripheral oedema,\ndepression, insomnia, rash, paraesthesia, asthenia, abnormal LFT, elevated\nserum transaminase levels. Potentially Fatal: Severe rhabdomyolysis w/ acute renal failure. Hepatitis,\npancreatitis. Rare: Stevens-Johnson syndrome, anaphylaxis, toxic epidermal necrolysis. Anticoagulants\nCoumarins (Warfarin)These are anticoagulants, antiplatelets & brinolytics (thrombolytics)\nMechanism of action – Warfarin inhibits synthesis of vit K-dependent coagula-\ntion factors VII, IX, X and II and anticoagulant protein C and its cofactor protein\nS. Extension of the clot can be prevented. Secondary embolic phenomena are\navoided. Onset: 24 hr\nDuration: 2-5 days. Absorption: Peak plasma concentration: within rst 4 hr. Distribution: Protein binding: Extensive (99%) to albumin. Crosses placenta. Metabolism: Hepatic;\nExcretion: Via urine (as metabolites after reabsorption from the bile); 37 hr\n(elimination half-life). Dosage\nTreatment and prophylaxis of venous thromboembolism\nAdult: Initially, 5 mg daily. Rapid anti-coagulation: Initially, 10 mg daily for 2\ndays. Adjust subsequent doses based on PT/INR. Usual maintenance dose: 2-10 mg\ndaily. Elderly: Lower initial dose. Hepatic impairment: Severe: Avoid.",
+      "token_count": 362,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_014",
+      "text": "Containdications - haemorrhagic tendencies; recent surgery; peptic ulcer;\nsevere hypertension; senility; aneurysms; alcoholism; severe renal and hepatic\nimpairment; pregnancy. Side effects - drop in haematocrit, purple toes syndrome, skin necrosis, hepatic\ndysfunction, pancreatitis. Potentially Fatal : Haemorrhage (narrow therapeutic index). Low molecular weight heparin\nEnoxaparin\nEnoxaparin is a low molecular weight heparin w/ anticoagulant properties.",
+      "token_count": 118,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_015",
+      "text": "336 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 337\nMechanism of action\nIt acts by enhancing the inhibition rate of activated clotting factors including\nthrombin and factor Xa through its action on antithrombin III. Onset: 3-5 hr. Duration: Approx 12 hr. Absorption: Peak plasma concentrations: 1-5 hr. Distribution: Volume of distribution: 4.3 L. Plasma protein binding: Does not\nbind to heparin binding proteins. Metabolism: Hepatically metabolised. Excretion: Via urine (40% as unchanged drug; 10% as active metabolites). Elimination. half-life: Approx 4-5 hr. Dosage\nAcute stroke\n1 mg/kg subcutaneously bid\nContraindications: Patients with active major bleeding, acute bacterial\nendocarditis, recent haemorrhagic stroke, active gastric or duodenal ulceration,\nthrombocytopenia. Side effects : Haemorrhage (including at the inj site), peripheral or unspecied\noedema, anaemia, haematuria, ecchymosis, fever, confusion. Potentially Fatal: Major haemorrhagic complications (e.g. retroperitoneal and\nintracranial bleeding). Muscle Relaxants and\nAntispastic Drugs\nMuscle Relaxants\nMuscle relaxants are drugs which affect skeletal muscle function and decrease\nthe muscle tone. They are used to alleviate symptoms such as muscle spasms,\npain, and hyperreexia. Some commonly used muscle relaxants are:\nChlorzoxazone\nMechanism of action\nChlorzoxazone inhibits multisynaptic areas at the level of the spinal cord and\nsubcortical areas of the brain.",
+      "token_count": 390,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    },
+    {
+      "chunk_id": "42_016",
+      "text": "These areas are involved in producing and\nmaintaining skeletal muscle spasm of varied etiology. Thus it helps in relieving\npainful muscle spasms. Onset: 1 hr. Duration: 3-4 hr. Absorption: peak plasma concentrations after 1-2 hr. Metabolism: Hepatic; yielding 6-hydroxychlorzoxazone. Excretion: Via urine (mainly as glucuronide); 1 hr (elimination half-life). Dosage\nOral43",
+      "token_count": 107,
+      "chapter_id": 42,
+      "chapter_title": "Drugs for Stroke"
+    }
+  ]
+}

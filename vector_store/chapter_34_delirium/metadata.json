@@ -1,0 +1,29 @@
+{
+  "chapter_id": 34,
+  "chapter_title": "Delirium",
+  "total_vectors": 3,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "34_001",
+      "text": "274 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 275\n• CT brain and MRI\n• Blood glucose\n• Oxygen saturation\n• Serum electrolytes/renal function tests\n• Complete blood count\n• Prothrombin time/INR\n• PTT\n• ECG\n• Liver function tests\n• ABG\n• Chest X-ray\nHow to manage? Airway, Breathing and Circulation to be established. Elevate head end by 30\ndegrees. Acute management of stroke\nBlood glucose\n• Treat hyperglycemia with insulin if serum glucose >200 mg/dL\n• Treat hypoglycemia with D50\nBlood pressure\nContinuous cardiac monitoring for ischemic changes or atrial brillation\nIntravenous uids\n• Avoid D5W and excessive uid administration\n• IV isotonic sodium chloride solution at 50 mL/h unless otherwise\nindicated\nStop oral intake\nOxygen\n• Start O2 if Saturation less than 94%\nTemperature\n• Control temperature to avoid high fever\nRefer to the hospital at the earliest.Delirium\nDelirium is a common clinical syndrome characterized by disturbed\nconsciousness, confusion and decreased awareness. Delirium may occur due to dementia, old age, fever and acute infection,\nparticularly in children. Poor nutrition or dehydration, severe, chronic or\nterminal illness, alcohol or drug abuse or alcohol withdrawals are some of the\ncauses for delirium. A number of medications like analgesics or sedatives or combinations of\nmedications can trigger delirium. Medications for mood disorders, such as\nanxiety and depression and Parkinson's disease medications can also cause\ndelirium. WHAT TO EXAMINE?",
+      "token_count": 373,
+      "chapter_id": 34,
+      "chapter_title": "Delirium"
+    },
+    {
+      "chunk_id": "34_002",
+      "text": "Physical and neurological examination\nLook for\n• Dehydration\n• Infection\n• Alcohol withdrawal\nA neurological exam - check vision, balance, coordination and reexes to rule\nout stroke. Investigations\n• CT brain and MRI\n• Blood glucose34",
+      "token_count": 55,
+      "chapter_id": 34,
+      "chapter_title": "Delirium"
+    },
+    {
+      "chunk_id": "34_003",
+      "text": "276 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 277\n• Oxygen saturation\n• Serum electrolytes/renal function tests\n• Complete blood count\n• Prothrombin time/INR\n• PTT\n• ECG\n• Liver function tests\n• Thyroid function tests\n• Serum vitamin B12 and folate levels.\n• Chest X-ray\nHow to manage?\nIdentify and manage the underlying cause or combination of causes.\nIn case the patient appears confused and violent-\n• Give clear, brief, assertive instructions and attempt to establish a rapport\n• Avoiding threat and appear reassuring, caondent with eye contact and\nallowing greater space around the patient than normal\nLook for dementia, Alzheimer's or Parkinsonism and treat appropriately\nCommunicate and provide reassurance.\nHaloperidol can be started for a short duration\nRefer to psychiatristStatus Epilepticus35",
+      "token_count": 195,
+      "chapter_id": 34,
+      "chapter_title": "Delirium"
+    }
+  ]
+}

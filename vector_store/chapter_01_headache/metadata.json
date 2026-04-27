@@ -1,0 +1,253 @@
+{
+  "chapter_id": 1,
+  "chapter_title": "Headache",
+  "total_vectors": 35,
+  "dimension": 3072,
+  "chunks": [
+    {
+      "chunk_id": "01_001",
+      "text": "24 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 25\nHeadache\nHeadache is one of the most common presenting symptoms of neurological\ndisorders. Majority of them are innocuous and need only symptomatic\ntreatment, but some can be a sign of serious underlying disorders and therefore\nheadaches should always be taken seriously. A headache is a pain in the head\nradiating above the eyes or the ears, behind the head or in the back of the upper\nneck.\nWhen treating a patient with headache the rst question in our mind should be -\nis it Primary headache or is it a Secondary headache?\nPrimary headaches are not associated with any underlying major disease.\nExamples of primary headaches are tension headaches, migraine and Cluster\nheadches. Secondary headaches are caused due to some other underlying\ndisease. These may be minor ones such as uncorrected ophthalmic refractory\nerror, sinusitis, withdrawal from caffeine and discontinuation of analgesics.\nThey may also be symptomatic of major illnesses such as brain tumors, strokes,\nmeningitis, and subarachnoid hemorrhages.\nFig. 1.1: Types of Headaches1",
+      "token_count": 249,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_002",
+      "text": "26 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 27\nCommon types of Headaches:\n1. Tension Type Headache ( TTH ) :\nIt is the most common type of headache and occurs mostly due to emotional\nstress causing muscle tension producing ischemia of the scalp and facial\nmuscles. This headache is usually bilateral , may have a band like discomfort\nand is not associated by symptoms like nausea, vomiting, phonobhobia or\nphotophobia. Patient is able to continue his/her normal activity. This type of\nheadache builds slowly and may become severe. These are generalized headaches of gradual onset and can be of mild to\nmoderate severity. They are described by the patients as aching or pressure type\nof headache and are always non pulsatile. They last from one to two hours and\noccur during the later part of the day. They may be associated with grinding of\nthe teeth, lack of sleep and difculty in concentration. There is always some\nmajor underlying emotional or psychological cause which may be family or\nwork related. Neurological examination does not reveal any abnormality. Investigations: None\nTreatment:\n1. Paracetamol 500mg 1 TDS for mild pain,\n2. Combination of Paracetamol & Codeine 1 TDS for mild to moderate pain,\n3. Paracetamol +Acelofenac 1BD for moderate pain\n4. Naproxen 1 BD for moderate to severe pain\n5. Amitriptyline 25 mg 1 QHS if difculty to sleep\n6. Counseling / relaxation exercises / tranquilizers/ lifestyle changes may\nbe helpful. Referal:\nNon responsive headaches to regular treatment or persistent severe progressive\nheadache. 1.",
+      "token_count": 377,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_003",
+      "text": "Migraine Headache\nMigraine is a disorder of the brain and its blood vessels, which results in hyper\nreactivity of the cerebral blood vessels. It is classied as a common migraine\n(migraine without aura), classical migraine (migraine with aura) and complex\nmigraine. Classical migraine headaches are throbbing in nature, mostly unilat-\neral (60-75% cases) and often associated with ashes of light. Aura, nausea/vomiting, photo/phonophobia, scalp tenderness is present in most of the\ncases. Photophobia ( intolerance to sound) is more specic to migraine\nheadache.In the complicated migraine there are associated neurological signs\nand symptoms caused by vasoconstriction of intracranial vessels such as confu-\nsion, amnesia, transient monocular blindness, hemiparesis and limb\nparaesthesias. Migraine can be precipitated by red wine, menses, hunger,\ninsomnia, perfumes, chocolates etc. A migraine typically lasts from 4 to 72\nhours. Sometimes Patient of migraine may develop severe and persistent\nheadache which lasts for many days. Such condition then labelled as Status\nMigranosus. Persistent vomiting associated with headache may cause dehydra-\ntion. Investigations:\nNone for common or classical migraine. In complex migraine CT Scan/MRI\nscan may be done to rule out structural lesions if there is no relief. Treatment:\nSymptomatic relief (once attack starts). [1] Analgesics & NSAID’s [2] Rest in a\nquiet, dark room if possible, [3] Triptans-are prescribed for acute attack in the\nearly stage. They should not be given in complicated migraine.",
+      "token_count": 371,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_004",
+      "text": "(Sumatriptan\n25mg, Zolmitriptan 5mg, Rizatriptan 5mg [4] Ergotamines (Dihydro\nergotamine preferred in status migraine), [5] Isometheptene [6] Sedatives, [7]\nAntiemetics\nPractical management for acute attack:- :[1] Rizatriptan 10 mg or Sumatriptan 6\nmg stat followed by Naproxen and Tab Domperidone / Metoclopramide for 1-2\ndays) [ 2 ] steroid : Tab prednisolone 20 mg every 6 hours initially, followed\nby a rapid tapering dose over 2 to 3 days may help abort status\nmigrainosus. [ 3] other agents : Dihydro-ergotamine, chlorpromazine,\nKetorolac, Prochlorperazine [ 4 ] Correction of dehydration. Prevention:\n1. Identify and avoid trigger factors such as exposure to sunlight, delayed\nmeals, delayed sleep, foods such as caffeine, cheese, chocolates, chinese\nfood etc. 2. Prophylactic medications-Those patients who have more than one\nmigraine per week should be put on prophylactic medications such as B-\nblockers, calcium channel blockers, tricyclic antidepressants, SSRI’s\n,anticonvulsants. 3. Practical management for migraine prophalaxis: Propranolol slow release",
+      "token_count": 317,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_005",
+      "text": "26 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 27\nCommon types of Headaches:\n1. Tension Type Headache ( TTH ) :\nIt is the most common type of headache and occurs mostly due to emotional\nstress causing muscle tension producing ischemia of the scalp and facial\nmuscles. This headache is usually bilateral , may have a band like discomfort\nand is not associated by symptoms like nausea, vomiting, phonobhobia or\nphotophobia. Patient is able to continue his/her normal activity. This type of\nheadache builds slowly and may become severe. These are generalized headaches of gradual onset and can be of mild to\nmoderate severity. They are described by the patients as aching or pressure type\nof headache and are always non pulsatile. They last from one to two hours and\noccur during the later part of the day. They may be associated with grinding of\nthe teeth, lack of sleep and difculty in concentration. There is always some\nmajor underlying emotional or psychological cause which may be family or\nwork related. Neurological examination does not reveal any abnormality. Investigations: None\nTreatment:\n1. Paracetamol 500mg 1 TDS for mild pain,\n2. Combination of Paracetamol & Codeine 1 TDS for mild to moderate pain,\n3. Paracetamol +Acelofenac 1BD for moderate pain\n4. Naproxen 1 BD for moderate to severe pain\n5. Amitriptyline 25 mg 1 QHS if difculty to sleep\n6. Counseling / relaxation exercises / tranquilizers/ lifestyle changes may\nbe helpful. Referal:\nNon responsive headaches to regular treatment or persistent severe progressive\nheadache. 1.",
+      "token_count": 377,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_006",
+      "text": "Migraine Headache\nMigraine is a disorder of the brain and its blood vessels, which results in hyper\nreactivity of the cerebral blood vessels. It is classied as a common migraine\n(migraine without aura), classical migraine (migraine with aura) and complex\nmigraine. Classical migraine headaches are throbbing in nature, mostly unilat-\neral (60-75% cases) and often associated with ashes of light. Aura, nausea/vomiting, photo/phonophobia, scalp tenderness is present in most of the\ncases. Photophobia ( intolerance to sound) is more specic to migraine\nheadache.In the complicated migraine there are associated neurological signs\nand symptoms caused by vasoconstriction of intracranial vessels such as confu-\nsion, amnesia, transient monocular blindness, hemiparesis and limb\nparaesthesias. Migraine can be precipitated by red wine, menses, hunger,\ninsomnia, perfumes, chocolates etc. A migraine typically lasts from 4 to 72\nhours. Sometimes Patient of migraine may develop severe and persistent\nheadache which lasts for many days. Such condition then labelled as Status\nMigranosus. Persistent vomiting associated with headache may cause dehydra-\ntion. Investigations:\nNone for common or classical migraine. In complex migraine CT Scan/MRI\nscan may be done to rule out structural lesions if there is no relief. Treatment:\nSymptomatic relief (once attack starts). [1] Analgesics & NSAID’s [2] Rest in a\nquiet, dark room if possible, [3] Triptans-are prescribed for acute attack in the\nearly stage. They should not be given in complicated migraine.",
+      "token_count": 371,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_007",
+      "text": "(Sumatriptan\n25mg, Zolmitriptan 5mg, Rizatriptan 5mg [4] Ergotamines (Dihydro\nergotamine preferred in status migraine), [5] Isometheptene [6] Sedatives, [7]\nAntiemetics\nPractical management for acute attack:- :[1] Rizatriptan 10 mg or Sumatriptan 6\nmg stat followed by Naproxen and Tab Domperidone / Metoclopramide for 1-2\ndays) [ 2 ] steroid : Tab prednisolone 20 mg every 6 hours initially, followed\nby a rapid tapering dose over 2 to 3 days may help abort status\nmigrainosus. [ 3] other agents : Dihydro-ergotamine, chlorpromazine,\nKetorolac, Prochlorperazine [ 4 ] Correction of dehydration. Prevention:\n1. Identify and avoid trigger factors such as exposure to sunlight, delayed\nmeals, delayed sleep, foods such as caffeine, cheese, chocolates, chinese\nfood etc. 2. Prophylactic medications-Those patients who have more than one\nmigraine per week should be put on prophylactic medications such as B-\nblockers, calcium channel blockers, tricyclic antidepressants, SSRI’s\n,anticonvulsants. 3. Practical management for migraine prophalaxis: Propranolol slow release",
+      "token_count": 317,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_008",
+      "text": "28 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 29\n40 mg one tablet in the morning for 3 months + Amitryptline 10mg 1 hs or\nFlunarizine 10 mg HS. : Propranolol slow release 40 mg one tablet in the\nmorning Amitryptline 10mg 1 HS, Flunarizine 10 mg HS, Valproate 250-\n500 mg / day, Topiramate 75-200 mg/day. Referal:\nPersistent migraine not responding to medications and migraine with\nassociated other signs. 3. Headache due to uncorrected refractory error\nThe headache comes as after watching TV, reading for long. Is dull, aching,\nbilateral and may be bifrontal or generalized. Investigations: None\nTreatment: Analgesics\nReferal:\nOphthalmologist or an optician for correction. 4. Headache due to Sinusitis\nThese are bifrontal headaches which are gradual in onset, moderate in severity,\ndull and boring in nature and associated with pain or pressure in the face. There\nis history of frequent cold with nasal discharge. Presence of tenderness on the\nsinuses (frontal,maxillary), sides of the nose is noticed on examination. Investigations:\n[1] Plain X-ray of Paranasal sinuses (PNS), [2] CT Scan PNS\nTreatment:\n[1]Analgesics, [2]Antihistaminic, [3] Antibiotics – All For seven days. Practical management:-a combination of diclofenac tds, sulfamethoxazole +\ntrimethoprim or amoxicillin and clavulanate – bd, fexofenadine (allegra) or\npheniramine (avil) –qhs is a good combination.",
+      "token_count": 389,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_009",
+      "text": "Referal:\nIf there is no improvement even after seven days of the above treatment then\nrefer to ENT surgeon for evaluation. 5. Headaches due to Hypertension\nOne of the early signs of Hypertension are Headaches. The classical feature of Hypertension headaches is that they occur early in the morning. They may\npresent as pressure just behind the eyes or as headaches at the back of the head. They are sometimes associated by dizziness and palpitations . The headache\nmay be mild or severe and occur more commonly in women than men. Any\npatient over 50 presenting with morning headaches should always have their\nblood pressure checked. Investigations:\n1. Regular monitoring of BP. 2. ECG, 2 D Echo , Stress test , Lipid Prole and Other cardiac investigations\nmay be indicated in some cases. Treatment :-\nNo analgesics\nMedications for hypertension\nLow salt diet\nCounseling for Lifestyle changes to reduce stress levels- Relaxation techniques\nand yoga\nReferral\nIf despite the above the BP remains high and headaches persist then the patient\nshould be refereed to a cardiologist for further management. It is important to note that Hypertension headaches are one type of headaches\nfor which painkillers should not be given since they suppress only the symp-\ntoms and do not take care of the serious issue of hypertension. The treatment of\nhypertension headaches is control of hypertension and it has been noted that\nonce the blood pressure is lower, the headache get relieved. 6. Cluster headache\nThese are episodic pain attacks at periorbital region it is usually excrutiating and\ndeep and pulsatile in nature, pain is unilateral and lasts for 30 minutes to 2\nhours. there are associated symptoms like lacrimation, redness of eye, nasal\nstufness, ptosis, and nausea. Alcohol provokes the attack.",
+      "token_count": 400,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_010",
+      "text": "Treatment:\nAcute attack- [1] 100% oxygen for 10-15 mins, [2] Sumatriptan 6mg subcutane-\nous injection stat.",
+      "token_count": 38,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_011",
+      "text": "28 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 29\n40 mg one tablet in the morning for 3 months + Amitryptline 10mg 1 hs or\nFlunarizine 10 mg HS. : Propranolol slow release 40 mg one tablet in the\nmorning Amitryptline 10mg 1 HS, Flunarizine 10 mg HS, Valproate 250-\n500 mg / day, Topiramate 75-200 mg/day. Referal:\nPersistent migraine not responding to medications and migraine with\nassociated other signs. 3. Headache due to uncorrected refractory error\nThe headache comes as after watching TV, reading for long. Is dull, aching,\nbilateral and may be bifrontal or generalized. Investigations: None\nTreatment: Analgesics\nReferal:\nOphthalmologist or an optician for correction. 4. Headache due to Sinusitis\nThese are bifrontal headaches which are gradual in onset, moderate in severity,\ndull and boring in nature and associated with pain or pressure in the face. There\nis history of frequent cold with nasal discharge. Presence of tenderness on the\nsinuses (frontal,maxillary), sides of the nose is noticed on examination. Investigations:\n[1] Plain X-ray of Paranasal sinuses (PNS), [2] CT Scan PNS\nTreatment:\n[1]Analgesics, [2]Antihistaminic, [3] Antibiotics – All For seven days. Practical management:-a combination of diclofenac tds, sulfamethoxazole +\ntrimethoprim or amoxicillin and clavulanate – bd, fexofenadine (allegra) or\npheniramine (avil) –qhs is a good combination.",
+      "token_count": 389,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_012",
+      "text": "Referal:\nIf there is no improvement even after seven days of the above treatment then\nrefer to ENT surgeon for evaluation. 5. Headaches due to Hypertension\nOne of the early signs of Hypertension are Headaches. The classical feature of Hypertension headaches is that they occur early in the morning. They may\npresent as pressure just behind the eyes or as headaches at the back of the head. They are sometimes associated by dizziness and palpitations . The headache\nmay be mild or severe and occur more commonly in women than men. Any\npatient over 50 presenting with morning headaches should always have their\nblood pressure checked. Investigations:\n1. Regular monitoring of BP. 2. ECG, 2 D Echo , Stress test , Lipid Prole and Other cardiac investigations\nmay be indicated in some cases. Treatment :-\nNo analgesics\nMedications for hypertension\nLow salt diet\nCounseling for Lifestyle changes to reduce stress levels- Relaxation techniques\nand yoga\nReferral\nIf despite the above the BP remains high and headaches persist then the patient\nshould be refereed to a cardiologist for further management. It is important to note that Hypertension headaches are one type of headaches\nfor which painkillers should not be given since they suppress only the symp-\ntoms and do not take care of the serious issue of hypertension. The treatment of\nhypertension headaches is control of hypertension and it has been noted that\nonce the blood pressure is lower, the headache get relieved. 6. Cluster headache\nThese are episodic pain attacks at periorbital region it is usually excrutiating and\ndeep and pulsatile in nature, pain is unilateral and lasts for 30 minutes to 2\nhours. there are associated symptoms like lacrimation, redness of eye, nasal\nstufness, ptosis, and nausea. Alcohol provokes the attack.",
+      "token_count": 400,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_013",
+      "text": "Treatment:\nAcute attack- [1] 100% oxygen for 10-15 mins, [2] Sumatriptan 6mg subcutane-\nous injection stat.",
+      "token_count": 38,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_014",
+      "text": "30 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 31\nPrevention:\nPrednisone 40mg/day for 5 days tapered over 3 weeks. [2] Indomethacin 75\nmg/ day [3] Verapamil : starting dose is 80 mg TDS ( ECG should be normal ) 4 ]\nothers-lithium and ergotamine. 6) Trigeminal Neuralgia\nUnilateral severe lancinating pain around the face, lips, gums. It is aggravated\nby a tickle or touch, pain burst happen over seconds to minutes with a refractory\nperiod afterwards. There may be associated ushing, salivation or lacrimation. Investigation:\nMRI/ CT scan must be done to rule out CP angle tumor. abberent loop of ves-\nsels/ AV malformation. Treatment:\n[1] carbamazepine 100 - 200 mg BD [2] gabapentin 100-300 mg TDS [3] Others-\nAntidepressants : Amitriptyline , uoxetine, clonazepam. [4] Avoid stimulation\nof trigger zone by air, heat or cold [5] In some cases surgical intervention may be\nrequired- nerve block, surgical decompression. Treatment:\n[1] carbamazepine 100 mg BD [2] gabapentin 100 mg TDS [3] Others- Antide-\npressants-Ametreptonin, uoxetine, clonazepam. [4] Avoid stimulation of\ntrigger zone by air, heat or cold [5] In some cases surgical intervention may be required- nerve block, surgical decompression. Referral:\nShould be referred to neurophysician or neurosurgeon. Fig.",
+      "token_count": 379,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_015",
+      "text": "1.2: Areas of the face covered by trigeminal nerve\nMaxillary Zone\nMandibular zoneOphthalmic zone\nTrigeminal\nnerve7) Headaches due to serious underlying conditions:\nConditions causing secondary headaches are brain stroke, subarachnoid\nintracranial hemorrhage , brain tumors, meningitis, severe high blood pressure. These can cause serious brain damage or even death. Thus, timely and accurate\ndiagnosis of secondary headaches is crucial. Special blood tests, brain scans, and\nlumbar puncture (spinal tap) are necessary to establish these diagnoses. One\nshould rely upon information obtained from the initial patient history and\nphysical examination. Common causes of serious headache:\n1) Sentinel headache due to subarachnoid haemorrhage\nSentinel headache (SAH) is characterized as sudden (thunderclap headache),\nintense, and persistent headache, preceding spontaneous subarachnoid\nhemorrhage (SAH) by days or weeks. It is often described as the “worst\nheadache of my life”. It is the most common symptom to manifest 10-20 days\nbefore rupture of an aneurysm. In addition to headaches, sentinel leaks may\nproduce nausea, vomiting, photophobia, malaise, or neck pain. These\nsymptoms can easily be ignored by a physician.",
+      "token_count": 287,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_016",
+      "text": "Therefore, a high index of\nsuspicion is necessary to diagnose this type of headache due to subarachnoid\nhaemorrhage.The diagnosis of SAH should be based upon the following seven characteristics:\nŸAged >=40 years\nŸWitnessed loss of consciousness\nŸComplaint of neck pain or stiffness\nŸOnset of manifestations with exertion\nŸArrival by ambulance\nŸVomiting\nŸDiastolic blood pressure ≥ 100 mm Hg or systolic blood pressure ≥ 160\nmm Hg\nThe possibility of SAH should be suspected if any one or more of these is present\nalong with acute nontraumatic headache which reaches maximum intensity\nwithin one hour, and the patient be referred to a neurophysician and\nhospitalized immediately.",
+      "token_count": 169,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_017",
+      "text": "30 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 31\nPrevention:\nPrednisone 40mg/day for 5 days tapered over 3 weeks. [2] Indomethacin 75\nmg/ day [3] Verapamil : starting dose is 80 mg TDS ( ECG should be normal ) 4 ]\nothers-lithium and ergotamine. 6) Trigeminal Neuralgia\nUnilateral severe lancinating pain around the face, lips, gums. It is aggravated\nby a tickle or touch, pain burst happen over seconds to minutes with a refractory\nperiod afterwards. There may be associated ushing, salivation or lacrimation. Investigation:\nMRI/ CT scan must be done to rule out CP angle tumor. abberent loop of ves-\nsels/ AV malformation. Treatment:\n[1] carbamazepine 100 - 200 mg BD [2] gabapentin 100-300 mg TDS [3] Others-\nAntidepressants : Amitriptyline , uoxetine, clonazepam. [4] Avoid stimulation\nof trigger zone by air, heat or cold [5] In some cases surgical intervention may be\nrequired- nerve block, surgical decompression. Treatment:\n[1] carbamazepine 100 mg BD [2] gabapentin 100 mg TDS [3] Others- Antide-\npressants-Ametreptonin, uoxetine, clonazepam. [4] Avoid stimulation of\ntrigger zone by air, heat or cold [5] In some cases surgical intervention may be required- nerve block, surgical decompression. Referral:\nShould be referred to neurophysician or neurosurgeon. Fig.",
+      "token_count": 379,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_018",
+      "text": "1.2: Areas of the face covered by trigeminal nerveMaxillary Zone\nMandibular zoneOphthalmic zone\nTrigeminal\nnerve7) Headaches due to serious underlying conditions:\nConditions causing secondary headaches are brain stroke, subarachnoid\nintracranial hemorrhage , brain tumors, meningitis, severe high blood pressure. These can cause serious brain damage or even death. Thus, timely and accurate\ndiagnosis of secondary headaches is crucial. Special blood tests, brain scans, and\nlumbar puncture (spinal tap) are necessary to establish these diagnoses. One\nshould rely upon information obtained from the initial patient history and\nphysical examination. Common causes of serious headache:\n1) Sentinel headache due to subarachnoid haemorrhage\nSentinel headache (SAH) is characterized as sudden (thunderclap headache),\nintense, and persistent headache, preceding spontaneous subarachnoid\nhemorrhage (SAH) by days or weeks. It is often described as the “worst\nheadache of my life”. It is the most common symptom to manifest 10-20 days\nbefore rupture of an aneurysm. In addition to headaches, sentinel leaks may\nproduce nausea, vomiting, photophobia, malaise, or neck pain. These\nsymptoms can easily be ignored by a physician.",
+      "token_count": 286,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_019",
+      "text": "Therefore, a high index of\nsuspicion is necessary to diagnose this type of headache due to subarachnoid\nhaemorrhage.The diagnosis of SAH should be based upon the following seven characteristics:\nŸAged >=40 years\nŸWitnessed loss of consciousness\nŸComplaint of neck pain or stiffness\nŸOnset of manifestations with exertion\nŸArrival by ambulance\nŸVomiting\nŸDiastolic blood pressure ≥ 100 mm Hg or systolic blood pressure ≥ 160\nmm Hg\nThe possibility of SAH should be suspected if any one or more of these is present\nalong with acute nontraumatic headache which reaches maximum intensity\nwithin one hour, and the patient be referred to a neurophysician and\nhospitalized immediately.",
+      "token_count": 169,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_020",
+      "text": "32 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 33\n2) Meningitis\nAcute to subacute severe type of headache with neck stiffness and fever sug-\ngests meningitis. Meningitis may be mistaken as migraine sometimes due to the\nchief symptoms like pounding headache, photophobia, nausea, vomiting, etc. This requires hospitalisation and so patient should be referered to neurology\ndepartment. 3) Tumours\nProfound pounding dull, aching, or throbbing headache of medium intensity\nwhich worsens with exertion and change of position and may be associated with\nnausea or vomiting may suggest an intracranial tumour. The headaches may become more frequent, increasing in severity, and not easily relieved. Patient\ngets disturbed from sleep. They can also be worsened by coughing or sneezing\nand persistently occur on the same side often. Vomiting that precedes headache\nis a characteristic of posterior fossa tumours. This type of headache should be\nimmediately investigated and brought to the concern of a neurophysician or neurosurgeon. 4) Stroke\nHeadache with symptoms such as acute weakness and numbness in the limbs\nand/or face, nausea, vomiting, an altered level of consciousness, may indicate\nincreased intracranial pressure and are more common with hemorrhagic\nstrokes and large ischemic strokes.",
+      "token_count": 299,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_021",
+      "text": "A detailed medical history of patient for identifying following risk factors of\nstroke should be acquired to suspect a stroke:\nFig 1.3: MRI T2-FLAIR sequence showing the presence of subarachnoid\nhemorrhage in the left sylvian ssureŸHypertension\nŸDiabetes mellitus\nŸTobacco use\nŸHigh cholesterol\nŸHistory of coronary artery disease, coronary artery bypass, or atrial brilla-\nŸRecent trauma\nŸCoagulopathies\nŸIllicit drug use (especially cocaine)\nŸMigraines\nŸOral contraceptive use\nIn the presence of these risk factors and clinical presentation, the patient should\nbe immediately hospitalized to prevent stroke and its life threatening effects. 5) Temporal arteritis\nIt is an inammatory condition of arteries which involves the extracranial\ncarotid circulation. Temporal\narteritis presents with classical\ns y m p t o m s - h e a d a c h e , j a w\nclaudication, scalp tenderness, and visual disturbances. Fever, myalgia, anorexia, weight loss, anemia, and malaise may also occur as systemic inammatory response. Temporal\narteritis should be distinguished\nfrom systemic infections, connective\ntissue diseases, and compressive\nintracranial malignancies, etc by further clinical examination, blood and CSF testing, and neuroimaging. Temporal arteritis usually occurs in older people and is extremely rare in individuals younger than 50 years of age, and present with visual changes. If not treated, patient may develop partial or complete\nblindness due to involvement of ophthalmic artery or its branches. Therefore, immediate hospitalisation and referral is a must in this case.",
+      "token_count": 393,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_022",
+      "text": "ESR should be done in all elderly with new onset headache. If not treated, patient may develop partial or complete blindness due to involve-\nment of ophthalmic artery or its branches. Therefore, immediate hospitalisation and referral is a must in this case. Fig 1.4: Temporal arteritisGiant cell arteritsInamed\ntemporalartery",
+      "token_count": 77,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_023",
+      "text": "32 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 33\n2) Meningitis\nAcute to subacute severe type of headache with neck stiffness and fever sug-\ngests meningitis. Meningitis may be mistaken as migraine sometimes due to the\nchief symptoms like pounding headache, photophobia, nausea, vomiting, etc. This requires hospitalisation and so patient should be referered to neurology\ndepartment. 3) Tumours\nProfound pounding dull, aching, or throbbing headache of medium intensity\nwhich worsens with exertion and change of position and may be associated with\nnausea or vomiting may suggest an intracranial tumour. The headaches may become more frequent, increasing in severity, and not easily relieved. Patient\ngets disturbed from sleep. They can also be worsened by coughing or sneezing\nand persistently occur on the same side often. Vomiting that precedes headache\nis a characteristic of posterior fossa tumours. This type of headache should be\nimmediately investigated and brought to the concern of a neurophysician or neurosurgeon. 4) Stroke\nHeadache with symptoms such as acute weakness and numbness in the limbs\nand/or face, nausea, vomiting, an altered level of consciousness, may indicate\nincreased intracranial pressure and are more common with hemorrhagic\nstrokes and large ischemic strokes.",
+      "token_count": 299,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_024",
+      "text": "A detailed medical history of patient for identifying following risk factors of\nstroke should be acquired to suspect a stroke:Fig 1.3: MRI T2-FLAIR sequence showing the presence of subarachnoid\nhemorrhage in the left sylvian ssureŸHypertension\nŸDiabetes mellitus\nŸTobacco use\nŸHigh cholesterol\nŸHistory of coronary artery disease, coronary artery bypass, or atrial brilla-\nŸRecent trauma\nŸCoagulopathies\nŸIllicit drug use (especially cocaine)\nŸMigraines\nŸOral contraceptive use\nIn the presence of these risk factors and clinical presentation, the patient should\nbe immediately hospitalized to prevent stroke and its life threatening effects. 5) Temporal arteritis\nIt is an inammatory condition of arteries which involves the extracranial\ncarotid circulation. Temporal\narteritis presents with classical\ns y m p t o m s - h e a d a c h e , j a w\nclaudication, scalp tenderness, and\nvisual disturbances. Fever, myalgia, anorexia, weight loss, anemia, and malaise may also occur as systemic inammatory response. Temporal\narteritis should be distinguished\nfrom systemic infections, connective\ntissue diseases, and compressive\nintracranial malignancies, etc by further clinical examination, blood and CSF testing, and neuroimaging. Temporal arteritis usually occurs in older people and is extremely rare in individuals younger than 50 years of age, and present with visual changes. If not treated, patient may develop partial or complete\nblindness due to involvement of ophthalmic artery or its branches. Therefore, immediate hospitalisation and referral is a must in this case.",
+      "token_count": 394,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_025",
+      "text": "ESR should be done in all elderly with new onset headache. If not treated, patient may develop partial or complete blindness due to involve-\nment of ophthalmic artery or its branches. Therefore, immediate hospitalisation and referral is a must in this case. Fig 1.4: Temporal arteritisGiant cell arteritsInamed\ntemporalartery",
+      "token_count": 77,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_026",
+      "text": "34 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 35\nInformation that should be taken by the doctor includes:\n1. The mode of onset of the headache: For example, patients with a\nsubarachnoid hemorrhage typically report having a sudden onset of\nsevere headache (“the worst headache ever”). 2. The location of the headache: (on one side or both sides of the head). Head-\naches that persistently occur on the same side often are secondary head-\naches associated with one sided lesions such as brain tumors. 3. Associated fever and neck stiffness: Bacterial meningitis is a rapidly\nprogressive and life-threatening disease with fever, headaches, stiff neck,\nand deterioration in mental function. 4. Associated mental deterioration, seizures, or weakness of the extremities\nor face, which can be symptoms of brain tumors. 5. Associated temporary weakness of the extremities or facial muscles,\nwhich can be symptoms of transient ischemic attacks. 6. Recent head injury: Headaches soon after injury to the head may be caused\nby subdural or epidural hematomas. 7. The age of the patient: Temporal arteritis typically occurs in older people\nand is extremely rare in individuals younger than 50. Headaches those are different in severity and intensity need urgent attention,\ninvestigations and reference. Investigations:\n[1] CT scan of the head. Should be done whenever the headache sis different in\nseverity and character and also for late onset headches. CT scan of the head is\nuseful for detecting accumulation of blood such as subdural hematomas and\nsubarachnoid hemorrhages. It is moderately useful in detecting brain tumors\nand strokes not due to hemorrhage. [2] MRI scan of the head. An MRI scan of the\nhead can detect infections of the brain, strokes and tumors.",
+      "token_count": 395,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_027",
+      "text": "It is not so useful for\nacute hemorrhage. [3] Lumbar puncture. In some patients with subarachnoid\nhemorrhage, CT scans are normal, and lumbar punctures are necessary to\ndemonstrate blood from the hemorrhage that has spread throughout the\ncerebro-spinal uid(CSF). CSF is also useful for diagnosis of meningitis, it\nshows decreased sugar levels, increased proteins and increased cells (if major\nare polymorphs then it suggests Bacterial meningitis and if there are lympho-\ncytes then it suggests Tubercular meningitis).Treatment:\nSpecic treatment of the cause of the headache. Referal:\nRefer to Neurophysician or Neurosurgeon. Drugs useful in symptomatic treatment of headache:\n(A) General\nParacetamol, [2] Paracetamol+ codeine, [3]Paracetamol +Acelofenac [4]\nNaproxen\nDiclofenac (Brufen is not useful in headaches, except those due to sinusitits, and\ncan in fact make some headaches worse)\n(B) Specic\n[1]Anti Migraine therapy, [2] Steroids, [3] Muscle relaxants, [4] Tricyclic anti\ndepressants, [5] Anticonvulsants\nWarning signs\n1. Headache with fever with neck stiffness. 2. Sudden serious acute headache associated with vomiting and neck stiff-\nness. 3. Headache after lumbar puncture which is relieved by lying down this type\nof headache is called spinal headache which is relieved by analgesics and\nplenty of uids. 4. Headache with projectile vomiting suspect for increased intracranial\npressure this type of headache may be worst on lying down. 5.",
+      "token_count": 396,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_028",
+      "text": "Headache which is localised and aggravated on chewing temporal\narteritis. 6. Headache with neurodecit. 7. Headache with high BP. More than 160/100",
+      "token_count": 43,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_029",
+      "text": "34 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 35\nInformation that should be taken by the doctor includes:\n1. The mode of onset of the headache: For example, patients with a\nsubarachnoid hemorrhage typically report having a sudden onset of\nsevere headache (“the worst headache ever”). 2. The location of the headache: (on one side or both sides of the head). Head-\naches that persistently occur on the same side often are secondary head-\naches associated with one sided lesions such as brain tumors. 3. Associated fever and neck stiffness: Bacterial meningitis is a rapidly\nprogressive and life-threatening disease with fever, headaches, stiff neck,\nand deterioration in mental function. 4. Associated mental deterioration, seizures, or weakness of the extremities\nor face, which can be symptoms of brain tumors. 5. Associated temporary weakness of the extremities or facial muscles,\nwhich can be symptoms of transient ischemic attacks. 6. Recent head injury: Headaches soon after injury to the head may be caused\nby subdural or epidural hematomas. 7. The age of the patient: Temporal arteritis typically occurs in older people\nand is extremely rare in individuals younger than 50. Headaches those are different in severity and intensity need urgent attention,\ninvestigations and reference. Investigations:\n[1] CT scan of the head. Should be done whenever the headache sis different in\nseverity and character and also for late onset headches. CT scan of the head is\nuseful for detecting accumulation of blood such as subdural hematomas and\nsubarachnoid hemorrhages. It is moderately useful in detecting brain tumors\nand strokes not due to hemorrhage. [2] MRI scan of the head. An MRI scan of the\nhead can detect infections of the brain, strokes and tumors.",
+      "token_count": 395,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_030",
+      "text": "It is not so useful for\nacute hemorrhage. [3] Lumbar puncture. In some patients with subarachnoid\nhemorrhage, CT scans are normal, and lumbar punctures are necessary to\ndemonstrate blood from the hemorrhage that has spread throughout the\ncerebro-spinal uid(CSF). CSF is also useful for diagnosis of meningitis, it\nshows decreased sugar levels, increased proteins and increased cells (if major\nare polymorphs then it suggests Bacterial meningitis and if there are lympho-\ncytes then it suggests Tubercular meningitis).Treatment:\nSpecic treatment of the cause of the headache. Referal:\nRefer to Neurophysician or Neurosurgeon. Drugs useful in symptomatic treatment of headache:\n(A) General\nParacetamol, [2] Paracetamol+ codeine, [3]Paracetamol +Acelofenac [4]\nNaproxen\nDiclofenac (Brufen is not useful in headaches, except those due to sinusitits, and\ncan in fact make some headaches worse)\n(B) Specic\n[1]Anti Migraine therapy, [2] Steroids, [3] Muscle relaxants, [4] Tricyclic anti\ndepressants, [5] Anticonvulsants\nWarning signs\n1. Headache with fever with neck stiffness. 2. Sudden serious acute headache associated with vomiting and neck stiff-\nness. 3. Headache after lumbar puncture which is relieved by lying down this type\nof headache is called spinal headache which is relieved by analgesics and\nplenty of uids. 4. Headache with projectile vomiting suspect for increased intracranial\npressure this type of headache may be worst on lying down. 5.",
+      "token_count": 396,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_031",
+      "text": "Headache which is localised and aggravated on chewing temporal\narteritis. 6. Headache with neurodecit. 7. Headache with high BP. More than 160/100",
+      "token_count": 43,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_032",
+      "text": "36 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 37\nSample Prescription\nSUMMARY\n[1] Sometimes a headache is a warning sign of something serious like stroke,\nbrain tumors etc. so it should not be taken lightly. One should act promptly\nin diagnosing as well as treating the underlying cause. [2] Any patients\nwhose headaches do not get relieved or worsen within 3 days of initial\nmanagement should have a CT Scan done and should be referred to a\nNeurosurgeon or Neurophysician. [3] Sudden onset severe headaches are a\nsign of a possibly serious underlying disorder and must be investigated\nwith a scan or referred to a Neuro consultant immediately. [4] for mild\nheadaches the investigations to be done are (a) ESR, (b) Xrays PNS, (c) Check\nup by optician / opthalmologist for refractory error, [5] for severe\nheadaches a CT Scan brain (plain & contrast) should be done.",
+      "token_count": 219,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_033",
+      "text": "Tension Headache\nTb Paracetamol 500mg 1—1—1 x 1 week (for mild headache) or\nTb Paracetamol (500mg) + Codeine (8mg) 1—1—1 x 1 week (for moderate)\nTb Paracetamol(500mg) + Aceclofenac(100mg) 1—0—1 x 1 week (for severe)\nTb Naproxen (500mg) 1—0—1 x 1 week (for severe headache)\nTb Amitriptyline 25 mg 0—0—1 x 1 week (if difculty in sleeping)\nTb Pantoprazole 40 mg 1—0—1 x 1 week\nMigraine headache\nAcute attack\nTb Rizatriptan 10mg 1 tablet stat followed by Tb Naproxen 250mg 8 hourly\nTab Domperidone 10 mg 1–0–1\nTb Pantoprazole 40 mg 1—0—1\nMigraine prophylaxis\nTb Propranolol 40 mg(slow release) 1—0—0 x 3 months with\nTb Amitriptyline 10 mg 0—0—1 x 1 month or Tb Flunarizine 10 mg 0—0—1\nx till relief is obtained\nTb Pantoprazole 40 mg 1—0—1 x 1 weekCluster Headache\nTb Prednisone 40 mg 1—0—0 x 5 days (tapered over 3 weeks)\nTb Pantoprazole 40 mg 1—0—1 x 1 month\nRefer to the neurologist.",
+      "token_count": 386,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_034",
+      "text": "36 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 37\nSample Prescription\nSUMMARY\n[1] Sometimes a headache is a warning sign of something serious like stroke,\nbrain tumors etc. so it should not be taken lightly. One should act promptly\nin diagnosing as well as treating the underlying cause. [2] Any patients\nwhose headaches do not get relieved or worsen within 3 days of initial\nmanagement should have a CT Scan done and should be referred to a\nNeurosurgeon or Neurophysician. [3] Sudden onset severe headaches are a\nsign of a possibly serious underlying disorder and must be investigated\nwith a scan or referred to a Neuro consultant immediately. [4] for mild\nheadaches the investigations to be done are (a) ESR, (b) Xrays PNS, (c) Check\nup by optician / opthalmologist for refractory error, [5] for severe\nheadaches a CT Scan brain (plain & contrast) should be done.",
+      "token_count": 219,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    },
+    {
+      "chunk_id": "01_035",
+      "text": "Tension Headache\nTb Paracetamol 500mg 1—1—1 x 1 week (for mild headache) or\nTb Paracetamol (500mg) + Codeine (8mg) 1—1—1 x 1 week (for moderate)\nTb Paracetamol(500mg) + Aceclofenac(100mg) 1—0—1 x 1 week (for severe)\nTb Naproxen (500mg) 1—0—1 x 1 week (for severe headache)\nTb Amitriptyline 25 mg 0—0—1 x 1 week (if difculty in sleeping)\nTb Pantoprazole 40 mg 1—0—1 x 1 week\nMigraine headache\nAcute attack\nTb Rizatriptan 10mg 1 tablet stat followed by Tb Naproxen 250mg 8 hourly\nTab Domperidone 10 mg 1–0–1\nTb Pantoprazole 40 mg 1—0—1\nMigraine prophylaxis\nTb Propranolol 40 mg(slow release) 1—0—0 x 3 months with\nTb Amitriptyline 10 mg 0—0—1 x 1 month or Tb Flunarizine 10 mg 0—0—1\nx till relief is obtained\nTb Pantoprazole 40 mg 1—0—1 x 1 weekCluster Headache\nTb Prednisone 40 mg 1—0—0 x 5 days (tapered over 3 weeks)\nTb Pantoprazole 40 mg 1—0—1 x 1 month\nRefer to the neurologist.",
+      "token_count": 386,
+      "chapter_id": 1,
+      "chapter_title": "Headache"
+    }
+  ]
+}

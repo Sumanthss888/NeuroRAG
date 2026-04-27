@@ -1,0 +1,119 @@
+{
+  "chapter_id": 11,
+  "chapter_title": "Magnetic Resonance Imaging",
+  "total_chunks": 16,
+  "chunks": [
+    {
+      "chunk_id": "11_001",
+      "text": "110 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 111\nFig 10.6: CT ndings reveal, right MCA Acute stroke\nFig 10.7: CT ndings reveal, right MCA Chronic stroke\nFig 10.8: CT Brain ndings reveal the presence of right\nfrontal subdural haematomaMagnetic Resonance Imaging\n(MRI)\nMagnetic Resonance Imaging (MRI) is a medical imaging technique that uses a\npowerful magnetic eld and radio waves to produce detailed images of body\nstructures including tissues, organs, bones, and nerves to study the anatomy\nand physiology of the body in both health and disease. An MRI differs from a CT\nscan, in that it does not use radiation. Brain and spine MRI is an excellent\ndiagnostic and prognostic tool for various neurological and neuromuscular\ndisorders like cerebrovascular diseases, tumours, demyelinating and infectious\ndiseases of the brain and spinal cord. When to order an MRI scan instead of CT scan? • MRI is done once CT scan has already detected a brain tumour. MRI\nvisualizes the brain and soft tissues very well, so, the extent, spread, type\nand staging of the tumour can be done in detail. • MRI is done as a follow up scan in cases of stroke to know the area of\ndamage and prognosis. • In cases of spinal cord injury, degenerative disc disease, spinal cord\ntumour, meningioma, meningomyelocoele, transverse myelitis, infections\nof the spine, MRI is done. Spinal cord is visualized better with MRI than with CT scan.",
+      "token_count": 373,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_002",
+      "text": "• MRI is an imaging modality of choice in cases where a denitive diagnosis\nis suspected clinically or through previous imaging like CT scan. It is used\nto conrm the diagnosis and to better visualize the soft tissues and their\nabnormalities.11",
+      "token_count": 59,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_003",
+      "text": "112 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 113\n• In neurodegenerative conditions, for e.g. dementia, multiple sclerosis,\nmulti system atrophy (MSA), Parkinson's disease, cerebellar ataxia, etc, an\nMRI scan is preferred. • MRI is ordered in cases of behavioral problems and psychiatric disorders. Principle of MRI\nThe hydrogen protons contained in water molecules of the body exhibit tiny\nmagnetic elds which normally move around randomly. During an MRI scan,\nwhen short bursts of radio waves are applied to the body, these tiny magnetic\nelds of the hydrogen protons align to the magnetic eld and realign back into\nplace alternately. This makes the protons' magnetic elds spin round in unison\nand emit a weak radio signal in resonance. The protons in different tissues of the\nbody realign at different speeds and thus, emit signals of varying intensities. This forms the basis of differentiation of various soft and hard tissues of the part\nbeing scanned. A receiving device receives and transmits the resonance signals\nto a computer, where clear, cross-sectional black and white images of the body\nare created. Each of these images shows a thin slice of the body and differentiates\nbetween bone, soft tissues and uid-lled spaces by their water content and\nstructural properties. These images can be converted into three-dimensional (3-\nD) pictures of the scanned area. The eld strength of the magnet is measured in\ntesla, and the majority of systems operate at 1.5T (nowadays 3 T). T1 image\nweighting is useful for assessing the cerebral cortex and identifying fatty tissue,\nwhile T2 image weighting is useful for detecting edema and revealing white\nmatter lesions.",
+      "token_count": 393,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_004",
+      "text": "Contrast MRI scanning\nChelates of gadolinium are the most commonly used intravenous contrast\nagents. • These agents are safer than the iodinated contrast agents used in X-ray\nradiography or CT. • Gadolinium agents are safe in patients with renal impairment, though\nprecautions have to be taken before administering these agents in specic\ncases. • In patients with severe renal failure requiring dialysis there is a risk of\nnephrogenic systemic brosis. Therefore, dialysis patients should receive\ngadolinium agents only when essential. • Dialysis should be performed as soon as possible after the scan to remove\nthe agent from the body promptly.Indications of MRI brain\n• To check for causes of muscle weakness, numbness and tingling. • To check for causes of symptoms such as change in consciousness,\nconfusion, or abnormal movements. These symptoms may be caused by\nbrain diseases, such as Huntington's disease, multiple sclerosis,\nParkinson's disease, or Alzheimer's disease. • To look for tumors, infections, abscess, or conditions of the brain or brain\nstem, such as encephalitis or meningitis. • To investigate birth defects and developmental anomalies. • To investigate causes of epilepsy (seizure). • To check for integrity of brain and other cranial structures in head trauma. • To diagnose a stroke or blood vessel problems in the head. • To investigate psychiatric disorders. • To look for causes of hearing loss, memory loss, headaches, speaking\ndifculties, vision problems and dizziness. • To diagnose vascular occlusive disease and aneurysm. Indications of MRI spine\n• To assess the spinal anatomy and alignment in injury and birth defects. • To look for causes of muscle weakness in the limbs, numbness and\ntingling, abnormal movements.",
+      "token_count": 389,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_005",
+      "text": "• To look for problems in controlling or emptying urinary bladder. • To assess intervertebral disc and joint for diagnosing sciatica, nerve root\nentrapment, spinal cord indentation. • To assess compression of spinal cord and nerves. • To help plan and monitor spinal surgical procedures, such as\ndecompression of compressed spinal cord and nerves or spinal fusion. • To image spinal infection or tumors. • To assess inammation of the spinal cord or nerves. Contraindications of MRI scan\n• Patients with metal implants (brain aneurysm clips , prosthetic metal heart",
+      "token_count": 123,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_006",
+      "text": "112 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 113\n• In neurodegenerative conditions, for e.g. dementia, multiple sclerosis,\nmulti system atrophy (MSA), Parkinson's disease, cerebellar ataxia, etc, an\nMRI scan is preferred. • MRI is ordered in cases of behavioral problems and psychiatric disorders. Principle of MRI\nThe hydrogen protons contained in water molecules of the body exhibit tiny\nmagnetic elds which normally move around randomly. During an MRI scan,\nwhen short bursts of radio waves are applied to the body, these tiny magnetic\nelds of the hydrogen protons align to the magnetic eld and realign back into\nplace alternately. This makes the protons' magnetic elds spin round in unison\nand emit a weak radio signal in resonance. The protons in different tissues of the\nbody realign at different speeds and thus, emit signals of varying intensities. This forms the basis of differentiation of various soft and hard tissues of the part\nbeing scanned. A receiving device receives and transmits the resonance signals\nto a computer, where clear, cross-sectional black and white images of the body\nare created. Each of these images shows a thin slice of the body and differentiates\nbetween bone, soft tissues and uid-lled spaces by their water content and\nstructural properties. These images can be converted into three-dimensional (3-\nD) pictures of the scanned area. The eld strength of the magnet is measured in\ntesla, and the majority of systems operate at 1.5T (nowadays 3 T). T1 image\nweighting is useful for assessing the cerebral cortex and identifying fatty tissue,\nwhile T2 image weighting is useful for detecting edema and revealing white\nmatter lesions.",
+      "token_count": 393,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_007",
+      "text": "Contrast MRI scanning\nChelates of gadolinium are the most commonly used intravenous contrast\nagents. • These agents are safer than the iodinated contrast agents used in X-ray\nradiography or CT. • Gadolinium agents are safe in patients with renal impairment, though\nprecautions have to be taken before administering these agents in specic\ncases. • In patients with severe renal failure requiring dialysis there is a risk of\nnephrogenic systemic brosis. Therefore, dialysis patients should receive\ngadolinium agents only when essential. • Dialysis should be performed as soon as possible after the scan to remove\nthe agent from the body promptly.Indications of MRI brain\n• To check for causes of muscle weakness, numbness and tingling. • To check for causes of symptoms such as change in consciousness,\nconfusion, or abnormal movements. These symptoms may be caused by\nbrain diseases, such as Huntington's disease, multiple sclerosis,\nParkinson's disease, or Alzheimer's disease. • To look for tumors, infections, abscess, or conditions of the brain or brain\nstem, such as encephalitis or meningitis. • To investigate birth defects and developmental anomalies. • To investigate causes of epilepsy (seizure). • To check for integrity of brain and other cranial structures in head trauma. • To diagnose a stroke or blood vessel problems in the head. • To investigate psychiatric disorders. • To look for causes of hearing loss, memory loss, headaches, speaking\ndifculties, vision problems and dizziness. • To diagnose vascular occlusive disease and aneurysm. Indications of MRI spine\n• To assess the spinal anatomy and alignment in injury and birth defects. • To look for causes of muscle weakness in the limbs, numbness and\ntingling, abnormal movements.",
+      "token_count": 389,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_008",
+      "text": "• To look for problems in controlling or emptying urinary bladder. • To assess intervertebral disc and joint for diagnosing sciatica, nerve root\nentrapment, spinal cord indentation. • To assess compression of spinal cord and nerves. • To help plan and monitor spinal surgical procedures, such as\ndecompression of compressed spinal cord and nerves or spinal fusion. • To image spinal infection or tumors. • To assess inammation of the spinal cord or nerves. Contraindications of MRI scan\n• Patients with metal implants (brain aneurysm clips , prosthetic metal heart",
+      "token_count": 123,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_009",
+      "text": "114 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 115\nvalves, eye implants, intrauterine device, articial joints, dental llings\nand braces, tubal ligation clips, surgical clips or staples) and implanted\nelectronic device (cardiac debrillator, pacemaker, retained leads,\nimplanted nerve stimulators, implantable cardioverter-debrillator) can\nexperience excess MRI related heating during the scanning procedure. • These implants can also interfere with the MR signaling and produce\nartifacts which deteriorate the quality of images and also may produce\nfalse and misleading images of the inside of the scanned body part. • The patients need to inform about these implants to the referring doctor\nand staff carrying out MRI scanning so that they are aware of the risks\nassociated with MRI scanning and measures are taken to ensure the scan is\nas safe as possible. • Some tattoo ink contains traces of metal, but most tattoos are safe in an\nMRI scanner. • MRI scans are not usually recommended during pregnancy, particularly\nin the rst three months. Advantages of MRI scan\n• MR images of the brain and other cranial structures are clearer and more\ndetailed than with other imaging methods. Thus, MRI should be preferred\nfor imaging if available. • MRI uses non iodine contrast medium which is safer than iodine\ncontaining contrast media used in X-ray and CT imaging. • Risk of ionizing radiations is absent in MRI scan. • MRI is the most sensitive means to detect and evaluate brain tumors. • MRI can detect stroke at a very early stage (within less than 30 minutes) by\nmapping the motion of water molecules in the tissue. • The MRI examination poses almost no risk to the average patient when\nappropriate safety guidelines are followed.",
+      "token_count": 388,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_010",
+      "text": "Disadvantages of MRI scan\n• Implanted medical devices that contain metal may malfunction or cause\nproblems in obtaining clear images during an MRI exam. • Metallic implants, pacemakers may malfunction or cause problems\nduring an MRI exam.• Nephrogenic systemic brosis may occur as a complication of MRI caused\nby the injection of high doses of gadolinium-based contrast material in\npatients with very poor kidney function. • A person who is very obese and large may not t into the opening of\ncertain types of MRI machines. • The time taken for MRI scanning is longer than for CT. Also, traction\ndevices and life support equipment used in emergency settings have to be\nkept away from the area to be imaged. Thus, MRI cannot be used in\nemergency settings. • MRI is many a time uncomfortable for patients who are claustrophobic\nand cannot remain in the noisy machine for such long testing time. • MRI costs more than CT. • MRI is sensitive to patient motion. Patient motion can give rise to bad\nquality images. MRI with DTI\nDiffusion tensor imaging (DTI) is an MRI technique used to noninvasively\nvisualize anatomical connections between different parts of the brain. It is used\nto study abnormalities in white matter ber structure (location and orientation)\nand brain connectivity. DTI is useful in the investigation of stroke, epilepsy,\nmultiple sclerosis, brain abscesses, brain tumors (localization, inltration), mild\ntraumatic brain injury (dening the severity), and hypertensive\nencephalopathy. It is used in surgical planning of brain tumors, to determine the\nproximity and relative position of the corticospinal tracts and a tumor. DTI tractography is a 3D modeling technique used to visualize neural tracts.",
+      "token_count": 388,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_011",
+      "text": "It\ncan also visualize very short connections present among cortical and subcortical\nregions. It is used for measuring decits in white matter (such as in aging),\ndifferentiation of brain tumour, distinguishing between acute-ischemic changes\nand chronic-ischemic changes in cases of stroke, diagnosing and follow up of\nMS lesions, determining the location and extent of epileptic foci, etc. It helps in\npreoperative planning in terms of determining the extent of diffuse inltration\nof pathologic tissue (for e.g. tumour, abscess) to minimize functional damage\nand residual tumor volume.",
+      "token_count": 135,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_012",
+      "text": "114 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 115\nvalves, eye implants, intrauterine device, articial joints, dental llings\nand braces, tubal ligation clips, surgical clips or staples) and implanted\nelectronic device (cardiac debrillator, pacemaker, retained leads,\nimplanted nerve stimulators, implantable cardioverter-debrillator) can\nexperience excess MRI related heating during the scanning procedure. • These implants can also interfere with the MR signaling and produce\nartifacts which deteriorate the quality of images and also may produce\nfalse and misleading images of the inside of the scanned body part. • The patients need to inform about these implants to the referring doctor\nand staff carrying out MRI scanning so that they are aware of the risks\nassociated with MRI scanning and measures are taken to ensure the scan is\nas safe as possible. • Some tattoo ink contains traces of metal, but most tattoos are safe in an\nMRI scanner. • MRI scans are not usually recommended during pregnancy, particularly\nin the rst three months. Advantages of MRI scan\n• MR images of the brain and other cranial structures are clearer and more\ndetailed than with other imaging methods. Thus, MRI should be preferred\nfor imaging if available. • MRI uses non iodine contrast medium which is safer than iodine\ncontaining contrast media used in X-ray and CT imaging. • Risk of ionizing radiations is absent in MRI scan. • MRI is the most sensitive means to detect and evaluate brain tumors. • MRI can detect stroke at a very early stage (within less than 30 minutes) by\nmapping the motion of water molecules in the tissue. • The MRI examination poses almost no risk to the average patient when\nappropriate safety guidelines are followed.",
+      "token_count": 388,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_013",
+      "text": "Disadvantages of MRI scan\n• Implanted medical devices that contain metal may malfunction or cause\nproblems in obtaining clear images during an MRI exam. • Metallic implants, pacemakers may malfunction or cause problems\nduring an MRI exam.• Nephrogenic systemic brosis may occur as a complication of MRI caused\nby the injection of high doses of gadolinium-based contrast material in\npatients with very poor kidney function. • A person who is very obese and large may not t into the opening of\ncertain types of MRI machines. • The time taken for MRI scanning is longer than for CT. Also, traction\ndevices and life support equipment used in emergency settings have to be\nkept away from the area to be imaged. Thus, MRI cannot be used in\nemergency settings. • MRI is many a time uncomfortable for patients who are claustrophobic\nand cannot remain in the noisy machine for such long testing time. • MRI costs more than CT. • MRI is sensitive to patient motion. Patient motion can give rise to bad\nquality images. MRI with DTI\nDiffusion tensor imaging (DTI) is an MRI technique used to noninvasively\nvisualize anatomical connections between different parts of the brain. It is used\nto study abnormalities in white matter ber structure (location and orientation)\nand brain connectivity. DTI is useful in the investigation of stroke, epilepsy,\nmultiple sclerosis, brain abscesses, brain tumors (localization, inltration), mild\ntraumatic brain injury (dening the severity), and hypertensive\nencephalopathy. It is used in surgical planning of brain tumors, to determine the\nproximity and relative position of the corticospinal tracts and a tumor. DTI tractography is a 3D modeling technique used to visualize neural tracts.",
+      "token_count": 388,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_014",
+      "text": "It\ncan also visualize very short connections present among cortical and subcortical\nregions. It is used for measuring decits in white matter (such as in aging),\ndifferentiation of brain tumour, distinguishing between acute-ischemic changes\nand chronic-ischemic changes in cases of stroke, diagnosing and follow up of\nMS lesions, determining the location and extent of epileptic foci, etc. It helps in\npreoperative planning in terms of determining the extent of diffuse inltration\nof pathologic tissue (for e.g. tumour, abscess) to minimize functional damage\nand residual tumor volume.",
+      "token_count": 135,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_015",
+      "text": "116 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 117\nFig. 11.1 MRI Axial T1 with and without contrast showing\npresence of right Meningioma with brain invasion\nFig. 11.2 MRI-T2 Sagittal sequences showing enhanced lesion in the spine\nFig 11.3: T1-W MSK-MRI shows characteristic patterns of muscular fatty\ninltration in DMD patients. Affected muscles demonstrate high\nT1-weighted signal as compared to normal muscles MRI MSK Angiography\nAngiography is a very specialized test which is ordered by a neurologist or a\nneurosurgeon. Angiography is a minimally invasive medical test that uses X-\nrays or MRI technology and an iodine or gadolinium containing contrast\nmaterial to produce pictures of the blood vessels. Imaging of the vascular\narchitecture of the brain is termed as Neuro-angiogaphy. Angiography can be performed using:\n• Digital X-ray technology (DSA)\n• Computed Tomography (CT)\n• Magnetic Resonance Imaging (MRI)\nDigital subtraction angiography (DSA) is a type of uoroscopy technique used\nto clearly visualize blood vessels in a bony or dense soft tissue environment. Procedure: A pre-contrast image which includes all the structures within the\nhead like skull, brain, CSF, meninges, blood vessels, etc. is acquired rst by a\ndigital X-ray using technology. In catheter angiography a catheter is introduced\ninto the supercial femoral artery of the patient after giving local anaesthesia (general anaesthesia in children) and navigated under X-ray guidance up to the\ncarotid artery where an iodine containing contrast material is injected and\nmultiple X-ray images are taken.",
+      "token_count": 390,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    },
+    {
+      "chunk_id": "11_016",
+      "text": "In IV-DSA, radiopaque iodine based dye is\ninjected intravenously into the body. The contrast material ows along with the\nblood to the cerebral arteries and highlights the blood vessels on the X-ray. These images are simultaneously stored in the computer which then subtracts\nthe 'pre-contrast image' from the 'post-contrast image'. Tissues and blood\nvessels on the rst image are digitally subtracted from the second image, leaving\na clear picture of the artery or vein for assessing the integrity of these blood 12",
+      "token_count": 119,
+      "chapter_id": 11,
+      "chapter_title": "Magnetic Resonance Imaging"
+    }
+  ]
+}

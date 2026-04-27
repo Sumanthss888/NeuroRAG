@@ -1,0 +1,77 @@
+{
+  "chapter_id": 14,
+  "chapter_title": "PET-CT",
+  "total_chunks": 10,
+  "chunks": [
+    {
+      "chunk_id": "14_001",
+      "text": "124 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 125\n• Patients having allergy to iodine or barium contrast agents are\ncontraindicated for contrast induced X-ray imaging. • Contrast media is safe in most patients. However, adverse reactions may\nrange from mild to severe in patients suffering from renal impairment,\nhyperthyroidism, phaeochromocytoma, myasthenia gravis, etc\nPositron Emission\nTomography-Computer\nTomography (PET-CT)\nPositron emission tomography (PET) scanning is a very specialized scanning\nprocedure, which is used only in specialized cases, where apart from structural\nimaging, a functional imaging of the body part is required (for e.g. tumours,\nAlzheimer's disease, epilepsy, behavioral disorders, etc.). PET is a functional\nimaging technique that produces a three-dimensional image of functional\nprocesses in the body. Procedure: A positron-emitting radionuclide (tracer), usually\nuorodeoxyglucose (FDG), an analogue of glucose is introduced into the body\non a biologically active molecule intravenously, which is taken up by active\ntissues of the body. Gamma rays are created during the emission of positrons\nfrom these active tissues, and the scanner then detects the gamma rays. A\ncomputer then analyzes the gamma rays and uses the information to create an\nimage map of the organ or tissue being studied. Principle: PET neuroimaging is based on the principle that areas of high\nradioactivity are associated with brain activity. The amount of the radionuclide\ncollected in the tissue affects how brightly the tissue appears on the image, and\nindicates the level of organ or tissue function.",
+      "token_count": 373,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_002",
+      "text": "If blood ow and perfusion of an\norgan or tissue has to be studied, the radionuclide chosen may be a type of\nradioactive oxygen, carbon, nitrogen, or gallium. Functional imaging obtained by PET can be more precisely aligned or correlated 14",
+      "token_count": 58,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_003",
+      "text": "126 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 127\nwith anatomic imaging obtained by CT scanning. In modern PET-CT scanners,\nthree dimensional imaging is often accomplished with the aid of a CT X-ray scan\nperformed on the patient during the same session, in the same machine. Uses of PET-CT scans\nPET and PET-CT scans are performed to:\n• To detect suspected brain and spinal tumours. • To detect cancer metastasis and recurrence of tumors. • To determine staging of patients with tumours where staging is difcult\nclinically, and also to help in radiotherapy planning. • To evaluate the prognosis of a treatment plan, such as cancer therapy. • To evaluate and diagnose memory disorders (Alzheimer's disease) and\nother central nervous system disorders such as Parkinson's disease,\nHuntington's disease, epilepsy, and cerebrovascular accident. • To localize epileptic foci. • To evaluate the perfusion (blood and oxygen ow) of the brain tissue using\nthe tracer oxygen-15. • To examine links between specic psychological processes or disorders\nand brain activity. • To locate the specic surgical site prior to surgical procedures of the brain. • To facilitate PET-image guided surgery of intracranial tumors,\narteriovenous malformations and other surgically treatable conditions. • To map normal human brain for research purposes. • To compare the effects of a treatment intervention on brain function, using\na pre and post intervention PET scan. Contraindications of PET-CT scan\n• Pregnant females should not undergo the scan since radiation is believed\nto be unsafe for developing fetuses. • Recent chemotherapy or radiotherapy can make interpretation difcult. • Patients having allergies or who are sensitive to radionuclide, contrast\ndyes, or iodine.",
+      "token_count": 399,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_004",
+      "text": "• Very obese people may not t into the opening of a PET-CT scanner.Precautions for PET-CT scan\n• Other imaging methods should be considered for pregnant patients. • Patients who are claustrophobic may nd the test uncomfortable. • High blood glucose levels in diabetics may interfere with the accuracy of a\nPET scan, since high levels lower the FDG tracer uptake in tissues and\ntumour cells. A diabetic patient may be instructed to take pre-procedure\ninsulin dose with a meal several hours prior to the procedure. Also, fasting\nfor a certain period of time prior to the procedure may be required. If\nplasma glucose level is <120 mg/dl the FDG PET study can be performed. If plasma glucose level is >120 mg/dl the FDG PET study may be\nrescheduled or the patient excluded depending on the patient\ncircumstances and the need for the test being conducted. • Since medications such as tranquilizers and sedatives, and alcohol act as\nCNS depressants, while caffeine and nicotine in tobacco and smoking act\nas CNS stimulants, their consumption should be avoided a day prior to\ntesting to avoid false results on scans. • Some of the administered FDG might be excreted in small amounts in\nbreast milk. Therefore, milk should be collected and discarded for 2 hours\nafter the scan following which normal breast feeding can be resumed. Advantages of PET-CT scan\n• PET-CT scan provides information on both function and anatomic\nstructure of the brain and spinal cord that is unattainable using other\nimaging procedures. • PET-CT scan results help in more accurate diagnosis of various\nneurological disorders. • PET-CT scans are less expensive than exploratory surgery and yield more\nprecise information.",
+      "token_count": 381,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_005",
+      "text": "• By identifying changes in the body at the cellular level, PET imaging may\ndetect the early onset of disease before it is evident on other imaging tests\nsuch as CT or MRI. Disadvantages of PET CT scan\n• Injection of the radiotracer may cause pain and inammation. • PET CT scans are time consuming.",
+      "token_count": 71,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_006",
+      "text": "126 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 127\nwith anatomic imaging obtained by CT scanning. In modern PET-CT scanners,\nthree dimensional imaging is often accomplished with the aid of a CT X-ray scan\nperformed on the patient during the same session, in the same machine. Uses of PET-CT scans\nPET and PET-CT scans are performed to:\n• To detect suspected brain and spinal tumours. • To detect cancer metastasis and recurrence of tumors. • To determine staging of patients with tumours where staging is difcult\nclinically, and also to help in radiotherapy planning. • To evaluate the prognosis of a treatment plan, such as cancer therapy. • To evaluate and diagnose memory disorders (Alzheimer's disease) and\nother central nervous system disorders such as Parkinson's disease,\nHuntington's disease, epilepsy, and cerebrovascular accident. • To localize epileptic foci. • To evaluate the perfusion (blood and oxygen ow) of the brain tissue using\nthe tracer oxygen-15. • To examine links between specic psychological processes or disorders\nand brain activity. • To locate the specic surgical site prior to surgical procedures of the brain. • To facilitate PET-image guided surgery of intracranial tumors,\narteriovenous malformations and other surgically treatable conditions. • To map normal human brain for research purposes. • To compare the effects of a treatment intervention on brain function, using\na pre and post intervention PET scan. Contraindications of PET-CT scan\n• Pregnant females should not undergo the scan since radiation is believed\nto be unsafe for developing fetuses. • Recent chemotherapy or radiotherapy can make interpretation difcult. • Patients having allergies or who are sensitive to radionuclide, contrast\ndyes, or iodine.",
+      "token_count": 399,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_007",
+      "text": "• Very obese people may not t into the opening of a PET-CT scanner.Precautions for PET-CT scan\n• Other imaging methods should be considered for pregnant patients. • Patients who are claustrophobic may nd the test uncomfortable. • High blood glucose levels in diabetics may interfere with the accuracy of a\nPET scan, since high levels lower the FDG tracer uptake in tissues and\ntumour cells. A diabetic patient may be instructed to take pre-procedure\ninsulin dose with a meal several hours prior to the procedure. Also, fasting\nfor a certain period of time prior to the procedure may be required. If\nplasma glucose level is <120 mg/dl the FDG PET study can be performed. If plasma glucose level is >120 mg/dl the FDG PET study may be\nrescheduled or the patient excluded depending on the patient\ncircumstances and the need for the test being conducted. • Since medications such as tranquilizers and sedatives, and alcohol act as\nCNS depressants, while caffeine and nicotine in tobacco and smoking act\nas CNS stimulants, their consumption should be avoided a day prior to\ntesting to avoid false results on scans. • Some of the administered FDG might be excreted in small amounts in\nbreast milk. Therefore, milk should be collected and discarded for 2 hours\nafter the scan following which normal breast feeding can be resumed. Advantages of PET-CT scan\n• PET-CT scan provides information on both function and anatomic\nstructure of the brain and spinal cord that is unattainable using other\nimaging procedures. • PET-CT scan results help in more accurate diagnosis of various\nneurological disorders. • PET-CT scans are less expensive than exploratory surgery and yield more\nprecise information.",
+      "token_count": 381,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_008",
+      "text": "• By identifying changes in the body at the cellular level, PET imaging may\ndetect the early onset of disease before it is evident on other imaging tests\nsuch as CT or MRI. Disadvantages of PET CT scan\n• Injection of the radiotracer may cause pain and inammation. • PET CT scans are time consuming.",
+      "token_count": 71,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_009",
+      "text": "128 Neurological Disorders - A Handbook for Family Physicians Neurological Disorders - A Handbook for Family Physicians 129\n• Test results of diabetic patients or patients who have eaten within a few\nhours prior to the examination can be adversely affected because of altered\nblood sugar or blood insulin levels. • Because the radioactive substance decays quickly and is effective for only a\nshort period of time, late arrival of the patient for the test may require\nrescheduling the procedure for another day. Fig 14.1: PET ndings show hypometabolism in halamus, medial\ntemporal cortex and cerebellum in autism\nFig 14.2: PET ﬁndings show hypometabolism in Basal ganglia,\nthalamus, medial temporal cortex and cerebellum\nFig 14.3: PET ﬁndings show hypometabolism in the regions of left MCA,\nACA and right PICA terriotoryFunctional MRI\nFunctional Magnetic Resonance Imaging (fMRI) is a very specialized imaging\ntest which is ordered by a neurologist or a neurosurgeon. It is a functional neuroimaging procedure that uses MRI technology to measure activity of neurons in the brain and spinal cord by detecting associated changes in blood\now in the area of activation. When neurons of a particular brain or spinal cord\narea become active, blood ow to that area increases bringing in more\noxygenated haemoglobin which is diamagnetic (resistant to magnetism) than\ndeoxygenated haemoglobin which is paramagnetic (attracted to magnetism). While performing an MRI scan, this difference in rising oxygenated\nhaemoglobin level gives rise to an improved MR signal, since diamagnetic\nblood interferes less with the magnetic MR signal.",
+      "token_count": 372,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    },
+    {
+      "chunk_id": "14_010",
+      "text": "This improvement is mapped and represented graphically by color coding according to the strengths of activation, to show which neurons are active at the time of a particular task\nduring MRI scanning. Procedure\nfMRI detects differences in brain activity involved in a sensory, motor, cognitive\nfunction or a behavioral function. During the fMRI procedure, the patient is\nasked to alternatively perform a specic task or is stimulated to trigger several processes or emotions. The stimuli can be grouped in blocks (e.g. 30s-long) or presented as events. Each of the conditions is repeated several times and separated by rest periods. The combination of these conditions is called an fMRI paradigm. Tasks like tapping the ngers, toes, moving feet up and down are\ncommanded to perform to study activation of the areas involved in motor\nfunction. To study areas of activation in sensory function, sensory stimuli like stroking with a brush along a particular dermatome (cutaneous), viewing 15",
+      "token_count": 204,
+      "chapter_id": 14,
+      "chapter_title": "PET-CT"
+    }
+  ]
+}
