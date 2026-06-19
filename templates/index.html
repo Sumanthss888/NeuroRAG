@@ -64,6 +64,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="flex h-screen text-slate-200 overflow-hidden font-sans mode-patient bg-bg-base">
+    <!-- Skip to Content Link (Accessibility) -->
+    <a href="#chat-container" class="skip-nav-link">Skip to Content</a>
     
     <!-- Ambient Neural Background -->
     <div id="neural-bg">
@@ -81,6 +83,7 @@
         <div class="p-5 border-b border-border flex items-center gap-3">
             <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 border border-accent/20 shadow-glow">
                 <svg class="w-5.5 h-5.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <title>NeuroRAG Logo</title>
                     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                     <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
                     <path d="M12 5v13" />
@@ -134,16 +137,39 @@
                     <span class="font-medium group-hover:text-white transition-colors leading-snug">What tests diagnose Alzheimer's?</span>
                 </button>
             </div>
+            
+            <!-- Session History Section (PHASE 3 ADDITIONAL) -->
+            <div id="history-section" class="border-t border-border/40 my-4 pt-4 shrink-0 hidden">
+                <div id="history-title" class="text-[10px] font-semibold text-text-muted uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <i class="ph-bold ph-clock-counter-clockwise text-sm text-accent"></i> Session History
+                </div>
+                <div id="history-container" class="space-y-2 max-h-48 overflow-y-auto">
+                    <!-- Past session cards will be injected here -->
+                </div>
+            </div>
+
+            <!-- Bookmarks Section (PHASE 3 ADDITIONAL) -->
+            <div class="border-t border-border/40 my-4 pt-4 shrink-0">
+                <div id="bookmarks-title" class="text-[10px] font-semibold text-text-muted uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <i class="ph-bold ph-bookmark-simple text-sm text-accent"></i> Bookmarked Findings
+                </div>
+                <div id="bookmarks-container" class="space-y-2 max-h-48 overflow-y-auto">
+                    <div class="text-[11px] text-text-muted italic px-2">No bookmarks saved yet.</div>
+                </div>
+            </div>
         </div>
 
         <!-- Sidebar Footer -->
         <div class="p-4 border-t border-border bg-[#0F1011]/30">
-            <div class="glass-subtle p-3 rounded-lg flex items-start gap-2.5 border-transparent">
+            <div class="glass-subtle p-3 rounded-lg flex items-start gap-2.5 border-transparent mb-2">
                 <i class="ph-fill ph-info text-text-muted text-sm shrink-0 mt-0.5"></i>
                 <p class="text-[10px] text-text-muted leading-relaxed font-medium">
                     Simulated clinical workspace. Verify medical data independently.
                 </p>
             </div>
+            <button id="link-shortcuts" class="text-[10px] text-text-muted hover:text-accent font-semibold uppercase tracking-wider flex items-center gap-1 w-full justify-center py-1" aria-label="View keyboard shortcuts">
+                <i class="ph-bold ph-keyboard text-xs"></i> Keyboard Shortcuts
+            </button>
         </div>
     </aside>
 
@@ -154,7 +180,7 @@
         <header class="h-16 border-b border-border bg-[#0F1011]/20 backdrop-blur-xl flex items-center justify-between px-6 md:px-8 sticky top-0 z-30 page-enter-2 shrink-0">
             <!-- Left Side Header: Mobile Toggle & Brand logo -->
             <div class="flex items-center gap-3">
-                <button id="sidebar-toggle" class="md:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 border border-border text-text-secondary hover:text-white transition-colors">
+                <button id="sidebar-toggle" class="md:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 border border-border text-text-secondary hover:text-white transition-colors" aria-label="Toggle Sidebar Navigation">
                     <i class="ph-bold ph-list text-lg"></i>
                 </button>
                 
@@ -165,18 +191,18 @@
             </div>
             
             <!-- Center Section: Clinical Mode Switch -->
-            <div class="relative flex bg-black/30 p-1 rounded-xl border border-border w-[220px] overflow-hidden shadow-inner backdrop-blur-md">
+            <div class="header-mode-toggle relative flex bg-black/30 p-1 rounded-xl border border-border w-[220px] overflow-hidden shadow-inner backdrop-blur-md" role="radiogroup" aria-label="Response Mode Selector">
                 <!-- Sliding Highlight Indicator -->
                 <div id="toggle-indicator" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-lg bg-accent border border-accent/20 transition-transform duration-400 ease-out z-0 shadow-sm"></div>
                 
                 <!-- Patient Button -->
-                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-white font-semibold transition-all duration-300" data-mode="patient">
+                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-white font-semibold transition-all duration-300" data-mode="patient" aria-label="Switch to patient mode">
                     <i id="icon-patient" class="ph-fill ph-user text-white transition-all duration-300 text-xs"></i>
                     <span class="text-[10px] uppercase tracking-wider">Patient</span>
                 </button>
                 
                 <!-- Clinician Button -->
-                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-text-secondary font-medium transition-all duration-300" data-mode="clinician">
+                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-text-secondary font-medium transition-all duration-300" data-mode="clinician" aria-label="Switch to clinician mode">
                     <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-xs"></i>
                     <span class="text-[10px] uppercase tracking-wider">Clinician</span>
                 </button>
@@ -184,8 +210,14 @@
             
             <!-- Right Section: Account details & Actions -->
             <div class="flex items-center gap-2">
+                <a href="/dashboard" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all" title="View usage dashboard" aria-label="View usage dashboard">
+                    <i class="ph-bold ph-chart-bar text-xs"></i> Dashboard
+                </a>
+                <button id="btn-end-session" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/20 text-[10px] font-semibold uppercase tracking-wider text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-all" title="Summarize and end current session" aria-label="End active session">
+                    <i class="ph-bold ph-stop-circle text-xs"></i> End Session
+                </button>
                 <div class="dropdown-container">
-                    <button id="btn-export" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all" title="Export conversations">
+                    <button id="btn-export" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all" title="Export conversations" aria-label="Export conversations dropdown menu">
                         <i class="ph-bold ph-download-simple text-xs"></i> Export
                     </button>
                     <div id="export-dropdown" class="dropdown-menu">
@@ -197,10 +229,10 @@
                         </button>
                     </div>
                 </div>
-                <a href="/chat_history" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all">
+                <a href="/chat_history" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all" aria-label="View conversation logs">
                     <i class="ph-bold ph-clock-counter-clockwise text-xs"></i> Logs
                 </a>
-                <a href="/logout" class="btn-micro flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all" title="Disconnect Session">
+                <a href="/logout" class="btn-micro flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all" title="Disconnect Session" aria-label="Log out">
                     <i class="ph-bold ph-power text-sm"></i>
                 </a>
             </div>
@@ -214,6 +246,7 @@
                 <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full text-center mt-12 px-4">
                     <div class="w-20 h-20 rounded-3xl bg-slate-800/40 border border-border flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
                         <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <title>Workspace Icon</title>
                             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
                             <path d="M12 5v13" />
@@ -233,7 +266,7 @@
         </div>
 
         <!-- Fixed Composer Area (Centered 760px constraints) -->
-        <div class="absolute bottom-0 left-0 w-full p-4 md:p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--color-bg-base) 40%, transparent 100%);">
+        <div class="composer-fixed-container absolute bottom-0 left-0 w-full p-4 md:p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--color-bg-base) 40%, transparent 100%);">
             <div class="max-w-[760px] mx-auto relative pointer-events-auto">
                 <div class="glass-elevated relative flex items-end gap-3 p-2 pl-4 border border-border shadow-medium">
                     <textarea 
@@ -248,7 +281,7 @@
                         <i class="ph-bold ph-microphone text-lg"></i>
                     </button>
                     
-                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md">
+                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md" aria-label="Submit query">
                         <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
                     </button>
                 </div>
@@ -299,7 +332,44 @@
             </div>
         </div>
     </div>
+
+    <!-- Keyboard Shortcuts Help Modal (PHASE 3 ADDITIONAL) -->
+    <div id="shortcuts-modal-backdrop">
+        <div class="source-modal-container glass-elevated">
+            <div class="source-modal-header">
+                <h3 class="source-modal-title"><i class="ph-bold ph-keyboard"></i> Keyboard Shortcuts</h3>
+                <button class="source-modal-close" id="btn-close-shortcuts" aria-label="Close modal">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="p-2 space-y-4 text-sm">
+                <div class="flex justify-between items-center py-2 border-b border-border/40">
+                    <span class="text-text-secondary font-medium">Focus Search Conversations</span>
+                    <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">⌘/Ctrl + K</kbd>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-border/40">
+                    <span class="text-text-secondary font-medium">Submit Query</span>
+                    <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">⌘/Ctrl + Enter</kbd>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-border/40">
+                    <span class="text-text-secondary font-medium">Toggle Left Sidebar visibility</span>
+                    <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">⌘/Ctrl + B</kbd>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-border/40">
+                    <span class="text-text-secondary font-medium">Close Modal / Overlays</span>
+                    <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">Escape</kbd>
+                </div>
+                <div class="flex justify-between items-center py-2">
+                    <span class="text-text-secondary font-medium">Toggle Shortcuts Help</span>
+                    <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">?</kbd>
+                </div>
+            </div>
+        </div>
+    </div>
     
+    <script>
+        window.currentUser = "{{ session.get('username', '') }}";
+    </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

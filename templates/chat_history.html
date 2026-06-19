@@ -217,7 +217,10 @@
                     }, 1500);
                 }
             } catch (error) {
-                alert('Core error during purge sequence. Try again.');
+                const messageDiv = document.getElementById('message');
+                messageDiv.textContent = 'Core error during purge sequence. Try again.';
+                messageDiv.className = 'mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md bg-red-500/10 border-red-500/30 text-red-400';
+                messageDiv.classList.remove('hidden');
             }
 
             closeModal();
