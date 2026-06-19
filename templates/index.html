@@ -14,9 +14,43 @@
           extend: {
             fontFamily: {
               sans: ['Inter', '-apple-system', 'sans-serif'],
+              display: ['DM Sans', '-apple-system', 'sans-serif'],
             },
             colors: {
-              glass: 'rgba(15, 23, 42, 0.3)',
+              glass: 'rgba(255, 255, 255, 0.04)',
+              'glass-elevated': 'rgba(255, 255, 255, 0.07)',
+              'glass-subtle': 'rgba(255, 255, 255, 0.02)',
+              accent: {
+                DEFAULT: '#7C6AF7',
+                dim: 'rgba(124, 106, 247, 0.15)',
+              },
+              bg: {
+                base: '#08090A',
+                surface: '#0F1011',
+                elevated: '#161718',
+              },
+              border: {
+                DEFAULT: 'rgba(255, 255, 255, 0.08)',
+                strong: 'rgba(255, 255, 255, 0.15)',
+              },
+              text: {
+                primary: '#F2F2F2',
+                secondary: 'rgba(242, 242, 242, 0.55)',
+                muted: 'rgba(242, 242, 242, 0.30)',
+              }
+            },
+            borderRadius: {
+              'sm': '12px',
+              'md': '16px',
+              'lg': '20px',
+              'xl': '24px',
+              '2xl': '20px',
+              '3xl': '24px',
+            },
+            boxShadow: {
+              'soft': '0 8px 30px rgba(0, 0, 0, 0.25)',
+              'medium': '0 12px 40px rgba(0, 0, 0, 0.35)',
+              'glow': '0 0 40px rgba(124, 106, 247, 0.25)',
             }
           }
         }
@@ -29,144 +63,175 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="flex h-screen text-slate-200 overflow-hidden font-sans mode-patient">
+<body class="flex h-screen text-slate-200 overflow-hidden font-sans mode-patient bg-bg-base">
     
-    <!-- Calm Ambient Background -->
-    <div class="ambient-bg"></div>
-    <div class="ambient-shift"></div>
+    <!-- Ambient Neural Background -->
+    <div id="neural-bg">
+        <div class="orb-indigo"></div>
+    </div>
     <div class="noise-overlay"></div>
 
-    <!-- Sidebar Control Panel -->
-    <aside class="w-[300px] h-full border-r border-white/5 bg-slate-900/20 backdrop-blur-3xl flex flex-col z-20 relative transition-transform duration-500 ease-out page-enter-1">
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+
+    <!-- Sidebar (Left Region - Conversation history) -->
+    <aside class="w-[280px] h-full border-r border-border bg-[#0F1011]/40 backdrop-blur-3xl flex flex-col z-40 relative transition-transform duration-500 ease-out page-enter-1 shrink-0">
         
-        <!-- App Header -->
-        <div class="p-6 border-b border-white/5 flex items-center gap-4">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-500/10 border border-teal-500/20 shadow-sm">
-                <i class="ph-fill ph-brain text-xl text-teal-400"></i>
+        <!-- App Header (Sidebar Top) -->
+        <div class="p-5 border-b border-border flex items-center gap-3">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 border border-accent/20 shadow-glow">
+                <svg class="w-5.5 h-5.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                    <path d="M12 5v13" />
+                </svg>
             </div>
             <div>
-                <h1 class="font-display text-lg font-bold tracking-tight text-white leading-tight">NeuroRAG</h1>
-                <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Intelligence Core</p>
+                <h2 class="font-display text-base font-bold tracking-tight text-white leading-tight">NeuroRAG</h2>
+                <p class="text-[9px] text-text-muted font-medium tracking-widest uppercase">Workspace</p>
             </div>
         </div>
 
-        <!-- Mode Toggle (Premium Pill Style) -->
-        <div class="p-6 border-b border-white/5">
-            <div class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
-                <i class="ph-bold ph-sliders text-sm"></i> Operational Mode
+        <!-- Sidebar Timeline Area -->
+        <div class="p-5 flex-1 overflow-y-auto flex flex-col min-h-0">
+            <!-- Search bar (if history exists) -->
+            <div id="sidebar-search-container" class="hidden mb-4">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="sidebar-search" 
+                        placeholder="Search history..." 
+                        class="w-full bg-white/5 border border-border rounded-lg pl-8 pr-3 py-1.5 text-xs text-text-primary focus:border-accent focus:bg-white/10 outline-none transition-all"
+                    >
+                    <i class="ph ph-magnifying-glass absolute left-2.5 top-2.5 text-text-muted text-xs"></i>
+                </div>
+            </div>
+
+            <div id="sidebar-title" class="text-[10px] font-semibold text-text-muted uppercase tracking-widest mb-3 flex items-center gap-2">
+                <i class="ph-bold ph-lightning text-sm text-accent"></i> Recent Clinical Queries
             </div>
             
-            <div class="relative flex bg-black/20 p-1 rounded-xl border border-white/5 w-full overflow-hidden shadow-inner backdrop-blur-md">
-                <!-- Sliding Highlight Indicator -->
-                <div id="toggle-indicator" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-lg bg-white/10 border border-white/10 transition-transform duration-400 ease-out z-0 shadow-sm"></div>
-                
-                <!-- Patient Button -->
-                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-2 text-white font-semibold transition-all duration-300" data-mode="patient">
-                    <i id="icon-patient" class="ph-fill ph-user text-teal-400 transition-all duration-300 text-sm"></i>
-                    <span class="text-[11px] uppercase tracking-wider">Patient</span>
-                </button>
-                
-                <!-- Clinician Button -->
-                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-2 px-2 rounded-lg flex items-center justify-center gap-2 text-slate-400 font-medium transition-all duration-300" data-mode="clinician">
-                    <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-sm"></i>
-                    <span class="text-[11px] uppercase tracking-wider">Clinician</span>
-                </button>
-            </div>
-        </div>
+            <!-- Timeline Container -->
+            <div id="timeline-container" class="timeline-container hidden mb-4 space-y-2"></div>
 
-        <!-- Sidebar Main Area (Timeline & Examples) -->
-        <div class="p-6 flex-1 overflow-y-auto">
-            <div id="sidebar-title" class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2 transition-all">
-                <i class="ph-bold ph-lightning text-sm"></i> Diagnostics Access
-            </div>
-            
-            <!-- Timeline Container (Hidden initially) -->
-            <div id="timeline-container" class="timeline-container hidden mb-6"></div>
-
+            <!-- Example Queries (No history state) -->
             <div id="example-queries-container" class="space-y-2 relative">
-                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="What are the symptoms of stroke?">
-                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-border transition-all text-xs text-text-secondary flex items-start gap-3 group btn-micro" data-query="What are the symptoms of stroke?">
+                    <i class="ph-fill ph-activity text-accent/60 mt-0.5 group-hover:text-accent transition-colors"></i>
                     <span class="font-medium group-hover:text-white transition-colors leading-snug">What are the symptoms of stroke?</span>
                 </button>
                 
-                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="How is migraine different from headache?">
-                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-border transition-all text-xs text-text-secondary flex items-start gap-3 group btn-micro" data-query="How is migraine different from headache?">
+                    <i class="ph-fill ph-activity text-accent/60 mt-0.5 group-hover:text-accent transition-colors"></i>
                     <span class="font-medium group-hover:text-white transition-colors leading-snug">How is migraine different from headache?</span>
                 </button>
                 
-                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-white/5 transition-all text-[13px] text-slate-300 flex items-start gap-3 group btn-micro" data-query="What tests diagnose Alzheimer's?">
-                    <i class="ph-fill ph-activity text-teal-500/60 mt-0.5 group-hover:text-teal-400 transition-colors"></i>
+                <button class="example-btn relative w-full text-left p-3 rounded-lg bg-white/5 border border-transparent hover:bg-white/10 hover:border-border transition-all text-xs text-text-secondary flex items-start gap-3 group btn-micro" data-query="What tests diagnose Alzheimer's?">
+                    <i class="ph-fill ph-activity text-accent/60 mt-0.5 group-hover:text-accent transition-colors"></i>
                     <span class="font-medium group-hover:text-white transition-colors leading-snug">What tests diagnose Alzheimer's?</span>
                 </button>
             </div>
         </div>
 
         <!-- Sidebar Footer -->
-        <div class="p-5 border-t border-white/5 bg-slate-900/20">
-            <div class="glass-panel p-3 rounded-lg flex items-start gap-3 bg-white/5 border-transparent">
-                <i class="ph-fill ph-info text-slate-400 text-base shrink-0 mt-0.5"></i>
-                <p class="text-[10px] text-slate-400 leading-relaxed font-medium">
-                    Simulated clinical environment. Verify all medical data independently.
+        <div class="p-4 border-t border-border bg-[#0F1011]/30">
+            <div class="glass-subtle p-3 rounded-lg flex items-start gap-2.5 border-transparent">
+                <i class="ph-fill ph-info text-text-muted text-sm shrink-0 mt-0.5"></i>
+                <p class="text-[10px] text-text-muted leading-relaxed font-medium">
+                    Simulated clinical workspace. Verify medical data independently.
                 </p>
             </div>
         </div>
     </aside>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 flex flex-col h-full relative z-10">
+    <!-- Main Content Area (Center Region) -->
+    <main class="flex-1 flex flex-col h-full relative z-10 min-w-0">
         
-        <!-- Top Navigation Bar -->
-        <header class="h-14 border-b border-white/5 bg-slate-900/10 backdrop-blur-xl flex items-center justify-between px-8 sticky top-0 z-30 page-enter-2">
-            <div class="text-[11px] font-semibold tracking-widest uppercase text-slate-300 flex items-center gap-3">
-                <div class="status-dot-pulse w-2 h-2 rounded-full bg-emerald-500"></div>
-                System Online
+        <!-- Top Navigation Bar (Top Region) -->
+        <header class="h-16 border-b border-border bg-[#0F1011]/20 backdrop-blur-xl flex items-center justify-between px-6 md:px-8 sticky top-0 z-30 page-enter-2 shrink-0">
+            <!-- Left Side Header: Mobile Toggle & Brand logo -->
+            <div class="flex items-center gap-3">
+                <button id="sidebar-toggle" class="md:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 border border-border text-text-secondary hover:text-white transition-colors">
+                    <i class="ph-bold ph-list text-lg"></i>
+                </button>
+                
+                <div class="text-[11px] font-semibold tracking-widest uppercase text-text-secondary flex items-center gap-2">
+                    <div class="status-dot-pulse w-2 h-2 rounded-full bg-emerald-500"></div>
+                    <span>System Connected</span>
+                </div>
             </div>
             
-            <div class="flex items-center gap-3">
-                <button id="btn-generate-report" class="btn-micro hidden flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
-                    <i class="ph-bold ph-file-pdf text-sm"></i> Generate Report
+            <!-- Center Section: Clinical Mode Switch -->
+            <div class="relative flex bg-black/30 p-1 rounded-xl border border-border w-[220px] overflow-hidden shadow-inner backdrop-blur-md">
+                <!-- Sliding Highlight Indicator -->
+                <div id="toggle-indicator" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-lg bg-accent border border-accent/20 transition-transform duration-400 ease-out z-0 shadow-sm"></div>
+                
+                <!-- Patient Button -->
+                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-white font-semibold transition-all duration-300" data-mode="patient">
+                    <i id="icon-patient" class="ph-fill ph-user text-white transition-all duration-300 text-xs"></i>
+                    <span class="text-[10px] uppercase tracking-wider">Patient</span>
                 </button>
-                <a href="/chat_history" class="btn-micro flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[11px] font-semibold uppercase tracking-wider text-slate-300 hover:bg-white/10 hover:text-white transition-colors">
-                    <i class="ph-bold ph-clock-counter-clockwise text-sm"></i> History
+                
+                <!-- Clinician Button -->
+                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-text-secondary font-medium transition-all duration-300" data-mode="clinician">
+                    <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-xs"></i>
+                    <span class="text-[10px] uppercase tracking-wider">Clinician</span>
+                </button>
+            </div>
+            
+            <!-- Right Section: Account details & Actions -->
+            <div class="flex items-center gap-2">
+                <button id="btn-generate-report" class="btn-micro hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all">
+                    <i class="ph-bold ph-file-pdf text-xs"></i> Report
+                </button>
+                <a href="/chat_history" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all">
+                    <i class="ph-bold ph-clock-counter-clockwise text-xs"></i> Logs
                 </a>
-                <a href="/logout" class="btn-micro flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-500/10 border border-red-500/10 text-red-400 text-[11px] font-semibold uppercase tracking-wider hover:bg-red-500/20 transition-colors">
+                <a href="/logout" class="btn-micro flex h-8 w-8 items-center justify-center rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all" title="Disconnect Session">
                     <i class="ph-bold ph-power text-sm"></i>
                 </a>
             </div>
         </header>
 
-        <!-- Chat Container -->
-        <div id="chat-container" class="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 min-h-0 pb-48 page-enter-3" style="will-change: transform;">
-            <!-- Welcome Message (Will be removed by JS) -->
-            <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full max-w-2xl mx-auto text-center mt-8">
-                <div class="w-24 h-24 rounded-3xl bg-slate-800/50 border border-white/5 flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
-                    <i class="ph-light ph-cpu text-5xl text-slate-300"></i>
+        <!-- Clinical Chat Area (Centered 760px constraints) -->
+        <div class="flex-1 overflow-y-auto min-h-0 flex flex-col">
+            <div id="chat-container" class="max-w-[760px] w-full mx-auto p-4 md:p-6 space-y-6 flex-1 min-h-0 pb-48 page-enter-3" style="will-change: transform;">
+                
+                <!-- Welcome Message (Will be removed by JS) -->
+                <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full text-center mt-12 px-4">
+                    <div class="w-20 h-20 rounded-3xl bg-slate-800/40 border border-border flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
+                        <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                            <path d="M12 5v13" />
+                        </svg>
+                    </div>
+                    <h1 class="font-display text-3xl font-bold text-white mb-3 tracking-tight">Clinical Assistant Workspace</h1>
+                    <p class="text-text-secondary text-sm mb-6 leading-relaxed max-w-md font-medium">
+                        Search and analyze the 51-chapter neurological disorders manual. Type a diagnostic, pathology, or pharmaceutical query below.
+                    </p>
+                    <div class="flex gap-2.5 text-[9px] text-text-muted font-semibold tracking-widest uppercase">
+                        <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-database text-accent text-xs"></i> FAISS VECTORS</div>
+                        <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-lightning text-accent text-xs"></i> GEMINI 2.5 FLASH</div>
+                    </div>
                 </div>
-                <h1 class="font-display text-4xl font-bold text-white mb-4 tracking-tight">Intelligence Core</h1>
-                <p class="text-slate-400 text-base mb-8 leading-relaxed max-w-lg font-medium">
-                    Advanced retrieval-augmented generation engine active. Awaiting clinical inquiries regarding neurological pathology, pharmacology, and diagnostics.
-                </p>
-                <div class="flex gap-3 text-[10px] text-slate-400 font-semibold tracking-widest uppercase">
-                    <div class="glass-panel flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5"><i class="ph-fill ph-database text-teal-500 text-sm"></i> Vector DB</div>
-                    <div class="glass-panel flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5"><i class="ph-fill ph-lightning text-teal-500 text-sm"></i> Flash 2.5</div>
-                </div>
-            </div>
 
+            </div>
         </div>
 
-        <!-- Input Area (Floating at bottom) -->
-        <div class="absolute bottom-0 left-0 w-full p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--bg-deep) 40%, transparent 100%);">
-            <div class="max-w-3xl mx-auto relative pointer-events-auto">
-                <div class="glass-input-container relative flex items-end gap-3 rounded-2xl p-1.5 pl-4">
+        <!-- Fixed Composer Area (Centered 760px constraints) -->
+        <div class="absolute bottom-0 left-0 w-full p-4 md:p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--color-bg-base) 40%, transparent 100%);">
+            <div class="max-w-[760px] mx-auto relative pointer-events-auto">
+                <div class="glass-elevated relative flex items-end gap-3 p-2 pl-4 border border-border shadow-medium">
                     <textarea 
                         id="query-input" 
-                        placeholder="Inquire..."
+                        placeholder="Inquire clinical assistant..."
                         rows="1"
-                        class="w-full bg-transparent text-white placeholder-slate-500 outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
+                        class="w-full bg-transparent text-text-primary placeholder-text-muted outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
                     ></textarea>
                     
-                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-teal-600 flex items-center justify-center text-white mb-1 mr-1 hover:bg-teal-500 shadow-md">
-                        <i class="ph-bold ph-arrow-up text-lg"></i>
+                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md">
+                        <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
                     </button>
                 </div>
             </div>

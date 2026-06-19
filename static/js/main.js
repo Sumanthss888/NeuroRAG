@@ -42,6 +42,13 @@ const reportContent = document.getElementById('report-content');
 const btnCloseReport = document.getElementById('btn-close-report');
 const btnPrintReport = document.getElementById('btn-print-report');
 
+// Mobile Sidebar Navigation DOM Elements
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.querySelector('aside');
+const sidebarOverlay = document.getElementById('sidebar-overlay');
+const searchContainer = document.getElementById('sidebar-search-container');
+const searchInput = document.getElementById('sidebar-search');
+
 // Initialize Toggle State
 updateToggleVisuals(currentMode);
 
@@ -72,8 +79,49 @@ modeButtons.forEach(btn => {
         
         document.body.classList.remove('mode-patient', 'mode-clinician');
         document.body.classList.add(`mode-${currentMode}`);
+
+        // Phase 2: Fade-in / Fade-out Mode Change Toast Tooltip
+        showModeTooltip(currentMode);
     });
 });
+
+// Mobile Sidebar Interactions
+if (sidebarToggle && sidebar && sidebarOverlay) {
+    sidebarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-open');
+        if (sidebar.classList.contains('sidebar-open')) {
+            sidebarOverlay.classList.remove('hidden');
+            requestAnimationFrame(() => sidebarOverlay.classList.add('opacity-100'));
+        } else {
+            sidebarOverlay.classList.remove('opacity-100');
+            setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+        }
+    });
+
+    sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('sidebar-open');
+        sidebarOverlay.classList.remove('opacity-100');
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+    });
+}
+
+// Sidebar History Real-time Search Filter
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        const items = timelineContainer.querySelectorAll('.timeline-item');
+        items.forEach((item, idx) => {
+            if (idx < messageHistory.length) {
+                const queryText = messageHistory[idx].query.toLowerCase();
+                if (queryText.includes(term)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            }
+        });
+    });
+}
 
 // Feature: Report Modal Listeners
 btnGenerateReport.addEventListener('click', generateReport);
@@ -82,26 +130,58 @@ btnPrintReport.addEventListener('click', () => window.print());
 
 function updateToggleVisuals(mode) {
     if (mode === 'patient') {
-        indicator.style.transform = 'translateX(0)';
+        if (indicator) indicator.style.transform = 'translateX(0)';
         
-        btnPatient.classList.remove('text-slate-400');
-        btnPatient.classList.add('text-white');
-        btnClinician.classList.remove('text-white');
-        btnClinician.classList.add('text-slate-400');
+        if (btnPatient) {
+            btnPatient.classList.remove('text-text-secondary');
+            btnPatient.classList.add('text-white');
+        }
+        if (btnClinician) {
+            btnClinician.classList.remove('text-white');
+            btnClinician.classList.add('text-text-secondary');
+        }
         
-        iconPatient.className = 'ph-fill ph-user text-teal-400 transition-all duration-300 text-sm';
-        iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-sm';
+        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white transition-all duration-300 text-xs';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-xs';
     } else {
-        indicator.style.transform = 'translateX(100%)';
+        if (indicator) indicator.style.transform = 'translateX(100%)';
         
-        btnClinician.classList.remove('text-slate-400');
-        btnClinician.classList.add('text-white');
-        btnPatient.classList.remove('text-white');
-        btnPatient.classList.add('text-slate-400');
+        if (btnClinician) {
+            btnClinician.classList.remove('text-text-secondary');
+            btnClinician.classList.add('text-white');
+        }
+        if (btnPatient) {
+            btnPatient.classList.remove('text-white');
+            btnPatient.classList.add('text-text-secondary');
+        }
         
-        iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 transition-all duration-300 text-sm';
-        iconPatient.className = 'ph-fill ph-user text-teal-400 opacity-40 transition-all duration-300 text-sm';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 transition-all duration-300 text-xs';
+        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white opacity-40 transition-all duration-300 text-xs';
     }
+}
+
+// Operational Switch Tooltip Toast Notification
+function showModeTooltip(mode) {
+    const existing = document.getElementById('mode-tooltip');
+    if (existing) existing.remove();
+
+    const tooltip = document.createElement('div');
+    tooltip.id = 'mode-tooltip';
+    tooltip.className = 'fixed top-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-accent text-white text-xs font-semibold shadow-glow z-50 transition-all duration-300 opacity-0 transform translate-y-[-10px] pointer-events-none';
+    tooltip.textContent = `Switched to ${mode.charAt(0).toUpperCase() + mode.slice(1)} Mode`;
+    
+    document.body.appendChild(tooltip);
+    
+    requestAnimationFrame(() => {
+        tooltip.classList.remove('opacity-0', 'translate-y-[-10px]');
+        tooltip.classList.add('opacity-100', 'translate-y-0');
+    });
+    
+    setTimeout(() => {
+        tooltip.classList.remove('opacity-100', 'translate-y-0');
+        tooltip.classList.add('opacity-0', 'translate-y-[-10px]');
+        setTimeout(() => tooltip.remove(), 300);
+    }, 1500);
 }
 
 exampleButtons.forEach(btn => {
@@ -175,26 +255,49 @@ function updateTimeline() {
     
     const examples = document.getElementById('example-queries-container');
     if (examples) examples.classList.add('hidden');
+
+    if (searchContainer && messageHistory.length > 0) {
+        searchContainer.classList.remove('hidden');
+    }
     
     messageHistory.forEach((entry, index) => {
         const item = document.createElement('div');
         item.className = 'timeline-item animate-message-enter';
         item.style.animationDelay = `${index * 50}ms`;
         
-        const accentClass = entry.mode === 'patient' ? 'text-teal-400' : 'text-emerald-400';
+        const accentClass = entry.mode === 'patient' ? 'text-accent' : 'text-emerald-400';
+        const isActive = index === messageHistory.length - 1 ? 'active' : '';
         
         item.innerHTML = `
             <div class="timeline-dot ${accentClass}"></div>
-            <div class="timeline-card" onclick="document.getElementById('${entry.id}').scrollIntoView({behavior: 'smooth', block: 'center'})">
+            <div class="timeline-card ${isActive}" onclick="scrollToMessage('${entry.id}', this)">
                 <div class="flex items-center justify-between mb-1">
-                    <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest">${entry.timestamp}</span>
+                    <span class="text-[10px] font-semibold text-text-muted uppercase tracking-widest">${entry.timestamp}</span>
                     <i class="ph-fill ${entry.mode === 'patient' ? 'ph-user' : 'ph-stethoscope'} ${accentClass} text-xs opacity-70"></i>
                 </div>
-                <p class="text-xs text-slate-200 line-clamp-2 font-medium">${entry.query}</p>
+                <p class="text-[12px] text-text-secondary line-clamp-2 font-medium leading-snug">${entry.query}</p>
             </div>
         `;
         timelineContainer.appendChild(item);
     });
+}
+
+function scrollToMessage(id, element) {
+    // Highlight clicked card
+    timelineContainer.querySelectorAll('.timeline-card').forEach(c => c.classList.remove('active'));
+    if (element) element.classList.add('active');
+
+    const msgElement = document.getElementById(id);
+    if (msgElement) {
+        msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Collapse mobile sidebar on timeline select
+    if (window.innerWidth < 768 && sidebar && sidebarOverlay) {
+        sidebar.classList.remove('sidebar-open');
+        sidebarOverlay.classList.remove('opacity-100');
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+    }
 }
 
 function generateReport() {
@@ -204,7 +307,7 @@ function generateReport() {
     if (!lastEntry.answer) return;
     
     const isPatient = lastEntry.mode === 'patient';
-    const accentColor = isPatient ? '#14b8a6' : '#10b981'; // teal-500 or emerald-500
+    const accentColor = '#7C6AF7'; 
     const modeName = isPatient ? 'Patient Overview' : 'Clinical Diagnostic';
     const date = new Date().toLocaleDateString();
     
@@ -219,7 +322,11 @@ function generateReport() {
     reportContent.innerHTML = `
         <div class="border-b pb-6 mb-6" style="border-color: #e2e8f0">
             <div class="flex items-center gap-3 mb-2">
-                <i class="ph-fill ph-brain text-3xl" style="color: ${accentColor}"></i>
+                <svg class="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="none" stroke="#7C6AF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                    <path d="M12 5v13" />
+                </svg>
                 <div>
                     <h1 class="text-2xl font-bold font-display tracking-tight text-slate-900 leading-tight" style="margin-bottom:0">NeuroRAG</h1>
                     <p class="section-label" style="margin-bottom:0">Official Clinical AI Report</p>
@@ -253,11 +360,12 @@ function addMessage(sender, content, id) {
     messageWrapper.id = id; 
     messageWrapper.className = 'flex w-full animate-message-enter justify-end pl-12';
     
+    // User Message Bubble redesign specs
     const messageBubble = document.createElement('div');
-    messageBubble.className = 'relative max-w-[85%] rounded-2xl rounded-tr-sm bg-slate-800 p-4 text-white border border-white/5 shadow-sm';
+    messageBubble.className = 'relative max-w-[85%] rounded-[18px_18px_4px_18px] bg-accent/10 text-white border border-accent/25 p-[12px_16px] shadow-soft';
     
     const contentDiv = document.createElement('div');
-    contentDiv.className = 'font-sans text-[15px] leading-relaxed font-medium';
+    contentDiv.className = 'font-sans text-[14px] leading-relaxed font-medium text-text-primary';
     contentDiv.textContent = content;
     
     messageBubble.appendChild(contentDiv);
@@ -270,27 +378,29 @@ function addMessage(sender, content, id) {
 function addAssistantMessage(data, id) {
     const messageWrapper = document.createElement('div');
     if (id) messageWrapper.id = id;
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12';
+    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
     
     const isPatient = currentMode === 'patient';
-    const accentColor = isPatient ? 'teal' : 'emerald';
     
+    // AI Message Card redesign specs
     const messageCard = document.createElement('div');
-    messageCard.className = `glass-panel relative w-full rounded-2xl rounded-tl-sm p-6`;
-    
-    const sideBar = document.createElement('div');
-    sideBar.className = `absolute bottom-6 left-0 top-6 w-1 rounded-r-full bg-${accentColor}-500/80`;
-    messageCard.appendChild(sideBar);
+    messageCard.className = `glass-subtle relative w-full rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft`;
     
     const contentContainer = document.createElement('div');
-    contentContainer.className = 'pl-4';
+    contentContainer.className = 'w-full';
     
     const header = document.createElement('div');
-    header.className = `mb-4 flex items-center justify-between pb-3`;
+    header.className = `mb-3.5 flex items-center justify-between pb-2 border-b border-border/20`;
     
     const aiLabel = document.createElement('div');
-    aiLabel.className = `flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-slate-300`;
-    aiLabel.innerHTML = `<i class="ph-fill ph-brain text-lg text-${accentColor}-400"></i> System Response`;
+    aiLabel.className = `flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-text-secondary`;
+    aiLabel.innerHTML = `
+        <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+            <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+            <path d="M12 5v13" />
+        </svg> System Response
+    `;
     
     header.appendChild(aiLabel);
     contentContainer.appendChild(header);
@@ -301,9 +411,24 @@ function addAssistantMessage(data, id) {
     }
     
     const answerDiv = document.createElement('div');
-    answerDiv.className = 'markdown-body text-[15px] font-medium';
+    answerDiv.className = 'markdown-body text-[14px] leading-relaxed font-medium text-text-secondary';
     answerDiv.innerHTML = formatAnswerStreaming(data.answer, isPatient);
     contentContainer.appendChild(answerDiv);
+
+    // Citations (beneath Response) specs
+    if (data.citations && data.citations.length > 0) {
+        const citationsContainer = document.createElement('div');
+        citationsContainer.className = 'mt-4 flex flex-wrap gap-2 pt-2 border-t border-border/20';
+        
+        data.citations.forEach(cit => {
+            const pill = document.createElement('div');
+            pill.className = 'glass-subtle inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium text-text-secondary hover:text-white transition-all cursor-pointer border border-border';
+            pill.setAttribute('title', `Similarity Score: ${(cit.similarity * 100).toFixed(1)}%`);
+            pill.innerHTML = `<i class="ph-bold ph-bookmark-simple text-accent"></i> Chapter ${cit.chapter_id}: ${cit.chapter_title}`;
+            citationsContainer.appendChild(pill);
+        });
+        contentContainer.appendChild(citationsContainer);
+    }
     
     const riskLevel = calculateRiskScore(data.answer);
     const riskIndicator = createRiskIndicator(riskLevel);
@@ -331,7 +456,6 @@ function formatAnswerStreaming(text, isPatient) {
     text = text.split('---')[0].trim();
     const paragraphs = text.split('\n\n');
     let formatted = '';
-    const accentClass = isPatient ? 'text-teal-400' : 'text-emerald-400';
     let delayMs = 0;
     
     for (const para of paragraphs) {
@@ -368,7 +492,6 @@ function formatAnswerStreaming(text, isPatient) {
 function processTextForTooltips(text) {
     let processedText = text;
     for (const [keyword, definition] of Object.entries(MEDICAL_DICTIONARY)) {
-        // Case-insensitive match, ensure it's a whole word, and don't match inside HTML tags
         const regex = new RegExp(`\\b(${keyword}s?)\\b(?![^<]*>)`, 'gi');
         processedText = processedText.replace(regex, `<span class="symptom-highlight" data-tooltip="${definition}">$1</span>`);
     }
@@ -465,7 +588,7 @@ function detectRedFlags(text) {
     alertDiv.innerHTML = `
         <i class="ph-fill ph-warning-circle red-flag-icon"></i>
         <div class="red-flag-content">
-            <div class="red-flag-title">Potential Medical Emergency</div>
+            <div class="red-flag-title">Critical Alert</div>
             <div class="red-flag-text">Critical symptoms detected. Immediate medical attention may be required. Do not rely solely on this AI analysis.</div>
         </div>
     `;
@@ -476,43 +599,65 @@ function createReasoningSnapshot(query, response) {
     const combinedText = (query + ' ' + response).toLowerCase();
     const matchedKeywords = [];
     
-    for (const keyword of Object.keys(MEDICAL_DICTIONARY)) {
+    for (const [keyword, definition] of Object.entries(MEDICAL_DICTIONARY)) {
         if (combinedText.includes(keyword.toLowerCase())) {
             matchedKeywords.push(keyword);
         }
     }
     
     const container = document.createElement('div');
-    container.className = 'reasoning-container';
+    container.className = 'reasoning-container mt-4 border border-border rounded-xl bg-black/10 overflow-hidden';
+    
+    const confidence = Math.min(60 + matchedKeywords.length * 10, 95);
     
     container.innerHTML = `
-        <div class="reasoning-header" onclick="this.parentElement.classList.toggle('expanded')">
-            <div class="reasoning-title">
-                <i class="ph-bold ph-brain"></i> AI Reasoning Snapshot
+        <div class="reasoning-header px-4 py-3 flex items-center justify-between cursor-pointer select-none bg-white/2 hover:bg-white/4 transition-colors" onclick="this.parentElement.classList.toggle('expanded')">
+            <div class="reasoning-title text-[10px] font-semibold uppercase tracking-wider text-text-secondary flex items-center gap-2">
+                <i class="ph-bold ph-brain text-accent text-sm"></i> Clinical Analysis
             </div>
-            <i class="ph-bold ph-caret-down reasoning-icon"></i>
+            <i class="ph-bold ph-caret-down text-text-muted transition-transform duration-300 reasoning-icon"></i>
         </div>
         <div class="reasoning-content-wrapper">
             <div class="reasoning-content">
-                <div class="reasoning-inner">
-                    <div class="reasoning-section">
-                        <div class="reasoning-label">Keywords Matched</div>
-                        <div class="reasoning-data">
-                            ${matchedKeywords.length > 0 
-                                ? matchedKeywords.map(k => '<span class="reasoning-tag">' + k + '</span>').join('') 
-                                : '<span class="text-slate-400">No specific dictionary keywords matched.</span>'}
+                <div class="reasoning-inner p-4 border-t border-border/40 space-y-4">
+                    <!-- Confidence Indicator -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs font-semibold text-text-secondary">
+                            <span>Confidence Assessment</span>
+                            <span>${confidence}%</span>
+                        </div>
+                        <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                            <div class="confidence-bar h-full bg-accent rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
                         </div>
                     </div>
-                    <div class="reasoning-section">
-                        <div class="reasoning-label">Context Summary</div>
-                        <div class="reasoning-data text-slate-300">
-                            Analyzed user query and cross-referenced with established clinical guidelines to generate response. Confidence is high based on keyword density.
+                    
+                    <!-- Supporting Findings -->
+                    <div class="space-y-1">
+                        <div class="text-[10px] font-bold text-text-muted uppercase tracking-wider">Clinical Indicators Matched</div>
+                        <div class="flex flex-wrap gap-1.5 mt-1">
+                            ${matchedKeywords.length > 0 
+                                ? matchedKeywords.map(k => '<span class="px-2 py-0.5 rounded bg-accent/10 border border-accent/20 text-accent text-[10px] font-medium">' + k + '</span>').join('') 
+                                : '<span class="text-text-muted text-xs">No specific clinical dictionary matches.</span>'}
                         </div>
+                    </div>
+                    
+                    <!-- Clinical Guidance Summary -->
+                    <div class="space-y-1">
+                        <div class="text-[10px] font-bold text-text-muted uppercase tracking-wider">Clinical Guidance Summary</div>
+                        <p class="text-xs text-text-secondary leading-relaxed font-medium">
+                            Cross-referenced inquiry details against clinical neurology handbook. Synthesized response using ${matchedKeywords.length > 0 ? 'high-density target' : 'general'} medical guidelines.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     `;
+    
+    // Animate progress bar width after layout insertion
+    setTimeout(() => {
+        const bar = container.querySelector('.confidence-bar');
+        if (bar) bar.style.width = `${confidence}%`;
+    }, 100);
     
     return container;
 }
@@ -529,7 +674,7 @@ function generateFallbackSuggestions(query) {
 
 function addErrorMessage(errorText) {
     const messageWrapper = document.createElement('div');
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12';
+    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
     
     const messageCard = document.createElement('div');
     messageCard.className = 'glass-panel relative w-full rounded-2xl rounded-tl-sm p-6';
@@ -553,23 +698,23 @@ function showLoading() {
     const loadingId = 'loading-' + Date.now();
     const messageWrapper = document.createElement('div');
     messageWrapper.id = loadingId;
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12';
+    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
     
     const isPatient = currentMode === 'patient';
-    const accentColor = isPatient ? 'teal' : 'emerald';
+    const accentColor = isPatient ? 'accent' : 'emerald';
     
     const messageCard = document.createElement('div');
-    messageCard.className = 'glass-panel relative w-64 rounded-2xl rounded-tl-sm p-5 flex items-center justify-center';
+    messageCard.className = 'glass-subtle relative w-64 rounded-2xl rounded-tl-sm p-5 flex items-center justify-center border border-border';
     
     messageCard.innerHTML = `
         <div class="flex flex-col items-center justify-center gap-3 py-2">
-            <div class="neural-pulse-container text-${accentColor}-400">
+            <div class="neural-pulse-container text-${accentColor}">
                 <div class="neural-wave"></div>
                 <div class="neural-wave"></div>
                 <div class="neural-wave"></div>
                 <div class="neural-wave"></div>
             </div>
-            <div class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">Analyzing clinical context...</div>
+            <div class="text-[10px] font-semibold uppercase tracking-widest text-text-muted">Analyzing clinical context...</div>
         </div>
     `;
     
@@ -600,13 +745,10 @@ function scrollToBottom() {
         });
     };
     
-    // Initial scroll
     requestAnimationFrame(scrollFn);
-    
-    // Follow-up scrolls to catch CSS animations expanding (e.g., Reasoning Snapshot)
     setTimeout(scrollFn, 400);
     setTimeout(scrollFn, 800);
     setTimeout(scrollFn, 1200);
 }
 
-console.log('NeuroRAG Calm Interface Online');
+console.log('NeuroRAG Clinical Assistant Workspace Active');

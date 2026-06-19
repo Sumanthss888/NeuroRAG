@@ -12,8 +12,45 @@
         darkMode: 'class',
         theme: {
           extend: {
+            fontFamily: {
+              sans: ['Inter', '-apple-system', 'sans-serif'],
+              display: ['DM Sans', '-apple-system', 'sans-serif'],
+            },
             colors: {
-              glass: 'rgba(15, 23, 42, 0.6)',
+              glass: 'rgba(255, 255, 255, 0.04)',
+              'glass-elevated': 'rgba(255, 255, 255, 0.07)',
+              'glass-subtle': 'rgba(255, 255, 255, 0.02)',
+              accent: {
+                DEFAULT: '#7C6AF7',
+                dim: 'rgba(124, 106, 247, 0.15)',
+              },
+              bg: {
+                base: '#08090A',
+                surface: '#0F1011',
+                elevated: '#161718',
+              },
+              border: {
+                DEFAULT: 'rgba(255, 255, 255, 0.08)',
+                strong: 'rgba(255, 255, 255, 0.15)',
+              },
+              text: {
+                primary: '#F2F2F2',
+                secondary: 'rgba(242, 242, 242, 0.55)',
+                muted: 'rgba(242, 242, 242, 0.30)',
+              }
+            },
+            borderRadius: {
+              'sm': '12px',
+              'md': '16px',
+              'lg': '20px',
+              'xl': '24px',
+              '2xl': '20px',
+              '3xl': '24px',
+            },
+            boxShadow: {
+              'soft': '0 8px 30px rgba(0, 0, 0, 0.25)',
+              'medium': '0 12px 40px rgba(0, 0, 0, 0.35)',
+              'glow': '0 0 40px rgba(124, 106, 247, 0.25)',
             }
           }
         }
@@ -26,111 +63,110 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="relative flex min-h-screen items-center justify-center bg-[#020617] text-slate-200 overflow-hidden">
+<body class="relative flex min-h-screen items-center justify-center bg-bg-base text-slate-200 overflow-hidden">
     
-    <!-- Ambient Background Effects -->
-    <div class="ambient-glow-1"></div>
-    <div class="ambient-glow-2"></div>
+    <!-- Ambient Neural Background -->
+    <div id="neural-bg">
+        <div class="orb-indigo"></div>
+    </div>
     <div class="noise-overlay"></div>
 
-    <!-- Main Glass Card -->
-    <div class="glass-panel w-full max-w-md rounded-3xl p-8 shadow-[0_0_50px_rgba(6,182,212,0.15)] animate-slide-up relative z-10 border border-white/10 mx-4 mt-8 mb-8">
+    <!-- Main Glass Card (Screen 1 specifications) -->
+    <div class="glass-elevated w-[420px] rounded-[40px] p-10 shadow-medium animate-in relative z-10 border border-border mx-4 mt-8 mb-8">
         
-        <!-- Header -->
+        <!-- Brand Block -->
         <div class="text-center mb-8">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
-                <i class="ph-fill ph-user-plus text-4xl text-emerald-400 drop-shadow-[0_0_10px_rgba(16,185,129,0.8)]"></i>
+            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 border border-accent/20 shadow-glow">
+                <!-- Monoline brain SVG outline logo -->
+                <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                    <path d="M12 5v13" />
+                </svg>
             </div>
-            <h1 class="font-display text-3xl font-bold tracking-tight text-white mb-2">Initialize Profile</h1>
-            <p class="text-slate-400 font-medium">Create your clinical credentials</p>
+            <h1 class="font-display text-2xl font-bold tracking-tight text-white mb-2">Initialize Profile</h1>
+            <p class="text-[12px] text-text-muted font-medium tracking-wide">Create your clinical credentials</p>
+        </div>
+
+        <!-- Authentication Tabs (Pill Switcher) -->
+        <div class="relative flex bg-glass-subtle p-1 rounded-xl border border-border w-full overflow-hidden shadow-inner mb-6">
+            <a href="/login" class="flex-1 py-2 rounded-lg flex items-center justify-center font-display text-[13px] font-medium transition-all duration-300 text-text-secondary hover:text-white">
+                <span>Login</span>
+            </a>
+            <a href="/signup" class="flex-1 py-2 rounded-lg flex items-center justify-center font-display text-[13px] font-semibold transition-all duration-300 bg-white/10 text-white shadow-sm border border-white/5">
+                <span>Signup</span>
+            </a>
         </div>
 
         <div id="message" class="hidden mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md"></div>
 
-        <form id="signupForm" class="space-y-6">
+        <form id="signupForm" class="space-y-5">
             <!-- Username Input -->
-            <div class="floating-input relative">
+            <div class="space-y-1">
+                <label for="username" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Username</label>
                 <input 
                     type="text" 
                     id="username" 
                     required 
-                    placeholder=" " 
+                    placeholder="Create a username" 
                     autocomplete="off"
-                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(124,106,247,0.08)] outline-none transition-all duration-300 px-1"
                 >
-                <label for="username" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-emerald-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
-                    <div class="flex items-center gap-2"><i class="ph ph-identification-card"></i> Username</div>
-                </label>
-                <p class="mt-1.5 ml-2 text-xs text-slate-500"><i class="ph ph-info"></i> Minimum 3 characters required</p>
             </div>
 
             <!-- Email Input -->
-            <div class="floating-input relative">
+            <div class="space-y-1">
+                <label for="email" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Email (Optional)</label>
                 <input 
                     type="email" 
                     id="email" 
-                    placeholder=" " 
+                    placeholder="Enter your email" 
                     autocomplete="off"
-                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(124,106,247,0.08)] outline-none transition-all duration-300 px-1"
                 >
-                <label for="email" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-emerald-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
-                    <div class="flex items-center gap-2"><i class="ph ph-envelope-simple"></i> Email (Optional)</div>
-                </label>
             </div>
 
             <!-- Password Input -->
-            <div class="floating-input relative">
+            <div class="space-y-1">
+                <label for="password" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Password</label>
                 <input 
                     type="password" 
                     id="password" 
                     required 
-                    placeholder=" " 
-                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                    placeholder="Create a secure password" 
+                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(124,106,247,0.08)] outline-none transition-all duration-300 px-1"
                 >
-                <label for="password" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-emerald-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
-                    <div class="flex items-center gap-2"><i class="ph ph-lock-key"></i> Password</div>
-                </label>
-                <p class="mt-1.5 ml-2 text-xs text-slate-500"><i class="ph ph-shield-check"></i> Minimum 6 characters required</p>
             </div>
 
             <!-- Confirm Password Input -->
-            <div class="floating-input relative">
+            <div class="space-y-1">
+                <label for="confirm-password" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Confirm Password</label>
                 <input 
                     type="password" 
                     id="confirm-password" 
                     required 
-                    placeholder=" " 
-                    class="glass-input peer w-full rounded-xl px-4 py-4 text-base focus:ring-0 placeholder-transparent"
+                    placeholder="Re-enter password" 
+                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(124,106,247,0.08)] outline-none transition-all duration-300 px-1"
                 >
-                <label for="confirm-password" class="absolute left-4 top-4 text-slate-400 transition-all duration-200 peer-focus:-translate-y-3 peer-focus:text-xs peer-focus:text-emerald-400 peer-focus:font-semibold peer-valid:-translate-y-3 peer-valid:text-xs peer-valid:text-slate-300">
-                    <div class="flex items-center gap-2"><i class="ph ph-lock-key-fill"></i> Confirm Password</div>
-                </label>
             </div>
 
-            <!-- Submit Button -->
+            <!-- Submit Button (Phase 2 primary button specifications) -->
             <button 
                 type="submit" 
                 id="signupBtn" 
-                class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-4 font-display text-base font-bold text-white shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] active:scale-95 disabled:opacity-70 disabled:hover:scale-100"
+                class="group relative w-full h-12 flex items-center justify-center rounded-xl bg-accent px-4 font-sans text-[15px] font-medium text-white shadow-soft transition-all duration-200 hover:brightness-110 hover:-translate-y-[1px] active:scale-95 disabled:opacity-70 disabled:hover:scale-100 mt-2"
             >
-                <div class="absolute inset-0 bg-white/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div class="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                 
                 <span id="btnText" class="flex items-center justify-center gap-2">
                     Initialize Profile <i class="ph-bold ph-check-circle transition-transform group-hover:scale-110"></i>
                 </span>
                 
-                <div id="spinner" class="hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                <div id="spinner" class="hidden absolute">
                     <i class="ph-bold ph-spinner animate-spin text-xl"></i>
                 </div>
             </button>
         </form>
-
-        <div class="mt-8 text-center text-sm text-slate-400 border-t border-white/10 pt-6">
-            Existing personnel? 
-            <a href="/login" class="font-semibold text-emerald-400 transition-colors hover:text-emerald-300 hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]">
-                Authenticate here
-            </a>
-        </div>
     </div>
 
     <!-- Keep exact JS logic untouched -->
