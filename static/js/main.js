@@ -233,7 +233,7 @@ async function handleSubmit() {
             addAssistantMessage(data, messageId + '-response');
             btnGenerateReport.classList.remove('hidden'); // Enable Report generation
         } else {
-            addErrorMessage(data.error || 'An error occurred while processing your query');
+            addErrorMessage(data.message || (typeof data.error === 'string' ? data.error : null) || 'An error occurred while processing your query');
         }
     } catch (error) {
         removeLoading(loadingId);
@@ -377,7 +377,7 @@ function addAssistantMessage(data, id) {
     
     // AI Message Card redesign specs
     const messageCard = document.createElement('div');
-    messageCard.className = `glass-subtle relative w-full rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft`;
+    messageCard.className = `glass-subtle message-card assistant relative w-full rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft`;
     
     const contentContainer = document.createElement('div');
     contentContainer.className = 'w-full';
@@ -396,6 +396,19 @@ function addAssistantMessage(data, id) {
     `;
     
     header.appendChild(aiLabel);
+    
+    // Render severity level badge
+    const severity = data.severity_level || 'informational';
+    const badge = document.createElement('div');
+    badge.className = `severity-badge ${severity}`;
+    
+    let iconClass = 'ph-bold ph-info';
+    if (severity === 'medium') iconClass = 'ph-bold ph-warning-circle';
+    if (severity === 'high') iconClass = 'ph-bold ph-warning';
+    
+    badge.innerHTML = `<i class="${iconClass}"></i> ${severity}`;
+    header.appendChild(badge);
+    
     contentContainer.appendChild(header);
     
     const redFlag = detectRedFlags(data.answer);
@@ -437,9 +450,12 @@ function addAssistantMessage(data, id) {
     const reasoningSnapshot = createReasoningSnapshot(queryUsed, data.answer);
     contentContainer.appendChild(reasoningSnapshot);
     
-    const suggestions = data.followup_questions && data.followup_questions.length > 0 
-        ? data.followup_questions 
-        : generateFallbackSuggestions(messageHistory[messageHistory.length - 1].query);
+    const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
+    const suggestions = (data.suggested_questions && data.suggested_questions.length > 0)
+        ? data.suggested_questions
+        : (data.followup_questions && data.followup_questions.length > 0 
+            ? data.followup_questions.slice(0, 3) 
+            : generateFallbackSuggestions(queryUsed).slice(0, 3));
         
     const followupSection = createFollowupSection(suggestions);
     contentContainer.appendChild(followupSection);
@@ -500,6 +516,28 @@ function addAssistantMessage(data, id) {
         }
     });
     
+    // Phase 3: Bookmark Button
+    const bookmarkBtn = document.createElement('button');
+    bookmarkBtn.className = 'btn-bookmark-response';
+    bookmarkBtn.setAttribute('title', 'Bookmark this response');
+    bookmarkBtn.setAttribute('aria-label', 'Bookmark response');
+    
+    const cleanId = id || `msg-resp-${Date.now()}`;
+    const queryText = data.query || queryUsed;
+    
+    const bookmarked = checkIsBookmarked(cleanId);
+    if (bookmarked) {
+        bookmarkBtn.classList.add('active');
+        bookmarkBtn.innerHTML = '<i class="ph-fill ph-bookmark-simple text-xs"></i>';
+    } else {
+        bookmarkBtn.innerHTML = '<i class="ph ph-bookmark-simple text-xs"></i>';
+    }
+    
+    bookmarkBtn.addEventListener('click', () => {
+        toggleBookmark(data.answer, queryText, cleanId, bookmarkBtn);
+    });
+    
+    messageCard.appendChild(bookmarkBtn);
     messageCard.appendChild(copyBtn);
     messageCard.appendChild(contentContainer);
     messageWrapper.appendChild(messageCard);
@@ -728,22 +766,46 @@ function generateFallbackSuggestions(query) {
     return ['Can you explain the diagnosis process?', 'What are the treatment options?', 'Are there any lifestyle changes?'];
 }
 
-function addErrorMessage(errorText) {
+function addErrorMessage(errorText, id) {
     const messageWrapper = document.createElement('div');
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
+    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start error-bubble-container';
+    if (id) messageWrapper.id = id;
     
     const messageCard = document.createElement('div');
-    messageCard.className = 'glass-panel relative w-full rounded-2xl rounded-tl-sm p-6';
+    messageCard.className = 'glass-subtle message-card assistant relative w-full rounded-[4px_18px_18px_18px] p-5 border border-border border-l-4 border-l-red-500/80 shadow-soft flex flex-col gap-3';
     
     messageCard.innerHTML = `
-        <div class="absolute bottom-6 left-0 top-6 w-1 rounded-r-full bg-red-500/80"></div>
-        <div class="pl-4">
-            <div class="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-red-400">
-                <i class="ph-fill ph-warning-circle text-lg"></i> System Error
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-red-400">
+                <i class="ph-bold ph-warning-circle text-sm"></i> System Error
             </div>
-            <p class="text-[14px] font-medium text-slate-300 leading-relaxed">${errorText}</p>
+            <button class="btn-retry flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 text-[10px] font-bold uppercase tracking-wider transition-all" aria-label="Retry query">
+                <i class="ph-bold ph-arrows-counter-clockwise text-xs"></i> Retry
+            </button>
         </div>
+        <p class="text-[14px] font-medium text-text-secondary leading-relaxed">${errorText}</p>
     `;
+    
+    // Add retry click event
+    const retryBtn = messageCard.querySelector('.btn-retry');
+    retryBtn.addEventListener('click', () => {
+        // Remove error bubble
+        messageWrapper.remove();
+        
+        if (messageHistory.length > 0) {
+            const lastEntry = messageHistory[messageHistory.length - 1];
+            // Remove last user message bubble from DOM
+            const userMsgEl = document.getElementById(lastEntry.id);
+            if (userMsgEl) userMsgEl.remove();
+            
+            // Pop the failed query from history so handleSubmit pushes it fresh
+            messageHistory.pop();
+            
+            // Re-submit
+            queryInput.value = lastEntry.query;
+            handleSubmit();
+        }
+    });
     
     messageWrapper.appendChild(messageCard);
     chatContainer.appendChild(messageWrapper);
@@ -757,13 +819,31 @@ function showLoading() {
     messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
     
     const messageCard = document.createElement('div');
-    messageCard.className = 'glass-subtle relative rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft';
+    messageCard.className = 'glass-subtle message-card assistant relative w-full rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft flex gap-3.5';
     
     messageCard.innerHTML = `
-        <div class="typing-indicator-container">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
+        <!-- AI Avatar Placeholder -->
+        <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-accent/15 border border-accent/25 flex items-center justify-center placeholder-shimmer">
+            <svg class="w-4.5 h-4.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <title>Workspace Icon</title>
+                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                <path d="M12 5v13" />
+            </svg>
+        </div>
+        
+        <div class="flex-1 space-y-3 py-1">
+            <!-- Two Shimmer lines -->
+            <div class="h-3.5 bg-white/7 rounded w-4/5 placeholder-shimmer"></div>
+            <div class="h-3.5 bg-white/5 rounded w-2/3 placeholder-shimmer"></div>
+            
+            <!-- Typing dots indicator -->
+            <div class="typing-indicator-container mt-1.5 flex items-center gap-1.5 pl-0.5" role="status" aria-live="polite">
+                <span class="sr-only">Clinical intelligence assistant is thinking...</span>
+                <div class="typing-dot w-1.5 h-1.5 rounded-full bg-text-secondary opacity-40"></div>
+                <div class="typing-dot w-1.5 h-1.5 rounded-full bg-text-secondary opacity-40"></div>
+                <div class="typing-dot w-1.5 h-1.5 rounded-full bg-text-secondary opacity-40"></div>
+            </div>
         </div>
     `;
     
@@ -803,6 +883,9 @@ function scrollToBottom() {
 // Phase 3 Initializations & Event Listeners
 initVoiceInput();
 initExportControls();
+initBookmarks();
+initSessionHistory();
+initKeyboardShortcuts();
 
 // FEATURE 1: SMART CONVERSATION SEARCH HELPERS
 function performSmartSearch(term) {
@@ -1047,18 +1130,7 @@ if (sourceModal) {
     });
 }
 
-// Global key down for escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        if (sourceModal && sourceModal.classList.contains('show')) {
-            closeSourceModal();
-        }
-        if (reportModal && reportModal.classList.contains('active')) {
-            reportModal.classList.remove('active');
-        }
-    }
-});
-
+// Global key down for escape - replaced with specialized listeners
 // FEATURE 4: CONVERSATION EXPORT
 const btnExport = document.getElementById('btn-export');
 const exportDropdown = document.getElementById('export-dropdown');
@@ -1150,31 +1222,561 @@ function exportAsPdf() {
 
 // TOAST NOTIFICATION HELPERS
 function showToast(message, type = 'info') {
-    const existing = document.getElementById('clinical-toast');
-    if (existing) existing.remove();
-
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        container.className = 'fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none max-w-sm w-[320px]';
+        document.body.appendChild(container);
+    }
+    
+    // Enforce max 3 visible toasts
+    const activeToasts = container.querySelectorAll('.clinical-toast');
+    if (activeToasts.length >= 3) {
+        activeToasts[0].remove();
+    }
+    
     const toast = document.createElement('div');
-    toast.id = 'clinical-toast';
+    toast.className = `clinical-toast pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl border backdrop-blur-md shadow-glow transition-all duration-250 ease-out translate-x-[110%]`;
     
-    let bgColor = 'bg-accent';
-    if (type === 'error') bgColor = 'bg-red-600/90 border-red-500';
-    if (type === 'success') bgColor = 'bg-emerald-600/90 border-emerald-500';
+    let iconHTML = '';
+    if (type === 'success') {
+        toast.classList.add('bg-emerald-950/80', 'border-emerald-500/30', 'text-emerald-300');
+        iconHTML = '<i class="ph-fill ph-check-circle text-emerald-400 text-lg flex-shrink-0 mt-0.5" aria-hidden="true"></i>';
+    } else if (type === 'error') {
+        toast.classList.add('bg-red-950/80', 'border-red-500/30', 'text-red-300');
+        iconHTML = '<i class="ph-fill ph-warning-circle text-red-400 text-lg flex-shrink-0 mt-0.5" aria-hidden="true"></i>';
+    } else {
+        toast.classList.add('bg-bg-elevated/90', 'border-accent/30', 'text-text-primary');
+        iconHTML = '<i class="ph-fill ph-info text-accent text-lg flex-shrink-0 mt-0.5" aria-hidden="true"></i>';
+    }
     
-    toast.className = `fixed bottom-24 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-xl text-white text-xs font-semibold shadow-glow border border-border z-50 transition-all duration-300 opacity-0 transform translate-y-[10px] pointer-events-none ${bgColor} backdrop-blur-md`;
-    toast.textContent = message;
+    toast.innerHTML = `
+        ${iconHTML}
+        <div class="flex-1 text-[12px] font-semibold leading-normal pr-1">${escapeHTML(message)}</div>
+        <button class="text-text-muted hover:text-white transition-colors" onclick="this.parentElement.classList.add('hide-toast'); setTimeout(() => this.parentElement.remove(), 250)" aria-label="Close Notification">
+            <i class="ph ph-x text-sm"></i>
+        </button>
+    `;
     
-    document.body.appendChild(toast);
+    container.appendChild(toast);
     
     requestAnimationFrame(() => {
-        toast.classList.remove('opacity-0', 'translate-y-[10px]');
-        toast.classList.add('opacity-100', 'translate-y-0');
+        toast.classList.remove('translate-x-[110%]');
     });
     
     setTimeout(() => {
-        toast.classList.remove('opacity-100', 'translate-y-0');
-        toast.classList.add('opacity-0', 'translate-y-[10px]');
-        setTimeout(() => toast.remove(), 300);
-    }, 2500);
+        toast.classList.add('hide-toast');
+        setTimeout(() => toast.remove(), 250);
+    }, 3500);
+}
+
+// ==========================================
+// PHASE 3 ADDITIONS: BOOKMARKS MANAGEMENT
+// ==========================================
+function getBookmarks() {
+    const username = window.currentUser || 'anonymous';
+    const key = `neurorag_bookmarks_${username}`;
+    try {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveBookmarks(bookmarks) {
+    const username = window.currentUser || 'anonymous';
+    const key = `neurorag_bookmarks_${username}`;
+    localStorage.setItem(key, JSON.stringify(bookmarks));
+}
+
+function checkIsBookmarked(messageId) {
+    const bookmarks = getBookmarks();
+    return bookmarks.some(b => b.id === messageId);
+}
+
+function toggleBookmark(answer, query, messageId, btn) {
+    let bookmarks = getBookmarks();
+    const index = bookmarks.findIndex(b => b.id === messageId);
+    
+    if (index > -1) {
+        bookmarks.splice(index, 1);
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="ph ph-bookmark-simple text-xs"></i>';
+        showToast('Bookmark removed.', 'info');
+    } else {
+        bookmarks.push({
+            id: messageId,
+            query: query,
+            answer: answer,
+            timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            mode: currentMode
+        });
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="ph-fill ph-bookmark-simple text-xs"></i>';
+        showToast('Bookmark saved.', 'success');
+    }
+    saveBookmarks(bookmarks);
+    renderBookmarks();
+}
+
+function deleteBookmark(event, messageId) {
+    if (event) event.stopPropagation();
+    let bookmarks = getBookmarks();
+    bookmarks = bookmarks.filter(b => b.id !== messageId);
+    saveBookmarks(bookmarks);
+    renderBookmarks();
+    
+    // De-activate button on screen if it exists
+    const btn = document.querySelector(`#${messageId}-response .btn-bookmark-response`) || document.querySelector(`#${messageId} .btn-bookmark-response`);
+    if (btn) {
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="ph ph-bookmark-simple text-xs"></i>';
+    }
+    showToast('Bookmark removed.', 'info');
+}
+
+function renderBookmarks() {
+    const container = document.getElementById('bookmarks-container');
+    if (!container) return;
+    
+    const bookmarks = getBookmarks();
+    if (bookmarks.length === 0) {
+        container.innerHTML = '<div class="text-[11px] text-text-muted italic px-2">No bookmarks saved yet.</div>';
+        return;
+    }
+    
+    container.innerHTML = '';
+    bookmarks.forEach(bookmark => {
+        const item = document.createElement('div');
+        item.className = 'bookmark-item';
+        
+        item.addEventListener('click', () => {
+            handleBookmarkClick(bookmark);
+        });
+        
+        // Extract paragraph preview
+        const firstPara = bookmark.answer.split('\n\n')[0].replace(/[*#]/g, '').trim();
+        
+        item.innerHTML = `
+            <div class="flex-1 min-w-0">
+                <div class="font-medium truncate text-white">${escapeHTML(bookmark.query)}</div>
+                <div class="text-[10px] text-text-muted truncate mt-0.5">${escapeHTML(firstPara)}</div>
+            </div>
+            <i class="ph ph-trash bookmark-delete-btn text-xs shrink-0 mt-0.5" title="Remove bookmark"></i>
+        `;
+        
+        const trashBtn = item.querySelector('.bookmark-delete-btn');
+        trashBtn.addEventListener('click', (e) => {
+            deleteBookmark(e, bookmark.id);
+        });
+        
+        container.appendChild(item);
+    });
+}
+
+function handleBookmarkClick(bookmark) {
+    const responseId = bookmark.id.endsWith('-response') ? bookmark.id : bookmark.id + '-response';
+    const queryId = bookmark.id.endsWith('-response') ? bookmark.id.replace('-response', '') : bookmark.id;
+    
+    const msgElement = document.getElementById(responseId) || document.getElementById(queryId);
+    if (msgElement) {
+        msgElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        msgElement.classList.add('highlight-flash');
+        setTimeout(() => msgElement.classList.remove('highlight-flash'), 1500);
+    } else {
+        // Restore conversation to chat window if not found in current DOM
+        const welcomeMsg = document.querySelector('.welcome-message');
+        if (welcomeMsg) welcomeMsg.remove();
+        
+        chatContainer.innerHTML = '';
+        messageHistory = [{
+            id: queryId,
+            query: bookmark.query,
+            answer: bookmark.answer,
+            timestamp: bookmark.timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            mode: bookmark.mode || currentMode
+        }];
+        
+        addMessage('user', bookmark.query, queryId);
+        addAssistantMessage({
+            answer: bookmark.answer,
+            query: bookmark.query,
+            citations: [],
+            followup_questions: []
+        }, responseId);
+        
+        updateTimeline();
+        showToast('Restored bookmarked Q&A findings to workspace.', 'info');
+    }
+}
+
+function initBookmarks() {
+    renderBookmarks();
+}
+
+// ==========================================
+// PHASE 3 ADDITIONS: SESSION HISTORY
+// ==========================================
+let pastSessions = [];
+
+async function loadSessionHistory() {
+    const historySection = document.getElementById('history-section');
+    const container = document.getElementById('history-container');
+    
+    if (historySection && container) {
+        historySection.classList.remove('hidden');
+        container.innerHTML = '';
+        for (let i = 0; i < 3; i++) {
+            const skeleton = document.createElement('div');
+            skeleton.className = 'sidebar-skeleton-card border border-border/40 rounded-lg p-3 bg-white/2 space-y-2 mb-2 placeholder-shimmer';
+            skeleton.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="sidebar-skeleton-text w-24 bg-white/10 rounded"></div>
+                    <div class="sidebar-skeleton-text w-12 bg-white/5 rounded"></div>
+                </div>
+                <div class="sidebar-skeleton-text w-full bg-white/5 rounded mt-2"></div>
+            `;
+            container.appendChild(skeleton);
+        }
+    }
+    
+    try {
+        const response = await fetch('/api/conversations');
+        const data = await response.json();
+        if (data.success && data.conversations) {
+            pastSessions = data.conversations;
+            renderSessionHistory(pastSessions);
+        } else if (historySection) {
+            historySection.classList.add('hidden');
+        }
+    } catch (error) {
+        console.error("Error loading session history:", error);
+        if (historySection) {
+            historySection.classList.add('hidden');
+        }
+    }
+}
+
+function renderSessionHistory(conversations) {
+    const historySection = document.getElementById('history-section');
+    const container = document.getElementById('history-container');
+    if (!container || !historySection) return;
+    
+    if (!conversations || conversations.length === 0) {
+        historySection.classList.add('hidden');
+        return;
+    }
+    
+    historySection.classList.remove('hidden');
+    container.innerHTML = '';
+    
+    conversations.forEach(sess => {
+        const card = document.createElement('div');
+        card.className = 'sidebar-session-card border border-border/40 rounded-lg p-3 bg-white/2 hover:bg-white/5 transition-all mb-2';
+        
+        const dateStr = new Date(sess.last_activity).toLocaleDateString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const summaryText = sess.summary || "Clinical session complete.";
+        
+        card.innerHTML = `
+            <div class="flex items-center justify-between cursor-pointer session-card-header">
+                <div class="flex flex-col min-w-0">
+                    <span class="text-[10px] font-semibold text-text-secondary">Session: ${dateStr}</span>
+                    <span class="text-[9px] text-text-muted mt-0.5">${sess.query_count} queries • ${sess.critical_count} critical</span>
+                </div>
+                <i class="ph ph-caret-down text-text-muted transition-transform duration-300 font-bold text-xs"></i>
+            </div>
+            
+            <div class="session-details hidden mt-3 pt-3 border-t border-border/20 space-y-2">
+                <div class="session-summary-card">
+                    <strong>Summary:</strong> ${escapeHTML(summaryText)}
+                </div>
+                
+                ${sess.top_topics && sess.top_topics.length > 0 ? `
+                <div class="text-[9px] text-text-muted font-bold uppercase tracking-wider">Topics:</div>
+                <div class="flex flex-wrap gap-1">
+                    ${sess.top_topics.map(t => `<span class="px-1.5 py-0.5 rounded bg-accent/10 border border-accent/20 text-accent text-[9px] font-semibold">${escapeHTML(t)}</span>`).join('')}
+                </div>
+                ` : ''}
+                
+                ${sess.chats && sess.chats.length > 0 ? `
+                <div class="text-[9px] text-text-muted font-bold uppercase tracking-wider">Queries:</div>
+                <ul class="space-y-1.5 pl-2 list-none text-[11px] text-text-secondary">
+                    ${sess.chats.map((c, idx) => `
+                        <li class="hover:text-accent transition-colors truncate flex items-center gap-1.5" onclick="event.stopPropagation(); loadSessionById('${sess.session_id}')">
+                            <i class="ph ph-circle text-[6px] text-text-muted"></i>
+                            <span>${escapeHTML(c.question || c.query)}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+                ` : ''}
+                
+                <button class="w-full mt-2 btn-micro py-1 bg-accent/15 border border-accent/25 text-[10px] font-bold rounded text-accent hover:bg-accent/25 transition-all text-center" onclick="event.stopPropagation(); loadSessionById('${sess.session_id}')">
+                    Load Session Workspace
+                </button>
+            </div>
+        `;
+        
+        // Add click toggle to card header
+        const header = card.querySelector('.session-card-header');
+        header.addEventListener('click', () => {
+            toggleSessionCollapse(card);
+        });
+        
+        container.appendChild(card);
+    });
+}
+
+function toggleSessionCollapse(cardElement) {
+    const details = cardElement.querySelector('.session-details');
+    const caret = cardElement.querySelector('.ph-caret-down');
+    
+    if (details) {
+        const isCollapsed = details.classList.contains('hidden');
+        if (isCollapsed) {
+            details.classList.remove('hidden');
+            if (caret) caret.style.transform = 'rotate(180deg)';
+        } else {
+            details.classList.add('hidden');
+            if (caret) caret.style.transform = 'rotate(0deg)';
+        }
+    }
+}
+
+function loadSessionById(sessionId) {
+    const sess = pastSessions.find(s => s.session_id === sessionId);
+    if (sess) {
+        renderSession(sess);
+        showToast("Loaded historical session.", "success");
+    }
+}
+
+function renderSession(sessionData) {
+    const welcomeMsg = document.querySelector('.welcome-message');
+    if (welcomeMsg) welcomeMsg.remove();
+    
+    chatContainer.innerHTML = '';
+    messageHistory = [];
+    
+    sessionData.chats.forEach((chat, idx) => {
+        const messageId = `msg-${Date.now()}-${idx}`;
+        const query = chat.question || chat.query;
+        const answer = chat.answer;
+        
+        const historyEntry = {
+            id: messageId,
+            query: query,
+            answer: answer,
+            timestamp: chat.timestamp ? new Date(chat.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '',
+            mode: chat.mode || 'patient'
+        };
+        messageHistory.push(historyEntry);
+        
+        addMessage('user', query, messageId);
+        
+        addAssistantMessage({
+            answer: answer,
+            query: query,
+            citations: chat.citations || [],
+            followup_questions: chat.followup_questions || [],
+            suggested_questions: chat.suggested_questions || (chat.followup_questions ? chat.followup_questions.slice(0, 3) : []),
+            severity_level: chat.severity_level || 'informational',
+            retrieved_chunks_count: chat.retrieved_chunks_count || 0
+        }, messageId + '-response');
+    });
+    
+    // Enable generate report button
+    if (btnGenerateReport) {
+        btnGenerateReport.classList.remove('hidden');
+    }
+    
+    updateTimeline();
+}
+
+function clearActiveWorkspace() {
+    chatContainer.innerHTML = '';
+    messageHistory = [];
+    
+    // Hide report button
+    if (btnGenerateReport) {
+        btnGenerateReport.classList.add('hidden');
+    }
+    
+    // Hide/clear timeline container
+    if (timelineContainer) {
+        timelineContainer.classList.add('hidden');
+        timelineContainer.innerHTML = '';
+    }
+    
+    // Restore welcome message
+    const welcomeHtml = `
+        <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full text-center mt-12 px-4">
+            <div class="w-20 h-20 rounded-3xl bg-slate-800/40 border border-border flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
+                <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                    <path d="M12 5v13" />
+                </svg>
+            </div>
+            <h1 class="font-display text-3xl font-bold text-white mb-3 tracking-tight">Clinical Assistant Workspace</h1>
+            <p class="text-text-secondary text-sm mb-6 leading-relaxed max-w-md font-medium">
+                Search and analyze the 51-chapter neurological disorders manual. Type a diagnostic, pathology, or pharmaceutical query below.
+            </p>
+            <div class="flex gap-2.5 text-[9px] text-text-muted font-semibold tracking-widest uppercase">
+                <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-database text-accent text-xs"></i> FAISS VECTORS</div>
+                <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-lightning text-accent text-xs"></i> GEMINI 2.5 FLASH</div>
+            </div>
+        </div>
+    `;
+    chatContainer.innerHTML = welcomeHtml;
+    
+    // Show example queries container
+    const examples = document.getElementById('example-queries-container');
+    if (examples) {
+        examples.classList.remove('hidden');
+    }
+}
+
+function initSessionHistory() {
+    const btnEndSession = document.getElementById('btn-end-session');
+    if (btnEndSession) {
+        btnEndSession.addEventListener('click', async () => {
+            if (messageHistory.length === 0) {
+                showToast("No active session queries to summarize.", "error");
+                return;
+            }
+            
+            const confirmEnd = confirm("End this clinical session and generate an AI summary of all queries?");
+            if (!confirmEnd) return;
+            
+            try {
+                // Show loading toast
+                showToast("Generating session summary...", "info");
+                
+                const response = await fetch('/api/end_session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+                if (data.success) {
+                    showToast(`Session archived: ${data.summary}`, 'success');
+                    clearActiveWorkspace();
+                    await loadSessionHistory();
+                } else {
+                    showToast(data.message || "Failed to end session.", 'error');
+                }
+            } catch (error) {
+                console.error("Error ending session:", error);
+                showToast("Failed to connect to server.", 'error');
+            }
+        });
+    }
+    
+    loadSessionHistory();
+}
+
+// ==========================================
+// PHASE 3 ADDITIONS: KEYBOARD SHORTCUTS
+// ==========================================
+const shortcutsModal = document.getElementById('shortcuts-modal-backdrop');
+const btnCloseShortcuts = document.getElementById('btn-close-shortcuts');
+const linkShortcuts = document.getElementById('link-shortcuts');
+
+function openShortcutsModal() {
+    if (shortcutsModal) {
+        shortcutsModal.classList.add('show');
+        if (btnCloseShortcuts) btnCloseShortcuts.focus();
+    }
+}
+
+function closeShortcutsModal() {
+    if (shortcutsModal) {
+        shortcutsModal.classList.remove('show');
+    }
+}
+
+function initKeyboardShortcuts() {
+    if (linkShortcuts) {
+        linkShortcuts.addEventListener('click', (e) => {
+            e.preventDefault();
+            openShortcutsModal();
+        });
+    }
+    if (btnCloseShortcuts) {
+        btnCloseShortcuts.addEventListener('click', closeShortcutsModal);
+    }
+    if (shortcutsModal) {
+        shortcutsModal.addEventListener('click', (e) => {
+            if (e.target === shortcutsModal) {
+                closeShortcutsModal();
+            }
+        });
+    }
+    
+    // Bind Keyboard shortcuts global listener
+    document.addEventListener('keydown', (e) => {
+        // Escape key handler (close modals & sidebar drawer)
+        if (e.key === 'Escape') {
+            closeSourceModal();
+            closeShortcutsModal();
+            if (reportModal && reportModal.classList.contains('active')) {
+                reportModal.classList.remove('active');
+            }
+            if (sidebar && sidebar.classList.contains('sidebar-open')) {
+                sidebar.classList.remove('sidebar-open');
+                if (sidebarOverlay) {
+                    sidebarOverlay.classList.remove('opacity-100');
+                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+                }
+            }
+        }
+        
+        // Ctrl/Cmd + K (focus search)
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (searchInput) {
+                searchInput.focus();
+                searchInput.select();
+            }
+        }
+
+        // Ctrl/Cmd + B (toggle sidebar)
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'b') {
+            e.preventDefault();
+            if (sidebarToggle) {
+                sidebarToggle.click();
+            } else if (sidebar) {
+                sidebar.classList.toggle('sidebar-open');
+                if (sidebar.classList.contains('sidebar-open') && sidebarOverlay) {
+                    sidebarOverlay.classList.remove('hidden');
+                    requestAnimationFrame(() => sidebarOverlay.classList.add('opacity-100'));
+                } else if (sidebarOverlay) {
+                    sidebarOverlay.classList.remove('opacity-100');
+                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+                }
+            }
+        }
+
+        // Ctrl/Cmd + Enter (submit query)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+            if (document.activeElement === queryInput) {
+                e.preventDefault();
+                handleSubmit();
+            }
+        }
+
+        // '?' key (toggle shortcuts modal)
+        if (e.key === '?' && document.activeElement !== queryInput && document.activeElement !== searchInput) {
+            e.preventDefault();
+            if (shortcutsModal) {
+                if (shortcutsModal.classList.contains('show')) {
+                    closeShortcutsModal();
+                } else {
+                    openShortcutsModal();
+                }
+            }
+        }
+    });
 }
 
 console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 3 Configured');
