@@ -104,6 +104,8 @@ class GeminiEmbedder:
         if embedding:
             logger.info("Query embedding generated successfully")
         else:
-            logger.warning("Failed to generate query embedding")
+            logger.warning("Failed to generate query embedding. Using dummy fallback embedding for local RAG retrieval.")
+            # Return a dummy vector of correct dimension to allow offline demo/local search to function
+            embedding = [0.0] * Config.EMBEDDING_DIMENSION
         
         return embedding

@@ -94,16 +94,19 @@
 
         <!-- Sidebar Timeline Area -->
         <div class="p-5 flex-1 overflow-y-auto flex flex-col min-h-0">
-            <!-- Search bar (if history exists) -->
-            <div id="sidebar-search-container" class="hidden mb-4">
-                <div class="relative">
+            <!-- Search bar (Client-side, debounced) -->
+            <div class="sidebar-search-container">
+                <div class="sidebar-search-wrapper">
                     <input 
                         type="text" 
                         id="sidebar-search" 
-                        placeholder="Search history..." 
-                        class="w-full bg-white/5 border border-border rounded-lg pl-8 pr-3 py-1.5 text-xs text-text-primary focus:border-accent focus:bg-white/10 outline-none transition-all"
+                        placeholder="Search conversations..." 
+                        class="sidebar-search-input"
                     >
-                    <i class="ph ph-magnifying-glass absolute left-2.5 top-2.5 text-text-muted text-xs"></i>
+                    <i class="ph ph-magnifying-glass sidebar-search-icon"></i>
+                </div>
+                <div id="search-empty-state" class="search-empty-state">
+                    No conversations found
                 </div>
             </div>
 
@@ -181,9 +184,19 @@
             
             <!-- Right Section: Account details & Actions -->
             <div class="flex items-center gap-2">
-                <button id="btn-generate-report" class="btn-micro hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all">
-                    <i class="ph-bold ph-file-pdf text-xs"></i> Report
-                </button>
+                <div class="dropdown-container">
+                    <button id="btn-export" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all" title="Export conversations">
+                        <i class="ph-bold ph-download-simple text-xs"></i> Export
+                    </button>
+                    <div id="export-dropdown" class="dropdown-menu">
+                        <button class="dropdown-item" id="export-markdown">
+                            <i class="ph ph-file-text text-xs"></i> Export as Markdown
+                        </button>
+                        <button class="dropdown-item" id="export-pdf">
+                            <i class="ph ph-file-pdf text-xs"></i> Export as PDF
+                        </button>
+                    </div>
+                </div>
                 <a href="/chat_history" class="btn-micro flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-border text-[10px] font-semibold uppercase tracking-wider text-text-secondary hover:bg-white/10 hover:text-white transition-all">
                     <i class="ph-bold ph-clock-counter-clockwise text-xs"></i> Logs
                 </a>
@@ -230,6 +243,11 @@
                         class="w-full bg-transparent text-text-primary placeholder-text-muted outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
                     ></textarea>
                     
+                    <!-- Voice Input Button (PHASE 3) -->
+                    <button id="btn-voice" class="btn-voice flex-shrink-0 h-11 w-11 rounded-xl bg-white/5 border border-border flex items-center justify-center text-text-secondary mb-1 hover:bg-white/10 hover:text-white transition-all" title="Voice Input" aria-label="Start voice input">
+                        <i class="ph-bold ph-microphone text-lg"></i>
+                    </button>
+                    
                     <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md">
                         <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
                     </button>
@@ -256,6 +274,32 @@
         </div>
     </div>
 
+    <!-- Source Modal Container (PHASE 3) -->
+    <div id="source-modal-backdrop">
+        <div class="source-modal-container glass-elevated">
+            <div class="source-modal-header">
+                <h3 class="source-modal-title" id="source-title">Retrieved Chapter</h3>
+                <button class="source-modal-close" id="btn-close-source" aria-label="Close modal">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+            <div class="source-modal-meta-row">
+                <div class="source-modal-meta-item">
+                    <span>Source: #</span><span id="source-meta-id" class="font-bold"></span>
+                </div>
+                <div class="source-modal-meta-item">
+                    <span>Pages: </span><span id="source-meta-pages" class="font-bold"></span>
+                </div>
+                <div class="source-modal-meta-item">
+                    <span>Similarity: </span><span id="source-meta-score" class="font-bold text-emerald-400"></span>
+                </div>
+            </div>
+            <div class="source-modal-chunks-list" id="source-chunks-list">
+                <!-- Chunks injected dynamically -->
+            </div>
+        </div>
+    </div>
+    
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

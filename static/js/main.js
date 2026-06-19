@@ -105,21 +105,14 @@ if (sidebarToggle && sidebar && sidebarOverlay) {
     });
 }
 
-// Sidebar History Real-time Search Filter
+// Debounced Smart Conversation Search (PHASE 3)
+let searchDebounceTimeout;
 if (searchInput) {
     searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase().trim();
-        const items = timelineContainer.querySelectorAll('.timeline-item');
-        items.forEach((item, idx) => {
-            if (idx < messageHistory.length) {
-                const queryText = messageHistory[idx].query.toLowerCase();
-                if (queryText.includes(term)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            }
-        });
+        clearTimeout(searchDebounceTimeout);
+        searchDebounceTimeout = setTimeout(() => {
+            performSmartSearch(e.target.value);
+        }, 300);
     });
 }
 
@@ -425,6 +418,12 @@ function addAssistantMessage(data, id) {
             pill.className = 'glass-subtle inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium text-text-secondary hover:text-white transition-all cursor-pointer border border-border';
             pill.setAttribute('title', `Similarity Score: ${(cit.similarity * 100).toFixed(1)}%`);
             pill.innerHTML = `<i class="ph-bold ph-bookmark-simple text-accent"></i> Chapter ${cit.chapter_id}: ${cit.chapter_title}`;
+            
+            // Phase 3: Interactive Modal Trigger
+            pill.addEventListener('click', () => {
+                openSourceModal(cit);
+            });
+            
             citationsContainer.appendChild(pill);
         });
         contentContainer.appendChild(citationsContainer);
@@ -444,7 +443,64 @@ function addAssistantMessage(data, id) {
         
     const followupSection = createFollowupSection(suggestions);
     contentContainer.appendChild(followupSection);
+
+    // Phase 3: Clinical Citation Audit Trail Footer
+    if (data.citations || data.retrieved_chunks_count !== undefined) {
+        const auditTrail = document.createElement('div');
+        auditTrail.className = 'audit-trail';
+        
+        const timestampVal = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+        const sourcesCount = data.citations ? data.citations.length : 0;
+        const chunksCount = data.retrieved_chunks_count || 0;
+        
+        auditTrail.innerHTML = `
+            <div class="audit-item">
+                <i class="ph ph-books text-xs text-text-muted"></i>
+                <span>Sources Used: <strong>${sourcesCount}</strong></span>
+            </div>
+            <div class="audit-item">
+                <i class="ph ph-hash text-xs text-text-muted"></i>
+                <span>Retrieved Chunks: <strong>${chunksCount}</strong></span>
+            </div>
+            <div class="audit-item">
+                <i class="ph ph-clock text-xs text-text-muted"></i>
+                <span>Generated: <strong>${timestampVal}</strong></span>
+            </div>
+        `;
+        contentContainer.appendChild(auditTrail);
+    }
     
+    // Phase 3: Copy Response Button
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'btn-copy-response';
+    copyBtn.setAttribute('title', 'Copy response text');
+    copyBtn.setAttribute('aria-label', 'Copy response to clipboard');
+    copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
+    
+    copyBtn.addEventListener('click', async () => {
+        try {
+            if (!navigator.clipboard) {
+                throw new Error('Clipboard API not available');
+            }
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data.answer;
+            const plainText = tempDiv.textContent || tempDiv.innerText || '';
+            
+            await navigator.clipboard.writeText(plainText.trim());
+            
+            // Visual success feedback
+            copyBtn.innerHTML = '<span class="text-xs font-semibold text-emerald-400">✓</span>';
+            showToast('Response copied to clipboard.', 'success');
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
+            }, 1500);
+        } catch (err) {
+            console.error('Copy failure:', err);
+            showToast('Unable to copy response.', 'error');
+        }
+    });
+    
+    messageCard.appendChild(copyBtn);
     messageCard.appendChild(contentContainer);
     messageWrapper.appendChild(messageCard);
     
@@ -700,21 +756,14 @@ function showLoading() {
     messageWrapper.id = loadingId;
     messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
     
-    const isPatient = currentMode === 'patient';
-    const accentColor = isPatient ? 'accent' : 'emerald';
-    
     const messageCard = document.createElement('div');
-    messageCard.className = 'glass-subtle relative w-64 rounded-2xl rounded-tl-sm p-5 flex items-center justify-center border border-border';
+    messageCard.className = 'glass-subtle relative rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft';
     
     messageCard.innerHTML = `
-        <div class="flex flex-col items-center justify-center gap-3 py-2">
-            <div class="neural-pulse-container text-${accentColor}">
-                <div class="neural-wave"></div>
-                <div class="neural-wave"></div>
-                <div class="neural-wave"></div>
-                <div class="neural-wave"></div>
-            </div>
-            <div class="text-[10px] font-semibold uppercase tracking-widest text-text-muted">Analyzing clinical context...</div>
+        <div class="typing-indicator-container">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
         </div>
     `;
     
@@ -751,4 +800,381 @@ function scrollToBottom() {
     setTimeout(scrollFn, 1200);
 }
 
-console.log('NeuroRAG Clinical Assistant Workspace Active');
+// Phase 3 Initializations & Event Listeners
+initVoiceInput();
+initExportControls();
+
+// FEATURE 1: SMART CONVERSATION SEARCH HELPERS
+function performSmartSearch(term) {
+    const cleanTerm = term.trim().toLowerCase();
+    const items = timelineContainer.querySelectorAll('.timeline-item');
+    const emptyState = document.getElementById('search-empty-state');
+    let matchesCount = 0;
+
+    items.forEach((item, idx) => {
+        if (idx < messageHistory.length) {
+            const entry = messageHistory[idx];
+            const titleText = entry.query || '';
+            const previewText = entry.answer || '';
+            const metadataText = entry.mode + ' ' + entry.timestamp;
+            
+            const combinedText = (titleText + ' ' + previewText + ' ' + metadataText).toLowerCase();
+            const cardTextElement = item.querySelector('p');
+            const originalQuery = entry.query;
+
+            if (cleanTerm === '') {
+                // Restore original text
+                if (cardTextElement) cardTextElement.innerHTML = escapeHTML(originalQuery);
+                item.classList.remove('hidden');
+                matchesCount++;
+            } else if (combinedText.includes(cleanTerm)) {
+                // Highlight matched fragments in title
+                if (cardTextElement && titleText.toLowerCase().includes(cleanTerm)) {
+                    cardTextElement.innerHTML = highlightMatchedText(originalQuery, cleanTerm);
+                } else if (cardTextElement) {
+                    cardTextElement.innerHTML = escapeHTML(originalQuery);
+                }
+                item.classList.remove('hidden');
+                matchesCount++;
+            } else {
+                item.classList.add('hidden');
+            }
+        }
+    });
+
+    if (emptyState) {
+        if (matchesCount === 0 && cleanTerm !== '') {
+            emptyState.style.display = 'block';
+        } else {
+            emptyState.style.display = 'none';
+        }
+    }
+}
+
+function escapeHTML(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+function highlightMatchedText(text, search) {
+    if (!search) return escapeHTML(text);
+    const regex = new RegExp(`(${escapeRegExp(search)})`, 'gi');
+    return escapeHTML(text).replace(regex, '<span class="search-highlight">$1</span>');
+}
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// FEATURE 2: VOICE INPUT
+const btnVoice = document.getElementById('btn-voice');
+let recognition = null;
+let isListening = false;
+
+function initVoiceInput() {
+    if (!btnVoice) return;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    
+    if (!SpeechRecognition) {
+        // Graceful fallback
+        btnVoice.disabled = true;
+        btnVoice.style.opacity = '0.4';
+        btnVoice.setAttribute('title', 'Voice input is not supported in this browser.');
+        return;
+    }
+
+    try {
+        recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+        recognition.continuous = false;
+        recognition.interimResults = true;
+
+        recognition.onstart = () => {
+            isListening = true;
+            btnVoice.classList.add('listening');
+            btnVoice.setAttribute('title', 'Listening...');
+            btnVoice.innerHTML = '<i class="ph-bold ph-microphone-slash text-lg"></i>';
+            showToast('Listening...', 'info');
+        };
+
+        recognition.onend = () => {
+            isListening = false;
+            btnVoice.classList.remove('listening');
+            btnVoice.setAttribute('title', 'Voice Input');
+            btnVoice.innerHTML = '<i class="ph-bold ph-microphone text-lg"></i>';
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            if (event.error === 'not-allowed') {
+                showToast('Microphone access denied.', 'error');
+            } else {
+                showToast('Unable to recognize speech.', 'error');
+            }
+        };
+
+        recognition.onresult = (event) => {
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                }
+            }
+
+            if (finalTranscript) {
+                const startPos = queryInput.selectionStart;
+                const endPos = queryInput.selectionEnd;
+                const originalText = queryInput.value;
+                
+                // Insert final text at cursor position
+                queryInput.value = originalText.substring(0, startPos) + finalTranscript + originalText.substring(endPos);
+                
+                // Adjust cursor position
+                const newCursorPos = startPos + finalTranscript.length;
+                queryInput.selectionStart = newCursorPos;
+                queryInput.selectionEnd = newCursorPos;
+                
+                // Trigger textarea auto-resize
+                queryInput.dispatchEvent(new Event('input'));
+            }
+        };
+
+        btnVoice.addEventListener('click', () => {
+            if (isListening) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        });
+    } catch (e) {
+        console.error('Speech recognition failed to initialize:', e);
+        btnVoice.disabled = true;
+        btnVoice.style.opacity = '0.4';
+    }
+}
+
+// FEATURE 3: SOURCE CHAPTER VIEW MODEL HELPERS
+const sourceModal = document.getElementById('source-modal-backdrop');
+const btnCloseSource = document.getElementById('btn-close-source');
+let previouslyFocusedElement = null;
+
+function openSourceModal(citation) {
+    if (!sourceModal) return;
+    
+    previouslyFocusedElement = document.activeElement;
+
+    // Set title and metadata
+    document.getElementById('source-title').textContent = citation.source_name || citation.chapter_title || 'Unknown Source';
+    document.getElementById('source-meta-id').textContent = citation.chapter_id || 'N/A';
+    document.getElementById('source-meta-pages').textContent = citation.page_range || 'N/A';
+    document.getElementById('source-meta-score').textContent = citation.similarity ? `${(citation.similarity * 100).toFixed(1)}%` : 'N/A';
+
+    // Set retrieved chunks
+    const chunksList = document.getElementById('source-chunks-list');
+    chunksList.innerHTML = '';
+
+    const chunks = citation.retrieved_chunks || [];
+    if (chunks.length === 0) {
+        chunksList.innerHTML = '<div class="text-xs text-text-muted">No retrieved chunks text available.</div>';
+    } else {
+        chunks.forEach(chunk => {
+            const chunkEl = document.createElement('pre');
+            chunkEl.className = 'source-modal-chunk';
+            chunkEl.textContent = chunk;
+            chunksList.appendChild(chunkEl);
+        });
+    }
+
+    // Show modal
+    sourceModal.classList.add('show');
+    sourceModal.setAttribute('aria-hidden', 'false');
+    
+    // Focus close button first
+    if (btnCloseSource) btnCloseSource.focus();
+    
+    // Trap focus
+    sourceModal.addEventListener('keydown', trapModalFocus);
+}
+
+function closeSourceModal() {
+    if (!sourceModal) return;
+    sourceModal.classList.remove('show');
+    sourceModal.setAttribute('aria-hidden', 'true');
+    sourceModal.removeEventListener('keydown', trapModalFocus);
+
+    // Restore focus
+    if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+    }
+}
+
+function trapModalFocus(e) {
+    if (e.key !== 'Tab') return;
+
+    const focusableElements = sourceModal.querySelectorAll('button, [tabindex="0"]');
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    if (e.shiftKey) { // Shift + Tab
+        if (document.activeElement === firstElement) {
+            lastElement.focus();
+            e.preventDefault();
+        }
+    } else { // Tab
+        if (document.activeElement === lastElement) {
+            firstElement.focus();
+            e.preventDefault();
+        }
+    }
+}
+
+// Attach close event listeners
+if (btnCloseSource) {
+    btnCloseSource.addEventListener('click', closeSourceModal);
+}
+if (sourceModal) {
+    sourceModal.addEventListener('click', (e) => {
+        if (e.target === sourceModal) {
+            closeSourceModal();
+        }
+    });
+}
+
+// Global key down for escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (sourceModal && sourceModal.classList.contains('show')) {
+            closeSourceModal();
+        }
+        if (reportModal && reportModal.classList.contains('active')) {
+            reportModal.classList.remove('active');
+        }
+    }
+});
+
+// FEATURE 4: CONVERSATION EXPORT
+const btnExport = document.getElementById('btn-export');
+const exportDropdown = document.getElementById('export-dropdown');
+const exportMarkdownBtn = document.getElementById('export-markdown');
+const exportPdfBtn = document.getElementById('export-pdf');
+
+function initExportControls() {
+    if (!btnExport || !exportDropdown) return;
+
+    // Toggle dropdown
+    btnExport.addEventListener('click', (e) => {
+        e.stopPropagation();
+        exportDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown on click outside
+    document.addEventListener('click', () => {
+        exportDropdown.classList.remove('show');
+    });
+
+    if (exportMarkdownBtn) {
+        exportMarkdownBtn.addEventListener('click', () => {
+            exportConversation('markdown');
+        });
+    }
+
+    if (exportPdfBtn) {
+        exportPdfBtn.addEventListener('click', () => {
+            exportConversation('pdf');
+        });
+    }
+}
+
+function exportConversation(format) {
+    if (messageHistory.length === 0) {
+        showToast('No conversations to export.', 'error');
+        return;
+    }
+
+    switch (format) {
+        case 'markdown':
+            exportAsMarkdown();
+            break;
+        case 'pdf':
+            exportAsPdf();
+            break;
+        default:
+            console.warn(`Format ${format} not supported yet.`);
+            showToast(`Format ${format} is under development.`, 'info');
+    }
+}
+
+function exportAsMarkdown() {
+    let mdContent = `# NeuroRAG Conversation\n`;
+    mdContent += `*Generated on: ${new Date().toLocaleString()}*\n\n`;
+
+    messageHistory.forEach((entry, index) => {
+        mdContent += `## User (${entry.timestamp})\n`;
+        mdContent += `${entry.query}\n\n`;
+
+        mdContent += `## NeuroRAG\n`;
+        if (entry.answer) {
+            mdContent += `${entry.answer}\n\n`;
+        } else {
+            mdContent += `*Pending Response...*\n\n`;
+        }
+    });
+
+    try {
+        const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `neurorag_conversation_${Date.now()}.md`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('Conversation exported as Markdown.', 'success');
+    } catch (err) {
+        console.error('Markdown export error:', err);
+        showToast('Unable to export markdown.', 'error');
+    }
+}
+
+function exportAsPdf() {
+    window.print();
+}
+
+// TOAST NOTIFICATION HELPERS
+function showToast(message, type = 'info') {
+    const existing = document.getElementById('clinical-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'clinical-toast';
+    
+    let bgColor = 'bg-accent';
+    if (type === 'error') bgColor = 'bg-red-600/90 border-red-500';
+    if (type === 'success') bgColor = 'bg-emerald-600/90 border-emerald-500';
+    
+    toast.className = `fixed bottom-24 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-xl text-white text-xs font-semibold shadow-glow border border-border z-50 transition-all duration-300 opacity-0 transform translate-y-[10px] pointer-events-none ${bgColor} backdrop-blur-md`;
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    
+    requestAnimationFrame(() => {
+        toast.classList.remove('opacity-0', 'translate-y-[10px]');
+        toast.classList.add('opacity-100', 'translate-y-0');
+    });
+    
+    setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-[10px]');
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 3 Configured');

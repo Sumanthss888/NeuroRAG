@@ -200,6 +200,7 @@ def query():
             "citations": citations,
             "mode": mode,
             "matched_chapters": len(matched_chapters),
+            "retrieved_chunks_count": len(retrieved_chunks),
             "followup_questions": followup_questions
         }
         

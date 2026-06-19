@@ -144,18 +144,52 @@ class ChunkRetriever:
         Returns:
             List of citation dictionaries
         """
+        import json
+        import os
+        
+        toc_map = {}
+        try:
+            if os.path.exists(Config.TOC_MASTER_PATH):
+                with open(Config.TOC_MASTER_PATH, 'r') as f:
+                    toc_data = json.load(f)
+                    for ch in toc_data.get("chapters", []):
+                        toc_map[int(ch["id"])] = {
+                            "page_start": ch.get("pdf_page_start"),
+                            "page_end": ch.get("pdf_page_end")
+                        }
+        except Exception as e:
+            logger.error(f"Error loading toc_master.json: {e}")
+
         citations = []
         seen_chapters = set()
         
         for chunk in chunks:
             chapter_id = chunk.get("source_chapter_id")
+            if chapter_id is None:
+                continue
+            chapter_id = int(chapter_id)
             chapter_title = chunk.get("source_chapter_title", "Unknown")
             
             if chapter_id not in seen_chapters:
+                # Find all chunks text for this chapter_id
+                chapter_chunks = [ch.get("text", "") for ch in chunks if int(ch.get("source_chapter_id", -1)) == chapter_id and ch.get("text")]
+                
+                # Fetch page range
+                page_start = ""
+                page_end = ""
+                if chapter_id in toc_map:
+                    page_start = toc_map[chapter_id].get("page_start", "")
+                    page_end = toc_map[chapter_id].get("page_end", "")
+                
+                page_range = f"{page_start}-{page_end}" if page_start and page_end else ""
+                
                 citations.append({
-                    "chapter_id": int(chapter_id),
+                    "chapter_id": chapter_id,
                     "chapter_title": str(chapter_title),
-                    "similarity": float(chunk.get("similarity", 0.0))
+                    "similarity": float(chunk.get("similarity", 0.0)),
+                    "source_name": str(chapter_title),
+                    "page_range": page_range,
+                    "retrieved_chunks": chapter_chunks
                 })
                 seen_chapters.add(chapter_id)
         
