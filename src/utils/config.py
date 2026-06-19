@@ -92,6 +92,7 @@ class Config:
     @classmethod
     def validate_config(cls) -> bool:
         """Validate configuration"""
-        if not cls.GEMINI_API_KEY:
-            raise ValueError("GEMINI_API_KEY not found in environment variables")
+        if not cls.GEMINI_API_KEY or "your_api_key" in cls.GEMINI_API_KEY.lower() or cls.GEMINI_API_KEY == "placeholder":
+            import logging
+            logging.getLogger(__name__).warning("GEMINI_API_KEY is missing, placeholder, or invalid. Offline medical diagnostic fallback mode will be active.")
         return True

@@ -15,14 +15,19 @@ class RAGGenerator:
     def __init__(self, api_key: str = None):
         self.api_key = api_key or Config.GEMINI_API_KEY
         
-        if not self.api_key:
-            raise ValueError("Gemini API key is required")
-        
-        # Initialize Gemini client
-        self.client = genai.Client(api_key=self.api_key)
+        if not self.api_key or "your_api_key" in self.api_key.lower() or self.api_key == "placeholder":
+            self.client = None
+            logger.warning("Gemini API key is missing or placeholder. Generator running in offline mode.")
+        else:
+            try:
+                # Initialize Gemini client
+                self.client = genai.Client(api_key=self.api_key)
+            except Exception as e:
+                logger.error(f"Failed to initialize Gemini Client: {e}")
+                self.client = None
         self.model = Config.GEMINI_GENERATION_MODEL
         
-        logger.info(f"Initialized RAG Generator with model: {self.model}")
+        logger.info(f"Initialized RAG Generator with model: {self.model} (Client active: {self.client is not None})")
     
     def generate_answer(self, query: str, context: str, 
                        mode: str = "patient",
@@ -45,6 +50,13 @@ class RAGGenerator:
         prompt = self._build_prompt(query, context, mode)
         
         try:
+            if not self.client:
+                logger.warning("Offline Mode: Returning failure to trigger routes mock fallback.")
+                return {
+                    "success": False,
+                    "error": "API Key is missing or placeholder"
+                }
+                
             # Generate response
             response = self.client.models.generate_content(
                 model=self.model,
@@ -151,15 +163,19 @@ ANSWER:"""
         Returns:
             List of follow-up questions
         """
+        if not self.client:
+            logger.warning("Offline Mode: Returning empty list for follow-up questions.")
+            return []
+            
         prompt = f"""Based on this medical Q&A, suggest 3 relevant follow-up questions:
-
-ORIGINAL QUESTION:
-{query}
-
-ANSWER PROVIDED:
-{answer}
-
-Generate 3 specific, medically relevant follow-up questions that a patient or clinician might ask. Return only the questions, numbered 1-3."""
+ 
+ ORIGINAL QUESTION:
+ {query}
+ 
+ ANSWER PROVIDED:
+ {answer}
+ 
+ Generate 3 specific, medically relevant follow-up questions that a patient or clinician might ask. Return only the questions, numbered 1-3."""
         
         try:
             response = self.client.models.generate_content(
@@ -182,3 +198,31 @@ Generate 3 specific, medically relevant follow-up questions that a patient or cl
         except Exception as e:
             logger.warning(f"Error generating follow-up questions: {e}")
             return []
+ 
+    def generate_session_summary(self, chats: List[Dict]) -> str:
+        """
+        Generate a session summary from history of chats
+        """
+        if not chats:
+            return ""
+            
+        if not self.client:
+            logger.warning("Offline Mode: Returning fallback summary for session.")
+            return "Clinical session complete."
+            
+        summary_prompt = "Generate a concise 1-2 sentence medical summary of the following query session:\n"
+        for idx, chat in enumerate(chats, 1):
+            q = chat.get("question", chat.get("query", ""))
+            summary_prompt += f"Inquiry {idx}: {q}\n"
+            
+        try:
+            response = self.client.models.generate_content(
+                model=self.model,
+                contents=summary_prompt
+            )
+            if response and response.text:
+                return response.text.strip()
+            return "Session complete."
+        except Exception as e:
+            logger.warning(f"Error generating session summary: {e}")
+            return "Session complete."

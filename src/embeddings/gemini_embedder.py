@@ -16,14 +16,19 @@ class GeminiEmbedder:
     def __init__(self, api_key: str = None):
         self.api_key = api_key or Config.GEMINI_API_KEY
         
-        if not self.api_key:
-            raise ValueError("Gemini API key is required")
-        
-        # Initialize Gemini client
-        self.client = genai.Client(api_key=self.api_key)
+        if not self.api_key or "your_api_key" in self.api_key.lower() or self.api_key == "placeholder":
+            self.client = None
+            logger.warning("Gemini API key is missing or placeholder. Embedder running in offline mode.")
+        else:
+            try:
+                # Initialize Gemini client
+                self.client = genai.Client(api_key=self.api_key)
+            except Exception as e:
+                logger.error(f"Failed to initialize Gemini Client: {e}")
+                self.client = None
         self.model = Config.GEMINI_EMBEDDING_MODEL
         
-        logger.info(f"Initialized Gemini Embedder with model: {self.model}")
+        logger.info(f"Initialized Gemini Embedder with model: {self.model} (Client active: {self.client is not None})")
     
     def generate_embedding(self, text: str) -> Optional[List[float]]:
         """
@@ -36,6 +41,10 @@ class GeminiEmbedder:
             Embedding vector (768 dimensions)
         """
         try:
+            if not self.client:
+                logger.warning("Offline Mode: Skipping embedding generation.")
+                return None
+                
             result = self.client.models.embed_content(
                 model=self.model,
                 contents=text
