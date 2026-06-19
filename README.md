@@ -10,7 +10,7 @@
 
 <br/>
 
-**NeuroRAG** is a powerful Retrieval-Augmented Generation (RAG) system built with Flask and the Google Gemini API. It acts as an intelligent clinical assistant for answering questions about neurological disorders, drawing heavily from a comprehensive 51-chapter medical handbook.
+**NeuroRAG** is a powerful Retrieval-Augmented Generation (RAG) system built with Flask and the Google Gemini API. It acts as an intelligent clinical assistant for answering questions about neurological disorders, drawing heavily from a comprehensive 51-chapter medical handbook(by Alok Sharma).
 
 ## ✨ Key Features
 
