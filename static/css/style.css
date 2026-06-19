@@ -1384,3 +1384,310 @@ h1, h2, h3, h4, h5, h6, .font-display {
     page-break-after: avoid;
   }
 }
+
+/* ==========================================
+   ADDITIONAL STYLES (SEVERITY, SHORTCUTS, BOOKMARKS)
+   ========================================== */
+
+/* SEVERITY LEVEL BADGES */
+.severity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+.severity-badge.informational {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #10b981 !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.severity-badge.medium {
+  background: rgba(245, 158, 11, 0.1) !important;
+  color: #f59e0b !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.severity-badge.high {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #ef4444 !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+  animation: borderPulse 2.5s infinite ease-in-out;
+}
+
+/* KEYBOARD SHORTCUTS HELP MODAL BACKDROP */
+#shortcuts-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 11, 12, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s var(--apple-ease), visibility 0.2s var(--apple-ease);
+}
+
+#shortcuts-modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#shortcuts-modal-backdrop.show .source-modal-container {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* BOOKMARKS SYSTEM ACTIONS & ELEMENTS */
+.btn-bookmark-response {
+  position: absolute;
+  top: 10px;
+  right: 46px; /* Left of the Copy Response button */
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s var(--apple-ease);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.message-card.assistant:hover .btn-bookmark-response {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn-bookmark-response:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-strong);
+}
+
+.btn-bookmark-response.active {
+  background: var(--color-accent-dim) !important;
+  color: var(--color-accent) !important;
+  border-color: rgba(124, 106, 247, 0.4) !important;
+}
+
+/* Touch devices overrides for bookmark actions */
+@media (hover: none) {
+  .btn-bookmark-response {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.bookmark-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bookmark-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+.bookmark-delete-btn {
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.bookmark-delete-btn:hover {
+  color: var(--color-danger);
+}
+
+/* COLLAPSIBLE SESSION SUMMARY CARD */
+.session-summary-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  margin-top: 8px;
+  border-left: 2px solid var(--color-accent);
+}
+
+/* ==========================================
+   PHASE 5: PRODUCTION READINESS & ACCESSIBILITY
+   ========================================== */
+
+/* Skip navigation link visible on focus */
+.skip-nav-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--color-accent);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.25s var(--apple-ease);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: var(--shadow-glow);
+}
+.skip-nav-link:focus-visible {
+  top: 16px;
+}
+
+/* High contrast focus ring for accessibility styling */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-accent) !important;
+  outline-offset: 2px !important;
+}
+
+/* Safe area padding helper for bottom composer overlay */
+.composer-fixed-container {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+}
+@media (min-width: 768px) {
+  .composer-fixed-container {
+    padding-bottom: 1.5rem !important; /* restoration of p-6 layout on desktops */
+  }
+}
+
+/* Placeholder shimmers animation block */
+.placeholder-shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 25%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer-swipe 1.6s infinite linear;
+}
+
+@keyframes shimmer-swipe {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Sidebar Skeleton placeholder items */
+.sidebar-skeleton-card {
+  position: relative;
+  overflow: hidden;
+}
+.sidebar-skeleton-text {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+}
+
+/* Toast container entry and exit transitions */
+.clinical-toast {
+  transition: transform 0.25s var(--apple-ease), opacity 0.25s var(--apple-ease);
+}
+.clinical-toast.hide-toast {
+  transform: translateX(110%);
+  opacity: 0;
+}
+
+/* Responsive overrides at mobile and tablet screen size viewports */
+@media (max-width: 767px) {
+  /* Set Mobile header height */
+  header {
+    height: 56px !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    gap: 8px;
+  }
+
+  /* Reposition Mode Toggle beneath brand info */
+  .header-mode-toggle {
+    position: absolute !important;
+    top: 64px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 2rem) !important;
+    max-width: 320px !important;
+    z-index: 20;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+  }
+  
+  /* Add top-spacing inside clinical chat container to prevent mode toggle overlapping */
+  #chat-container {
+    padding-top: 4.5rem !important;
+    padding-bottom: 120px !important;
+  }
+
+  /* Enforce message card 95% max-width bounds on touch viewport profiles */
+  #chat-container .justify-start {
+    padding-right: 16px !important;
+  }
+  #chat-container .justify-end {
+    padding-left: 16px !important;
+  }
+  #chat-container .justify-end > div {
+    max-width: 95% !important;
+  }
+  
+  /* Guarantee long medical terms wrap cleanly and never cause content scroll overflows */
+  .markdown-body, .markdown-body * {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+}
+
+/* User reduced-motion media query checks */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  .placeholder-shimmer {
+    background: rgba(255, 255, 255, 0.05) !important;
+    animation: none !important;
+  }
+  
+  .typing-dot {
+    animation: none !important;
+    opacity: 0.6 !important;
+  }
+}
