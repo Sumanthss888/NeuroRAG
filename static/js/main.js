@@ -49,11 +49,38 @@ const sidebarOverlay = document.getElementById('sidebar-overlay');
 const searchContainer = document.getElementById('sidebar-search-container');
 const searchInput = document.getElementById('sidebar-search');
 
+// Phase 3 Global Feature DOM Elements (Moved to top to prevent TDZ ReferenceError when initializing functions execute)
+const btnVoice = document.getElementById('btn-voice');
+const sourceModal = document.getElementById('source-modal-backdrop');
+const btnCloseSource = document.getElementById('btn-close-source');
+const btnExport = document.getElementById('btn-export');
+const exportDropdown = document.getElementById('export-dropdown');
+const exportMarkdownBtn = document.getElementById('export-markdown');
+const exportPdfBtn = document.getElementById('export-pdf');
+const shortcutsModal = document.getElementById('shortcuts-modal-backdrop');
+const btnCloseShortcuts = document.getElementById('btn-close-shortcuts');
+const linkShortcuts = document.getElementById('link-shortcuts');
+
+// Phase 3 Global Feature variables (Moved to top to prevent TDZ ReferenceError)
+let recognition = null;
+let isListening = false;
+
 // Initialize Toggle State
 updateToggleVisuals(currentMode);
 
 // Event Listeners
 submitBtn.addEventListener('click', handleSubmit);
+
+// FIX: Added event delegation on chatContainer for dynamically generated suggestion-chip buttons
+chatContainer.addEventListener('click', (e) => {
+    const chip = e.target.closest('.suggestion-chip');
+    if (chip && chip.dataset.question) {
+        queryInput.value = chip.dataset.question;
+        queryInput.style.height = 'auto';
+        queryInput.style.height = queryInput.scrollHeight + 'px';
+        handleSubmit();
+    }
+});
 
 queryInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -117,9 +144,15 @@ if (searchInput) {
 }
 
 // Feature: Report Modal Listeners
-btnGenerateReport.addEventListener('click', generateReport);
-btnCloseReport.addEventListener('click', () => reportModal.classList.remove('active'));
-btnPrintReport.addEventListener('click', () => window.print());
+if (btnGenerateReport) {
+    btnGenerateReport.addEventListener('click', generateReport);
+}
+if (btnCloseReport && reportModal) {
+    btnCloseReport.addEventListener('click', () => reportModal.classList.remove('active'));
+}
+if (btnPrintReport) {
+    btnPrintReport.addEventListener('click', () => window.print());
+}
 
 function updateToggleVisuals(mode) {
     if (mode === 'patient') {
@@ -231,7 +264,10 @@ async function handleSubmit() {
         if (data.success) {
             historyEntry.answer = data.answer; // Update history
             addAssistantMessage(data, messageId + '-response');
-            btnGenerateReport.classList.remove('hidden'); // Enable Report generation
+            // FIX: Added null safety check for btnGenerateReport
+            if (btnGenerateReport) {
+                btnGenerateReport.classList.remove('hidden'); // Enable Report generation
+            }
         } else {
             addErrorMessage(data.message || (typeof data.error === 'string' ? data.error : null) || 'An error occurred while processing your query');
         }
@@ -446,11 +482,11 @@ function addAssistantMessage(data, id) {
     const riskIndicator = createRiskIndicator(riskLevel);
     contentContainer.appendChild(riskIndicator);
     
-    const queryUsed = messageHistory[messageHistory.length - 1].query;
+    // FIX: Merged duplicate queryUsed declarations to resolve SyntaxError and prevent JS engine crash
+    const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
     const reasoningSnapshot = createReasoningSnapshot(queryUsed, data.answer);
     contentContainer.appendChild(reasoningSnapshot);
     
-    const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
     const suggestions = (data.suggested_questions && data.suggested_questions.length > 0)
         ? data.suggested_questions
         : (data.followup_questions && data.followup_questions.length > 0 
@@ -641,6 +677,7 @@ function createRiskIndicator(riskLevel) {
     return riskContainer;
 }
 
+// FIX: Removed individual chip event listeners, set data-question, to use event delegation on chatContainer
 function createFollowupSection(questions) {
     const section = document.createElement('div');
     section.className = 'suggestions-container';
@@ -648,14 +685,8 @@ function createFollowupSection(questions) {
     questions.forEach(question => {
         const qBtn = document.createElement('button');
         qBtn.className = 'suggestion-chip';
+        qBtn.dataset.question = question;
         qBtn.innerHTML = `<i class="ph-bold ph-arrow-bend-down-right"></i> ${question}`;
-        
-        qBtn.addEventListener('click', () => {
-            queryInput.value = question;
-            queryInput.style.height = 'auto';
-            queryInput.style.height = queryInput.scrollHeight + 'px';
-            handleSubmit();
-        });
         
         section.appendChild(qBtn);
     });
@@ -954,9 +985,6 @@ function escapeRegExp(string) {
 }
 
 // FEATURE 2: VOICE INPUT
-const btnVoice = document.getElementById('btn-voice');
-let recognition = null;
-let isListening = false;
 
 function initVoiceInput() {
     if (!btnVoice) return;
@@ -1042,8 +1070,6 @@ function initVoiceInput() {
 }
 
 // FEATURE 3: SOURCE CHAPTER VIEW MODEL HELPERS
-const sourceModal = document.getElementById('source-modal-backdrop');
-const btnCloseSource = document.getElementById('btn-close-source');
 let previouslyFocusedElement = null;
 
 function openSourceModal(citation) {
@@ -1132,10 +1158,6 @@ if (sourceModal) {
 
 // Global key down for escape - replaced with specialized listeners
 // FEATURE 4: CONVERSATION EXPORT
-const btnExport = document.getElementById('btn-export');
-const exportDropdown = document.getElementById('export-dropdown');
-const exportMarkdownBtn = document.getElementById('export-markdown');
-const exportPdfBtn = document.getElementById('export-pdf');
 
 function initExportControls() {
     if (!btnExport || !exportDropdown) return;
@@ -1678,9 +1700,6 @@ function initSessionHistory() {
 // ==========================================
 // PHASE 3 ADDITIONS: KEYBOARD SHORTCUTS
 // ==========================================
-const shortcutsModal = document.getElementById('shortcuts-modal-backdrop');
-const btnCloseShortcuts = document.getElementById('btn-close-shortcuts');
-const linkShortcuts = document.getElementById('link-shortcuts');
 
 function openShortcutsModal() {
     if (shortcutsModal) {
