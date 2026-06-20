@@ -2545,3 +2545,87 @@ a, button, input, textarea, select, svg, path,
   75% { transform: translate(-50%, -50%) translate(0px, 15px); }
   100% { transform: translate(-50%, -50%) translate(0, 0); }
 }
+
+/* ==========================================================================
+   BRAND BRANDING SYSTEM STYLES
+   ========================================================================== */
+
+/* Shared Logo Component styles */
+.neurorag-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--color-accent);
+}
+
+/* Stage 1: Stroke Draw Animation */
+.logo-reveal-animate .logo-path {
+  stroke-dasharray: var(--logo-path-length, 100);
+  stroke-dashoffset: var(--logo-path-length, 100);
+  fill: var(--color-accent);
+  fill-opacity: 0;
+  transition: stroke-dashoffset var(--duration-slower) var(--ease-out-smooth),
+              fill-opacity var(--duration-base) var(--ease-out-smooth) var(--duration-slower);
+}
+
+.logo-reveal-animate.start-reveal .logo-path {
+  stroke-dashoffset: 0;
+}
+
+/* Stage 2: Fill Reveal after stroke finishes */
+.logo-reveal-animate.start-reveal .logo-path:not(:last-child) {
+  fill-opacity: 0.15; /* Elegant subtle fill */
+}
+
+/* Header Brand Link & Hover micro-interactions */
+.header-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.header-brand-link .logo-container-wrapper {
+  display: flex;
+  height: 36px;
+  width: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  box-shadow: var(--shadow-soft);
+  transition: filter var(--duration-fast) var(--ease-out-smooth), box-shadow var(--duration-fast) var(--ease-out-smooth);
+}
+
+.header-brand-link .brand-wordmark {
+  transition: color var(--duration-fast) var(--ease-out-smooth);
+}
+
+.header-brand-link:hover .logo-container-wrapper {
+  filter: brightness(1.15);
+  box-shadow: var(--shadow-glow);
+}
+
+.header-brand-link:hover .brand-wordmark {
+  color: var(--color-accent) !important;
+}
+
+/* Empty State Brain Logo Breathing */
+.welcome-message .neurorag-logo {
+  animation: brandLogoBreathe 4s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+@keyframes brandLogoBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.70;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+}
