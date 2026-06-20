@@ -74,9 +74,12 @@
     <!-- FIX: Visual Redesign - split-screen minimal layout with flat base backgrounds, simple text tabs, and borderless inputs -->
     <div class="auth-fade-in flex flex-col min-[900px]:flex-row w-full min-h-screen">
         <!-- Left Column: Editorial Brand context (hidden on mobile <900px) -->
-        <div class="hidden min-[900px]:flex min-[900px]:w-[55%] flex-col justify-between p-16 border-r border-border bg-[#08090A] min-h-screen select-none">
+        <div class="hidden min-[900px]:flex min-[900px]:w-[55%] flex-col justify-between p-16 border-r border-border bg-[#08090A] min-h-screen select-none relative">
+            <!-- Canvas element behind branding -->
+            <canvas id="auth-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+            
             <!-- Top Left: Subtle logo -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 relative z-10 auth-logo">
                 <svg class="w-7 h-7 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                     <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
@@ -85,15 +88,17 @@
             </div>
             
             <!-- Content Block -->
-            <div class="flex-1 flex flex-col justify-center max-w-[420px] pr-8">
-                <h2 class="font-display text-[22px] font-medium text-white mb-2 leading-tight">NeuroRAG</h2>
-                <p class="text-text-secondary text-sm leading-relaxed font-medium">
-                    A clinical reference assistant for the 51-chapter neurology handbook.
-                </p>
+            <div class="flex-1 flex flex-col justify-center max-w-[420px] pr-8 relative z-10">
+                <h2 class="font-display text-[22px] font-medium text-white mb-2 leading-tight auth-wordmark">NeuroRAG</h2>
+                <div class="auth-tagline-container">
+                    <p class="text-text-secondary text-sm leading-relaxed font-medium auth-tagline">
+                        A clinical reference assistant for the 51-chapter neurology handbook.
+                    </p>
+                </div>
             </div>
             
             <!-- Bottom spacing dummy -->
-            <div></div>
+            <div class="relative z-10"></div>
         </div>
 
         <!-- Right Column: Form container -->
@@ -111,7 +116,7 @@
             </div>
 
             <!-- Main Auth Content -->
-            <div class="w-full max-w-[420px] mx-auto min-[900px]:mx-0">
+            <div class="w-full max-w-[420px] mx-auto min-[900px]:mx-0 auth-form-container">
                 <!-- Text tab navigation (Sign in / Create account) -->
                 <div class="flex items-center gap-6 mb-8 border-b border-border pb-3">
                     <a href="/login" class="text-sm font-medium tracking-wide text-text-secondary hover:text-white pb-3 -mb-[13px]">Sign in</a>
@@ -124,7 +129,7 @@
                 <!-- Credentials Form -->
                 <form id="signupForm" class="space-y-5">
                     <!-- Username Field -->
-                    <div class="space-y-2">
+                    <div class="space-y-2 auth-field-wrapper">
                         <label for="username" class="text-[13px] font-medium text-text-secondary block">Username</label>
                         <input 
                             type="text" 
@@ -137,7 +142,7 @@
                     </div>
 
                     <!-- Email Field -->
-                    <div class="space-y-2">
+                    <div class="space-y-2 auth-field-wrapper">
                         <label for="email" class="text-[13px] font-medium text-text-secondary block">Email (Optional)</label>
                         <input 
                             type="email" 
@@ -149,7 +154,7 @@
                     </div>
 
                     <!-- Password Field -->
-                    <div class="space-y-2">
+                    <div class="space-y-2 auth-field-wrapper">
                         <label for="password" class="text-[13px] font-medium text-text-secondary block">Password</label>
                         <input 
                             type="password" 
@@ -161,7 +166,7 @@
                     </div>
 
                     <!-- Confirm Password Field -->
-                    <div class="space-y-2">
+                    <div class="space-y-2 auth-field-wrapper">
                         <label for="confirm-password" class="text-[13px] font-medium text-text-secondary block">Confirm Password</label>
                         <input 
                             type="password" 
@@ -173,15 +178,15 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="pt-4">
+                    <div class="pt-4 auth-submit-wrapper">
                         <button 
                             type="submit" 
                             id="signupBtn" 
                             class="auth-btn relative"
                         >
                             <span id="btnText" class="flex items-center justify-center gap-2">Create account</span>
-                            <div id="spinner" class="hidden absolute">
-                                <i class="ph-bold ph-spinner animate-spin text-xl"></i>
+                            <div id="spinner" class="hidden auth-spinner-container">
+                                <div class="auth-spinner"></div>
                             </div>
                         </button>
                     </div>
@@ -198,6 +203,7 @@
     </div>
 
     <!-- Keep exact JS logic untouched -->
+    <script src="{{ url_for('static', filename='js/auth-motion.js') }}"></script>
     <script>
         const form = document.getElementById('signupForm');
         const messageDiv = document.getElementById('message');
@@ -217,6 +223,7 @@
             messageDiv.classList.remove('hidden');
         }
 
+        // Custom loading transition initialized via shared JS, falls back automatically
         function setLoading(isLoading) {
             signupBtn.disabled = isLoading;
             if (isLoading) {
@@ -227,6 +234,8 @@
                 spinner.classList.add('hidden');
             }
         }
+        
+        setupSubmitLoading('signupForm', 'signupBtn', 'btnText', 'spinner');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();

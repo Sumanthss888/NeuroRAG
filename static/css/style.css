@@ -1795,7 +1795,7 @@ a, button, input, textarea, select, svg, path,
   color: var(--color-text-primary) !important;
   outline: none !important;
   padding: 0 4px !important;
-  transition: border-color 0.2s ease, border-bottom-color 0.2s ease;
+  transition: border-bottom-color 250ms var(--apple-ease);
 }
 
 .auth-input:focus {
@@ -1816,7 +1816,7 @@ a, button, input, textarea, select, svg, path,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: filter 0.2s ease;
+  transition: width 300ms var(--apple-ease), min-width 300ms var(--apple-ease), border-radius 300ms var(--apple-ease), filter 0.2s ease;
   box-shadow: none !important;
 }
 
@@ -1841,6 +1841,121 @@ a, button, input, textarea, select, svg, path,
 
 .auth-fade-in {
   animation: authFadeIn 0.2s ease forwards;
+}
+
+/* --- Entrance Choreography States --- */
+.auth-logo,
+.auth-wordmark,
+.auth-tagline-container,
+.auth-form-container,
+.auth-field-wrapper,
+.auth-submit-wrapper {
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.auth-logo {
+  transform: translateY(8px);
+  transition: transform 600ms var(--apple-ease), opacity 600ms var(--apple-ease);
+}
+.auth-logo.entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-wordmark {
+  transform: translateY(8px);
+  transition: transform 600ms var(--apple-ease), opacity 600ms var(--apple-ease);
+}
+.auth-wordmark.entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-tagline-container {
+  transition: opacity 400ms var(--apple-ease);
+}
+.auth-tagline-container.entered {
+  opacity: 1;
+}
+
+.auth-form-container {
+  transform: translateY(8px);
+  transition: transform 600ms var(--apple-ease), opacity 600ms var(--apple-ease);
+}
+.auth-form-container.entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.auth-field-wrapper {
+  transform: translateY(8px);
+  transition: transform 500ms var(--apple-ease), opacity 500ms var(--apple-ease);
+}
+.auth-field-wrapper.entered {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* focus micro-motion: scale 1 -> 1.01 container maximum */
+.auth-field-wrapper {
+  transition: transform 250ms var(--apple-ease), opacity 500ms var(--apple-ease);
+}
+.auth-field-wrapper:focus-within {
+  transform: scale(1.01) !important;
+}
+
+.auth-submit-wrapper {
+  transform: scale(0.96);
+  transition: transform 500ms var(--apple-ease), opacity 500ms var(--apple-ease);
+}
+.auth-submit-wrapper.entered {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* --- Blinking Cursor during Tagline typing --- */
+.auth-tagline.auth-typing::after {
+  content: '|';
+  color: var(--color-accent);
+  font-weight: normal;
+  display: inline-block;
+  margin-left: 2px;
+  animation: authCursorBlink 0.8s step-end infinite;
+}
+@keyframes authCursorBlink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --- Pure CSS spinner --- */
+.auth-spinner-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.auth-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: authSpin 0.6s linear infinite;
+}
+
+@keyframes authSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- Page exit transition --- */
+.auth-right-panel-transition {
+  opacity: 0 !important;
+  transform: translateY(4px) !important;
+  transition: opacity 150ms var(--apple-ease), transform 150ms var(--apple-ease) !important;
 }
 
 /* ==========================================================================
