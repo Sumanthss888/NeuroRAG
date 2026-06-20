@@ -70,86 +70,107 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body class="relative flex min-h-screen items-center justify-center bg-bg-base text-slate-200 overflow-hidden">
-    
-    <!-- Ambient Neural Background -->
-    <div id="neural-bg">
-        <div class="orb-indigo"></div>
-    </div>
-    <div class="noise-overlay"></div>
-
-    <!-- Main Glass Card (Screen 1 specifications) -->
-    <div class="glass-elevated w-[420px] rounded-[40px] p-10 shadow-medium animate-in relative z-10 border border-border mx-4">
-        
-        <!-- Brand Block -->
-        <div class="text-center mb-8">
-            <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent/10 border border-accent/20 shadow-glow">
-                <!-- Monoline brain SVG outline logo -->
-                <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<body class="bg-[#08090A] text-slate-200 font-sans min-h-screen w-full flex flex-col">
+    <!-- FIX: Visual Redesign - split-screen minimal layout with flat base backgrounds, simple text tabs, and borderless inputs -->
+    <div class="auth-fade-in flex flex-col min-[900px]:flex-row w-full min-h-screen">
+        <!-- Left Column: Editorial Brand context (hidden on mobile <900px) -->
+        <div class="hidden min-[900px]:flex min-[900px]:w-[55%] flex-col justify-between p-16 border-r border-border bg-[#08090A] min-h-screen select-none">
+            <!-- Top Left: Subtle logo -->
+            <div class="flex items-center gap-2">
+                <svg class="w-7 h-7 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                     <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
                     <path d="M12 5v13" />
                 </svg>
             </div>
-            <h1 class="font-display text-2xl font-bold tracking-tight text-white mb-1">NeuroRAG</h1>
-            <p class="text-[12px] text-text-muted font-medium tracking-wide">Clinical AI Assistant</p>
+            
+            <!-- Content Block -->
+            <div class="flex-1 flex flex-col justify-center max-w-[420px] pr-8">
+                <h2 class="font-display text-[22px] font-medium text-white mb-2 leading-tight">NeuroRAG</h2>
+                <p class="text-text-secondary text-sm leading-relaxed font-medium">
+                    A clinical reference assistant for the 51-chapter neurology handbook.
+                </p>
+            </div>
+            
+            <!-- Bottom spacing dummy -->
+            <div></div>
         </div>
 
-        <!-- Authentication Tabs (Pill Switcher) -->
-        <div class="relative flex bg-glass-subtle p-1 rounded-xl border border-border w-full overflow-hidden shadow-inner mb-6">
-            <a href="/login" class="flex-1 py-2 rounded-lg flex items-center justify-center font-display text-[13px] font-semibold transition-all duration-300 bg-white/10 text-white shadow-sm border border-white/5">
-                <span>Login</span>
-            </a>
-            <a href="/signup" class="flex-1 py-2 rounded-lg flex items-center justify-center font-display text-[13px] font-medium transition-all duration-300 text-text-secondary hover:text-white">
-                <span>Signup</span>
-            </a>
-        </div>
-
-        <div id="message" class="hidden mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md"></div>
-
-        <form id="loginForm" class="space-y-6">
-            <!-- Username Input -->
-            <div class="space-y-1">
-                <label for="username" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Username</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    required 
-                    placeholder="Enter your username" 
-                    autocomplete="off"
-                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(var(--color-accent-rgb),0.08)] outline-none transition-all duration-300 px-1"
-                >
-            </div>
-
-            <!-- Password Input -->
-            <div class="space-y-1">
-                <label for="password" class="text-[11px] font-bold text-text-muted uppercase tracking-wider block">Password</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    required 
-                    placeholder="Enter your password" 
-                    class="w-full bg-transparent border-b border-border h-12 text-[15px] font-sans text-text-primary placeholder-text-muted focus:border-accent focus:shadow-[0_4px_12px_rgba(var(--color-accent-rgb),0.08)] outline-none transition-all duration-300 px-1"
-                >
-            </div>
-
-            <!-- Submit Button (Phase 2 primary button specifications) -->
-            <button 
-                type="submit" 
-                id="loginBtn" 
-                class="group relative w-full h-12 flex items-center justify-center rounded-xl bg-accent px-4 font-sans text-[15px] font-medium text-white shadow-soft transition-all duration-200 hover:brightness-110 hover:-translate-y-[1px] active:scale-95 disabled:opacity-70 disabled:hover:scale-100"
-            >
-                <div class="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                
-                <span id="btnText" class="flex items-center justify-center gap-2">
-                    Access Terminal <i class="ph-bold ph-arrow-right transition-transform group-hover:translate-x-1"></i>
-                </span>
-                
-                <div id="spinner" class="hidden absolute">
-                    <i class="ph-bold ph-spinner animate-spin text-xl"></i>
+        <!-- Right Column: Form container -->
+        <div class="flex-1 flex flex-col justify-center bg-[#08090A] min-h-screen p-8 min-[900px]:p-16">
+            <!-- Mobile Header (visible only on <900px) -->
+            <div class="flex flex-col items-start gap-4 mb-10 min-[900px]:hidden">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                        <path d="M12 5v13" />
+                    </svg>
+                    <span class="font-display text-lg font-medium text-white">NeuroRAG</span>
                 </div>
-            </button>
-        </form>
+            </div>
+
+            <!-- Main Auth Content -->
+            <div class="w-full max-w-[420px] mx-auto min-[900px]:mx-0">
+                <!-- Text tab navigation (Sign in / Create account) -->
+                <div class="flex items-center gap-6 mb-8 border-b border-border pb-3">
+                    <a href="/login" class="text-sm font-semibold tracking-wide border-b-2 pb-3 -mb-[13px] border-accent text-accent">Sign in</a>
+                    <a href="/signup" class="text-sm font-medium tracking-wide text-text-secondary hover:text-white pb-3 -mb-[13px]">Create account</a>
+                </div>
+
+                <!-- Alert box -->
+                <div id="message" class="hidden mb-6 rounded-lg p-4 text-sm font-medium border auth-fade-in bg-red-500/10 border-red-500/30 text-red-400"></div>
+
+                <!-- Credentials Form -->
+                <form id="loginForm" class="space-y-6">
+                    <!-- Username Field -->
+                    <div class="space-y-2">
+                        <label for="username" class="text-[13px] font-medium text-text-secondary block">Username</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            required 
+                            placeholder="Enter your username" 
+                            autocomplete="off"
+                            class="auth-input"
+                        >
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="space-y-2">
+                        <label for="password" class="text-[13px] font-medium text-text-secondary block">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            required 
+                            placeholder="Enter your password" 
+                            class="auth-input"
+                        >
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-2">
+                        <button 
+                            type="submit" 
+                            id="loginBtn" 
+                            class="auth-btn relative"
+                        >
+                            <span id="btnText" class="flex items-center justify-center gap-2">Sign in</span>
+                            <div id="spinner" class="hidden absolute">
+                                <i class="ph-bold ph-spinner animate-spin text-xl"></i>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Footer Disclaimer -->
+                <div class="mt-12 pt-6 border-t border-border/40">
+                    <p class="text-[12px] text-text-muted leading-relaxed font-medium">
+                        Simulated clinical workspace. Verify medical data independently.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Keep exact JS logic untouched -->
@@ -165,9 +186,9 @@
             
             // Apply Tailwind classes dynamically based on type
             if (type === 'success') {
-                messageDiv.className = 'mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md bg-emerald-500/10 border-emerald-500/30 text-emerald-400';
+                messageDiv.className = 'mb-6 rounded-lg p-4 text-sm font-medium border auth-fade-in bg-emerald-500/10 border-emerald-500/30 text-emerald-400';
             } else {
-                messageDiv.className = 'mb-6 rounded-xl p-4 text-sm font-medium border animate-fade-in backdrop-blur-md bg-red-500/10 border-red-500/30 text-red-400';
+                messageDiv.className = 'mb-6 rounded-lg p-4 text-sm font-medium border auth-fade-in bg-red-500/10 border-red-500/30 text-red-400';
             }
             
             messageDiv.classList.remove('hidden');
@@ -215,7 +236,7 @@
                     setLoading(false);
                 }
             } catch (error) {
-                showMessage('Connection error. Core offline.', 'error');
+                showMessage('Connection error. Server offline.', 'error');
                 setLoading(false);
             }
         });

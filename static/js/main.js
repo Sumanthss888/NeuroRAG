@@ -164,35 +164,36 @@ function setThemeMode(mode, showTooltip = false) {
     }
 }
 
+// FIX: Visual Refinement - Active/inactive states with muted labels & high-contrast white active elements
 function updateToggleVisuals(mode) {
     if (mode === 'patient') {
         if (indicator) indicator.style.transform = 'translateX(0)';
         
         if (btnPatient) {
-            btnPatient.classList.remove('text-text-secondary');
-            btnPatient.classList.add('text-white');
+            btnPatient.classList.remove('text-text-secondary', 'text-text-muted');
+            btnPatient.classList.add('text-white', 'active');
         }
         if (btnClinician) {
-            btnClinician.classList.remove('text-white');
-            btnClinician.classList.add('text-text-secondary');
+            btnClinician.classList.remove('text-white', 'active');
+            btnClinician.classList.add('text-text-muted');
         }
         
         if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white transition-all duration-300 text-xs';
-        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-xs';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white opacity-30 transition-all duration-300 text-xs';
     } else {
         if (indicator) indicator.style.transform = 'translateX(100%)';
         
         if (btnClinician) {
-            btnClinician.classList.remove('text-text-secondary');
-            btnClinician.classList.add('text-white');
+            btnClinician.classList.remove('text-text-secondary', 'text-text-muted');
+            btnClinician.classList.add('text-white', 'active');
         }
         if (btnPatient) {
-            btnPatient.classList.remove('text-white');
-            btnPatient.classList.add('text-text-secondary');
+            btnPatient.classList.remove('text-white', 'active');
+            btnPatient.classList.add('text-text-muted');
         }
         
-        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-emerald-400 transition-all duration-300 text-xs';
-        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white opacity-40 transition-all duration-300 text-xs';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white transition-all duration-300 text-xs';
+        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white opacity-30 transition-all duration-300 text-xs';
     }
 }
 
@@ -1642,22 +1643,17 @@ function clearActiveWorkspace() {
     }
     
     // Restore welcome message
+    // FIX: Visual Refinement - Left-aligned workspace welcome message with 28px title, single line info, and footnotes metadata
     const welcomeHtml = `
-        <div class="welcome-message animate-message-enter flex flex-col items-center justify-center h-full text-center mt-12 px-4">
-            <div class="w-20 h-20 rounded-3xl bg-slate-800/40 border border-border flex items-center justify-center mb-6 shadow-xl relative backdrop-blur-md">
-                <svg class="w-10 h-10 text-accent animate-pulse-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                    <path d="M12 5v13" />
-                </svg>
-            </div>
-            <h1 class="font-display text-3xl font-bold text-white mb-3 tracking-tight">Clinical Assistant Workspace</h1>
-            <p class="text-text-secondary text-sm mb-6 leading-relaxed max-w-md font-medium">
-                Search and analyze the 51-chapter neurological disorders manual. Type a diagnostic, pathology, or pharmaceutical query below.
+        <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
+            <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
+            <p class="text-text-secondary text-sm mb-4 font-medium">
+                Search and analyze the 51-chapter neurological disorders manual.
             </p>
-            <div class="flex gap-2.5 text-[9px] text-text-muted font-semibold tracking-widest uppercase">
-                <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-database text-accent text-xs"></i> FAISS VECTORS</div>
-                <div class="glass-subtle flex items-center gap-1.5 px-3 py-1.5 rounded-full"><i class="ph-fill ph-lightning text-accent text-xs"></i> GEMINI 2.5 FLASH</div>
+            <div class="text-[10px] text-text-muted font-semibold tracking-widest uppercase">
+                <span>FAISS</span>
+                <span class="mx-1.5">•</span>
+                <span>Gemini 2.5 Flash</span>
             </div>
         </div>
     `;
