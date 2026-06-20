@@ -245,14 +245,14 @@ if (sidebarToggle && sidebar && sidebarOverlay) {
             requestAnimationFrame(() => sidebarOverlay.classList.add('opacity-100'));
         } else {
             sidebarOverlay.classList.remove('opacity-100');
-            setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+            setTimeout(() => sidebarOverlay.classList.add('hidden'), 400);
         }
     });
 
     sidebarOverlay.addEventListener('click', () => {
         sidebar.classList.remove('sidebar-open');
         sidebarOverlay.classList.remove('opacity-100');
-        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 400);
     });
 }
 
@@ -307,8 +307,8 @@ function updateToggleVisuals(mode) {
             btnClinician.classList.add('text-text-muted');
         }
         
-        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white transition-all duration-300 text-xs';
-        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white opacity-30 transition-all duration-300 text-xs';
+        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white transition-all duration-150 text-xs';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white opacity-30 transition-all duration-150 text-xs';
     } else {
         if (indicator) indicator.style.transform = 'translateX(100%)';
         
@@ -321,8 +321,8 @@ function updateToggleVisuals(mode) {
             btnPatient.classList.add('text-text-muted');
         }
         
-        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white transition-all duration-300 text-xs';
-        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white opacity-30 transition-all duration-300 text-xs';
+        if (iconClinician) iconClinician.className = 'ph-fill ph-stethoscope text-white transition-all duration-150 text-xs';
+        if (iconPatient) iconPatient.className = 'ph-fill ph-user text-white opacity-30 transition-all duration-150 text-xs';
     }
 }
 
@@ -333,7 +333,7 @@ function showModeTooltip(mode) {
 
     const tooltip = document.createElement('div');
     tooltip.id = 'mode-tooltip';
-    tooltip.className = 'fixed top-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-accent text-white text-xs font-semibold shadow-glow z-50 transition-all duration-300 opacity-0 transform translate-y-[-10px] pointer-events-none';
+    tooltip.className = 'fixed top-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded-xl bg-accent text-white text-xs font-semibold shadow-glow z-50 opacity-0 transform translate-y-[-10px] pointer-events-none';
     tooltip.textContent = `Switched to ${mode.charAt(0).toUpperCase() + mode.slice(1)} Mode`;
     
     document.body.appendChild(tooltip);
@@ -344,9 +344,10 @@ function showModeTooltip(mode) {
     });
     
     setTimeout(() => {
+        tooltip.classList.add('exiting');
         tooltip.classList.remove('opacity-100', 'translate-y-0');
         tooltip.classList.add('opacity-0', 'translate-y-[-10px]');
-        setTimeout(() => tooltip.remove(), 300);
+        setTimeout(() => tooltip.remove(), 150);
     }, 1500);
 }
 
@@ -368,10 +369,10 @@ async function handleSubmit() {
     
     const welcomeMsg = document.querySelector('.welcome-message');
     if (welcomeMsg) {
-        welcomeMsg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        welcomeMsg.style.transition = 'opacity var(--duration-fast) var(--ease-out-smooth), transform var(--duration-fast) var(--ease-out-smooth)';
         welcomeMsg.style.opacity = '0';
         welcomeMsg.style.transform = 'scale(0.96)';
-        setTimeout(() => welcomeMsg.remove(), 300);
+        setTimeout(() => welcomeMsg.remove(), 150);
     }
     
     const messageId = 'msg-' + Date.now();
@@ -524,7 +525,7 @@ function scrollToMessage(id, element) {
     if (window.innerWidth < 768 && sidebar && sidebarOverlay) {
         sidebar.classList.remove('sidebar-open');
         sidebarOverlay.classList.remove('opacity-100');
-        setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+        setTimeout(() => sidebarOverlay.classList.add('hidden'), 400);
     }
 }
 
@@ -587,7 +588,7 @@ function generateReport() {
 function addMessage(sender, content, id) {
     const messageWrapper = document.createElement('div');
     messageWrapper.id = id; 
-    messageWrapper.className = 'flex w-full animate-message-enter justify-end pl-12';
+    messageWrapper.className = 'flex w-full animate-user-message justify-end pl-12';
     
     // User Message Bubble redesign specs
     const messageBubble = document.createElement('div');
@@ -607,7 +608,7 @@ function addMessage(sender, content, id) {
 function addAssistantMessage(data, id) {
     const messageWrapper = document.createElement('div');
     if (id) messageWrapper.id = id;
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
+    messageWrapper.className = 'flex w-full animate-ai-message pr-12 justify-start';
     
     const isPatient = currentMode === 'patient';
     
@@ -647,8 +648,19 @@ function addAssistantMessage(data, id) {
     
     contentContainer.appendChild(header);
     
+    let numCitations = 0;
+    if (data.citations && data.citations.length > 0) {
+        numCitations = data.citations.length;
+    }
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stageThreeDelay = isReduced ? 0 : (100 + numCitations * 60 + 60);
+
     const redFlag = detectRedFlags(data.answer);
     if (redFlag) {
+        redFlag.classList.add('red-flag-alert-enter');
+        if (!isReduced) {
+            redFlag.style.animationDelay = `${stageThreeDelay}ms`;
+        }
         contentContainer.appendChild(redFlag);
     }
     
@@ -662,9 +674,12 @@ function addAssistantMessage(data, id) {
         const citationsContainer = document.createElement('div');
         citationsContainer.className = 'mt-4 flex flex-wrap gap-2 pt-2 border-t border-border/20';
         
-        data.citations.forEach(cit => {
+        data.citations.forEach((cit, index) => {
             const pill = document.createElement('div');
-            pill.className = 'glass-subtle inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium text-text-secondary hover:text-white transition-all cursor-pointer border border-border';
+            pill.className = 'glass-subtle inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium text-text-secondary hover:text-white transition-all cursor-pointer border border-border citation-pill-enter';
+            if (!isReduced) {
+                pill.style.animationDelay = `${100 + index * 60}ms`;
+            }
             pill.setAttribute('title', `Similarity Score: ${(cit.similarity * 100).toFixed(1)}%`);
             pill.innerHTML = `<i class="ph-bold ph-bookmark-simple text-accent"></i> Chapter ${cit.chapter_id}: ${cit.chapter_title}`;
             
@@ -680,11 +695,19 @@ function addAssistantMessage(data, id) {
     
     const riskLevel = calculateRiskScore(data.answer);
     const riskIndicator = createRiskIndicator(riskLevel);
+    riskIndicator.classList.add('risk-container-enter');
+    if (!isReduced) {
+        riskIndicator.style.animationDelay = `${stageThreeDelay}ms`;
+    }
     contentContainer.appendChild(riskIndicator);
     
     // FIX: Merged duplicate queryUsed declarations to resolve SyntaxError and prevent JS engine crash
     const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
     const reasoningSnapshot = createReasoningSnapshot(queryUsed, data.answer);
+    reasoningSnapshot.classList.add('reasoning-container-enter');
+    if (!isReduced) {
+        reasoningSnapshot.style.animationDelay = `${stageThreeDelay}ms`;
+    }
     contentContainer.appendChild(reasoningSnapshot);
     
     const suggestions = (data.suggested_questions && data.suggested_questions.length > 0)
@@ -694,6 +717,10 @@ function addAssistantMessage(data, id) {
             : generateFallbackSuggestions(queryUsed).slice(0, 3));
         
     const followupSection = createFollowupSection(suggestions);
+    followupSection.classList.add('suggestions-container-enter');
+    if (!isReduced) {
+        followupSection.style.animationDelay = `${stageThreeDelay + 60}ms`;
+    }
     contentContainer.appendChild(followupSection);
 
     // Phase 3: Clinical Citation Audit Trail Footer
@@ -940,7 +967,7 @@ function createReasoningSnapshot(query, response) {
             <div class="reasoning-title text-[10px] font-semibold uppercase tracking-wider text-text-secondary flex items-center gap-2">
                 <i class="ph-bold ph-brain text-accent text-sm"></i> Clinical Analysis
             </div>
-            <i class="ph-bold ph-caret-down text-text-muted transition-transform duration-300 reasoning-icon"></i>
+            <i class="ph-bold ph-caret-down text-text-muted transition-transform duration-150 reasoning-icon"></i>
         </div>
         <div class="reasoning-content-wrapper">
             <div class="reasoning-content">
@@ -999,7 +1026,7 @@ function generateFallbackSuggestions(query) {
 
 function addErrorMessage(errorText, id) {
     const messageWrapper = document.createElement('div');
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start error-bubble-container';
+    messageWrapper.className = 'flex w-full animate-ai-message pr-12 justify-start error-bubble-container';
     if (id) messageWrapper.id = id;
     
     const messageCard = document.createElement('div');
@@ -1047,7 +1074,7 @@ function showLoading() {
     const loadingId = 'loading-' + Date.now();
     const messageWrapper = document.createElement('div');
     messageWrapper.id = loadingId;
-    messageWrapper.className = 'flex w-full animate-message-enter pr-12 justify-start';
+    messageWrapper.className = 'flex w-full animate-ai-message pr-12 justify-start';
     
     const messageCard = document.createElement('div');
     messageCard.className = 'glass-subtle message-card assistant relative w-full rounded-[4px_18px_18px_18px] p-[12px_16px] border border-border shadow-soft flex gap-3.5';
@@ -1089,10 +1116,10 @@ function showLoading() {
 function removeLoading(loadingId) {
     const loadingDiv = document.getElementById(loadingId);
     if (loadingDiv) {
-        loadingDiv.style.transition = 'opacity 0.3s var(--apple-ease), transform 0.3s var(--apple-ease)';
+        loadingDiv.style.transition = 'opacity var(--duration-fast) var(--ease-out-smooth), transform var(--duration-fast) var(--ease-out-smooth)';
         loadingDiv.style.opacity = '0';
         loadingDiv.style.transform = 'scale(0.96)';
-        setTimeout(() => loadingDiv.remove(), 300);
+        setTimeout(() => loadingDiv.remove(), 150);
     }
     submitBtn.disabled = false;
 }
@@ -1809,7 +1836,7 @@ function showToast(message, type = 'info') {
     }
     
     const toast = document.createElement('div');
-    toast.className = `clinical-toast pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl border backdrop-blur-md shadow-glow transition-all duration-250 ease-out translate-x-[110%]`;
+    toast.className = `clinical-toast pointer-events-auto flex items-start gap-3 p-3.5 rounded-xl border backdrop-blur-md shadow-glow translate-x-[110%]`;
     
     let iconHTML = '';
     if (type === 'success') {
@@ -1826,7 +1853,7 @@ function showToast(message, type = 'info') {
     toast.innerHTML = `
         ${iconHTML}
         <div class="flex-1 text-[12px] font-semibold leading-normal pr-1">${escapeHTML(message)}</div>
-        <button class="text-text-muted hover:text-white transition-colors" onclick="this.parentElement.classList.add('hide-toast'); setTimeout(() => this.parentElement.remove(), 250)" aria-label="Close Notification">
+        <button class="text-text-muted hover:text-white transition-colors" onclick="this.parentElement.classList.add('hide-toast'); setTimeout(() => this.parentElement.remove(), 150)" aria-label="Close Notification">
             <i class="ph ph-x text-sm"></i>
         </button>
     `;
@@ -1839,7 +1866,7 @@ function showToast(message, type = 'info') {
     
     setTimeout(() => {
         toast.classList.add('hide-toast');
-        setTimeout(() => toast.remove(), 250);
+        setTimeout(() => toast.remove(), 150);
     }, 3500);
 }
 
@@ -2063,7 +2090,7 @@ function renderSessionHistory(conversations) {
                     <span class="text-[10px] font-semibold text-text-secondary">Session: ${dateStr}</span>
                     <span class="text-[9px] text-text-muted mt-0.5">${sess.query_count} queries • ${sess.critical_count} critical</span>
                 </div>
-                <i class="ph ph-caret-down text-text-muted transition-transform duration-300 font-bold text-xs"></i>
+                <i class="ph ph-caret-down text-text-muted transition-transform duration-150 font-bold text-xs"></i>
             </div>
             
             <div class="session-details hidden mt-3 pt-3 border-t border-border/20 space-y-2">
@@ -2305,7 +2332,7 @@ function initKeyboardShortcuts() {
                 sidebar.classList.remove('sidebar-open');
                 if (sidebarOverlay) {
                     sidebarOverlay.classList.remove('opacity-100');
-                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 400);
                 }
             }
         }
@@ -2332,7 +2359,7 @@ function initKeyboardShortcuts() {
                     requestAnimationFrame(() => sidebarOverlay.classList.add('opacity-100'));
                 } else if (sidebarOverlay) {
                     sidebarOverlay.classList.remove('opacity-100');
-                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 300);
+                    setTimeout(() => sidebarOverlay.classList.add('hidden'), 400);
                 }
             }
         }

@@ -4,6 +4,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Inter:wght@300;400;500;600&display=swap');
 
+/* Global prefers-reduced-motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 :root {
   /* Centralized Design Tokens */
   --color-bg-base: #08090A;
@@ -65,7 +76,16 @@
   --text-2xl: 26px;
   --text-3xl: 32px;
 
-  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Standardized Motion System Tokens */
+  --ease-out-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 600ms;
+
+  --apple-ease: var(--ease-out-smooth);
 }
 
 /* FIX: Added Patient Mode Accent Theme */
@@ -126,7 +146,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 ::-webkit-scrollbar-thumb {
   background: rgba(var(--color-accent-rgb), 0.4);
   border-radius: var(--radius-sm);
-  transition: background 0.3s var(--apple-ease);
+    transition: background var(--duration-fast) var(--ease-out-smooth);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -182,7 +202,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   padding: 6px 10px !important;
   border-radius: var(--radius-sm) !important;
   font-weight: 500 !important;
-  transition: all 0.2s var(--apple-ease) !important;
+  transition: all var(--duration-fast) var(--ease-out-smooth) !important;
   transform: none !important;
 }
 
@@ -202,7 +222,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   background: rgba(239, 68, 68, 0.08) !important;
   color: var(--color-danger) !important;
   border-radius: var(--radius-sm) !important;
-  transition: all 0.2s var(--apple-ease) !important;
+  transition: all var(--duration-fast) var(--ease-out-smooth) !important;
 }
 
 #btn-end-session:hover {
@@ -225,7 +245,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-soft);
-  transition: all 0.3s var(--apple-ease);
+  transition: all var(--duration-fast) var(--ease-out-smooth);
 }
 
 .glass-panel:hover {
@@ -241,7 +261,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   -webkit-backdrop-filter: blur(40px);
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-medium);
-  transition: all 0.4s var(--apple-ease);
+  transition: all var(--duration-base) var(--ease-out-smooth);
 }
 
 .glass-input-container:focus-within {
@@ -258,7 +278,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border: 1px solid var(--color-border);
   color: var(--color-text-primary);
   caret-color: var(--color-accent);
-  transition: all 0.3s var(--apple-ease);
+  transition: all var(--duration-fast) var(--ease-out-smooth);
 }
 
 .glass-input:focus {
@@ -269,7 +289,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* Micro-interactions (Apple-style) */
 .btn-micro {
-  transition: all 0.25s var(--apple-ease);
+  transition: all var(--duration-fast) var(--ease-out-smooth);
 }
 .btn-micro:hover {
   transform: translateY(-2px);
@@ -393,19 +413,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   animation: shimmer 2.2s infinite;
 }
 
-/* Reduced Motion Override (A11y Support) */
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
-    animation-iteration-count: 1 !important;
-    background-attachment: initial !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0s !important;
-    transition-delay: 0s !important;
-  }
-}
-
 /* ==========================================================================
    LEGACY COMPONENT STYLES PRESERVED & INTEGRATED WITH THEMES
    ========================================================================== */
@@ -414,6 +421,45 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .animate-message-enter {
   animation: fadeInUp 0.4s var(--apple-ease) forwards;
   opacity: 0;
+}
+
+/* Unified Message Choreography Animations */
+.animate-user-message {
+  animation: userMessageEnter var(--duration-fast) var(--ease-out-smooth) forwards;
+  opacity: 0;
+}
+@keyframes userMessageEnter {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-ai-message {
+  animation: aiMessageEnter var(--duration-base) var(--ease-out-smooth) forwards;
+  opacity: 0;
+}
+@keyframes aiMessageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.citation-pill-enter {
+  opacity: 0;
+  transform: translateY(4px);
+  animation: citationPillFadeIn var(--duration-base) var(--ease-out-smooth) forwards;
+}
+@keyframes citationPillFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reasoning-container-enter,
+.risk-container-enter,
+.suggestions-container-enter,
+.red-flag-alert-enter {
+  opacity: 0;
+  animation: stageThreeFadeIn var(--duration-base) var(--ease-out-smooth) forwards;
+}
+@keyframes stageThreeFadeIn {
+  to { opacity: 1; }
 }
 
 .page-enter-1 { animation: fadeInUp 0.5s var(--apple-ease) 0s forwards; opacity: 0; }
@@ -539,7 +585,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .timeline-card {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
-  transition: all 0.2s var(--apple-ease);
+  transition: all var(--duration-fast) var(--ease-out-smooth);
   cursor: pointer;
   border: 1px solid transparent;
 }
@@ -563,12 +609,14 @@ h1, h2, h3, h4, h5, h6, .font-display {
   -webkit-backdrop-filter: blur(20px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s var(--apple-ease);
+  visibility: hidden;
+  transition: opacity var(--duration-fast) var(--ease-out-smooth), visibility var(--duration-fast) var(--ease-out-smooth);
 }
 
 .report-modal.active {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .report-container {
@@ -581,9 +629,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
   border-radius: var(--radius-lg);
   overflow-y: auto;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
-  transform: scale(0.96) translateY(10px);
+  transform: scale(0.97);
   opacity: 0;
-  transition: all 0.4s var(--apple-ease);
+  transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -596,8 +644,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 .report-modal.active .report-container {
-  transform: scale(1) translateY(0);
+  transform: scale(1);
   opacity: 1;
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 
 .report-container h1, 
@@ -708,8 +757,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  animation: fadeInUp 0.6s var(--apple-ease) 0.5s forwards;
-  opacity: 0;
 }
 
 .risk-header {
@@ -758,14 +805,11 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .risk-bar-fill.medium { background: linear-gradient(90deg, #d97706, var(--color-warning)); }
 .risk-bar-fill.high { background: linear-gradient(90deg, #dc2626, var(--color-danger)); }
 
-/* FOLLOW-UP SUGGESTIONS */
 .suggestions-container {
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  animation: fadeInUp 0.6s var(--apple-ease) 0.7s forwards;
-  opacity: 0;
 }
 
 .suggestion-chip {
@@ -777,7 +821,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.25s var(--apple-ease);
+  transition: all var(--duration-fast) var(--ease-out-smooth);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1028,7 +1072,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
     left: -280px !important;
     width: 280px !important;
     z-index: 40 !important;
-    transition: transform 0.3s var(--apple-ease) !important;
+    transition: transform var(--duration-slow) var(--ease-in-out-smooth) !important;
     background: rgba(15, 16, 17, 0.95) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
@@ -1036,6 +1080,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
   aside.sidebar-open {
     transform: translateX(280px);
   }
+}
+
+#sidebar-overlay {
+  transition: opacity var(--duration-slow) var(--ease-in-out-smooth), visibility var(--duration-slow) var(--ease-in-out-smooth) !important;
 }
 
 /* ==========================================
@@ -1116,7 +1164,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s var(--apple-ease), visibility 0.2s var(--apple-ease);
+  transition: opacity var(--duration-fast) var(--ease-out-smooth), visibility var(--duration-fast) var(--ease-out-smooth);
 }
 
 #source-modal-backdrop.show {
@@ -1129,15 +1177,16 @@ h1, h2, h3, h4, h5, h6, .font-display {
   max-width: 600px;
   max-height: 85vh;
   overflow-y: auto;
-  transform: scale(0.96);
+  transform: scale(0.97);
   opacity: 0;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
   padding: 24px;
 }
 
 #source-modal-backdrop.show .source-modal-container {
   transform: scale(1);
   opacity: 1;
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 
 .source-modal-header {
@@ -1512,7 +1561,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   align-items: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s var(--apple-ease), visibility 0.2s var(--apple-ease);
+  transition: opacity var(--duration-fast) var(--ease-out-smooth), visibility var(--duration-fast) var(--ease-out-smooth);
 }
 
 #shortcuts-modal-backdrop.show {
@@ -1523,6 +1572,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 #shortcuts-modal-backdrop.show .source-modal-container {
   transform: scale(1);
   opacity: 1;
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 
 /* BOOKMARKS SYSTEM ACTIONS & ELEMENTS */
@@ -1689,11 +1739,12 @@ textarea:focus-visible,
 
 /* Toast container entry and exit transitions */
 .clinical-toast {
-  transition: transform 0.25s var(--apple-ease), opacity 0.25s var(--apple-ease);
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 .clinical-toast.hide-toast {
   transform: translateX(110%);
   opacity: 0;
+  transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
 }
 
 /* Responsive overrides at mobile and tablet screen size viewports */
@@ -1979,12 +2030,14 @@ a, button, input, textarea, select, svg, path,
   padding-top: 15vh;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.18s var(--apple-ease);
+  visibility: hidden;
+  transition: opacity var(--duration-fast) var(--ease-out-smooth), visibility var(--duration-fast) var(--ease-out-smooth);
 }
 
 #command-palette-backdrop.open {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 #command-palette {
@@ -2000,15 +2053,18 @@ a, button, input, textarea, select, svg, path,
     0 24px 64px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(0, 0, 0, 0.3) !important;
   overflow: hidden;
-  transform: translateY(-12px) scale(0.97);
-  transition: transform 0.22s var(--apple-ease);
+  transform: scale(0.97);
+  opacity: 0;
+  transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
   display: flex;
   flex-direction: column;
   max-height: 420px;
 }
 
 #command-palette-backdrop.open #command-palette {
-  transform: translateY(0) scale(1);
+  transform: scale(1);
+  opacity: 1;
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 
 /* Palette search input row */
@@ -2387,4 +2443,30 @@ a, button, input, textarea, select, svg, path,
   font-size: 10px;
   color: var(--color-text-muted);
   font-weight: 500;
+}
+
+/* Metric Cards Stagger Entrance */
+.metric-card-enter {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: metricCardFadeIn var(--duration-base) var(--ease-out-smooth) forwards;
+}
+
+@keyframes metricCardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.metric-card-enter:nth-child(1) { animation-delay: 0ms; }
+.metric-card-enter:nth-child(2) { animation-delay: 60ms; }
+.metric-card-enter:nth-child(3) { animation-delay: 120ms; }
+.metric-card-enter:nth-child(4) { animation-delay: 180ms; }
+
+#mode-tooltip {
+  transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
+}
+#mode-tooltip.exiting {
+  transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
 }

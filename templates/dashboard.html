@@ -94,7 +94,7 @@
             </div>
             
             <div class="flex items-center gap-3">
-                <a href="/" class="btn-micro flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-border text-sm font-semibold hover:bg-white/10 hover:text-accent transition-all duration-300 backdrop-blur-sm shadow-soft">
+                <a href="/" class="btn-micro flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-border text-sm font-semibold hover:bg-white/10 hover:text-accent transition-all duration-150 backdrop-blur-sm shadow-soft">
                     <i class="ph-bold ph-terminal-window"></i> Return to Terminal
                 </a>
                 <a href="/logout" class="btn-micro flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition-all" title="Disconnect Session">
@@ -107,7 +107,7 @@
         <!-- Metrics Grid -->
         <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <!-- Metric Card 1 -->
-            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft">
+            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft metric-card-enter">
                 <div class="p-3 bg-accent/10 border border-accent/20 rounded-xl text-accent">
                     <i class="ph-bold ph-clock-counter-clockwise text-xl"></i>
                 </div>
@@ -118,7 +118,7 @@
             </div>
             
             <!-- Metric Card 2 -->
-            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft">
+            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft metric-card-enter">
                 <div class="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-400">
                     <i class="ph-bold ph-chats-teardrop text-xl"></i>
                 </div>
@@ -129,7 +129,7 @@
             </div>
             
             <!-- Metric Card 3 -->
-            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft">
+            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft metric-card-enter">
                 <div class="p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400">
                     <i class="ph-bold ph-shield-warning text-xl"></i>
                 </div>
@@ -140,7 +140,7 @@
             </div>
 
             <!-- Metric Card 4 -->
-            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft">
+            <div class="glass-subtle border border-border rounded-2xl p-6 flex items-center gap-4 hover:border-accent/30 transition-all shadow-soft metric-card-enter">
                 <div class="p-3 bg-violet-500/10 border border-violet-500/20 rounded-xl text-violet-400">
                     <i class="ph-bold ph-book-open text-xl"></i>
                 </div>
@@ -243,6 +243,16 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 600,
+                    easing: 'easeOutExpo'
+                },
+                hover: { animationDuration: 0 },
+                responsiveAnimationDuration: 0,
+                transitions: {
+                    active: { animation: { duration: 0 } },
+                    resize: { animation: { duration: 0 } }
+                },
                 plugins: {
                     legend: { display: false }
                 },
@@ -274,6 +284,16 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 600,
+                    easing: 'easeOutExpo'
+                },
+                hover: { animationDuration: 0 },
+                responsiveAnimationDuration: 0,
+                transitions: {
+                    active: { animation: { duration: 0 } },
+                    resize: { animation: { duration: 0 } }
+                },
                 plugins: {
                     legend: { 
                         position: 'bottom',
@@ -309,6 +329,16 @@
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
+                animation: {
+                    duration: 600,
+                    easing: 'easeOutExpo'
+                },
+                hover: { animationDuration: 0 },
+                responsiveAnimationDuration: 0,
+                transitions: {
+                    active: { animation: { duration: 0 } },
+                    resize: { animation: { duration: 0 } }
+                },
                 plugins: {
                     legend: { display: false }
                 },
