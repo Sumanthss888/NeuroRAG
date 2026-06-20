@@ -18,6 +18,9 @@
 
     // 3. Entrance Choreography & Tagline Typewriter Sequence
     initEntranceSequence(prefersReducedMotion);
+
+    // 4. Initialize SVG Logo Reveal animation
+    initLogoReveal();
   });
 
   /**
@@ -345,5 +348,27 @@
       }
     };
   };
+
+  /**
+   * Measure path lengths and trigger SVG stroke-draw animation
+   */
+  function initLogoReveal() {
+    const animatedLogos = document.querySelectorAll('.logo-reveal-animate');
+    animatedLogos.forEach(logo => {
+      const paths = logo.querySelectorAll('.logo-path');
+      paths.forEach(path => {
+        try {
+          const length = path.getTotalLength();
+          path.style.setProperty('--logo-path-length', length);
+        } catch (e) {
+          path.style.setProperty('--logo-path-length', '100');
+        }
+      });
+      // Trigger animation in next frame
+      requestAnimationFrame(() => {
+        logo.classList.add('start-reveal');
+      });
+    });
+  }
 
 })();

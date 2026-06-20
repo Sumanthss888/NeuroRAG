@@ -1092,6 +1092,7 @@ function addErrorMessage(errorText, id) {
 }
 
 function showLoading() {
+    startTitleCycling();
     const loadingId = 'loading-' + Date.now();
     const messageWrapper = document.createElement('div');
     messageWrapper.id = loadingId;
@@ -1135,6 +1136,7 @@ function showLoading() {
 }
 
 function removeLoading(loadingId) {
+    stopTitleCycling();
     const loadingDiv = document.getElementById(loadingId);
     if (loadingDiv) {
         loadingDiv.style.transition = 'opacity var(--duration-fast) var(--ease-out-smooth), transform var(--duration-fast) var(--ease-out-smooth)';
@@ -2239,8 +2241,7 @@ function clearActiveWorkspace() {
     // PHASE 6: Theme-aware empty state with accent brain icon that updates on mode switch
     const welcomeHtml = `
         <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
-            <div class="mb-4">
-                <i class="ph-fill ph-brain" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
+            <div class="mb-4 w-9 h-9 welcome-logo-container">
             </div>
             <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
             <p class="text-text-secondary text-sm mb-4 font-medium">
@@ -2254,6 +2255,18 @@ function clearActiveWorkspace() {
         </div>
     `;
     chatContainer.innerHTML = welcomeHtml;
+    
+    // Clone header logo dynamically for the welcome logo container to enforce ONE LOGO principal
+    const welcomeLogoContainer = chatContainer.querySelector('.welcome-logo-container');
+    const headerLogo = document.querySelector('.header-brand-link .neurorag-logo');
+    if (headerLogo && welcomeLogoContainer) {
+        const clonedLogo = headerLogo.cloneNode(true);
+        clonedLogo.classList.add('logo-reveal-animate');
+        welcomeLogoContainer.appendChild(clonedLogo);
+        initLogoRevealOnElement(clonedLogo);
+    } else if (welcomeLogoContainer) {
+        welcomeLogoContainer.innerHTML = `<i class="ph-fill ph-brain" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>`;
+    }
     
     // Show example queries container
     const examples = document.getElementById('example-queries-container');
@@ -2690,5 +2703,58 @@ function initPlaceholderCycling() {
 
 // Initialize placeholder cycling on load
 initPlaceholderCycling();
+
+// ==========================================
+// BRAND SYSTEM: LOGO REVEAL & TITLE CYCLING
+// ==========================================
+
+let titleCycleInterval = null;
+let originalTitle = "";
+
+function startTitleCycling() {
+    if (titleCycleInterval) return;
+    originalTitle = document.title;
+    let dots = 1;
+    document.title = "NeuroRAG ·";
+    titleCycleInterval = setInterval(() => {
+        dots = (dots % 3) + 1;
+        document.title = "NeuroRAG " + "·".repeat(dots);
+    }, 500);
+}
+
+function stopTitleCycling() {
+    if (titleCycleInterval) {
+        clearInterval(titleCycleInterval);
+        titleCycleInterval = null;
+    }
+    if (originalTitle) {
+        document.title = originalTitle;
+    }
+}
+
+function initLogoRevealOnElement(logoSvg) {
+    if (!logoSvg) return;
+    const paths = logoSvg.querySelectorAll('.logo-path');
+    if (paths.length === 0) return;
+    
+    paths.forEach(path => {
+        try {
+            const length = path.getTotalLength();
+            path.style.setProperty('--logo-path-length', length);
+        } catch (e) {
+            path.style.setProperty('--logo-path-length', '100');
+        }
+    });
+    
+    requestAnimationFrame(() => {
+        logoSvg.classList.add('start-reveal');
+    });
+}
+
+// Initialize welcome logo animation on load if present
+const welcomeLogo = document.querySelector('.welcome-message .logo-reveal-animate');
+if (welcomeLogo) {
+    initLogoRevealOnElement(welcomeLogo);
+}
 
 console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 6 Configured');
