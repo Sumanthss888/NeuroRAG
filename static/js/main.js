@@ -1,7 +1,7 @@
 // NeuroRAG Chat Interface JavaScript - Apple Premium Edition
 
 // Global state
-let currentMode = 'patient';
+let currentMode = localStorage.getItem('neurorag_theme_mode') || 'patient';
 let messageHistory = [];
 
 const MEDICAL_DICTIONARY = {
@@ -66,7 +66,8 @@ let recognition = null;
 let isListening = false;
 
 // Initialize Toggle State
-updateToggleVisuals(currentMode);
+// FIX: Initialize persistent theme mode and toggle UI state on script load
+setThemeMode(currentMode, false);
 
 // Event Listeners
 submitBtn.addEventListener('click', handleSubmit);
@@ -101,14 +102,8 @@ queryInput.addEventListener('input', () => {
 // Mode switching
 modeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        currentMode = btn.dataset.mode;
-        updateToggleVisuals(currentMode);
-        
-        document.body.classList.remove('mode-patient', 'mode-clinician');
-        document.body.classList.add(`mode-${currentMode}`);
-
-        // Phase 2: Fade-in / Fade-out Mode Change Toast Tooltip
-        showModeTooltip(currentMode);
+        // FIX: Toggle theme using setThemeMode helper with tooltip notification
+        setThemeMode(btn.dataset.mode, true);
     });
 });
 
@@ -152,6 +147,21 @@ if (btnCloseReport && reportModal) {
 }
 if (btnPrintReport) {
     btnPrintReport.addEventListener('click', () => window.print());
+}
+
+// FIX: Added setThemeMode to handle persistent accent themes (data-mode, localStorage)
+function setThemeMode(mode, showTooltip = false) {
+    currentMode = mode || 'patient';
+    document.documentElement.setAttribute('data-mode', currentMode);
+    localStorage.setItem('neurorag_theme_mode', currentMode);
+    
+    document.body.classList.remove('mode-patient', 'mode-clinician');
+    document.body.classList.add(`mode-${currentMode}`);
+    
+    updateToggleVisuals(currentMode);
+    if (showTooltip) {
+        showModeTooltip(currentMode);
+    }
 }
 
 function updateToggleVisuals(mode) {
@@ -336,7 +346,8 @@ function generateReport() {
     if (!lastEntry.answer) return;
     
     const isPatient = lastEntry.mode === 'patient';
-    const accentColor = '#7C6AF7'; 
+    // FIX: Query the dynamic theme accent color for report branding
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#3B9EE8'; 
     const modeName = isPatient ? 'Patient Overview' : 'Clinical Diagnostic';
     const date = new Date().toLocaleDateString();
     
@@ -351,7 +362,7 @@ function generateReport() {
     reportContent.innerHTML = `
         <div class="border-b pb-6 mb-6" style="border-color: #e2e8f0">
             <div class="flex items-center gap-3 mb-2">
-                <svg class="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="none" stroke="#7C6AF7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="w-8 h-8 text-accent" viewBox="0 0 24 24" fill="none" stroke="${accentColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
                     <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
                     <path d="M12 5v13" />

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
+    <!-- Theme Initialization Script (FOIS Prevention) -->
+    <script>
+        (function() {
+            const mode = localStorage.getItem('neurorag_theme_mode') || 'patient';
+            document.documentElement.setAttribute('data-mode', mode);
+        })();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroRAG - Clinical Metrics Dashboard</title>
@@ -21,8 +28,8 @@
               'glass-elevated': 'rgba(255, 255, 255, 0.07)',
               'glass-subtle': 'rgba(255, 255, 255, 0.02)',
               accent: {
-                DEFAULT: '#7C6AF7',
-                dim: 'rgba(124, 106, 247, 0.15)',
+                DEFAULT: 'var(--color-accent)',
+                dim: 'var(--color-accent-dim)',
               },
               bg: {
                 base: '#08090A',
@@ -48,7 +55,7 @@
             boxShadow: {
               'soft': '0 8px 30px rgba(0, 0, 0, 0.25)',
               'medium': '0 12px 40px rgba(0, 0, 0, 0.35)',
-              'glow': '0 0 40px rgba(124, 106, 247, 0.25)',
+              'glow': '0 0 40px var(--color-accent-glow)',
             }
           }
         }
@@ -200,6 +207,12 @@
     <!-- Chart Configuration Script -->
     {% if metrics.total_sessions > 0 %}
     <script>
+        // Retrieve dynamic theme accent colors
+        const computedStyle = getComputedStyle(document.documentElement);
+        const accentColor = computedStyle.getPropertyValue('--color-accent').trim() || '#3B9EE8';
+        const accentColorDim = computedStyle.getPropertyValue('--color-accent-dim').trim() || 'rgba(59, 158, 232, 0.14)';
+        const accentColor30 = accentColor + '4D'; // 30% opacity for bar fills
+
         // Set chart default typography
         Chart.defaults.color = 'rgba(242, 242, 242, 0.40)';
         Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
@@ -218,12 +231,12 @@
                 datasets: [{
                     label: 'Queries Submitted',
                     data: dailyValues.length > 0 ? dailyValues : [0],
-                    borderColor: '#7C6AF7',
-                    backgroundColor: 'rgba(124, 106, 247, 0.1)',
+                    borderColor: accentColor,
+                    backgroundColor: accentColorDim,
                     borderWidth: 2,
                     fill: true,
                     tension: 0.3,
-                    pointBackgroundColor: '#7C6AF7',
+                    pointBackgroundColor: accentColor,
                     pointBorderColor: 'rgba(255, 255, 255, 0.2)'
                 }]
             },
@@ -253,7 +266,7 @@
                 labels: ['Patient Mode', 'Clinician Mode'],
                 datasets: [{
                     data: [modeRatios.patient || 0, modeRatios.clinician || 0],
-                    backgroundColor: ['#7C6AF7', '#10B981'],
+                    backgroundColor: ['#3B9EE8', '#2E9E5B'],
                     borderColor: '#0F1011',
                     borderWidth: 3
                 }]
@@ -286,8 +299,8 @@
                 labels: chapterLabels.length > 0 ? chapterLabels : ["No Data"],
                 datasets: [{
                     data: chapterValues.length > 0 ? chapterValues : [0],
-                    backgroundColor: 'rgba(124, 106, 247, 0.3)',
-                    borderColor: '#7C6AF7',
+                    backgroundColor: accentColor30,
+                    borderColor: accentColor,
                     borderWidth: 1.5,
                     borderRadius: 6
                 }]

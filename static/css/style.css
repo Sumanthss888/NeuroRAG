@@ -13,8 +13,12 @@
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.15);
 
-  --color-accent: #7C6AF7;
-  --color-accent-dim: rgba(124, 106, 247, 0.15);
+  /* Default Theme: Patient Accent Colors (Sky Blue) */
+  --color-accent: #3B9EE8;
+  --color-accent-rgb: 59, 158, 232;
+  --color-accent-dim: rgba(59, 158, 232, 0.14);
+  --color-accent-strong: #2780C9;
+  --color-accent-glow: rgba(59, 158, 232, 0.25);
 
   --color-text-primary: #F2F2F2;
   --color-text-secondary: rgba(242, 242, 242, 0.55);
@@ -47,7 +51,7 @@
   /* Shadow Tokens */
   --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.25);
   --shadow-medium: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 0 40px rgba(124, 106, 247, 0.25);
+  --shadow-glow: 0 0 40px var(--color-accent-glow);
 
   /* Typography Scale & Configuration */
   --font-display: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -62,6 +66,24 @@
   --text-3xl: 32px;
 
   --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* FIX: Added Patient Mode Accent Theme */
+html[data-mode="patient"] {
+  --color-accent: #3B9EE8;
+  --color-accent-rgb: 59, 158, 232;
+  --color-accent-dim: rgba(59, 158, 232, 0.14);
+  --color-accent-strong: #2780C9;
+  --color-accent-glow: rgba(59, 158, 232, 0.25);
+}
+
+/* FIX: Added Clinician Mode Accent Theme */
+html[data-mode="clinician"] {
+  --color-accent: #2E9E5B;
+  --color-accent-rgb: 46, 158, 91;
+  --color-accent-dim: rgba(46, 158, 91, 0.14);
+  --color-accent-strong: #237A47;
+  --color-accent-glow: rgba(46, 158, 91, 0.25);
 }
 
 /* ==========================================================================
@@ -98,23 +120,23 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(124, 106, 247, 0.4);
+  background: rgba(var(--color-accent-rgb), 0.4);
   border-radius: var(--radius-sm);
   transition: background 0.3s var(--apple-ease);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(124, 106, 247, 0.7);
+  background: rgba(var(--color-accent-rgb), 0.7);
 }
 
 /* Firefox compatibility */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(124, 106, 247, 0.4) transparent;
+  scrollbar-color: rgba(var(--color-accent-rgb), 0.4) transparent;
 }
 
 *:hover {
-  scrollbar-color: rgba(124, 106, 247, 0.7) transparent;
+  scrollbar-color: rgba(var(--color-accent-rgb), 0.7) transparent;
 }
 
 /* ==========================================================================
@@ -171,7 +193,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 .glass-input-container:focus-within {
-  border-color: rgba(124, 106, 247, 0.4);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5), var(--shadow-glow);
   transform: translateY(-1px);
 }
@@ -189,8 +211,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .glass-input:focus {
   outline: none;
-  border-color: rgba(124, 106, 247, 0.4);
-  box-shadow: 0 0 0 3px rgba(124, 106, 247, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
 
 /* Micro-interactions (Apple-style) */
@@ -286,13 +308,13 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 @keyframes pulseGlow {
   0% {
-    box-shadow: 0 0 20px rgba(124, 106, 247, 0.15);
+    box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.15);
   }
   50% {
-    box-shadow: 0 0 40px rgba(124, 106, 247, 0.35);
+    box-shadow: 0 0 40px rgba(var(--color-accent-rgb), 0.35);
   }
   100% {
-    box-shadow: 0 0 20px rgba(124, 106, 247, 0.15);
+    box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.15);
   }
 }
 
@@ -730,7 +752,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   position: relative;
   color: var(--color-text-primary);
   cursor: help;
-  border-bottom: 1px dashed rgba(124, 106, 247, 0.5);
+  border-bottom: 1px dashed rgba(var(--color-accent-rgb), 0.5);
   transition: color 0.2s var(--apple-ease);
   font-weight: 600;
 }
@@ -926,13 +948,13 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .reasoning-tag {
   display: inline-block;
   background: var(--color-accent-dim);
-  color: #a78bfa;
+  color: var(--color-accent);
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 11px;
   margin-right: 4px;
   margin-bottom: 4px;
-  border: 1px solid rgba(124, 106, 247, 0.2);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
 }
 
 /* Phase 2: Border Pulse & Responsive Toggles */
@@ -1486,7 +1508,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .btn-bookmark-response.active {
   background: var(--color-accent-dim) !important;
   color: var(--color-accent) !important;
-  border-color: rgba(124, 106, 247, 0.4) !important;
+  border-color: rgba(var(--color-accent-rgb), 0.4) !important;
 }
 
 /* Touch devices overrides for bookmark actions */
@@ -1690,4 +1712,16 @@ textarea:focus-visible,
     animation: none !important;
     opacity: 0.6 !important;
   }
+}
+
+/* Smooth Theme Transition for accent-dependent properties */
+html, body, 
+a, button, input, textarea, select, svg, path,
+.glass, .glass-elevated, .glass-subtle, .glass-panel, .glass-input-container, .glass-input,
+.suggestion-chip, .symptom-highlight, .timeline-dot, .timeline-card,
+.message-card, .btn-micro, .btn-voice, .mode-btn, .audit-trail, .report-container, 
+#neural-bg::before, #neural-bg::after, #neural-bg .orb-indigo {
+  transition-property: background-color, border-color, color, box-shadow, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }
