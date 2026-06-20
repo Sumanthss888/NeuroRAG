@@ -87,20 +87,16 @@
     <aside class="w-[280px] h-full border-r border-border bg-[#0F1011]/40 backdrop-blur-3xl flex flex-col z-40 relative transition-transform duration-400 ease-out page-enter-1 shrink-0">
         
         <!-- App Header (Sidebar Top) -->
-        <div class="p-5 border-b border-border flex items-center gap-3">
-            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 border border-accent/20 shadow-glow">
-                <svg class="w-5.5 h-5.5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <title>NeuroRAG Logo</title>
-                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                    <path d="M12 5v13" />
-                </svg>
+        <a href="/" class="header-brand-link p-5 border-b border-border flex items-center gap-3 hover:no-underline" aria-label="NeuroRAG Home">
+            <div class="logo-container-wrapper w-[30px] h-[30px] flex items-center justify-center">
+                {% set animate = false %}
+                {% include 'components/_logo.html' %}
             </div>
             <div>
-                <h2 class="font-display text-base font-bold tracking-tight text-white leading-tight">NeuroRAG</h2>
+                <h2 class="brand-wordmark font-display text-base font-bold tracking-tight text-white leading-tight">NeuroRAG</h2>
                 <p class="text-[9px] text-text-muted font-medium tracking-widest uppercase">Workspace</p>
             </div>
-        </div>
+        </a>
 
         <!-- Sidebar Timeline Area -->
         <div class="p-5 flex-1 overflow-y-auto flex flex-col min-h-0">
@@ -256,8 +252,9 @@
                 <!-- Welcome Message (Will be removed by JS) -->
                 <!-- PHASE 6: Theme-aware welcome with accent brain icon (updates on mode switch via CSS var) -->
                 <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
-                    <div class="mb-4">
-                        <i class="ph-fill ph-brain welcome-brain-icon" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
+                    <div class="mb-4 w-9 h-9">
+                        {% set animate = true %}
+                        {% include 'components/_logo.html' %}
                     </div>
                     <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
                     <p class="text-text-secondary text-sm mb-4 font-medium">
