@@ -102,7 +102,7 @@ Tailor clinical communication instantly.
 - Interactive source citations displayed beneath responses.
 - Click a citation to overlay a detailed **Source Viewer Modal** containing page numbers, cosine similarity scores, and raw monospaced hand-book retrieved text.
 <div align="center">
-  <img src="assets-source-viewer.png" alt="Source Viewer Citation Modal" width="90%" style="border-radius: 8px; margin: 10px 0;"/>
+  <img src="assets/source-viewer.png" alt="Source Viewer Citation Modal" width="90%" style="border-radius: 8px; margin: 10px 0;"/>
 </div>
 
 ### 📊 Clinician Usage Dashboard
