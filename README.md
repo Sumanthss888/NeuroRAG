@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/Flask-3.0.0-lightgrey?style=for-the-badge&logo=flask" alt="Flask">
   <img src="https://img.shields.io/badge/Gemini-2.5_Flash-orange?style=for-the-badge&logo=google" alt="Gemini">
   <img src="https://img.shields.io/badge/FAISS-Vector_Search-green?style=for-the-badge" alt="FAISS">
-  <img src="https://img.shields.io/badge/License-MIT-purple?style=for-the-badge" alt="License">
+
 </div>
 
 <br/>
