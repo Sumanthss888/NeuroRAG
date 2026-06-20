@@ -1445,8 +1445,352 @@ function exportAsMarkdown() {
 }
 
 function exportAsPdf() {
-    window.print();
+    // FIX: Build a complete, print-ready HTML document in a new window instead of
+    // calling window.print() directly on the dark chat UI (which prints nothing useful).
+    if (messageHistory.length === 0) {
+        showToast('No conversations to export.', 'error');
+        return;
+    }
+
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--color-accent').trim() || '#3B9EE8';
+    const date = new Date().toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' });
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const modeName = currentMode === 'patient' ? 'Patient Overview' : 'Clinical Diagnostic';
+
+    // Build all conversation entries as clean HTML
+    let conversationHTML = '';
+    messageHistory.forEach((entry, index) => {
+        if (!entry.answer) return;
+
+        let formattedAnswer = formatAnswerStreaming(entry.answer, entry.mode === 'patient');
+        // Strip animations and dynamic classes — not valid in a print document
+        formattedAnswer = formattedAnswer.replace(/style="[^"]*"/g, '');
+        formattedAnswer = formattedAnswer.replace(/animate-fade-in/g, '');
+        formattedAnswer = formattedAnswer.replace(/opacity-0/g, '');
+        formattedAnswer = formattedAnswer.replace(/<span class="symptom-highlight"[^>]*>(.*?)<\/span>/g, '<mark>$1</mark>');
+
+        conversationHTML += `
+            <div class="entry" ${index > 0 ? 'style="page-break-before: auto; margin-top: 40px; padding-top: 32px; border-top: 1px solid #e5e7eb;"' : ''}>
+                <!-- Query -->
+                <div class="entry-query">
+                    <div class="entry-label">
+                        <span class="entry-num">${index + 1}</span>
+                        <span>Patient Inquiry</span>
+                        <span class="entry-meta">${entry.timestamp} &bull; ${entry.mode === 'patient' ? 'Patient' : 'Clinician'} Mode</span>
+                    </div>
+                    <p class="query-text">${escapeHTML(entry.query)}</p>
+                </div>
+                <!-- Answer -->
+                <div class="entry-answer">
+                    <div class="entry-label answer-label">
+                        <span>System Analysis &amp; Response</span>
+                    </div>
+                    <div class="markdown-body answer-body">${formattedAnswer}</div>
+                </div>
+            </div>
+        `;
+    });
+
+    // Assemble the full print document
+    const printHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroRAG Clinical Export — ${date}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 13px;
+            color: #111827;
+            background: #ffffff;
+            line-height: 1.6;
+            padding: 48px 56px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        /* Document Header */
+        .doc-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #111827;
+            margin-bottom: 28px;
+        }
+
+        .doc-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doc-brand-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .doc-brand-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            color: #111827;
+        }
+
+        .doc-brand-sub {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .doc-meta {
+            text-align: right;
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.8;
+        }
+
+        .doc-meta strong {
+            color: #374151;
+        }
+
+        /* Stats row */
+        .doc-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .stat-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 14px;
+            background: #f9fafb;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        /* Entries */
+        .entry {
+            margin-bottom: 32px;
+        }
+
+        .entry-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .answer-label {
+            color: ${accentColor};
+            margin-top: 14px;
+        }
+
+        .entry-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #111827;
+            color: #ffffff;
+            font-size: 8px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .entry-meta {
+            margin-left: auto;
+            font-weight: 500;
+            color: #9ca3af;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .query-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1f2937;
+            background: #f9fafb;
+            border-left: 3px solid #111827;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            line-height: 1.55;
+        }
+
+        /* Answer markdown */
+        .answer-body h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #111827;
+            margin: 14px 0 6px;
+        }
+
+        .answer-body p {
+            color: #374151;
+            margin-bottom: 8px;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .answer-body ul {
+            padding-left: 18px;
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        .answer-body li {
+            color: #374151;
+            margin-bottom: 5px;
+            font-size: 13px;
+            line-height: 1.55;
+        }
+
+        .answer-body strong {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .answer-body mark {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Footer */
+        .doc-footer {
+            margin-top: 40px;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 10px;
+            color: #9ca3af;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .doc-footer strong {
+            color: #6b7280;
+        }
+
+        /* Print */
+        @media print {
+            body { padding: 32px 40px; }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Document Header -->
+    <div class="doc-header">
+        <div class="doc-brand">
+            <svg class="doc-brand-icon" viewBox="0 0 24 24" fill="none" stroke="${accentColor}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
+                <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
+                <path d="M12 5v13" />
+            </svg>
+            <div>
+                <div class="doc-brand-name">NeuroRAG</div>
+                <div class="doc-brand-sub">Clinical Intelligence Export</div>
+            </div>
+        </div>
+        <div class="doc-meta">
+            <div><strong>Generated:</strong> ${date} at ${time}</div>
+            <div><strong>Mode:</strong> ${modeName}</div>
+            <div><strong>Queries:</strong> ${messageHistory.filter(e => e.answer).length}</div>
+        </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="doc-stats">
+        <div class="stat-box">
+            <div class="stat-label">Total Queries</div>
+            <div class="stat-value">${messageHistory.filter(e => e.answer).length}</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Mode</div>
+            <div class="stat-value">${modeName}</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-label">Session Date</div>
+            <div class="stat-value">${date}</div>
+        </div>
+    </div>
+
+    <!-- Conversation Entries -->
+    ${conversationHTML}
+
+    <!-- Footer -->
+    <div class="doc-footer">
+        <span>NeuroRAG &mdash; Neurological Disorders Reference System. For clinical reference only. Verify independently.</span>
+        <span>${date}</span>
+    </div>
+
+    <script>
+        // Auto-trigger print after fonts load
+        window.onload = function() {
+            setTimeout(function() {
+                window.print();
+                setTimeout(function() { window.close(); }, 500);
+            }, 600);
+        };
+    <\/script>
+</body>
+</html>`;
+
+    try {
+        const printWindow = window.open('', '_blank', 'width=900,height=700,menubar=no,toolbar=no,location=no,status=no');
+        if (!printWindow) {
+            // Fallback: popup blocked — use the report modal + print instead
+            showToast('Pop-up blocked. Using print preview instead.', 'info');
+            generateReport();
+            setTimeout(() => window.print(), 600);
+            return;
+        }
+        printWindow.document.write(printHTML);
+        printWindow.document.close();
+        showToast('PDF export prepared. Print dialog opening...', 'success');
+    } catch (err) {
+        console.error('PDF export error:', err);
+        showToast('Unable to open print window. Try allowing pop-ups.', 'error');
+    }
 }
+
 
 // TOAST NOTIFICATION HELPERS
 function showToast(message, type = 'info') {
