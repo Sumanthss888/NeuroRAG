@@ -23,7 +23,10 @@ class AnalyticsService:
             total_queries += sess.get("query_count", 0)
             total_critical += sess.get("critical_count", 0)
             
+            # FIX: Fall back to legacy chat_history flat list when chats sub-array is absent in the session
             chats = sess.get("chats", [])
+            if not chats and sess.get("chat_history"):
+                chats = sess.get("chat_history", [])
             for chat in chats:
                 # Mode ratio
                 mode = chat.get("mode", "patient").lower()
