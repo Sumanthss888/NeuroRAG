@@ -69,6 +69,12 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Favicon & Brand Manifest -->
+    <link rel="icon" href="{{ url_for('static', filename='brand/favicon.ico') }}" sizes="any">
+    <link rel="icon" href="{{ url_for('static', filename='brand/favicon.svg') }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='brand/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='brand/manifest.json') }}">
 </head>
 <body class="bg-[#08090A] text-slate-200 font-sans min-h-screen w-full flex flex-col">
     <!-- FIX: Visual Redesign - split-screen minimal layout with flat base backgrounds, simple text tabs, and borderless inputs -->

@@ -66,3 +66,6 @@ capture.js
 node_modules/
 package.json
 package-lock.json
+
+# Scratch directory
+scratch/
