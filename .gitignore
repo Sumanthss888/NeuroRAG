@@ -60,3 +60,9 @@ data/raw/*
 !data/raw/.gitkeep
 data/extracted/*
 !data/extracted/.gitkeep
+
+# Temporary Puppeteer automation & screenshots generation
+capture.js
+node_modules/
+package.json
+package-lock.json
