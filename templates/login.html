@@ -78,13 +78,9 @@
             <!-- Canvas element behind branding -->
             <canvas id="auth-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
             
-            <!-- Top Left: Subtle logo -->
-            <div class="flex items-center gap-2 relative z-10 auth-logo">
-                <svg class="w-7 h-7 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                    <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                    <path d="M12 5v13" />
-                </svg>
+            <div class="flex items-center gap-2 relative z-10 auth-logo w-7 h-7">
+                {% set animate = true %}
+                {% include 'components/_logo.html' %}
             </div>
             
             <!-- Content Block -->
@@ -103,14 +99,12 @@
 
         <!-- Right Column: Form container -->
         <div class="flex-1 flex flex-col justify-center bg-[#08090A] min-h-screen p-8 min-[900px]:p-16">
-            <!-- Mobile Header (visible only on <900px) -->
             <div class="flex flex-col items-start gap-4 mb-10 min-[900px]:hidden">
                 <div class="flex items-center gap-2">
-                    <svg class="w-6 h-6 text-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
-                        <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
-                        <path d="M12 5v13" />
-                    </svg>
+                    <div class="w-6 h-6">
+                        {% set animate = true %}
+                        {% include 'components/_logo.html' %}
+                    </div>
                     <span class="font-display text-lg font-medium text-white">NeuroRAG</span>
                 </div>
             </div>
