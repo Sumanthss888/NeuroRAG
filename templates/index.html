@@ -115,8 +115,10 @@
                     >
                     <i class="ph ph-magnifying-glass sidebar-search-icon"></i>
                 </div>
-                <div id="search-empty-state" class="search-empty-state">
-                    No conversations found
+                <!-- PHASE 6: Theme-aware search empty state -->
+                <div id="search-empty-state" class="search-empty-state-themed">
+                    <i class="ph ph-magnifying-glass"></i>
+                    <span>No conversations found</span>
                 </div>
             </div>
 
@@ -252,8 +254,11 @@
             <div id="chat-container" class="max-w-[760px] w-full mx-auto p-4 md:p-6 space-y-6 flex-1 min-h-0 pb-48 page-enter-3" style="will-change: transform;">
                 
                 <!-- Welcome Message (Will be removed by JS) -->
-                <!-- FIX: Visual Refinement - Left-aligned workspace welcome message with 28px title, single line info, and footnotes metadata -->
+                <!-- PHASE 6: Theme-aware welcome with accent brain icon (updates on mode switch via CSS var) -->
                 <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
+                    <div class="mb-4">
+                        <i class="ph-fill ph-brain" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
+                    </div>
                     <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
                     <p class="text-text-secondary text-sm mb-4 font-medium">
                         Search and analyze the 51-chapter neurological disorders manual.
@@ -272,22 +277,34 @@
         <div class="composer-fixed-container absolute bottom-0 left-0 w-full p-4 md:p-6 pt-24 pointer-events-none page-enter-4" style="background: linear-gradient(to top, var(--color-bg-base) 40%, transparent 100%);">
             <div class="max-w-[760px] mx-auto relative pointer-events-auto">
                 <!-- FIX: Visual Refinement - Removed conflicting utilities to let pure .glass-elevated styling apply -->
-                <div class="glass-elevated relative flex items-end gap-3 p-2 pl-4">
-                    <textarea 
-                        id="query-input" 
-                        placeholder="Inquire clinical assistant..."
-                        rows="1"
-                        class="w-full bg-transparent text-text-primary placeholder-text-muted outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
-                    ></textarea>
-                    
-                    <!-- Voice Input Button (PHASE 3) -->
-                    <button id="btn-voice" class="btn-voice flex-shrink-0 h-11 w-11 rounded-xl bg-white/5 border border-border flex items-center justify-center text-text-secondary mb-1 hover:bg-white/10 hover:text-white transition-all" title="Voice Input" aria-label="Start voice input">
-                        <i class="ph-bold ph-microphone text-lg"></i>
-                    </button>
-                    
-                    <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md" aria-label="Submit query">
-                        <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
-                    </button>
+                <div class="glass-elevated relative flex flex-col gap-0 overflow-hidden">
+                    <!-- Response Length Control (PHASE 6) -->
+                    <div class="composer-length-control">
+                        <span class="composer-length-label">Length</span>
+                        <div class="length-btn-group" role="group" aria-label="Response length preference">
+                            <button class="length-btn" data-length="concise" id="len-concise" aria-label="Concise response">Concise</button>
+                            <button class="length-btn active" data-length="standard" id="len-standard" aria-label="Standard response">Standard</button>
+                            <button class="length-btn" data-length="detailed" id="len-detailed" aria-label="Detailed response">Detailed</button>
+                        </div>
+                    </div>
+                    <!-- Composer Input Row -->
+                    <div class="flex items-end gap-3 p-2 pl-4">
+                        <textarea 
+                            id="query-input" 
+                            placeholder="Inquire clinical assistant..."
+                            rows="1"
+                            class="w-full bg-transparent text-text-primary placeholder-text-muted outline-none resize-none py-3.5 max-h-32 min-h-[52px] font-sans text-[15px] font-medium"
+                        ></textarea>
+                        
+                        <!-- Voice Input Button (PHASE 3) -->
+                        <button id="btn-voice" class="btn-voice flex-shrink-0 h-11 w-11 rounded-xl bg-white/5 border border-border flex items-center justify-center text-text-secondary mb-1 hover:bg-white/10 hover:text-white transition-all" title="Voice Input" aria-label="Start voice input">
+                            <i class="ph-bold ph-microphone text-lg"></i>
+                        </button>
+                        
+                        <button id="submit-btn" class="btn-micro flex-shrink-0 h-11 w-11 rounded-xl bg-accent flex items-center justify-center text-white mb-1 mr-1 hover:bg-accent/80 shadow-md" aria-label="Submit query">
+                            <i class="ph-bold ph-paper-plane-tilt text-lg"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -348,7 +365,7 @@
             </div>
             <div class="p-2 space-y-4 text-sm">
                 <div class="flex justify-between items-center py-2 border-b border-border/40">
-                    <span class="text-text-secondary font-medium">Focus Search Conversations</span>
+                    <span class="text-text-secondary font-medium">Command Palette</span>
                     <kbd class="px-2 py-1 bg-white/10 border border-border rounded text-xs text-white font-mono">⌘/Ctrl + K</kbd>
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-border/40">
@@ -371,9 +388,43 @@
         </div>
     </div>
     
+    <!-- Global Command Palette (PHASE 6) -->
+    <div id="command-palette-backdrop" role="dialog" aria-modal="true" aria-label="Command Palette" aria-hidden="true">
+        <div id="command-palette">
+            <!-- Search Input -->
+            <div class="cmd-palette-search">
+                <i class="ph-bold ph-magnifying-glass"></i>
+                <input 
+                    type="text" 
+                    id="cmd-palette-input" 
+                    placeholder="Search commands..."
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+                <span class="cmd-palette-shortcut-hint">ESC to close</span>
+            </div>
+            <!-- Results -->
+            <div id="cmd-palette-results" role="listbox" aria-label="Command results">
+                <!-- Populated by JS -->
+            </div>
+            <!-- Footer hints -->
+            <div class="cmd-palette-footer">
+                <div class="cmd-palette-footer-hint">
+                    <kbd>↑</kbd><kbd>↓</kbd> navigate
+                </div>
+                <div class="cmd-palette-footer-hint">
+                    <kbd>↵</kbd> select
+                </div>
+                <div class="cmd-palette-footer-hint">
+                    <kbd>Esc</kbd> close
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         window.currentUser = "{{ session.get('username', '') }}";
     </script>
-    <script src="{{ url_for('static', filename='js/main.js') }}?v=1.0.2"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=1.0.6"></script>
 </body>
 </html>

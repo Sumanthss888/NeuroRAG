@@ -1842,3 +1842,434 @@ a, button, input, textarea, select, svg, path,
 .auth-fade-in {
   animation: authFadeIn 0.2s ease forwards;
 }
+
+/* ==========================================================================
+   PHASE 6 — WORKSPACE INTELLIGENCE
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   FEATURE 1: GLOBAL COMMAND PALETTE
+   -------------------------------------------------------------------------- */
+
+#command-palette-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s var(--apple-ease);
+}
+
+#command-palette-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#command-palette {
+  width: 480px;
+  max-width: calc(100vw - 32px);
+  background: rgba(22, 23, 24, 0.92) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid var(--color-border-strong) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 24px 64px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 0, 0, 0.3) !important;
+  overflow: hidden;
+  transform: translateY(-12px) scale(0.97);
+  transition: transform 0.22s var(--apple-ease);
+  display: flex;
+  flex-direction: column;
+  max-height: 420px;
+}
+
+#command-palette-backdrop.open #command-palette {
+  transform: translateY(0) scale(1);
+}
+
+/* Palette search input row */
+.cmd-palette-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cmd-palette-search i {
+  color: var(--color-text-muted);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+#cmd-palette-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  caret-color: var(--color-accent);
+  line-height: 1.4;
+}
+
+#cmd-palette-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.cmd-palette-shortcut-hint {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* Palette results list */
+#cmd-palette-results {
+  overflow-y: auto;
+  flex: 1;
+  padding: 6px;
+}
+
+.cmd-category-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  padding: 10px 10px 4px;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.12s var(--apple-ease);
+  user-select: none;
+}
+
+.cmd-item:hover,
+.cmd-item.active {
+  background: rgba(var(--color-accent-rgb), 0.08);
+  border-color: rgba(var(--color-accent-rgb), 0.18);
+}
+
+.cmd-item-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  transition: all 0.15s var(--apple-ease);
+}
+
+.cmd-item:hover .cmd-item-icon,
+.cmd-item.active .cmd-item-icon {
+  background: rgba(var(--color-accent-rgb), 0.15);
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  color: var(--color-accent);
+}
+
+.cmd-item-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cmd-item-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.cmd-item-desc {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 1px;
+  font-weight: 500;
+}
+
+.cmd-item-kbd {
+  font-size: 9px;
+  font-family: var(--font-body);
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+/* Empty state inside palette */
+.cmd-palette-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  gap: 8px;
+  color: var(--color-text-muted);
+}
+
+.cmd-palette-empty i {
+  font-size: 24px;
+  color: var(--color-text-muted);
+}
+
+.cmd-palette-empty span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Palette footer */
+.cmd-palette-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cmd-palette-footer-hint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.cmd-palette-footer-hint kbd {
+  font-size: 9px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURE 2: RESPONSE LENGTH CONTROL
+   -------------------------------------------------------------------------- */
+
+.composer-length-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 4px 0;
+}
+
+.composer-length-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+  padding-left: 2px;
+  flex-shrink: 0;
+}
+
+.length-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.length-btn {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s var(--apple-ease);
+  white-space: nowrap;
+}
+
+.length-btn:hover {
+  color: var(--color-text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.length-btn.active {
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.12);
+  border-color: rgba(var(--color-accent-rgb), 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   FEATURE 3: CONVERSATION PINNING
+   -------------------------------------------------------------------------- */
+
+.timeline-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  padding: 6px 2px 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.timeline-group-label i {
+  font-size: 10px;
+}
+
+.timeline-group-label.pinned-label {
+  color: var(--color-accent);
+  opacity: 0.8;
+}
+
+.pin-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.15s var(--apple-ease);
+  z-index: 5;
+}
+
+.timeline-card:hover .pin-btn {
+  opacity: 1;
+}
+
+.pin-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.pin-btn.pinned {
+  opacity: 1;
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border-color: rgba(var(--color-accent-rgb), 0.25);
+}
+
+.timeline-group-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 6px 0;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   FEATURE 4: THEME-AWARE EMPTY STATES
+   -------------------------------------------------------------------------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 12px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 24px;
+  color: var(--color-accent);
+  opacity: 0.55;
+  transition: color 0.3s var(--apple-ease);
+}
+
+.empty-state-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.empty-state-subtitle {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Sidebar-sized compact empty states */
+.empty-state-sm {
+  padding: 14px 8px;
+  gap: 6px;
+}
+
+.empty-state-sm .empty-state-icon {
+  font-size: 18px;
+}
+
+.empty-state-sm .empty-state-title {
+  font-size: 11px;
+}
+
+.empty-state-sm .empty-state-subtitle {
+  font-size: 9px;
+}
+
+/* Search empty state (inline) */
+.search-empty-state-themed {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 16px 8px;
+  text-align: center;
+}
+
+.search-empty-state-themed.visible {
+  display: flex;
+}
+
+.search-empty-state-themed i {
+  font-size: 18px;
+  color: var(--color-accent);
+  opacity: 0.45;
+}
+
+.search-empty-state-themed span {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}

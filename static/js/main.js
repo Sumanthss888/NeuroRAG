@@ -4,6 +4,130 @@
 let currentMode = localStorage.getItem('neurorag_theme_mode') || 'patient';
 let messageHistory = [];
 
+// PHASE 6: Response length preference (persists via localStorage)
+let responseLength = localStorage.getItem('neurorag_response_length') || 'standard';
+
+// PHASE 6: Centralized COMMANDS registry
+const COMMANDS = [
+    {
+        id: 'focus-composer',
+        label: 'Focus Chat Input',
+        description: 'Place cursor in the query input',
+        icon: 'ph-bold ph-chat-text',
+        category: 'Navigation',
+        kbd: null,
+        action: () => { if (queryInput) { queryInput.focus(); } }
+    },
+    {
+        id: 'new-conversation',
+        label: 'New Conversation',
+        description: 'Clear workspace and start fresh',
+        icon: 'ph-bold ph-plus-circle',
+        category: 'Navigation',
+        kbd: null,
+        action: () => clearActiveWorkspace()
+    },
+    {
+        id: 'toggle-patient-mode',
+        label: 'Switch to Patient Mode',
+        description: 'Sky blue accent — calm & educational',
+        icon: 'ph-fill ph-user',
+        category: 'Mode',
+        kbd: null,
+        action: () => setThemeMode('patient', true)
+    },
+    {
+        id: 'toggle-clinician-mode',
+        label: 'Switch to Clinician Mode',
+        description: 'Hospital green accent — clinical & precise',
+        icon: 'ph-fill ph-stethoscope',
+        category: 'Mode',
+        kbd: null,
+        action: () => setThemeMode('clinician', true)
+    },
+    {
+        id: 'open-dashboard',
+        label: 'View Dashboard',
+        description: 'Usage analytics and session statistics',
+        icon: 'ph-bold ph-chart-bar',
+        category: 'Navigation',
+        kbd: null,
+        action: () => { window.location.href = '/dashboard'; }
+    },
+    {
+        id: 'open-logs',
+        label: 'View Session Logs',
+        description: 'Historical conversation records',
+        icon: 'ph-bold ph-clock-counter-clockwise',
+        category: 'Navigation',
+        kbd: null,
+        action: () => { window.location.href = '/chat_history'; }
+    },
+    {
+        id: 'export-markdown',
+        label: 'Export as Markdown',
+        description: 'Download current conversation as .md file',
+        icon: 'ph ph-file-text',
+        category: 'Export',
+        kbd: null,
+        action: () => exportConversation('markdown')
+    },
+    {
+        id: 'export-pdf',
+        label: 'Export as PDF',
+        description: 'Print or save conversation as PDF',
+        icon: 'ph ph-file-pdf',
+        category: 'Export',
+        kbd: null,
+        action: () => exportConversation('pdf')
+    },
+    {
+        id: 'end-session',
+        label: 'End Session',
+        description: 'Summarize and archive the current session',
+        icon: 'ph-bold ph-stop-circle',
+        category: 'Session',
+        kbd: null,
+        action: () => { const btn = document.getElementById('btn-end-session'); if (btn) btn.click(); }
+    },
+    {
+        id: 'shortcuts-help',
+        label: 'View Keyboard Shortcuts',
+        description: 'See all available keyboard shortcuts',
+        icon: 'ph-bold ph-keyboard',
+        category: 'Help',
+        kbd: '?',
+        action: () => openShortcutsModal()
+    },
+    {
+        id: 'set-concise',
+        label: 'Set Response: Concise',
+        description: 'Brief, direct answers',
+        icon: 'ph-bold ph-arrows-in',
+        category: 'Preferences',
+        kbd: null,
+        action: () => setResponseLength('concise')
+    },
+    {
+        id: 'set-standard',
+        label: 'Set Response: Standard',
+        description: 'Balanced detail level',
+        icon: 'ph-bold ph-equals',
+        category: 'Preferences',
+        kbd: null,
+        action: () => setResponseLength('standard')
+    },
+    {
+        id: 'set-detailed',
+        label: 'Set Response: Detailed',
+        description: 'Comprehensive clinical explanations',
+        icon: 'ph-bold ph-arrows-out',
+        category: 'Preferences',
+        kbd: null,
+        action: () => setResponseLength('detailed')
+    }
+];
+
 const MEDICAL_DICTIONARY = {
     'stroke': 'A sudden interruption in the blood supply of the brain.',
     'ischemic': 'Restricted blood flow and oxygen to a part of the body.',
@@ -60,6 +184,11 @@ const exportPdfBtn = document.getElementById('export-pdf');
 const shortcutsModal = document.getElementById('shortcuts-modal-backdrop');
 const btnCloseShortcuts = document.getElementById('btn-close-shortcuts');
 const linkShortcuts = document.getElementById('link-shortcuts');
+
+// PHASE 6: Command Palette DOM elements
+const cmdPaletteBackdrop = document.getElementById('command-palette-backdrop');
+const cmdPaletteInput = document.getElementById('cmd-palette-input');
+const cmdPaletteResults = document.getElementById('cmd-palette-results');
 
 // Phase 3 Global Feature variables (Moved to top to prevent TDZ ReferenceError)
 let recognition = null;
@@ -263,10 +392,11 @@ async function handleSubmit() {
     const loadingId = showLoading();
     
     try {
+        // PHASE 6: Include response length preference in query payload
         const response = await fetch('/api/query', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: query, mode: currentMode })
+            body: JSON.stringify({ query: query, mode: currentMode, length: responseLength })
         });
         
         const data = await response.json();
@@ -299,27 +429,85 @@ function updateTimeline() {
     if (searchContainer && messageHistory.length > 0) {
         searchContainer.classList.remove('hidden');
     }
-    
-    messageHistory.forEach((entry, index) => {
-        const item = document.createElement('div');
-        item.className = 'timeline-item animate-message-enter';
-        item.style.animationDelay = `${index * 50}ms`;
-        
-        const accentClass = entry.mode === 'patient' ? 'text-accent' : 'text-emerald-400';
-        const isActive = index === messageHistory.length - 1 ? 'active' : '';
-        
-        item.innerHTML = `
-            <div class="timeline-dot ${accentClass}"></div>
-            <div class="timeline-card ${isActive}" onclick="scrollToMessage('${entry.id}', this)">
-                <div class="flex items-center justify-between mb-1">
-                    <span class="text-[10px] font-semibold text-text-muted uppercase tracking-widest">${entry.timestamp}</span>
-                    <i class="ph-fill ${entry.mode === 'patient' ? 'ph-user' : 'ph-stethoscope'} ${accentClass} text-xs opacity-70"></i>
-                </div>
-                <p class="text-[12px] text-text-secondary line-clamp-2 font-medium leading-snug">${entry.query}</p>
+
+    // PHASE 6: Render grouped Pinned / Recent timeline
+    renderGroupedTimeline();
+}
+
+// PHASE 6: Render timeline in two groups: Pinned then Recent
+function renderGroupedTimeline() {
+    timelineContainer.innerHTML = '';
+    const pinnedIds = getPinnedIds();
+
+    const pinnedEntries = messageHistory.filter(e => pinnedIds.includes(e.id));
+    const recentEntries = messageHistory.filter(e => !pinnedIds.includes(e.id));
+
+    // Render Pinned group
+    if (pinnedEntries.length > 0) {
+        const pinnedLabel = document.createElement('div');
+        pinnedLabel.className = 'timeline-group-label pinned-label';
+        pinnedLabel.innerHTML = '<i class="ph-fill ph-push-pin"></i> Pinned';
+        timelineContainer.appendChild(pinnedLabel);
+
+        pinnedEntries.forEach((entry, index) => {
+            timelineContainer.appendChild(buildTimelineItem(entry, index, true));
+        });
+
+        if (recentEntries.length > 0) {
+            const divider = document.createElement('div');
+            divider.className = 'timeline-group-divider';
+            timelineContainer.appendChild(divider);
+        }
+    }
+
+    // Render Recent group
+    if (recentEntries.length > 0) {
+        if (pinnedEntries.length > 0) {
+            const recentLabel = document.createElement('div');
+            recentLabel.className = 'timeline-group-label';
+            recentLabel.innerHTML = '<i class="ph-bold ph-clock"></i> Recent';
+            timelineContainer.appendChild(recentLabel);
+        }
+
+        recentEntries.forEach((entry, index) => {
+            timelineContainer.appendChild(buildTimelineItem(entry, index, false));
+        });
+    }
+}
+
+// PHASE 6: Build a single timeline card item with pin button
+function buildTimelineItem(entry, index, isPinned) {
+    const item = document.createElement('div');
+    item.className = 'timeline-item animate-message-enter';
+    item.style.animationDelay = `${index * 50}ms`;
+
+    const accentClass = entry.mode === 'patient' ? 'text-accent' : 'text-emerald-400';
+    const isLastActive = messageHistory.indexOf(entry) === messageHistory.length - 1;
+    const isActive = isLastActive ? 'active' : '';
+    const pinClass = isPinned ? 'pinned' : '';
+
+    item.innerHTML = `
+        <div class="timeline-dot ${accentClass}"></div>
+        <div class="timeline-card ${isActive}" onclick="scrollToMessage('${entry.id}', this)">
+            <button class="pin-btn ${pinClass}" title="${isPinned ? 'Unpin' : 'Pin'} conversation" aria-label="${isPinned ? 'Unpin' : 'Pin'} conversation" data-id="${entry.id}">
+                <i class="${isPinned ? 'ph-fill ph-push-pin' : 'ph ph-push-pin'}"></i>
+            </button>
+            <div class="flex items-center justify-between mb-1 pr-5">
+                <span class="text-[10px] font-semibold text-text-muted uppercase tracking-widest">${entry.timestamp}</span>
+                <i class="ph-fill ${entry.mode === 'patient' ? 'ph-user' : 'ph-stethoscope'} ${accentClass} text-xs opacity-70"></i>
             </div>
-        `;
-        timelineContainer.appendChild(item);
+            <p class="text-[12px] text-text-secondary line-clamp-2 font-medium leading-snug">${entry.query}</p>
+        </div>
+    `;
+
+    // Pin button click handler
+    const pinBtn = item.querySelector('.pin-btn');
+    pinBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePin(entry.id);
     });
+
+    return item;
 }
 
 function scrollToMessage(id, element) {
@@ -930,6 +1118,11 @@ initBookmarks();
 initSessionHistory();
 initKeyboardShortcuts();
 
+// PHASE 6: Workspace Intelligence Initializations
+initCommandPalette();
+initResponseLength();
+initPinning();
+
 // FEATURE 1: SMART CONVERSATION SEARCH HELPERS
 function performSmartSearch(term) {
     const cleanTerm = term.trim().toLowerCase();
@@ -968,11 +1161,12 @@ function performSmartSearch(term) {
         }
     });
 
+    // PHASE 6: Use CSS class toggle for themed empty state (visible class instead of inline display)
     if (emptyState) {
         if (matchesCount === 0 && cleanTerm !== '') {
-            emptyState.style.display = 'block';
+            emptyState.classList.add('visible');
         } else {
-            emptyState.style.display = 'none';
+            emptyState.classList.remove('visible');
         }
     }
 }
@@ -1376,7 +1570,14 @@ function renderBookmarks() {
     
     const bookmarks = getBookmarks();
     if (bookmarks.length === 0) {
-        container.innerHTML = '<div class="text-[11px] text-text-muted italic px-2">No bookmarks saved yet.</div>';
+        // PHASE 6: Theme-aware empty state with accent-colored icon
+        container.innerHTML = `
+            <div class="empty-state empty-state-sm">
+                <i class="ph ph-bookmark-simple empty-state-icon"></i>
+                <div class="empty-state-title">No bookmarks yet</div>
+                <div class="empty-state-subtitle">Save key findings using the bookmark button on any response.</div>
+            </div>
+        `;
         return;
     }
     
@@ -1643,9 +1844,12 @@ function clearActiveWorkspace() {
     }
     
     // Restore welcome message
-    // FIX: Visual Refinement - Left-aligned workspace welcome message with 28px title, single line info, and footnotes metadata
+    // PHASE 6: Theme-aware empty state with accent brain icon that updates on mode switch
     const welcomeHtml = `
         <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
+            <div class="mb-4">
+                <i class="ph-fill ph-brain" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
+            </div>
             <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
             <p class="text-text-secondary text-sm mb-4 font-medium">
                 Search and analyze the 51-chapter neurological disorders manual.
@@ -1743,6 +1947,11 @@ function initKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
         // Escape key handler (close modals & sidebar drawer)
         if (e.key === 'Escape') {
+            // PHASE 6: Close command palette first if open
+            if (cmdPaletteBackdrop && cmdPaletteBackdrop.classList.contains('open')) {
+                closeCommandPalette();
+                return;
+            }
             closeSourceModal();
             closeShortcutsModal();
             if (reportModal && reportModal.classList.contains('active')) {
@@ -1757,12 +1966,13 @@ function initKeyboardShortcuts() {
             }
         }
         
-        // Ctrl/Cmd + K (focus search)
+        // PHASE 6: Ctrl/Cmd + K → Open Command Palette (replaces sidebar search focus)
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
-            if (searchInput) {
-                searchInput.focus();
-                searchInput.select();
+            if (cmdPaletteBackdrop && cmdPaletteBackdrop.classList.contains('open')) {
+                closeCommandPalette();
+            } else {
+                openCommandPalette();
             }
         }
 
@@ -1806,3 +2016,217 @@ function initKeyboardShortcuts() {
 }
 
 console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 3 Configured');
+
+// ==========================================
+// PHASE 6: COMMAND PALETTE
+// ==========================================
+
+let cmdPaletteActiveIndex = -1;
+
+function openCommandPalette() {
+    if (!cmdPaletteBackdrop) return;
+    cmdPaletteBackdrop.classList.add('open');
+    cmdPaletteBackdrop.setAttribute('aria-hidden', 'false');
+    cmdPaletteActiveIndex = -1;
+    if (cmdPaletteInput) {
+        cmdPaletteInput.value = '';
+        cmdPaletteInput.focus();
+    }
+    renderPaletteCommands(COMMANDS);
+}
+
+function closeCommandPalette() {
+    if (!cmdPaletteBackdrop) return;
+    cmdPaletteBackdrop.classList.remove('open');
+    cmdPaletteBackdrop.setAttribute('aria-hidden', 'true');
+    cmdPaletteActiveIndex = -1;
+    if (cmdPaletteInput) cmdPaletteInput.value = '';
+}
+
+function filterCommands(query) {
+    const q = query.toLowerCase().trim();
+    if (!q) return COMMANDS;
+    return COMMANDS.filter(cmd =>
+        cmd.label.toLowerCase().includes(q) ||
+        cmd.description.toLowerCase().includes(q) ||
+        cmd.category.toLowerCase().includes(q)
+    );
+}
+
+function renderPaletteCommands(commands) {
+    if (!cmdPaletteResults) return;
+    cmdPaletteResults.innerHTML = '';
+    cmdPaletteActiveIndex = -1;
+
+    if (commands.length === 0) {
+        cmdPaletteResults.innerHTML = `
+            <div class="cmd-palette-empty">
+                <i class="ph ph-magnifying-glass"></i>
+                <span>No commands found</span>
+            </div>
+        `;
+        return;
+    }
+
+    // Group by category
+    const groups = {};
+    commands.forEach(cmd => {
+        if (!groups[cmd.category]) groups[cmd.category] = [];
+        groups[cmd.category].push(cmd);
+    });
+
+    Object.entries(groups).forEach(([category, cmds]) => {
+        const catLabel = document.createElement('div');
+        catLabel.className = 'cmd-category-label';
+        catLabel.textContent = category;
+        cmdPaletteResults.appendChild(catLabel);
+
+        cmds.forEach(cmd => {
+            const item = document.createElement('div');
+            item.className = 'cmd-item';
+            item.setAttribute('role', 'option');
+            item.setAttribute('data-cmd-id', cmd.id);
+            item.innerHTML = `
+                <div class="cmd-item-icon"><i class="${cmd.icon}"></i></div>
+                <div class="cmd-item-text">
+                    <div class="cmd-item-label">${escapeHTML(cmd.label)}</div>
+                    <div class="cmd-item-desc">${escapeHTML(cmd.description)}</div>
+                </div>
+                ${cmd.kbd ? `<span class="cmd-item-kbd">${cmd.kbd}</span>` : ''}
+            `;
+            item.addEventListener('click', () => {
+                closeCommandPalette();
+                setTimeout(() => cmd.action(), 80);
+            });
+            cmdPaletteResults.appendChild(item);
+        });
+    });
+}
+
+function movePaletteSelection(direction) {
+    const items = cmdPaletteResults.querySelectorAll('.cmd-item');
+    if (items.length === 0) return;
+
+    items.forEach(i => i.classList.remove('active'));
+
+    cmdPaletteActiveIndex += direction;
+    if (cmdPaletteActiveIndex < 0) cmdPaletteActiveIndex = items.length - 1;
+    if (cmdPaletteActiveIndex >= items.length) cmdPaletteActiveIndex = 0;
+
+    const activeItem = items[cmdPaletteActiveIndex];
+    activeItem.classList.add('active');
+    activeItem.scrollIntoView({ block: 'nearest' });
+}
+
+function executePaletteSelection() {
+    const items = cmdPaletteResults.querySelectorAll('.cmd-item');
+    if (cmdPaletteActiveIndex >= 0 && items[cmdPaletteActiveIndex]) {
+        items[cmdPaletteActiveIndex].click();
+    } else if (items.length === 1) {
+        items[0].click();
+    }
+}
+
+function initCommandPalette() {
+    if (!cmdPaletteBackdrop || !cmdPaletteInput) return;
+
+    // Filter on input
+    cmdPaletteInput.addEventListener('input', () => {
+        const filtered = filterCommands(cmdPaletteInput.value);
+        renderPaletteCommands(filtered);
+    });
+
+    // Keyboard navigation within palette
+    cmdPaletteInput.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            movePaletteSelection(1);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            movePaletteSelection(-1);
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            executePaletteSelection();
+        } else if (e.key === 'Escape') {
+            closeCommandPalette();
+        }
+    });
+
+    // Close on backdrop click
+    cmdPaletteBackdrop.addEventListener('click', (e) => {
+        if (e.target === cmdPaletteBackdrop) closeCommandPalette();
+    });
+}
+
+// ==========================================
+// PHASE 6: RESPONSE LENGTH CONTROL
+// ==========================================
+
+function setResponseLength(length) {
+    responseLength = length;
+    // FIX PHASE 6: Persist response length preference across sessions
+    localStorage.setItem('neurorag_response_length', length);
+    updateLengthButtonVisuals(length);
+    showToast(`Response length: ${length.charAt(0).toUpperCase() + length.slice(1)}`, 'info');
+}
+
+function updateLengthButtonVisuals(length) {
+    document.querySelectorAll('.length-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.length === length);
+    });
+}
+
+function initResponseLength() {
+    // Apply persisted state on load
+    updateLengthButtonVisuals(responseLength);
+
+    // Bind click handlers
+    document.querySelectorAll('.length-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            setResponseLength(btn.dataset.length);
+        });
+    });
+}
+
+// ==========================================
+// PHASE 6: CONVERSATION PINNING
+// ==========================================
+
+function getPinnedIds() {
+    const username = window.currentUser || 'anonymous';
+    const key = `neurorag_pinned_${username}`;
+    try {
+        return JSON.parse(localStorage.getItem(key)) || [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function savePinnedIds(ids) {
+    const username = window.currentUser || 'anonymous';
+    const key = `neurorag_pinned_${username}`;
+    localStorage.setItem(key, JSON.stringify(ids));
+}
+
+function togglePin(messageId) {
+    let pinned = getPinnedIds();
+    const idx = pinned.indexOf(messageId);
+    if (idx > -1) {
+        // FIX PHASE 6: Unpin — remove from pinned list
+        pinned.splice(idx, 1);
+        showToast('Conversation unpinned.', 'info');
+    } else {
+        // FIX PHASE 6: Pin — add to pinned list
+        pinned.push(messageId);
+        showToast('Conversation pinned.', 'success');
+    }
+    savePinnedIds(pinned);
+    // Re-render timeline with new grouping
+    renderGroupedTimeline();
+}
+
+function initPinning() {
+    // Pinning is event-driven — no additional init required beyond renderGroupedTimeline being called by updateTimeline
+}
+
+console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 6 Configured');
