@@ -7,6 +7,20 @@ let messageHistory = [];
 // PHASE 6: Response length preference (persists via localStorage)
 let responseLength = localStorage.getItem('neurorag_response_length') || 'standard';
 
+// AMBIENT SUGGESTION CYCLING VARIABLES (Placed at top to avoid Temporal Dead Zone errors)
+const PATIENT_PLACEHOLDERS = [
+    "What are the early signs of a stroke?",
+    "Why do I get migraines?"
+];
+const CLINICIAN_PLACEHOLDERS = [
+    "Differential diagnosis for acute ataxia",
+    "First-line treatment for status epilepticus"
+];
+const DEFAULT_PLACEHOLDER = "Inquire clinical assistant...";
+
+let placeholderCycleInterval = null;
+let currentPlaceholderIndex = 0;
+
 // PHASE 6: Centralized COMMANDS registry
 const COMMANDS = [
     {
@@ -2610,19 +2624,6 @@ function initPinning() {
 // ==========================================
 // AMBIENT MOTION: SUGGESTION CYCLING
 // ==========================================
-
-const PATIENT_PLACEHOLDERS = [
-    "What are the early signs of a stroke?",
-    "Why do I get migraines?"
-];
-const CLINICIAN_PLACEHOLDERS = [
-    "Differential diagnosis for acute ataxia",
-    "First-line treatment for status epilepticus"
-];
-const DEFAULT_PLACEHOLDER = "Inquire clinical assistant...";
-
-let placeholderCycleInterval = null;
-let currentPlaceholderIndex = 0;
 
 function stopPlaceholderCycling() {
     if (placeholderCycleInterval) {
