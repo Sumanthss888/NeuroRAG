@@ -331,6 +331,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   left: 20%;
   top: 20%;
   transform: translate(-50%, -50%);
+  animation: ambientDriftA 24s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Orb 2: Deep Teal (#1a6b5a), 80% 70% position, size 800px */
@@ -341,6 +343,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   left: 80%;
   top: 70%;
   transform: translate(-50%, -50%);
+  animation: ambientDriftB 28s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Orb 3: Indigo (#3b1f8c), 50% 90% position, size 600px */
@@ -351,6 +355,8 @@ h1, h2, h3, h4, h5, h6, .font-display {
   left: 50%;
   top: 90%;
   transform: translate(-50%, -50%);
+  animation: ambientDriftC 32s ease-in-out infinite;
+  will-change: transform;
 }
 
 /* Noise overlay styled inside design system background */
@@ -474,15 +480,15 @@ h1, h2, h3, h4, h5, h6, .font-display {
 .status-dot-pulse::before {
   content: '';
   position: absolute;
-  inset: -2px;
+  inset: 0;
   border-radius: 50%;
   background: inherit;
   opacity: 0.4;
-  animation: statusPulse 2.5s ease-in-out infinite alternate;
+  animation: statusPulse 2.5s var(--ease-out-smooth) infinite;
 }
 @keyframes statusPulse {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.8); opacity: 0; }
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.5); opacity: 0; }
 }
 
 .animate-fade-in {
@@ -1797,11 +1803,13 @@ textarea:focus-visible,
 /* User reduced-motion media query checks */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
-    animation-delay: -1ms !important;
-    animation-duration: 1ms !important;
+    animation: none !important;
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
     animation-iteration-count: 1 !important;
     background-attachment: scroll !important;
     scroll-behavior: auto !important;
+    transition: none !important;
     transition-duration: 0s !important;
     transition-delay: 0s !important;
   }
@@ -2464,9 +2472,76 @@ a, button, input, textarea, select, svg, path,
 .metric-card-enter:nth-child(3) { animation-delay: 120ms; }
 .metric-card-enter:nth-child(4) { animation-delay: 180ms; }
 
+/* switch mode tooltip transitions */
 #mode-tooltip {
   transition: transform var(--duration-base) var(--ease-out-smooth), opacity var(--duration-base) var(--ease-out-smooth);
 }
 #mode-tooltip.exiting {
   transition: transform var(--duration-fast) var(--ease-out-smooth), opacity var(--duration-fast) var(--ease-out-smooth);
+}
+
+/* ==========================================================================
+   AMBIENT MOTION LAYER ADDITIONS
+   ========================================================================== */
+
+/* Active Mode Breathing selector */
+#toggle-indicator {
+  animation: activeModeBreathe 3s ease-in-out infinite;
+}
+
+@keyframes activeModeBreathe {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.15);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.30);
+  }
+}
+
+/* Empty State Brain Icon Breathing */
+.welcome-brain-icon {
+  animation: emptyStateBreathe 4s ease-in-out infinite;
+  display: inline-block;
+  transform-origin: center;
+}
+
+@keyframes emptyStateBreathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.75;
+  }
+}
+
+/* Query input composer placeholder breathing/cycling transition support */
+#query-input::placeholder {
+  opacity: var(--placeholder-opacity, 0.45) !important;
+  transition: opacity 300ms ease-in-out;
+}
+
+/* Background gradient orb organic drifts */
+@keyframes ambientDriftA {
+  0% { transform: translate(-50%, -50%) translate(0, 0); }
+  25% { transform: translate(-50%, -50%) translate(15px, 10px); }
+  50% { transform: translate(-50%, -50%) translate(0px, 20px); }
+  75% { transform: translate(-50%, -50%) translate(-15px, 10px); }
+  100% { transform: translate(-50%, -50%) translate(0, 0); }
+}
+
+@keyframes ambientDriftB {
+  0% { transform: translate(-50%, -50%) translate(0, 0); }
+  33% { transform: translate(-50%, -50%) translate(-20px, 15px); }
+  66% { transform: translate(-50%, -50%) translate(15px, -15px); }
+  100% { transform: translate(-50%, -50%) translate(0, 0); }
+}
+
+@keyframes ambientDriftC {
+  0% { transform: translate(-50%, -50%) translate(0, 0); }
+  25% { transform: translate(-50%, -50%) translate(-10px, -15px); }
+  50% { transform: translate(-50%, -50%) translate(15px, 0px); }
+  75% { transform: translate(-50%, -50%) translate(0px, 15px); }
+  100% { transform: translate(-50%, -50%) translate(0, 0); }
 }

@@ -291,6 +291,13 @@ function setThemeMode(mode, showTooltip = false) {
     if (showTooltip) {
         showModeTooltip(currentMode);
     }
+    
+    // Switch dynamic placeholders immediately on mode change
+    if (typeof stopPlaceholderCycling === 'function') {
+        stopPlaceholderCycling();
+        currentPlaceholderIndex = -1;
+        startPlaceholderCycling();
+    }
 }
 
 // FIX: Visual Refinement - Active/inactive states with muted labels & high-contrast white active elements
@@ -2599,5 +2606,88 @@ function togglePin(messageId) {
 function initPinning() {
     // Pinning is event-driven — no additional init required beyond renderGroupedTimeline being called by updateTimeline
 }
+
+// ==========================================
+// AMBIENT MOTION: SUGGESTION CYCLING
+// ==========================================
+
+const PATIENT_PLACEHOLDERS = [
+    "What are the early signs of a stroke?",
+    "Why do I get migraines?"
+];
+const CLINICIAN_PLACEHOLDERS = [
+    "Differential diagnosis for acute ataxia",
+    "First-line treatment for status epilepticus"
+];
+const DEFAULT_PLACEHOLDER = "Inquire clinical assistant...";
+
+let placeholderCycleInterval = null;
+let currentPlaceholderIndex = 0;
+
+function stopPlaceholderCycling() {
+    if (placeholderCycleInterval) {
+        clearInterval(placeholderCycleInterval);
+        placeholderCycleInterval = null;
+    }
+    if (queryInput) {
+        queryInput.style.setProperty('--placeholder-opacity', '0.45');
+        queryInput.setAttribute('placeholder', DEFAULT_PLACEHOLDER);
+    }
+}
+
+function startPlaceholderCycling() {
+    if (placeholderCycleInterval) return;
+    if (!queryInput) return;
+    
+    if (document.activeElement === queryInput || queryInput.value.trim() !== "") {
+        return;
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    placeholderCycleInterval = setInterval(() => {
+        if (document.activeElement === queryInput || queryInput.value.trim() !== "" || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            stopPlaceholderCycling();
+            return;
+        }
+
+        queryInput.style.setProperty('--placeholder-opacity', '0');
+
+        setTimeout(() => {
+            if (document.activeElement === queryInput || queryInput.value.trim() !== "" || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                stopPlaceholderCycling();
+                return;
+            }
+
+            const currentList = currentMode === 'patient' ? PATIENT_PLACEHOLDERS : CLINICIAN_PLACEHOLDERS;
+            currentPlaceholderIndex = (currentPlaceholderIndex + 1) % currentList.length;
+            queryInput.setAttribute('placeholder', currentList[currentPlaceholderIndex]);
+
+            queryInput.style.setProperty('--placeholder-opacity', '0.45');
+        }, 300);
+    }, 4000);
+}
+
+function initPlaceholderCycling() {
+    if (!queryInput) return;
+
+    currentPlaceholderIndex = -1;
+
+    queryInput.addEventListener('focus', stopPlaceholderCycling);
+    queryInput.addEventListener('blur', startPlaceholderCycling);
+    queryInput.addEventListener('input', () => {
+        if (queryInput.value.trim() !== "") {
+            stopPlaceholderCycling();
+        } else {
+            startPlaceholderCycling();
+        }
+    });
+
+    startPlaceholderCycling();
+}
+
+// Initialize placeholder cycling on load
+initPlaceholderCycling();
 
 console.log('NeuroRAG Clinical Assistant Workspace Active - Phase 6 Configured');

@@ -81,10 +81,10 @@
     <div class="noise-overlay"></div>
 
     <!-- Mobile Sidebar Backdrop Overlay -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+    <div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-30 hidden backdrop-blur-sm transition-opacity duration-400 opacity-0"></div>
 
     <!-- Sidebar (Left Region - Conversation history) -->
-    <aside class="w-[280px] h-full border-r border-border bg-[#0F1011]/40 backdrop-blur-3xl flex flex-col z-40 relative transition-transform duration-500 ease-out page-enter-1 shrink-0">
+    <aside class="w-[280px] h-full border-r border-border bg-[#0F1011]/40 backdrop-blur-3xl flex flex-col z-40 relative transition-transform duration-400 ease-out page-enter-1 shrink-0">
         
         <!-- App Header (Sidebar Top) -->
         <div class="p-5 border-b border-border flex items-center gap-3">
@@ -206,14 +206,14 @@
                 <div id="toggle-indicator" class="absolute top-1 bottom-1 left-1 w-[calc(50%-4px)] rounded-lg bg-accent border border-accent/20 transition-transform duration-400 ease-out z-0 shadow-sm"></div>
                 
                 <!-- Patient Button -->
-                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-white font-semibold transition-all duration-300" data-mode="patient" aria-label="Switch to patient mode">
-                    <i id="icon-patient" class="ph-fill ph-user text-white transition-all duration-300 text-xs"></i>
+                <button id="mode-patient" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-white font-semibold transition-all duration-150" data-mode="patient" aria-label="Switch to patient mode">
+                    <i id="icon-patient" class="ph-fill ph-user text-white transition-all duration-150 text-xs"></i>
                     <span class="text-[10px] uppercase tracking-wider">Patient</span>
                 </button>
                 
                 <!-- Clinician Button -->
-                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-text-secondary font-medium transition-all duration-300" data-mode="clinician" aria-label="Switch to clinician mode">
-                    <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-300 text-xs"></i>
+                <button id="mode-clinician" class="mode-btn relative z-10 flex-1 py-1.5 rounded-lg flex items-center justify-center gap-1.5 text-text-secondary font-medium transition-all duration-150" data-mode="clinician" aria-label="Switch to clinician mode">
+                    <i id="icon-clinician" class="ph-fill ph-stethoscope text-emerald-400 opacity-40 transition-all duration-150 text-xs"></i>
                     <span class="text-[10px] uppercase tracking-wider">Clinician</span>
                 </button>
             </div>
@@ -257,7 +257,7 @@
                 <!-- PHASE 6: Theme-aware welcome with accent brain icon (updates on mode switch via CSS var) -->
                 <div class="welcome-message animate-message-enter flex flex-col items-start text-left mt-16 px-6">
                     <div class="mb-4">
-                        <i class="ph-fill ph-brain" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
+                        <i class="ph-fill ph-brain welcome-brain-icon" style="font-size: 28px; color: var(--color-accent); opacity: 0.7;"></i>
                     </div>
                     <h1 class="font-display text-[28px] font-medium text-white mb-2 tracking-tight">Clinical Assistant Workspace</h1>
                     <p class="text-text-secondary text-sm mb-4 font-medium">
