@@ -661,6 +661,64 @@ function addAssistantMessage(data, id) {
     
     header.appendChild(aiLabel);
     
+    // Create a container for header actions (buttons + status badge) on the right
+    const headerActions = document.createElement('div');
+    headerActions.className = 'header-actions flex items-center gap-2';
+    
+    const cleanId = id || `msg-resp-${Date.now()}`;
+    const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
+    const queryText = data.query || queryUsed;
+    
+    // Phase 3: Bookmark Button
+    const bookmarkBtn = document.createElement('button');
+    bookmarkBtn.className = 'btn-bookmark-response';
+    bookmarkBtn.setAttribute('title', 'Bookmark this response');
+    bookmarkBtn.setAttribute('aria-label', 'Bookmark response');
+    
+    const bookmarked = checkIsBookmarked(cleanId);
+    if (bookmarked) {
+        bookmarkBtn.classList.add('active');
+        bookmarkBtn.innerHTML = '<i class="ph-fill ph-bookmark-simple text-xs"></i>';
+    } else {
+        bookmarkBtn.innerHTML = '<i class="ph ph-bookmark-simple text-xs"></i>';
+    }
+    
+    bookmarkBtn.addEventListener('click', () => {
+        toggleBookmark(data.answer, queryText, cleanId, bookmarkBtn);
+    });
+    headerActions.appendChild(bookmarkBtn);
+    
+    // Phase 3: Copy Response Button
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'btn-copy-response';
+    copyBtn.setAttribute('title', 'Copy response text');
+    copyBtn.setAttribute('aria-label', 'Copy response to clipboard');
+    copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
+    
+    copyBtn.addEventListener('click', async () => {
+        try {
+            if (!navigator.clipboard) {
+                throw new Error('Clipboard API not available');
+            }
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = data.answer;
+            const plainText = tempDiv.textContent || tempDiv.innerText || '';
+            
+            await navigator.clipboard.writeText(plainText.trim());
+            
+            // Visual success feedback
+            copyBtn.innerHTML = '<span class="text-xs font-semibold text-emerald-400">✓</span>';
+            showToast('Response copied to clipboard.', 'success');
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
+            }, 1500);
+        } catch (err) {
+            console.error('Copy failure:', err);
+            showToast('Unable to copy response.', 'error');
+        }
+    });
+    headerActions.appendChild(copyBtn);
+    
     // Render severity level badge
     const severity = data.severity_level || 'informational';
     const badge = document.createElement('div');
@@ -671,8 +729,9 @@ function addAssistantMessage(data, id) {
     if (severity === 'high') iconClass = 'ph-bold ph-warning';
     
     badge.innerHTML = `<i class="${iconClass}"></i> ${severity}`;
-    header.appendChild(badge);
+    headerActions.appendChild(badge);
     
+    header.appendChild(headerActions);
     contentContainer.appendChild(header);
     
     let numCitations = 0;
@@ -728,8 +787,6 @@ function addAssistantMessage(data, id) {
     }
     contentContainer.appendChild(riskIndicator);
     
-    // FIX: Merged duplicate queryUsed declarations to resolve SyntaxError and prevent JS engine crash
-    const queryUsed = messageHistory.length > 0 ? messageHistory[messageHistory.length - 1].query : (data.query || '');
     const reasoningSnapshot = createReasoningSnapshot(queryUsed, data.answer);
     reasoningSnapshot.classList.add('reasoning-container-enter');
     if (!isReduced) {
@@ -776,59 +833,6 @@ function addAssistantMessage(data, id) {
         contentContainer.appendChild(auditTrail);
     }
     
-    // Phase 3: Copy Response Button
-    const copyBtn = document.createElement('button');
-    copyBtn.className = 'btn-copy-response';
-    copyBtn.setAttribute('title', 'Copy response text');
-    copyBtn.setAttribute('aria-label', 'Copy response to clipboard');
-    copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
-    
-    copyBtn.addEventListener('click', async () => {
-        try {
-            if (!navigator.clipboard) {
-                throw new Error('Clipboard API not available');
-            }
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = data.answer;
-            const plainText = tempDiv.textContent || tempDiv.innerText || '';
-            
-            await navigator.clipboard.writeText(plainText.trim());
-            
-            // Visual success feedback
-            copyBtn.innerHTML = '<span class="text-xs font-semibold text-emerald-400">✓</span>';
-            showToast('Response copied to clipboard.', 'success');
-            setTimeout(() => {
-                copyBtn.innerHTML = '<i class="ph ph-copy text-xs"></i>';
-            }, 1500);
-        } catch (err) {
-            console.error('Copy failure:', err);
-            showToast('Unable to copy response.', 'error');
-        }
-    });
-    
-    // Phase 3: Bookmark Button
-    const bookmarkBtn = document.createElement('button');
-    bookmarkBtn.className = 'btn-bookmark-response';
-    bookmarkBtn.setAttribute('title', 'Bookmark this response');
-    bookmarkBtn.setAttribute('aria-label', 'Bookmark response');
-    
-    const cleanId = id || `msg-resp-${Date.now()}`;
-    const queryText = data.query || queryUsed;
-    
-    const bookmarked = checkIsBookmarked(cleanId);
-    if (bookmarked) {
-        bookmarkBtn.classList.add('active');
-        bookmarkBtn.innerHTML = '<i class="ph-fill ph-bookmark-simple text-xs"></i>';
-    } else {
-        bookmarkBtn.innerHTML = '<i class="ph ph-bookmark-simple text-xs"></i>';
-    }
-    
-    bookmarkBtn.addEventListener('click', () => {
-        toggleBookmark(data.answer, queryText, cleanId, bookmarkBtn);
-    });
-    
-    messageCard.appendChild(bookmarkBtn);
-    messageCard.appendChild(copyBtn);
     messageCard.appendChild(contentContainer);
     messageWrapper.appendChild(messageCard);
     
