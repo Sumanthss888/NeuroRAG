@@ -1318,9 +1318,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* COPY BUTTONS IN MESSAGE CARDS */
 .btn-copy-response {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
@@ -1583,9 +1581,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 /* BOOKMARKS SYSTEM ACTIONS & ELEMENTS */
 .btn-bookmark-response {
-  position: absolute;
-  top: 10px;
-  right: 46px; /* Left of the Copy Response button */
+  position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
