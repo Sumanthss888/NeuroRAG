@@ -1342,13 +1342,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   opacity: 1;
 }
 
-/* Touch devices override */
-@media (hover: none) {
-  .btn-copy-response {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
 
 /* SIDEBAR SEARCH CONTAINER */
 .sidebar-search-container {
@@ -1606,14 +1599,6 @@ h1, h2, h3, h4, h5, h6, .font-display {
   color: var(--color-accent) !important;
   border-color: rgba(var(--color-accent-rgb), 0.4) !important;
   opacity: 1;
-}
-
-/* Touch devices overrides for bookmark actions */
-@media (hover: none) {
-  .btn-bookmark-response {
-    opacity: 1;
-    pointer-events: auto;
-  }
 }
 
 .bookmark-item {
