@@ -2648,3 +2648,21 @@ a, button, input, textarea, select, svg, path,
   outline-offset: 0 !important;
   box-shadow: none !important;
 }
+
+/* Response length pill badge on AI message cards */
+.response-length-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+  border-radius: 100px;
+  padding: 2px 7px;
+  line-height: 1.4;
+  opacity: 0.8;
+}
