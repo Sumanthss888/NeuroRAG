@@ -645,12 +645,18 @@ function addAssistantMessage(data, id) {
     
     const aiLabel = document.createElement('div');
     aiLabel.className = `flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-text-secondary`;
+    
+    // Length pill icons
+    const lengthIconMap = { concise: 'ph-bold ph-minus', standard: 'ph-bold ph-equals', detailed: 'ph-bold ph-list' };
+    const lengthIcon = lengthIconMap[responseLength] || 'ph-bold ph-equals';
+    
     aiLabel.innerHTML = `
         <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
             <path d="M12 5v13" />
         </svg> System Response
+        <span class="response-length-pill"><i class="${lengthIcon}"></i> ${responseLength}</span>
     `;
     
     header.appendChild(aiLabel);
