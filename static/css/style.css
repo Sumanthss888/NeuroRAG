@@ -1337,8 +1337,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .btn-copy-response:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-strong);
+  color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  opacity: 1;
 }
 
 /* Touch devices override */
@@ -1595,14 +1596,16 @@ h1, h2, h3, h4, h5, h6, .font-display {
 
 .btn-bookmark-response:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-strong);
+  color: var(--color-accent);
+  border-color: rgba(var(--color-accent-rgb), 0.3);
+  opacity: 1;
 }
 
 .btn-bookmark-response.active {
   background: var(--color-accent-dim) !important;
   color: var(--color-accent) !important;
   border-color: rgba(var(--color-accent-rgb), 0.4) !important;
+  opacity: 1;
 }
 
 /* Touch devices overrides for bookmark actions */
