@@ -1321,7 +1321,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   border-radius: 6px;
   width: 28px;
   height: 28px;
@@ -1330,14 +1330,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s var(--apple-ease);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.message-card.assistant:hover .btn-copy-response {
-  opacity: 1;
+  opacity: 0.65;
   pointer-events: auto;
+  z-index: 10;
 }
 
 .btn-copy-response:hover {
@@ -1584,7 +1579,7 @@ h1, h2, h3, h4, h5, h6, .font-display {
   position: relative;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--color-border);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   border-radius: 6px;
   width: 28px;
   height: 28px;
@@ -1593,14 +1588,9 @@ h1, h2, h3, h4, h5, h6, .font-display {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s var(--apple-ease);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.message-card.assistant:hover .btn-bookmark-response {
-  opacity: 1;
+  opacity: 0.65;
   pointer-events: auto;
+  z-index: 10;
 }
 
 .btn-bookmark-response:hover {
