@@ -29,9 +29,28 @@ class RAGGenerator:
         
         logger.info(f"Initialized RAG Generator with model: {self.model} (Client active: {self.client is not None})")
     
+    # Response length instructions injected into the prompt
+    LENGTH_INSTRUCTIONS = {
+        "concise": (
+            "Be concise and to the point. "
+            "Provide a focused summary of the most critical information only. "
+            "Target 80-120 words. Use bullet points sparingly — only when truly needed."
+        ),
+        "standard": (
+            "Provide a balanced, well-structured response covering the key points. "
+            "Target 200-300 words. Use markdown headers and bullet lists for clarity."
+        ),
+        "detailed": (
+            "Provide a comprehensive, thorough response covering all relevant aspects including "
+            "pathophysiology, clinical features, diagnosis, and management where applicable. "
+            "Target 400-600 words. Use markdown with headers, sub-headers, and detailed bullet points."
+        )
+    }
+
     def generate_answer(self, query: str, context: str, 
                        mode: str = "patient",
-                       citations: List[Dict] = None) -> Dict:
+                       citations: List[Dict] = None,
+                       length: str = "standard") -> Dict:
         """
         Generate answer using RAG
         
@@ -44,10 +63,10 @@ class RAGGenerator:
         Returns:
             Dictionary with answer and metadata
         """
-        logger.info(f"Generating answer in {mode} mode")
+        logger.info(f"Generating answer in {mode} mode, length: {length}")
         
-        # Build prompt based on mode
-        prompt = self._build_prompt(query, context, mode)
+        # Build prompt based on mode and length
+        prompt = self._build_prompt(query, context, mode, length)
         
         try:
             if not self.client:
@@ -94,7 +113,7 @@ class RAGGenerator:
                 "error": str(e)
             }
     
-    def _build_prompt(self, query: str, context: str, mode: str) -> str:
+    def _build_prompt(self, query: str, context: str, mode: str, length: str = "standard") -> str:
         """
         Build RAG prompt
         
@@ -102,12 +121,19 @@ class RAGGenerator:
             query: User query
             context: Retrieved context
             mode: Response mode
+            length: Response length preference (concise/standard/detailed)
         
         Returns:
             Formatted prompt
         """
         mode_config = Config.MODES.get(mode, Config.MODES["patient"])
         mode_instruction = mode_config["prompt_suffix"]
+        
+        # Get length instruction, default to standard if invalid value provided
+        length_instruction = self.LENGTH_INSTRUCTIONS.get(
+            length.lower() if length else "standard",
+            self.LENGTH_INSTRUCTIONS["standard"]
+        )
         
         prompt = f"""You are a medical AI assistant specializing in neurological disorders.
 
@@ -122,7 +148,8 @@ INSTRUCTIONS:
 2. If the context doesn't contain enough information, say so clearly
 3. {mode_instruction}
 4. Be accurate and cite specific information from the text
-5. Use clear, well-structured responses
+5. RESPONSE LENGTH: {length_instruction}
+6. Use clear, well-structured markdown formatting
 
 ANSWER:"""
         

@@ -103,7 +103,12 @@ def query():
         if not validate_mode(mode):
             mode = 'patient'
         
-        logger.info(f"Processing query: {user_query} (mode: {mode})")
+        # Extract and validate response length preference
+        length = data.get('length', 'standard').lower()
+        if length not in ('concise', 'standard', 'detailed'):
+            length = 'standard'
+        
+        logger.info(f"Processing query: {user_query} (mode: {mode}, length: {length})")
         
         # Step 1: Match chapters
         matched_chapters = chapter_matcher.match_chapters(user_query)
@@ -130,12 +135,13 @@ def query():
         context = chunk_retriever.format_context_for_rag(retrieved_chunks)
         citations = chunk_retriever.get_citations(retrieved_chunks)
         
-        # Step 4: Generate answer
+        # Step 4: Generate answer (with length preference)
         result = rag_generator.generate_answer(
             user_query,
             context,
             mode,
-            citations
+            citations,
+            length
         )
         
         if not result.get("success"):
