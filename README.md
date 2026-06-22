@@ -148,12 +148,19 @@ sequenceDiagram
 ## 🎨 Feature Showcase
 
 ### 👥 Dual-Mode Interface
-Tailor clinical communication instantly.
-- **Clinician Mode:** In-depth diagnostics, pharmaceutical considerations, and advanced anatomical terminology.
-- **Patient Mode:** Accessible translations, analogy-driven explanations, and reassuring guidance.
+Tailor clinical communication instantly with the dual-mode logic controller (`src/generation/mode_transformer.py`):
+- **Clinician Mode (Professional Assessment):** Focuses on technical pathophysiological descriptions, precise anatomical structures, and diagnostic workflows. Leverages specialized medical nomenclature.
+- **Patient Mode (Empathetic Translation):** Automatically translates complex terms into layperson-friendly language, introduces analogies for complex physiological processes, and appends reassuring safety guidelines.
+
 <div align="center">
   <img src="assets/chat-ui.png" alt="Clinical Workspace Dual-Mode Toggle" width="90%" style="border-radius: 8px; margin: 10px 0;"/>
 </div>
+
+### 📏 Adaptive Response Length Controller
+Configure the granularity of synthesized outputs dynamically via the query composer controls:
+- **Concise (⚡ Summary):** Delivers direct, action-oriented findings within a target of **80–120 words**. Removes secondary explanations and structures text with very light formatting for rapid reference.
+- **Standard (⚖️ Balanced):** Provides standard structured clinical assessments including numbered guides, bullet highlights, and standard citation tracking (**200–350 words**).
+- **Detailed (📚 In-Depth):** Generates full textbook-grade reviews detailing pathophysiology, differential diagnosis tables, step-by-step treatment pathways, and thorough prognosis summaries (**500–800 words**).
 
 ### 📑 Source Citation & monospaced Chapter Viewer
 - Interactive source citations displayed beneath responses.
