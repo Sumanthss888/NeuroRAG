@@ -100,9 +100,47 @@ graph TD
     FAISS -->|Context Chunks| Retriever
     Retriever -->|Structured Context| Prompting
     Prompting -->|Prompt payload| Gemini
-    Gemini -->|Streaming Response| Routes
     Routes -->|JSON Response + Metadata| UI
     Dashboard -->|Load Metrics| Analytics
+```
+
+### 🔄 Clinical Query & Retrieval Sequence
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Clinical Practitioner / Patient
+    participant UI as static/js/main.js
+    participant API as src/api/routes.py
+    participant DB as users.json (Database)
+    participant Embedder as src/embeddings/gemini_embedder.py
+    participant FAISS as FAISS Vector Store (51 Indices)
+    participant LLM as src/generation/rag_generator.py
+    participant Gemini as Gemini 2.5 Flash API
+    
+    User->>UI: Enter query & Select parameters (Mode, Length)
+    UI->>API: POST /api/query { query, mode, length }
+    API->>DB: Log session analytics telemetry
+    
+    API->>Embedder: Generate Query Embedding (text-embedding-004)
+    alt API Key Valid
+        Embedder->>Gemini: Fetch vector dimensions
+        Gemini-->>Embedder: 3072-dim array
+    else API Key Missing / Placeholder
+        Embedder-->>Embedder: Zero-vector Fallback (Offline Mode)
+    end
+    
+    API->>FAISS: Retrieve top-K semantic context chunks
+    FAISS-->>API: Relevant text chunks + Similarity scores
+    
+    API->>LLM: generate_answer(query, chunks, mode, length)
+    LLM->>LLM: Ingest clinical guidelines & formatting templates
+    LLM->>Gemini: POST Prompt payloads (system + context + mode rules)
+    Gemini-->>LLM: Generated markdown text
+    LLM-->>API: Response payload (answer, citations, risk/severity)
+    
+    API-->>UI: JSON response { success: true, answer, citations, severity_level }
+    UI->>User: Render styled message card with highlights
 ```
 
 ---
