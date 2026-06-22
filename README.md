@@ -267,79 +267,88 @@ stateDiagram-v2
 
 ## 🚀 Setup & Launch
 
-### 1. Prerequisites
-- Python 3.10+
-- Google Gemini API Key
+Follow these steps to initialize and launch the clinical RAG workstation locally.
 
-### 2. Quick-Start (Mac/Linux)
-We provide an automated setup helper:
+### 📋 Prerequisites
+* **Python**: Version 3.10 or higher
+* **Google Gemini API Key**: Required for vector embeddings (`text-embedding-004`) and text generation (`gemini-2.5-flash`). Alternatively, the application runs in a feature-complete offline mock mode if no key is supplied.
+
+### ⚡ Quick-Start (Mac / Linux)
+An automated shell script is provided to handle virtual environment setup, package installations, and directory structures:
 ```bash
 chmod +x setup.sh
 ./setup.sh
 ```
 
-### 3. Manual Configuration
-```bash
-# 1. Clone & enter repository
-git clone https://github.com/Sumanthss888/NeuroRAG.git
-cd NeuroRAG
+### 🛠️ Manual Installation
 
-# 2. Setup virtual environment
-python3 -m venv venv
-source venv/bin/activate
+1. **Clone the repository & enter workspace:**
+   ```bash
+   git clone https://github.com/Sumanthss888/NeuroRAG.git
+   cd NeuroRAG
+   ```
 
-# 3. Install packages
-pip install -r requirements.txt
+2. **Configure environment variables:**
+   Create a `.env` file in the root directory:
+   ```bash
+   echo "GEMINI_API_KEY=your_gemini_api_key_here" > .env
+   ```
 
-# 4. Save API credentials
-echo "GEMINI_API_KEY=your_gemini_api_key_here" > .env
-```
+3. **Establish Python virtual environment & dependencies:**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
 
-### 4. Setup Chunks Database
-Place your neurology handbook PDF in:
-`data/raw/neurology_handbook.pdf`
+4. **Vector Database Generation:**
+   Place your reference medical handbook PDF at `data/raw/neurology_handbook.pdf` (or use the default pre-loaded structures), and run the embedding construction pipeline:
+   ```bash
+   python preprocess.py
+   ```
 
-Run the vector construction pipeline:
-```bash
-python preprocess.py
-```
-
-### 5. Launch
-```bash
-python app.py
-```
-Open **`http://localhost:5000`** in your browser.
+5. **Start Flask Application Server:**
+   ```bash
+   python app.py
+   ```
+   Open your browser and navigate to **`http://localhost:5000`**.
 
 ---
 
 ## 🗺️ Product Roadmap
 
-### v1.0 — Core Search
-- Chapter semantic search indexing using FAISS
-- Basic query completion via Gemini API
+### v1.0 — Core Search Engine
+* Chapter semantic search indexing using FAISS.
+* Query completion and RAG synthesis via Gemini API.
 
-### v2.0 — Premium Workspace
-- Glassmorphic desktop layout
-- Clinician vs Patient dual modes
-- Chapter citations audit trail
+### v2.0 — Interactive Clinical Workspace
+* Glassmorphic workspace layout with mode-dependent configurations.
+* Interactive sidebar query history exploration and chapter citations audit trail.
 
-### v3.0 — Productivity & Power Features
-- Smart text search, keyboard shortcuts & voice inputs
-- Session summaries logs & persistent local bookmarks
-- Usage telemetry dashboard
+### v3.0 — Production-Grade Workspace (Current Release)
+* **Intelligent Composer & Telemetry:** Full keyboard hotkey integration, voice dictation, and interactive Chart.js analytics dashboard.
+* **Unified Motion Architecture:** Fluid transition staggers and modal dynamics tailored under prefers-reduced-motion bounds.
+* **Ambient Motion Layer:** High-end slow-drift background orbs, status pulsing indicators, and cycle placeholder suggestions.
+* **Brand System:** Canonical SVG vector logo injection, browser title execution indicators, and installable icons set.
+* **Adaptive Length Engine:** Concise, Standard, and Detailed word variants targeting query requirements.
 
-### Future Releases
-- **Multi-Document Support:** Query multiple clinical textbooks simultaneously
-- **Semantic Memory:** Graph DB linking symptoms, treatments, and drug interactions
-- **Confidence Scoring:** Color-coded text highlighting based on retrieval match margins
+### Future Milestones
+* **Multi-Textbook Contexts:** Query multiple medical handbooks and clinical datasets simultaneously.
+* **Semantic Knowledge Graph:** Map symptom networks, clinical pathways, and drug-drug interactions.
+* **Accuracy Annotations:** Highlight citation text segments dynamically based on similarity margins.
 
 ---
 
 ## 👤 Contributors & Authors
-- **Sumanth** - [GitHub Profile](https://github.com/Sumanthss888) · [LinkedIn](https://linkedin.com)
+
+* **Sumanth** — *Lead Engineer* — [GitHub Profile](https://github.com/Sumanthss888) · [LinkedIn](https://linkedin.com)
 
 ---
 
 ## ⚠️ Medical Disclaimer
-> [!CAUTION]
-> **Educational & Supplementary Resource Only:** NeuroRAG is an AI assistant trained on static medical literature. It does **not** provide clinical diagnosis or patient medical advice. All dosage schedules, diagnostic assessments, and warnings should be verified independently by a licensed medical professional before patient administration.
+
+> [!WARNING]
+> **Educational & Decision Support Resource Only**
+>
+> NeuroRAG is an artificial intelligence research platform trained on static clinical handbooks. It does **not** provide clinical diagnosis, prognosis, or direct patient medical advice. All dosage schedules, diagnostic criteria, and warning parameters must be verified independently by a licensed health professional prior to patient care or therapeutic administration.
+
