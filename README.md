@@ -240,7 +240,7 @@ stateDiagram-v2
 │   ├── embeddings/
 │   │   └── gemini_embedder.py  # Gemini vector embeddings mapper with zero-vector fallback
 │   ├── generation/
-│   │   ├── rag_generator.py    # Answer synthesis & AI summarizer
+│   │   ├── rag_generator.py    # Answer synthesis & AI summarizer (concise/standard/detailed rules)
 │   │   └── mode_transformer.py # Clinician/Patient mode style rules
 │   ├── retrieval/
 │   │   ├── chapter_matcher.py  # Title/chapter boundary indices
@@ -249,11 +249,15 @@ stateDiagram-v2
 │       ├── analytics.py        # Chart.js metrics aggregator service
 │       └── config.py           # Centralized environment parameters
 ├── static/
+│   ├── brand/                  # Unified brand system assets (favicon.ico, apple-touch-icon, manifest.json)
 │   ├── css/
-│   │   └── style.css           # Custom CSS, skeletons, glass layout overlays & scrollbars
+│   │   └── style.css           # Custom CSS, skeletons, glass layout overlays & ambient animations
 │   └── js/
-│       └── main.js             # Client state manager, hotkey handlers & toast system
+│       ├── main.js             # Client state manager, hotkey handlers & toast system
+│       └── auth-motion.js      # Cinematic login/signup animation controller
 └── templates/
+    ├── components/
+    │   └── _logo.html          # Canonical shared SVG brain stroke logo component
     ├── index.html              # Clinical workspace entry layout
     ├── dashboard.html          # Analytics telemetry grid
     └── chat_history.html       # Archive log explorer
