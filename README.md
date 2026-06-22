@@ -1,13 +1,12 @@
 # <div align="center">🧠 NeuroRAG</div>
-### <div align="center">Advanced Clinical AI Assistant · Powered by Gemini + Retrieval-Augmented Generation</div>
+### <div align="center">Advanced Clinical AI Workstation · Powered by Gemini + Retrieval-Augmented Generation</div>
 
 <div align="center">
   <a href="https://github.com/Sumanthss888/NeuroRAG"><img src="https://img.shields.io/github/stars/Sumanthss888/NeuroRAG?style=for-the-badge&color=7C6AF7&logo=github" alt="GitHub Stars"></a>
-  <img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/Flask-3.0.0-lightgrey?style=for-the-badge&logo=flask" alt="Flask">
-  <img src="https://img.shields.io/badge/Gemini-2.5_Flash-orange?style=for-the-badge&logo=google" alt="Gemini">
-  <img src="https://img.shields.io/badge/FAISS-Vector_Search-green?style=for-the-badge" alt="FAISS">
-
+  <img src="https://img.shields.io/badge/Python-3.10%2B-7C6AF7?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/Flask-3.0.0-black?style=for-the-badge&logo=flask&logoColor=white" alt="Flask">
+  <img src="https://img.shields.io/badge/Gemini-2.5_Flash-E4405F?style=for-the-badge&logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/FAISS-Vector_Search-009688?style=for-the-badge" alt="FAISS">
 </div>
 
 <br/>
@@ -15,6 +14,26 @@
 <div align="center">
   <img src="assets/banner.png" alt="NeuroRAG Clinical Workspace Banner" width="100%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.08);"/>
 </div>
+
+---
+
+## 🧭 Quick Navigation
+
+- [🏥 Why NeuroRAG?](#-why-neurorag)
+- [🏗️ System Architecture](#️-system-architecture)
+- [🎨 Feature Showcase](#-feature-showcase)
+- [👥 Dual-Mode Interface](#-dual-mode-interface)
+- [📑 Source Citation & monospaced Chapter Viewer](#-source-citation--monospaced-chapter-viewer)
+- [📊 Clinician Usage Dashboard](#-clinician-usage-dashboard)
+- [🚨 Red-Flag alerts & Severity Badges](#-red-flag-alerts--severity-badges)
+- [🔖 Bookmarks & Session summaries](#-bookmarks-session-summaries)
+- [🎙️ Web Voice Input & Shortcuts](#️-web-voice-input--shortcuts)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [📂 Project Structure](#-project-structure)
+- [🚀 Setup & Launch](#-setup--launch)
+- [🗺️ Product Roadmap](#️-product-roadmap)
+- [👤 Contributors & Authors](#-contributors--authors)
+- [⚠️ Medical Disclaimer](#️-medical-disclaimer)
 
 ---
 
