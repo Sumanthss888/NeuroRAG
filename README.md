@@ -185,6 +185,29 @@ Configure the granularity of synthesized outputs dynamically via the query compo
 - Sidebar bookmark drawer allows scrolling back or restoring old query states instantly.
 - Click **End Session** to trigger an AI summary generation of your workspace queries, archiving session stats in collapsible timeline logs.
 
+#### 🔄 Session Lifecycle & State Transitions
+
+```mermaid
+stateDiagram-v2
+    [*] --> Unauthenticated: Load App
+    Unauthenticated --> Authenticating: Submit Login/Signup Credentials
+    Authenticating --> Unauthenticated: Auth Fail (SHA-256 mismatch)
+    Authenticating --> ActiveSession: Auth Success (Session Cookie set)
+    
+    state ActiveSession {
+        [*] --> IdleWorkspace: Initialize Dashboard
+        IdleWorkspace --> ProcessingQuery: User inputs clinical query & submits
+        ProcessingQuery --> DisplayingResult: Context retrieval & Gemini synthesis
+        DisplayingResult --> IdleWorkspace: Render result cards (with severity & length)
+        DisplayingResult --> BookmarkedState: Click "Bookmark response" (Saved to LocalStorage)
+        BookmarkedState --> DisplayingResult: Remove Bookmark
+    }
+    
+    ActiveSession --> SessionSummaryState: Click "End Session"
+    SessionSummaryState --> SerializingLogs: AI aggregates queries & generates timeline summary
+    SerializingLogs --> Unauthenticated: Session Cleared & Redirected to Login
+```
+
 ### 🎙️ Web Voice Input & Shortcuts
 - Talk directly to the composer using Web Speech recognition with visual pulse state feedback.
 - Drive the application using core keyboard shortcuts (`⌘/Ctrl + K` to search logs, `⌘/Ctrl + Enter` to submit query, `⌘/Ctrl + B` to toggle sidebar panel, `Escape` to close modals, and `?` for help).
